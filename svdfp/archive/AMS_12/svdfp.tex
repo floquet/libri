@@ -1,0 +1,133 @@
+\documentclass[theoremb]{gsm-l}
+
+%If you need symbols beyond the basic set, uncomment this command.
+\usepackage{amssymb}
+%\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{mathdots}
+
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+%\usepackage{pstricks}
+\usepackage{color}
+%\textcolor{color}{words to be in color}
+%available colors: red, green, and blue (for screen display) and cyan, magenta, and yellow (to go with black for the CMYK color model for printing)
+
+%     If the book includes commutative diagrams, ...
+%\usepackage[cmtip,all]{xy}
+
+%    Include other referenced packages here.
+\usepackage{colortbl}
+%\usepackage{ucs}
+%\usepackage[utf8]{inputenc}
+
+\input{common/declarations.tex}
+
+\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\title{The Singular Value Decomposition\\for Pedestrians}
+
+\author{Daniel Topa}
+\address{University of New Mexico\\Albuquerque, New Mexico}
+\curraddr{Los Alamos National Laboratory\\Los Alamos, New Mexico}
+\email{dantopa@lanl.gov}
+\thanks{PFE}
+
+\subjclass[2000]{Primary }
+
+\keywords{singular value decomposition, pseudoinverse, Moore-Penrose inverse, generalized inverse, least squares, singular values, Fundamental Theorem of Linear Algebra}
+
+\begin{abstract}
+The purpose of this work is to popularize the \svdp, probably the most important matrix decomposition. Many working scientists and engineers can benefit from understanding this interesting and powerful tool. The approach here is to develop intuition and familiarity with the SVD and demonstrate its great utility in areas like the method of least squares, the generalized matrix inverse, information theory and matrix analysis. As applications are developed more theory in introduced. Ultimately several rich techniques of linear algebra will be polished and perfected.
+\end{abstract}
+
+\maketitle
+
+%    Dedication.  If the dedication is longer than a line or two,
+%    remove the centering instructions and the line break.
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{13.5pc}
+\begin{center}
+  A mi tesoros, Danny y Ximenita.
+\end{center}
+\cleardoublepage
+
+%    Change page number to 7 if a dedication is present.
+\setcounter{page}{7}
+
+\tableofcontents
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\include{audience}
+\include{goals}
+\include{preface}
+
+\mainmatter
+%    Include main chapters here.
+
+\part{Preliminaries}
+\include{chapters/prelim/head_pre}
+
+\part{Rudiments}
+\include{chapters/simple/head_simple}
+\include{chapters/post_mortem/head_post}
+\include{chapters/general/head_general}
+\include{chapters/post_mortemII/head_postII}
+
+\part{Developments}
+\include{chapters/sigmas/head_sigmas}
+\include{chapters/geometry/head_geometry}
+\include{chapters/bases/head_bases}
+\include{chapters/Jordan/head_Jordan}
+\include{chapters/formal/head_formal}
+
+\part{Applications}
+\include{chapters/gradient/head_gradient}
+\include{chapters/fourier/head_fourier}
+
+\part{Formalities}
+\include{chapters/ftola/head_ftola}
+\include{chapters/svd/head_svd}
+\include{chapters/svd_proofs/head_svd_proofs}
+
+\part{Exploration}
+\include{chapters/mpp/head_mpp}
+\include{chapters/lsq/head_lsq}
+\include{chapters/decompositions/head_decomp}
+\include{chapters/fun/head_fun}
+
+\part{Details}
+%\include{chapters/proof/head_proof}
+%\include{chapters/analysis/head_analysis}
+\include{chapters/incubate/head_incubate}
+
+\part{Appendices}
+\appendix
+%    Include appendix "chapters" here.
+\include{appendices/summaries/head_summaries}
+\include{appendices/EAR/head_ear}
+\include{appendices/eigenvalues/head_ev}
+\include{appendices/gs/head_gs}
+\include{appendices/diagonalization/head_spectral}
+
+\part{Reference}
+\include{glossary}
+
+\part{Backmatter}
+\backmatter
+%    Bibliographies can be prepared with BibTeX using amsplain,
+%    amsalpha, or (for "historical" overviews) natbib style.
+%\bibliography{book}{}
+%\bibliographystyle{plain}
+\bibliography{svdfp}
+\bibliographystyle{plain}
+%    See note above about multiple indexes.
+\printindex
+
+\end{document}

@@ -1,0 +1,92 @@
+\section{Solution using the SVD}
+Let's return to using an SVD to solve the linear systems like $\ls$ as shown in \S\eqref{sec:formal:simple}.
+
+Once you have the SVD life is good.
+ 
+%%
+\subsection{Extended example}
+We don't want 3 x 3, go to 3 x 5
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x &=& b\\
+    \mat{rrrrr}
+    {
+     1 & -1 &  1 & -1 &  1\\
+    -1 &  1 & -1 &  1 & -1\\
+     1 & -1 &  1 & -1 &  1\\
+    }
+    &
+    \mat{c}{x_{1}\\x_{2}\\x_{3}\\x_{4}\\x_{5}}
+    &=& \phivector.
+  \end{array}
+\end{equation}
+
+\textbf{Recycling:} The good news is that we can solve this system using the simple \svdl \ method of the first chapter allowing us to bypass the eigensystem problem. Even more good] news is that we can recycle the codomain matrix $\Y{}$. The active column vector in the domain matrix is this:
+\begin{equation}
+  \X{}_{*,1} = \sfive\mat{r}{1 \\ -1 \\  1 \\ -1 \\  1}.
+\end{equation}
+Using the fact that
+\begin{equation}
+  \begin{split}
+    \A{}\X{}_{*,1}=\sigma_{1}\Y{}_{*,1}
+  \end{split}
+\end{equation}
+we can compute the lone singular value of
+\begin{equation}
+  \sigma_{1} = 15^{-1/2}.
+\end{equation}
+
+Without doing noticeable calculation, we already have the partial decomposition
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    &=
+    \Yshade
+    \mat{c|cccc}
+    {
+     15^{-1/2} & 0 & 0 & 0 & 0\\\hline
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+    }
+    \mat{ccccc}
+    {\sfive & -\sfive & \sfive & -\sfive & \sfive\\
+     \rowcolor{ltgray}
+     \cdot  &  \cdot  & \cdot  &  \cdot  & \cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \cdot  & \cdot  &  \cdot  & \cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \cdot  & \cdot  &  \cdot  & \cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \cdot  & \cdot  &  \cdot  & \cdot}\\
+  \end{split}
+\end{equation}
+
+The Gram-Schmidt process in the appendix \eqref{sec:gs} will complete the $\X{}$ matrix. Using the seed vectors
+\begin{equation}
+  U = \lst{
+  \mat{r}{1 \\ -1 \\  1 \\ -1 \\  1},
+  \mat{c}{1\\0\\0\\0\\0},
+  \mat{c}{0\\1\\0\\0\\0},
+  \mat{c}{0\\0\\1\\0\\0},
+  \mat{c}{0\\0\\0\\1\\0}
+  }
+\end{equation}
+the domain matrix becomes
+\begin{equation}
+  \X{} = 
+  \left[
+\begin{array}{ r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}c }
+  \sfive &  \frac{4}{2\sqrt{5}} &  0 &  0 &  0 \\
+ -\sfive &  \frac{1}{2\sqrt{5}} &  \frac{3}{2\sqrt{3}} &  0 &  0\\
+  \sfive & -\frac{1}{2\sqrt{5}} &  \frac{1}{2\sqrt{3}} & -\frac{2}{6} &  0\\
+ -\sfive &  \frac{1}{2\sqrt{5}} & -\frac{1}{2\sqrt{3}} &  \ssix & \stwo\\
+  \sfive & -\frac{1}{2\sqrt{5}} &  \frac{1}{2\sqrt{3}} & -\ssix & \stwo\\
+\end{array}
+\right]
+\end{equation}
+
+Now do the change of coordinates stuff in the section on a more formal introduction.
+
+
+
+\endinput

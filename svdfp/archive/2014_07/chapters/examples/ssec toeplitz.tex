@@ -1,0 +1,105 @@
+\subsection{Toeplitz matrices}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Circulant matrices}
+\begin{equation}
+  \A{}_{2} =
+    \mat{cc}{1&2\\2&1}, \quad
+  \A{}_{3} =
+    \mat{ccc}{1&2&3\\2&3&1\\3&2&1}, \quad
+  \A{}_{4} =
+    \mat{cccc}{1&2&3&4\\2&3&4&1\\3&4&1&2\\4&1&2&3}, \quad \dots
+\end{equation}
+
+%%
+\clearpage
+\begin{table}[htdp]
+\caption[Matrix images for a sequence of circulant matrices]{Matrix images for a sequence of smaller circulant matrices.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  \head{*} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00003 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00003 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00003 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00003 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00004 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00004 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00004 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00004 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00005 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00005 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00005 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00005 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00006 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00006 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00006 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00006 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00007 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00007 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00007 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00007 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00008 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00008 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00008 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00008 Vt"} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:toeplitz:images:low}
+\end{table}
+%%
+
+%%
+\begin{table}[htdp]
+\caption[Matrix images for a sequence of larger circulant matrices]{Matrix images for a sequence of larger matrices.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  \head{*} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00010 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00010 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00010 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00010 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00020 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00020 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00020 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00020 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00030 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00030 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00030 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00030 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00040 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00040 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00040 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00040 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00050 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00050 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00050 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00050 Vt"} \\
+%
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00060 A"}  &&
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00060 U"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00060 S"}  &
+  \includegraphics[ width = 1in ]{images/examples/circulant/"circulant 00060 Vt"} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:toeplitz:images:high}
+\end{table}
+%%
+
+
+\endinput

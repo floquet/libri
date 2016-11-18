@@ -1,0 +1,38 @@
+% range and null space
+\newcommand{ \atomrng }[0]   { \mathcal{R} }
+\newcommand{ \atomnll }[0]   { \mathcal{N} }
+
+\newcommand{ \rng }[1]       { \atomrng \! \paren{ #1 } }
+\newcommand{ \nll }[1]       { \atomnll \! \paren{ #1 } }
+
+\newcommand{ \rnga }[1]      { \rng{ \A{ #1 } } }
+\newcommand{ \nlla }[1]      { \nll{ \A{ #1 } } }
+
+\newcommand{ \brnga }[1]     { \bl{ \rnga{ #1 } } }
+\newcommand{ \rnlla }[1]     { \rd{ \nlla{ #1 } } }
+\newcommand{ \gnlla }[1]     { \mg{ \nlla{ #1 } } }
+
+% orthogonal decomposition
+\newcommand{ \decompdo }[1]  { \rnga{ #1 }  \oplus \nlla{} }
+\newcommand{ \decompco }[1]  { \rnga{}      \oplus \nlla{ #1 } }
+
+\newcommand{ \cdecompdo }[1] { \brnga{ #1 } \oplus \rnlla{} }
+\newcommand{ \cdecompco }[1] { \brnga{}     \oplus \rnlla{ #1 } }
+
+% FTOLA
+\newcommand{ \ftolado }[1]   { \cmplxn =  \decompdo{ #1 } }
+\newcommand{ \ftolaco }[1]   { \cmplxm =  \decompco{ #1 } }
+
+\newcommand{ \cftolado }[1]  { \cmplxn = \cdecompdo{ #1 } }
+\newcommand{ \cftolaco }[1]  { \cmplxm = \cdecompco{ #1 } }
+
+% rank plus nullity
+\newcommand{ \rpn }[0]       {\text{rank}\paren{\A{}} + \text{dim}\paren{\text{nullity}\paren{\A{}}}}
+
+% projectors
+\newcommand{ \pra }[0]       { \textbf{P}_{\brnga{}} }
+\newcommand{ \pras }[0]      { \textbf{P}_{\brnga{*}} }
+\newcommand{ \pnas }[0]      { \textbf{P}_{\rnlla{*}} }
+\newcommand{ \pna }[0]       { \textbf{P}_{\rnlla{}} }
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

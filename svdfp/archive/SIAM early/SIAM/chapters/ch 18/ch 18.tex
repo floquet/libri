@@ -1,0 +1,46 @@
+\chapter[Quo Vadis?]{Quo Vadis?}
+
+\section{Summary}
+The \svdp\ is a uniquely powerful tool in linear algebra an matrix analysis. It dominates the Pantheon of matrix diagonalization methods. Any matrix of any dimension can be reduced to a diagonal matrix $\sig{}$ using the unitary matrices $\Y{}$ and $\X{}$. 
+
+Of course, this power comes at a cost. The intrinsic eigenvalue problem in the SVD can be tedious, especially for matrices of the Jordan form. However, we also saw that the SVD many times offers simple, even immediate answers.
+
+The SVD is the very embodiment of the \ftola. It resolves complete orthonormal bases for both domain and  codomain. Then, it steps beyond the \ft\ presents us with the scale factors connecting domain and codomain. Perhaps most importantly, the orthonormal bases are found with a proper relative orientation.
+
+If we have been successful, then the formulae below, first seen in equation \eqref{eq:11:tattoo}, will be both intuitive and appealing:
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{*} \\
+    & = & \yrn{}
+        & \essmatrix{} 
+        & \xtrn{*}  \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}c}{\rnga{} & \nlla{*}} 
+        & \essmatrix{} 
+        & \mat{c}{\rnga{*} \\ \rowcolor{ltgray}\nlla{}}
+  \end{array}  
+\end{equation*}
+This shall be the only formula presented in the summary.
+
+We saw the that when we use the SVD to tackle the problem of least squares the pseudoinverse appeared naturally.
+
+Hopefully, each of the recipes, figures, and flowcharts will resonate with a part of the audience. Experience shows the consumers of linear algebra have a spectrum of preferences.
+
+Almost certainly, this book was used outside of a classroom. The good news is that this allows the reader to set the pace and the goals. The bad news is that there is no instructor to help with difficult topics or to help set goals. While certainly some may have felt the examples a overly explicit, we hope that this can be excused to allow others the luxury of being able to determine precisely where their computation went awry.
+
+The extensive use of visual presentation was deliberate. Besides the stated purpose of exploiting the human brain's proclivity for visual processing, it also diluted the theoretical and formulaic foundations. The hope is that the SVD seems a bit more familiar and comfortable and less imposing.
+
+\section{Quo Vadis?}
+When do you go from here? So much of this vast topic has yet to be explored. We have not even touched the topics of numerical implementations of the SVD. The Siren Song of numerics was tempting indeed, yet with a topic as rich as this, painful exclusions are required. One marvel's at Laub's twin gifts for economy and exposition.
+
+Foundation papers which codified viable numerical algorithms were published from 1965 through 1970. These are the papers by Golub and Kahan\cite{Golub1}, Businger and Golub\cite{Businger}, Golub and Reinsch.\cite{Golub2} They are an ideal starting place for further investigation.
+
+Hopefully, you are prepared and motivated to read more of the burgeoning literature of the SVD. Of course this means journal articles. Yet it also includes some of the classic works on the subjects of linear algebra and matrix analysis. Besides reading new material, you may wish to reread a familiar or forgotten text.
+
+The book by Horn and Johnson.\cite{HJ2}
+
+There is a companion volume to this work which details how to preform these machinations in \emph{Mathematica} or Octave. By pushing these examples to a companion volume we reduce the page count of this work and allow upgrades of the software to be tackled independently of the core material.
+
+The computationally-minded reader should consider working through the companion volume to help assimilate the plenitude of concepts in the last few hundred pages.
+
+
+\endinput

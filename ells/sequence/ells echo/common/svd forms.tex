@@ -1,0 +1,137 @@
+% SVD
+\newcommand{ \svd }[1]       {\svds{#1}{}}
+\newcommand{ \svds }[2]      { \U{} \, \sig{#2} \, \V{#1}}
+\newcommand{ \svdg }[2]      {$\U{}$ & $\sig{#2}$ & $\V{#1}$ }
+\newcommand{ \svdh }[2]      { \U{}  &  \sig{#2}  &  \V{#1}  }
+\newcommand{ \svdi }[0]      { $\A{}$ & = & \svdg{}{*}  }
+\newcommand{ \svdj }[0]      { \A{} & =  \svds{}{*}  }
+\newcommand{ \svdk }[1]      { \A{} =  \svds{#1}{}  }
+
+% SVD transpose
+\newcommand{ \svdtt }[2]     {\V{} \, \sig{#2} \, \U{#1}}
+\newcommand{ \svdt }[1]      { \svdtt{#1}{T} }
+
+% SVD pseudoinverse
+\newcommand{ \mpp }[1]       {\V{} \, \sig{\ssym} \, \U{#1}}
+\newcommand{ \mppfr }[1]     {\V{} \, \sig{-1}    \, \U{#1}}
+
+% column vectors
+\newcommand{ \bvk }[0]       { {\bl{ v_{k} }} }
+\newcommand{ \rvk }[0]       { {\rd{ v_{k} }} }
+\newcommand{ \buk }[0]       { {\bl{ u_{k} }} }
+\newcommand{ \ruk }[0]       { {\rd{ u_{k} }} }
+
+\newcommand{ \buo }[0]       { {\bl{ u_{1} }} }
+\newcommand{ \but }[0]       { {\bl{ u_{2} }} }
+\newcommand{ \burho }[0]     { {\bl{ u_{\rho} }} }
+
+\newcommand{ \rurpo }[0]     { {\rd{ u_{\rho+1} }} }
+\newcommand{ \rum }[0]       { {\rd{ u_{m} }} }
+
+\newcommand{ \bvo }[0]       { {\bl{ v_{1} }} }
+\newcommand{ \bvrho }[0]     { {\bl{ v_{\rho} }} }
+\newcommand{ \bvoh }[0]      { {\bl{ \hat{v}_{1} }} }
+\newcommand{ \bvt }[0]       { {\bl{ v_{2} }} }
+\newcommand{ \bvth }[0]      { {\bl{ \hat{v}_{2} }} }
+\newcommand{ \rvt }[0]       { {\rd{ v_{2} }} }
+\newcommand{ \rvth }[0]      { {\rd{ \hat{v}_{2} }} }
+
+\newcommand{ \ruo }[0]       { {\rd{ u_{1} }} }
+\newcommand{ \rurho }[0]     { {\rd{ u_{\rho} }} }
+\newcommand{ \ruoh }[0]      { {\rd{ \hat{u}_{1} }} }
+\newcommand{ \rut }[0]       { {\rd{ u_{2} }} }
+\newcommand{ \rutr }[0]      { {\rd{ u_{3} }} }
+\newcommand{ \ruth }[0]      { {\rd{ \hat{u}_{2} }} }
+
+\newcommand{ \rvrpo }[0]     { {\rd{ v_{\rho+1} }} }
+\newcommand{ \rvnn }[0]      { {\rd{ v_{n} }} }
+
+\newcommand{ \ucols }[0]     { \mat{ccc|ccc}{\buo & \bdots & \burho & \rurpo & \rdots & \rum } }
+\newcommand{ \vcols }[0]     { \mat{ccc|ccc}{\bvo & \bdots & \bvrho & \rvrpo & \rdots & \rvnn} }
+
+\newcommand{ \auo }[0]       { {\bl{ a_{1} }} }
+\newcommand{ \aut }[0]       { {\bl{ a_{2} }} }
+\newcommand{ \auth }[0]      { {\bl{ a_{3} }} }
+\newcommand{ \auf }[0]       { {\bl{ a_{4} }} }
+
+% column vectors
+\newcommand{ \buks }[0]      { \bl{u_{k}^{\bs}} }
+\newcommand{ \bvks }[0]      { \bl{v_{k}^{\bs}} }
+\newcommand{ \ruks }[0]      { \rd{u_{k}^{\bs}} }
+\newcommand{ \rvks }[0]      { \rd{v_{k}^{\bs}} }
+
+% blocks
+\newcommand{ \ur }[1]         { \mathbf{ U }_\mathcal{ R }^{ #1 } }
+\newcommand{ \un }[1]         { \mathbf{ U }_\mathcal{ N }^{ #1 } }
+\newcommand{ \vr }[1]         { \mathbf{ V }_\mathcal{ R }^{ #1 } }
+\newcommand{ \vn }[1]         { \mathbf{ V }_\mathcal{ N }^{ #1 } }
+
+\newcommand{ \bur }[1]        { \bl{ \ur{ #1 } } }
+\newcommand{ \run }[1]        { \rd{ \un{ #1 } } }
+\newcommand{ \bvr }[1]        { \bl{ \vr{ #1 } } }
+\newcommand{ \rvn }[1]        { \rd{ \vn{ #1 } } }
+
+% block forms domain
+\newcommand{ \adjointf }[1]   { \cvblockf \sbh{} \cublockfs{*} }
+\newcommand{ \adjointt }[1]   { \bbvr{} \sbn{} \bbur{*}Ê}
+
+% SVD pseudoinverse
+\newcommand{ \mppa }[1]       { \cvblockf{}\, \sbh{-1} \cublockfs{ #1 } } % row and column rank deficit
+\newcommand{ \mppb }[1]       { \bbvr{}\, \sbn{-1} \bbur{ #1 } }          % full row and column rank
+
+% block forms domain
+\newcommand{ \ublockf }[0]    { \mat{c|c}{ \ur{} & \un{}Ê}Ê}
+\newcommand{ \ublockr }[0]    { \mat{c}  { \ur{}Ê} }
+
+\newcommand{ \ublockfs }[1]   { \mat{c}{ \ur{ #1 } \\[3pt]\hline \un{ #1 }Ê} }
+\newcommand{ \ublockrs }[1]   { \mat{c}{ \ur{ #1 }Ê} }
+
+\newcommand{ \vblockf }[0]    { \mat{c|c}{ \vr{} & \vn{}Ê} }
+\newcommand{ \vblockr }[0]    { \mat{c}  { \vr{}Ê} }
+
+\newcommand{ \vblockfs }[1]   { \mat{c}{ \vr{ #1 } \\[3pt]\hline \vn{ #1 }Ê} }
+\newcommand{ \vblockrs }[1]   { \mat{c}{ \vr{ #1 }Ê} }
+
+\newcommand{ \cublockf }[0]   { \mat{c|c}{ {\bl{ \ur{} }} & {\rd{ \un{} }}Ê} }
+\newcommand{ \bublockr }[0]   { \bl{ \ublockr }Ê}
+
+\newcommand{ \cublockfs }[1]  { \mat{c}{ {\bl{ \ur{ #1 } }} \\[3pt]\hline {\rd{ \un{ #1 } }}Ê}Ê}
+\newcommand{ \bublockrs }[1]  { \mat{c}{ {\bl{ \ur{ #1 } }}Ê} }
+
+\newcommand{ \cvblockf }[0]   { \mat{c|c}{ {\bl{ \vr{} }} & {\rd{ \vn{} }}Ê} }
+\newcommand{ \bvblockr }[0]   { \mat{c}  { {\bl{ \vr{} }}Ê} }
+
+\newcommand{ \cvblockfs }[1]  { \mat{c}{ {\bl{ \vr{ #1 } }} \\[3pt]\hline {\rd{ \vn{ #1 } }}Ê} }
+\newcommand{ \bvblockrs }[1]  { \mat{c}{ {\bl{ \vr{ #1 } }}Ê} }
+
+% row and column rank deficient
+\newcommand{ \svdblockb }[1]  { \ublockf  \sbb{} \vblockfs{ #1 } }
+\newcommand{ \csvdblockb }[1] { \cublockf \sbb{} \cvblockfs{ #1 } }
+
+% row rank deficient
+\newcommand{ \svdblockbc }[1] { \ublockf  \sbc{} \vr{ #1 } }
+\newcommand{ \csvdblockbc }[1]{ \cublockf \sbc{} \bbvr{ #1 } }
+
+% column rank deficient
+\newcommand{ \svdblockbr }[1] { \bur{}\, \sbr{}\, \vr{ #1 } }
+\newcommand{ \csvdblockbr }[1]{ \bbur{}\, \sbr{}\, \cvblockfs{ #1 } }
+
+% full row and column rank
+\newcommand{ \svdblockbf }[1] { \bbur{}\, \sbn{}\, \bbvr{ #1 } }
+
+% range space only
+\newcommand{ \bbur }[1]       { \mat{c}{ \bur{ #1 } } }
+\newcommand{ \bbvr }[1]       { \mat{c}{ \bvr{ #1 } } }
+
+% impressionist view
+\newcommand{ \usubs }[1]      { \mat{c|c}{\brnga{} & \rnlla{ #1 }} }
+\newcommand{ \vsubs }[1]      { \mat{c|c}{\brnga{ #1 } & \rnlla{}} }
+
+% vectors
+\newcommand{ \bluu }[0]       { {\bl{ u }} }
+\newcommand{ \bluv }[0]       { {\bl{ v }} }
+\newcommand{ \redu }[0]       { {\rd{ u }} }
+\newcommand{ \redv }[0]       { {\rd{ v }} }
+
+
+\endinput

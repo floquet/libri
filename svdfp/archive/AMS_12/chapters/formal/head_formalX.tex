@@ -1,0 +1,367 @@
+\chapter[A More Formal Introduction]{A More Formal Introduction To The Singular Value Decomposition}
+
+At this juncture we have reduced the \svdp \ to an operation which completes the induced row and column spaces to form unitary basis matrices connected by the matrix of singular values. This is the intuition we strive to edify by approaching the SVD from another perspective: the product matrix $\prdm{*}$.
+
+\section{Every matrix has an SVD}
+
+Part of the great utility of this transform comes from the fact that \textit{every} matrix has an SVD. Regardless of the shape of the matrix, regardless of its condition number, there will always be a SVD; it may not be unique, but it will exist.
+
+Consider a matrix of rank $\rho$ such that $\Acc{m}{n}_{\rho}$. The singular value decomposition resolves $ \A{} $ into a product involving two unitary matrices $ \X{} $ and $ \Y{} $ and a diagonal-like matrix of the singular values $ \sig{} $. The decomposition is then
+\begin{equation}
+  \svdax{*}.
+\end{equation}
+Write out a table of matrix sizes to keep things sorted out:
+$$
+\boxed{
+\begin{array}{ cllcc }
+matrix & description & type & entries & dimension \\ \hline
+ \A{}  & \text{target matrix} & \text{arbitrary} & \cmplx{} & m \times n \\[10pt]
+ \Y{}  & \text{codomain basis} & \text{unitary} & \cmplx{} & m \times m \\
+ \X{}  & \text{domain basis} & \text{unitary}& \cmplx{} & n \times n \\
+ \sig{}& \text{singular values} & \text{diagonal-like} & \real{} & m \times n
+\end{array}
+}
+$$
+
+What does ``diagonal-like'' mean? In $ \sig{} $ there will be $ \rho $ non-zero entries and they will all be along the diagonal. For example, we could see forms like
+\begin{equation}
+  \mat{ccccc}
+  {
+  3 & 0 & 0 & 0 & 0\\
+  0 & 3 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0\\
+  }, \quad
+  \mat{cc}
+  {
+  2 & 0\\
+  0 & 1\\
+  0 & 0\\
+  }, \quad
+  \mat{ccc}
+  {
+  \pi & 0           & 0\\
+  0   & \sqrt[3]{2} & 0\\
+  0   & 0           & \sqrt[4]{2}\\
+  }.
+\end{equation}
+
+Now that have a definition of the SVD we turn to the question of its use. Consider the linear system $\ls$. With a couple of steps we can transform the system accordingly:
+\begin{equation}
+  \begin{array}{rcl}
+  \A{}x &=& b \\
+   &\Downarrow\\
+   \svd{*} &=& b\\
+   &\Downarrow\\
+   \sig{}\, \X{*} x &=& \Y{*} b
+  \end{array}
+\end{equation}
+Introduce the \textit{change of coordinates}\index{change of coordinates} given by
+\begin{equation}
+  \begin{split}
+    \mathbb{X} & = \X{*} x  \\
+    \mathbb{B} & = \Y{*} b
+  \end{split}
+\end{equation}
+and we are left with a simpler linear system
+\begin{equation}
+    \sig{}\, \mathbb{X} = \sig{}\,\sig{(+)}\mathbb{B}.
+    \label{eq:formal:svdsoln}
+\end{equation}
+
+While in general one would not turn to the SVD to solve a problem using least squares, the SVD is a powerful tool for theoretical studies. In this case, the SVD is used to transform a difficult problem to a simpler problem. Schematically,
+$$
+\begin{array}{ ccc }
+  \A{} x = b  & \longrightarrow  &  \sig{}\, \mathbb{X} = \sig{}\,\sig{(+)}\mathbb{B} \\[5pt]
+   \text{difficult}  & \longrightarrow  &  \text{simpler}  \\
+\end{array}
+$$
+\textbf{Example:} 
+For a demonstration take the target matrix and decomposition from the initial example in \eqref{eq:simple:problem}. The first coordinate transformation is this
+\begin{equation}
+  \begin{split}
+    \mathbb{X} & = \X{T} x = \Xtshade \mat{c}{x_{1}\\x_{2}} = \stwo \mat{c}{x_{1}-x_{2}\\x_{1}+x_{2}}.
+  \end{split}
+\end{equation}
+%%%
+The second transformation is given by this:
+\begin{equation}
+  \begin{split}
+    \mathbb{B} & = \Y{T} b \\
+    &=  \Ytshade
+    \phivector \\
+    &=   \sthree  \mat{r}{2 \\ -1 \\ 0}.\\
+  \end{split}
+\end{equation}
+The linear system in \eqref{eq:formal:svdsoln} is simplified due to the stenciling action of the matrix product 
+\begin{equation}
+  \sig{}\sig{(+)} = 
+    \mat{c|c}
+    { \ess{} & \zero\\\hline
+    \zero & \zero }
+    \mat{c|c}
+   { \ess{-1} & \zero\\\hline
+     \zero & \zero }
+     =
+    \mat{c|c}
+    { \I{\rho} & \zero\\\hline
+    \zero & \zero }.
+\end{equation}
+The only entry which survives is the first row in the vector $\mathbb{B}$. 
+The linear system is then reduced in the following steps:
+\begin{equation}
+  \begin{split}
+    \sig{}\,\mathbb{X} &= \sig{}\sig{(+)}\mathbb{B} \\
+    \Sigmaexampleb \stwo \mat{c}{x_{1}-x_{2}\\x_{1}+x_{2}} & = \Sigmaexampleb 
+    \mat{c|cc}
+    {
+     \ssix & 0 & 0 \\ \hline
+     0 & 0 & 0
+    }
+    \sthree  \mat{r}{2 \\ -1 \\ 0}\\
+    \mat{c|c}
+    {\sqrt{3} & 0\\\hline
+        0     & 0}
+    \mat{c}{x_{1}-x_{2}\\x_{1}+x_{2}} &=
+    \mat{c|cc}
+    {1 & 0 & 0 \\\hline
+     0 & 0 & 0 \\
+     0 & 0 & 0}
+    \sthree  \mat{r}{2 \\ -1 \\ 0}\\
+    \sqrt{3} \mat{c}{x_{1}-x_{2}\\0} &=
+    \mat{c}{\frac{2}{\sqrt{3}} \\ 0 \\ 0}\\
+  \end{split}
+\end{equation}
+which is of course
+\begin{equation}
+  x_{1} - x_{2} = \frac{2}{3}.
+\label{eq:formal:2}
+\end{equation}
+This is the homogenous (null space) solution which goes through the particular solution. To recover the particular solution, find where the range of the matrix $\A{}$ crosses this line. From the domain basis matrix $\X{}$ we see that the range is the line
+\begin{equation}
+x_{2}=x_{1} - \frac{1}{3}.
+\label{eq:formal:1}
+\end{equation}
+From direct substitution of \eqref{eq:formal:1} into \eqref{eq:formal:2} we recover
+\begin{equation}
+  \mat{c}{x_{1} \\ x_{2}} = \frac{1}{6}\mat{r}{1\\-1},
+\end{equation}
+the particular solution.
+
+%
+%  Derivation of the SVD
+%
+
+\section{Derivation of the SVD}
+
+We know what the SVD is and when to use it. Now we show how to derive the SVD. We begin not by looking at $\A{}$, but at the product matrix $\prdm{*}$  instead. While $\A{}$ has arbitrary shape, the product matrix  $\prdm{*}$  is square. And since this matrix is square we know it will have eigenvalues. The product matrix has three other essential properties.
+
+%%
+%%
+
+\subsection{Three important properties}
+The product matrix is defined as this
+\begin{equation}
+\begin{array}{ccc}
+  \prdm{*} &=& \W{x},\\
+  \paren{\byt{n}{m}}\paren{\byt{m}{n}} && \paren{\byt{n}{n}}.
+\end{array}
+\end{equation}
+The matrix is square and its size is determined by the length of the \textit{row vectors}. These row vectors also determine the dimension of the domain. For this reason, the product matrix carries the \textit{x} subscript.
+
+Besides being square, the product matrix also has three important properties. It is
+\begin{enumerate}
+  \item Hermitian,
+  \item semi-positive definite, and
+  \item normal.
+\end{enumerate} 
+
+Let's explore each of these properties more formally starting with the Hermiticity. 
+
+%%%
+%%%
+%%%
+
+\subsubsection{Hermitian}
+Recall an Hermitian\index{Hermitian} matrix satisfies $ \B{} = \B{*} $. We see that the product matrix is automatically Hermitian since
+\begin{equation}
+  \paren{\prdm{*}}^{*}=\A{*}\paren{\A{*}}^{*} = \prdm{*}.
+\end{equation}
+
+Hermitian matrices are the backbone of Heisenberg's matrix version of quantum mechanics as they represent physical observables. These matrices have real eigenvalues as shown below.
+
+To refresh, the Hermitian conjugate\index{Hermitian conjugate!definition} is the complex conjugate of the transpose matrix
+\begin{equation*}
+  \A{*} = \overline{\A{T}}.
+\end{equation*}
+(If the entries of the target matrix are all real then the complex conjugation does not change the entries.)
+
+Start with a target matrix $\Acc{m}{n}_{\rho}$ and look at the eigenvalue equation for the target matrix $\A{}$ and the Hermitian conjugate of the equation:
+\begin{equation}
+\begin{split}
+  \A{}x_{k} &= \lambda_{k}x_{k}, \quad k=1,\rho,\\
+  \A{*}x^{*}_{k} &= \lambda^{*}_{k}x^{*}_{k}, \quad k=1,\rho.\\
+\end{split}
+\end{equation}
+The difference between these equations is this
+\begin{equation}
+  \paren{\A{}-\A{*}} = \paren{\lambda_{k}-\lambda^{*}_{k}}\paren{2 \text{Re}\paren{x_{k}}}, \quad k=1,\rho.
+\end{equation}
+Because the target matrix is Hermitian the left hand side is zero and we have then
+\begin{equation}
+  \paren{\lambda_{k}-\lambda^{*}_{k}}\paren{2 \text{Re}\paren{x_{k}}}=0, \quad k=1,\rho.
+\end{equation}
+Because the vector $x$ is arbitrary it will not always have zero real part. Therefore the only way to enforce the zero product in all cases is to have
+\begin{equation}
+  \lambda_{k} = \lambda^{*}_{k}, \quad k=1,\rho.
+\end{equation}
+This is the requirement that all eigenvalues be real.
+
+%%%
+%%%
+%%%
+
+\subsubsection{Semi-positive definite}
+A matrix $\A{}$ is semi-positive definite\index{semi-positive definite} if for all vectors $x$
+\begin{equation}
+  x^{*}\A{}x  \geq  0.
+\end{equation}
+
+Applying this to the product matrix $\prdm{*}$ we see
+\begin{equation}
+  x^{*}\prdm{*}x  \geq  0.
+  \label{eq:formal:3}
+\end{equation}
+
+Using the eigenvalue equation $\A{}x=\lambda x$ we can rewrite equation \eqref{eq:formal:3} as
+\begin{equation}
+  x^{*}\prdm{*}x  =  \paren{\A{}x}^{*}\A{}x  =  \lambda^{*}\lambda = \abs{\lambda}^{2},
+\end{equation}
+clearly a positive number. Therefore the product matrix $\prdm{*}$ is semi-positive definite.
+
+%%%
+%%%
+%%%
+
+\subsubsection{Normal}
+
+Lastly, we examine that it means for a matrix to be normal\index{normal matrix!definition}. A matrix $\A{}$ is normal if
+\begin{equation}
+  \prdm{*}  =  \prdmm{*}.
+\end{equation}
+
+Or in other terms, a normal matrix commutes with its Hermitian conjugate: 
+\begin{equation}
+  \brac{ \A{}, \A{*} } = \prdm{*}-\prdmm{*} =  0
+\end{equation}
+where the square brackets denote the commutator\index{commutator}.
+
+How will this property help us? \textit{A normal matrix can be diagonalized by a unitary matrix.} That is, for $\B{}$ normal, there is a unitary matrix $\U{}$ such that the product matrix $\U{}\B{*}\U{*}$ is diagonal. In terms of the original product matrix $\prdm{*}$, we can state that $\U{}\prdm{*}\U{*}$ is diagonal. 
+
+That is, if the matrix $\Ac{n}$ is normal then it satisfies
+\begin{equation}
+  \brac{ \A{}, \A{*} } = 0
+\end{equation}
+and there exits a unitary matrix
+\begin{equation}
+  \U{-1}  =  \U{*}
+\end{equation}
+such that the matrix product $\U{}\prdm{*}\U{*}$ is diagonal:
+\begin{equation}
+  \U{}\prdm{*}\U{*} = \mat{cccc}
+  {
+  \alpha_{1}\\
+  &\alpha_{2}\\
+  &&\ddots\\
+  &&&\alpha_{n}\\
+  }.
+\end{equation}
+The proof is left to other texts such !! as and !!.
+
+%%
+%%
+
+\subsection{Construction of the SVD}
+
+Let $ \lst{v_1, v_2, \cdots, v_n} $ be an orthonormal set of eigenvectors of the product matrix $\prdm{*}$ such that
+\begin{equation}
+  \prdm{*} v_j  =  \sigma_j^2 v_j.
+\end{equation}
+
+These $ \sigma $'s are the {\it singular values}. They are the non-zero {\it eigenvalues} of the square matrices $ \prdm{*} $ and $ \prdmm{*} $.
+
+Here is an identity I wrote down. It looks important.
+\begin{equation}
+  \norm{ A v_j }_2^2 = v_j^* A^* A \sigma_j = v_j^* \sigma_j^2 v_j = \sigma_j^2
+\end{equation}
+
+Let the first $\rho$ singular values be greater than zero:
+$$
+\sigma_1, \sigma_2, \cdots, \sigma_\rho > 0;
+$$
+
+the remaining $p-\rho$ singular values are zero:
+
+$$
+\sigma_{\rho+1}, \sigma_{\rho+2}, \cdots, \sigma_p = 0
+$$
+
+where $\rho = \min \lst{m, n} $. This ensures that $ \A{} v_j = 0 $ if $ j > \rho $.
+
+%
+%
+%
+\section{Another example: SVD of block matrix}
+
+The target matrix is
+\begin{equation}
+  \A{} = \frac{1}{10}\mat{crc}
+  {
+  0 &-8 & 3\\
+  0 & 6 & 4\\
+  0 & 0 & 0\\
+  0 & 0 & 0\\
+  }.
+\end{equation}
+We will be able to exploit a permutation matrix to solve this problem.
+
+The first step is to form the product matrix
+\begin{equation}
+\begin{split}
+  \W{x} = \prdm{T} &=  
+  \mat{ccc}
+  {
+  0 & 0 & 0\\
+  0 & 1 & 0\\
+  0 & 0 & \frac{1}{4}\\
+  }.
+\end{split}
+\end{equation}
+For a diagonal matrix the eigenvalues are the diagonal entries. Therefore the eigenvalue spectrum of the product matrix is given by
+\begin{equation}
+  \lambda\paren{\W{x}} = \lst{0,1,\frac{1}{4}}.
+\end{equation}
+The singular values are the nonzero entries of the square-root of \textit{ordered} and \textit{truncated} list $\lambda'$:
+\begin{equation}
+  \sigma=\sqrt{\lambda'\paren{\W{x}}} = \sqrt{\lst{1,\frac{1}{4}}} = \lst{1,\frac{1}{2}}.
+\end{equation}
+\clearpage
+
+%%%
+%%%
+\begin{xcb}{Exercises}
+\begin{enumerate}
+\item Show that the matrix product $\prdmm{*}$ is Hermitian.
+\item Show that the matrix product $\prdmm{*}$ is semi-positive definite.
+\item Consider the matrix $\Ac{m}{n}_{\rho}$. Describe the relationship between the eigenvectors of the matrix products $\prdm{*}$ and $\prdmm{*}$.
+\subitem Answer: The matrices share the same $\rho$ non-zero eigenvalues. The product matrix $\W{x} = \prdm{*}$ will have $m-\rho$ zero-valued eigenvalues and the product matrix $\W{y} = \prdmm{*}$ will have $n-\rho$ zero-valued eigenvalues.
+\item How do the singular values of the target matrix $\A{}$ relate to 
+\subitem the eigenvalues of the product matrices, $\prdm{*}$ and $\prdmm{*}$?
+\subitem Answer: the singular values are the the non-zero eigenvalues of the product matrices.
+\subitem the eigenvalues of the target matrix $\A{}$? 
+\subitem Answer: the singular values are the square-root of the non-zero eigenvalues of $\A{}$.
+\end{enumerate}
+
+\end{xcb}
+
+
+\endinput

@@ -1,0 +1,48 @@
+\clearpage
+\section{Reducing the image contrast}
+How much information is in the contrast?
+
+%
+\begin{equation}
+  \mu = \recip{m \times n} \sum_{r=1}^{m} \sum_{c=1}^{n} a_{rc} \approx 0.574932
+\end{equation}
+%
+Increment matrix for $k$ steps
+%
+\begin{equation}
+  b_{rc} = \frac{\mu - a_{rc}} {k}
+\end{equation}
+%
+\begin{equation}
+  \A{} \to \A{} + j \B{}, \qquad j=0;k
+\end{equation}
+%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/contrast/"melt naked"} \\[10pt]
+   \includegraphics[ width = 4in ]{images/"information content I"/contrast/"melt arrows"} 
+   \caption[Reducing image contrast]{Reducing image contrast. The top image shows a sampling of pixels whose value is represented by the shade of gray and height of the rectangle. The red line represents the mean value for all pixels in the image. In the bottom image we see are series of blue lines which represents how each pixel is altered to drive the all pixels to the mean value.}
+   \label{fig:contrast:increments}
+\end{figure}
+
+%%%%%%
+\input{chapters/"information content I"/"tab a sequence of reduced contrast images"}  % table
+
+%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images//"information content I"/contrast/"fader spectra"} 
+   \caption[The singular value spectra for the reduced contrast images]{The singular value spectra for the reduced contrast images. The red line represents the spectrum for the original image. The pixels are driven to the average value in 256 steps. (Consider an image stored in BYTE format.) At the final increment, every pixel has the same value of $\approx$0.57. Excluding the final image, the spectrum contains 266 singular values. The final image, a matrix of pixels of identical value has a lone singular value represented by the blue cross. The early steps blend into a seeming continuum; the latest steps are well separated.}
+   \label{fig:contrast:singular values}
+\end{figure}
+%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/contrast/"fader histogram input"} \\[30pt]
+   \includegraphics[ width = 4in ]{images/"information content I"/contrast/"fader histogram penultimate"} 
+   \caption[Contrast reduction and the energy spectrum]{Contrast reduction and the energy spectrum. The shape of the energy spectrum is maintained as the contrast is reduced. The energy partition for the initial image is on the top; on the bottom is the partition for the penultimate image. Notice the change in scale.}
+   \label{fig:contrast:increments}
+\end{figure}
+
+
+\endinput

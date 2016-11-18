@@ -1,0 +1,94 @@
+\section{Review}
+But first we will review the general method for \svdl \ this time using a much simpler example. This example will illuminate the decomposition scheme and leave us with a helpful geometric example.
+
+\begin{landscape}
+\thispagestyle{empty}
+%%
+\subsection{A quick review with a simpler matrix}
+\begin{equation}
+\boxed{
+  \begin{array}{ccccccccccccc}
+  \A{}&\longrightarrow&\A{*}&\longrightarrow&\W{x}&\longrightarrow&\lambda\paren{\W{x}}&\longrightarrow&\lst{\sigma_{k}}&\longrightarrow&\sig{}\\
+  &&&&\downarrow\\
+  &&&&\lst{x_{k}}&\longrightarrow&\lst{x_{k}}^{\perp}&\longrightarrow&\X{}\\
+  &&&&&&&&\downarrow\\
+  &&&&&&&&\lst{y_{k}}&\longrightarrow&\lst{y_{k}}^{\perp}&\longrightarrow&\Y{}\\
+  \end{array}
+ }
+\end{equation}
+Flow chart for a typical \svdl. This layout shows the simplicity of the underlying decomposition process. In general, it is the eigenvalue problem thats gives the SVD a reputation as being difficult. Readers more comfortable with a cookbook format may prefer table \eqref{tab:3:input}.
+
+Essentially we the process involves finding the eigenvectors of the product matrix $\W{x}$ and completing this with a set of null space vectors to form the basis matrix $\X{}$. The singular values are the square root of the eigenvalues of $\W{x}$ and they are used to construct $\sig{}$. Given the matrices $\W{x}$ and $\sig{}$ one can construct the final matrix $\Y{}$.
+
+A sample process with a full rank matrix is shown below.
+\begin{equation*}
+  \begin{array}{ccccccccccccc}
+  \mat{rr}{1&2\\-1&2}&\rightarrow&\mat{rr}{1&1\\2&-2}&\rightarrow&\mat{cc}{2&0\\0&8}&\rightarrow&\lst{8,2}&\rightarrow&\lst{2\sqrt{2},\sqrt{2}}&\rightarrow&\sig{}=\sqrt{2}\mat{cc}{2&0\\0&1}\\
+  &&&&\downarrow\\
+  &&&&\lst{\mat{c}{0\\1},\mat{c}{1\\0}}&\rightarrow&\lst{\emptyset}&\rightarrow&\X{}=\mat{cc}{0&1\\1&0}\\
+  &&&&&&&&\ \; \downarrow\\
+  &&&&&&&&\frac{1}{\sqrt{2}}\lst{\mat{c}{1\\1},\mat{r}{-1\\1}}&\rightarrow&\lst{\emptyset}&\rightarrow&\Y{}=\frac{1}{\sqrt{2}}\mat{cr}{1&-1\\1&1}\\
+  \end{array}
+  \label{eq:pmII}
+\end{equation*}
+\end{landscape}
+
+The new target matrix $\A{}\in\real{\by{2}{2}}_{2}$ is decomposed as
+\begin{equation}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T}, \\
+    \mat{rr}{1&2\\-1&2} &=& \stwo\mat{cr}{1&-1\\1&1}
+    & \sqrt{2}\mat{cc}{2&0\\0&1}
+    & \mat{cc}{0&1\\1&0}.
+  \end{array}
+  \label{eq:pmII:A}
+\end{equation}
+This example \eqref{eq:pmII} is shown against the flow chart in \eqref{eq:gen:flow}. Since this matrix has full rank there are no null spaces this is a very basic case. The matrices involved in the decomposition are all squares as depicted in figure \eqref{fig:full_rank}.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+%   \includegraphics[width=2in]{pdf/post_mortemII/svd_02_02_02} 
+   \includegraphics[ ]{pdf/post_mortemII/C222} 
+   \caption[The matrices in nonsingular decompositions are all square]{The matrices in nonsingular decompositions are all square. There are no null space vectors in either domain matrix. THe matrix of singular values is a full diagonal matrix.}
+   \label{fig:full_rank}
+\end{figure}
+
+\section{SVD by inspection}
+Notice another way to decompose the matrix in example.
+\begin{enumerate}
+\item Observe that 
+\begin{equation}
+  \A{}=\mat{rr}{1&2\\-1&2}
+\end{equation}
+has full rank. Therefore there will be no sabot matrix.
+\item Compute the product matrix
+\begin{equation}
+  \A{T}\A{} = \W{x} = \mat{cc}{2&0\\0&8}.
+\end{equation}
+\item The eigenvalue spectrum is then
+\begin{equation}
+  \lambda\paren{\W{x}} = \lst{8,2}.
+\end{equation}
+\item The matrix of singular values is then
+\begin{equation}
+  \ess{} = \sqrt{2}\mat{cc}{2&0\\0&1}
+\end{equation}
+Therefore
+\begin{equation}
+  \sig{} = \ess{} = \sqrt{2}\mat{cc}{2&0\\0&1}.
+\end{equation}
+\item Because the diagonal elements are not arranged in descending order, we need a permutation matrix. Postulate the simplest possible permutation matrix for the domain:
+\begin{equation}
+  \X{} = \ktwo.
+\end{equation}
+\item Solve the two equations 
+\begin{equation*}
+  \A{}\X{}_{*,k} = \sigma_{k} \Y{}_{*,k}, \quad k=\lst{1,2}
+\end{equation*}
+to discover that
+\begin{equation}
+  \Y{} = \stwo \mat{rr}{1&-1\\1&1}.
+\end{equation}
+\end{enumerate}
+
+\endinput

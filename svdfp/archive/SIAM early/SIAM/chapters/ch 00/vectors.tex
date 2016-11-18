@@ -1,0 +1,188 @@
+\section{Vector operations}
+Here we see the importance of keeping track of the type of vector. The concepts seem obvious here, yet there are a continual stumbling block for students. The exercises at the end of the chapter are a good way to certify comprehension of the concepts.
+
+%%%
+\subsection{Inner product}
+Start with an arbitrary \textit{column} vector
+\begin{equation*}
+  \alpha = \mat{c}{\alpha_{1}\\\alpha_{2}\\\vdots\\\alpha_{n}}\in \cmplx{\by{n}{1}},
+\end{equation*}
+and an arbitrary \textit{row} vector 
+\begin{equation*}
+  \beta = \mat{cccc}{\beta_{1} & \beta_{2} & \hdots & \beta_{n}}\in \cmplx{\by{1}{n}}.
+\end{equation*}
+The \index{dot product}dot product or \index{inner product}inner product 
+\begin{equation}
+  \beta\cdot\alpha = \text{Inner}\paren{\beta,\alpha}
+\end{equation}
+accepts a row vector and a column vector and returns a scalar:
+\begin{equation}
+  \text{Inner}\paren{\cmplx{1\times n},\cmplx{n\times 1}}\ \to \  \cmplx{1}.
+\end{equation}
+In terms of the form factors we have
+\begin{equation}
+\underbrace{\paren{\by{1}{n}}}_{\text{row vector}}\ \,\cdot \underbrace{\paren{\by{n}{1}}}_{\text{column vector}}=\ \ \underbrace{\paren{\by{1}{1}}}_{\text{scalar}}.
+\end{equation}
+The definition of the operation follows:
+\begin{equation}
+  \begin{split}
+    \beta \cdot \alpha &= \mat{cccc}{\beta_{1}&\beta_{2}&\dots&\beta_{n}} \cdot \mat{c}{\alpha_{1}\\\alpha_{2}\\\vdots\\\alpha_{n}}\\
+    &= \beta_{1}\alpha_{1} + \beta_{2}\alpha_{2} + \dots + \beta_{n}\alpha_{n}\\
+    &= \sum_{k=1}^{n}{\beta_{k}\alpha_{k}}
+  \end{split}
+\end{equation}
+
+Because the multiplication of scalars is commutative we have
+\begin{equation}
+  \sum_{k=1}^{n}{\beta_{k}\alpha_{k}} = \sum_{k=1}^{n}{\alpha_{k}\beta_{k}}.
+  \label{eq:Icommute}
+\end{equation}
+
+In order for the operation to be valid, the lists must have the same length $n$; they must be \textit{conformable}\index{conformable!vectors}. In the context so far the list must have different shapes: row vector on the right, column vector on the left.
+
+As an example of the dot product consider the column vector
+\begin{equation}
+  \alpha = \mat{ccc}
+  {
+  1\\
+  2\\
+  3
+  }
+\end{equation}
+and the row vector 
+\begin{equation}
+  \beta = \mat{ccc}{\beta_{1}&\beta_{2}&\beta_{3}}.
+\end{equation}
+The dot product of these vectors is the scalar number
+\begin{equation}
+  \beta \cdot \alpha = \alpha_{1}\beta_{1} + \alpha_{2}\beta_{2} + \alpha_{3}\beta_{3} = \beta_{1}+2\beta_{2}+3\beta_{3}.
+\end{equation}
+
+The transpose operation on vectors turns row vectors into column vectors and vice versa.
+\begin{equation}
+\begin{split}
+  \alpha=\mat{c}{1 \\ 2 \\ 3}, \quad 
+  \alpha^{\mathrm{T}} = \mat{ccc}{1 & 2 & 3};
+\end{split}
+\end{equation}
+%%
+\begin{equation}
+\begin{split}
+  \beta=\mat{ccc}{\beta_{1} & \beta_{2} & \beta_{3}}, \quad 
+  \beta^{\mathrm{T}} = \mat{c}{\beta_{1} \\ \beta_{2} \\ \beta_{3}}.
+\end{split}
+\end{equation}
+
+The practice of linear algebra is replete with different notation schemes and some texts don't use the dot notation. In this case one assumes that all lists are column vectors and that row vectors are the transpose of column vectors. For example the lists $\alpha$ and $\beta$ would implicitly be column vectors and the dot product would be expressed as 
+\begin{equation}
+  \beta^{\mathrm{T}}\alpha = \beta \cdot \alpha.
+\end{equation}
+
+%%%
+\subsection{Outer product}
+Again consider an arbitrary \textit{column} vector
+\begin{equation*}
+  \alpha \in \cmplx{\by{n}{1}},
+\end{equation*}
+and an arbitrary \textit{row} vector 
+\begin{equation*}
+  \beta \in \cmplx{\by{1}{n}}.
+\end{equation*}The \index{outer product} outer product\begin{equation}
+  \alpha\otimes\beta = \text{Outer}\paren{\alpha,\beta}
+\end{equation}
+accepts a column vector and a row vector and returns a (rank one) matrix.
+\begin{equation}
+  \text{Outer}\paren{\cmplx{m\times 1},\cmplx{1\times n}}\ \to\  \cmplx{m\times n}
+\end{equation}
+In terms of the form factors we have
+\begin{equation}
+\underbrace{\paren{\by{m}{1}}}_{\text{column vector}}\,\otimes\ \underbrace{\paren{\by{1}{n}}}_{\text{row vector}}=\underbrace{\paren{\by{m}{n}}}_{\text{matrix}}.
+\end{equation}
+The definition of the operation follows:
+\begin{equation}
+  \begin{split}
+   \alpha \otimes \beta &= \mat{c}{\alpha_{1}\\\alpha_{2}\\\vdots\\\alpha_{m}} \otimes \mat{cccc}{\beta_{1}&\beta_{2}&\dots&\beta_{n}}\\
+    &= \mat{cccc}
+    {
+    \alpha_{1} \beta_{1} & \alpha_{1} \beta_{2} & \dots & \alpha_{1} \beta_{n}\\
+    \alpha_{2} \beta_{1} & \alpha_{2} \beta_{2} & \dots & \alpha_{2} \beta_{n}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \alpha_{m} \beta_{1} & \alpha_{m} \beta_{2} & \dots & \alpha_{m} \beta_{n}\\
+    }\\
+    &= \mat{c}{\alpha_{1}\beta\\\hline\alpha_{2}\beta\\\hline\vdots\\\hline\alpha_{m}\beta}
+  \end{split}
+  \label{prelim:vectors:outer}
+\end{equation}
+Notice that the row vectors of the output matrix are all multiples of one vector: the input row vector $\beta$.
+
+For the sample vectors in the previous example the outer product is
+\begin{equation}
+  \alpha \otimes \beta = \mat{ccc}
+  {
+   \beta_{1} &  \beta_{2} &  \beta_{3} \\
+  2\beta_{1} & 2\beta_{2} & 2\beta_{3} \\
+  3\beta_{1} & 3\beta_{2} & 3\beta_{3} \\
+  }
+  =
+  \mat{r}
+  {
+   \beta \\\hline{}
+  2\beta \\\hline{}
+  3\beta \\
+  }.
+\end{equation}
+The matrix rank $\rho = 1$ because there is \textit{only one independent row.} All of the rows are scalar multiples of the row vector $\beta$.
+
+There is no conformability requirement for the outer product. The input row and column vectors can have unequal lengths as shown in equation \eqref{prelim:vectors:outer}.
+
+%%%
+\subsection{Summary}
+We looked at two different types of vectors: the row vector and the column vector. This was to connect with a convention some readers may have seen and to emphasize the importance of vector types. From here on out, all vectors will be considered to be column vectors. Row vectors will be identified as the transpose of column vectors. 
+
+In this context the notation for the dot product changes according to this:
+\begin{equation}
+  \alpha\cdot\beta \quad \to \quad \alpha^{\mathrm{T}}\beta,
+\end{equation}
+and the notation for the outer product changes according to this:
+\begin{equation}
+  \alpha\otimes\beta \quad \to \quad \alpha\beta^{\mathrm{T}}
+\end{equation}
+
+Now the dot product becomes a commutative operator. For $\alpha \in\cmplx{n\times1}$ and $\beta \in\cmplx{n\times1}$,
+\begin{equation}
+\begin{split}
+  \alpha^{\mathrm{T}}\beta  = \beta^{\mathrm{T}}\alpha.
+\end{split}
+\end{equation}
+This is because of the commutivity of scalar multiplication shown in \eqref{eq:Icommute}.
+
+With the restriction that the input vectors have the same length an equivalence relation for the outer product becomes this
+\begin{equation}
+  \alpha \beta^{\mathrm{T}} = \paren{\beta \alpha^{\mathrm{T}}}^{\mathrm{T}}.
+\end{equation}
+
+Some basic tools for matrix analysis that we'll use are the inner and outer products. The former creates a scalar, the latter a matrix. A summary follows.
+
+$$
+\boxed{
+\begin{array}{c|c}
+\text{inner product}  & \text{outer product}\\
+\text{$\brac{\cmplxn} \cdot \brac{\cmplxn} = \cmplx{1}$}  & \text{$\brac{\cmplxm} \odot \brac{\cmplxn} = \cmplxmn$}\\\hline\hline
+%
+\includegraphics[ width = 2.05in ]{pdf/prelim/mult_114}&
+\includegraphics[ width = 2.75in ]{pdf/prelim/mult_441}\\\hline\hline
+%
+\text{notation 1: } \alpha \cdot \beta & \text{notation 1: } \beta \otimes \alpha\\
+\text{notation 2: }\alpha^{\mathrm{T}}\beta & \text{notation 2: } \alpha\,\beta^{\mathrm{T}} \\
+%
+\text{output: scalar} & \text{output: matrix}\\
+%
+\text{symmetry: } \alpha \cdot \beta = \beta \cdot \alpha & \text{symmetry: } \alpha \otimes \beta \ne \beta \otimes \alpha\\
+\text{symmetry: } \alpha^{\mathrm{T}} \beta = \beta^{\mathrm{T}} \alpha & \text{symmetry: } \alpha \beta^{\mathrm{T}} \ne \beta^{\mathrm{T}} \alpha\\
+%
+\text{conformability required} & \text{conformability not required}\\
+\end{array}
+}
+$$
+
+\endinput

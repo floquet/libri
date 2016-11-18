@@ -1,0 +1,154 @@
+% The 8 Gell-Mann matrices for SU(3)
+\newcommand{ \gma }[0] {
+\mat{rrr}{
+    0 &    1 &    0 \\
+    1 &    0 &    0 \\
+ \ps0 & \ps0 & \ps0
+} }
+
+\newcommand{ \gmb }[0] {
+\mat{rrr}{
+ \ps0 & -i & \ps0 \\
+    i &  0 &    0 \\
+    0 &  0 &    0
+} }
+
+\newcommand{ \gmc }[0] {
+\mat{rrr}{
+    1 &  0 &    0 \\
+ \ps0 & -1 & \ps0 \\
+    0 &  0 &    0
+} }
+
+\newcommand{ \gmd }[0] {
+\mat{rrr}{
+ \ps0 & \ps0 & \ps1 \\
+    0 &    0 &    0 \\
+    1 &    0 &    0
+} }
+
+\newcommand{ \gme }[0] {
+\mat{rrr}{
+ \ps0 & \ps0 & -i \\
+    0 &    0 &  0 \\
+    i &    0 &  0
+} }
+
+\newcommand{ \gmf }[0] {
+\mat{rrr}{
+ \ps0 & \ps0 & \ps0 \\
+    0 &    0 &    1 \\
+    0 &    1 &    0
+} }
+
+\newcommand{ \gmg }[0] {
+\mat{rrr}{
+ \ps0 & \ps 0 & \ps0 \\
+ \ps0 & \ps 0 &   -i \\
+ \ps0 & \ps i & \ps0
+} }
+
+\newcommand{ \gmh }[0] {
+\mat{rrr}{
+    1 &    0 &  0 \\
+    0 &    1 &  0 \\
+ \ps0 & \ps0 & -2
+} }
+
+% \sig{} matrices
+\newcommand{ \gmsa }[0] {
+\mat{cc|c}{
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\\hline
+ 0 & 0 & 0
+} }
+
+\newcommand{ \gmsb }[0] {
+\rsthree
+\mat{ccc}{
+ 2 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1
+} }
+
+% V = I
+\newcommand{ \gmvi }[0] {
+\mat{ccc}{
+ \bone  & \bzero & \bzero \\
+ \bzero & \bone  & \bzero \\
+ \rzero & \rzero & \rone
+} }
+
+% V = K
+\newcommand{ \gmvk }[0] {
+\mat{ccc}{
+ \bzero & \bzero & \bone \\
+ \bzero & \bone  & \bzero \\
+ \rone  & \rzero & \rzero
+} }
+
+\newcommand{ \gmvkb }[0] {
+\mat{ccc}{
+ \bzero & \bzero & \bone \\
+ \bzero & \bone  & \bzero \\
+ \bone  & \bzero & \bzero
+} }
+
+% V domain matrices
+\newcommand{ \gmvone }[0] {
+\mat{ccc}{
+ \bzero & \bzero & \bone \\
+ \bone  & \bzero & \bzero \\
+ \rzero & \rone  & \rzero
+} }
+
+% U domain matrices
+\newcommand{ \gmuone }[0] {
+\mat{ccc}{
+ \bzero & \bone  & \rzero \\
+ \bone  & \bzero & \rzero \\
+ \bzero & \bzero & \rone
+} }
+
+\newcommand{ \gmutwo }[0] {
+\mat{crc}{
+ \bzero & \bmi   & \rzero \\
+ \bi    & \bzero & \rzero \\
+ \bzero & \bzero & \rone
+} }
+
+\newcommand{ \gmuthree }[0] {
+\mat{crc}{
+ \bone  & \bzero & \rzero \\
+ \bzero & \bmo   & \rzero \\
+ \bzero & \bzero & \rone
+} }
+
+\newcommand{ \gmufive }[0] {
+\mat{crc}{
+ \bmi   & \bzero & \rzero \\
+ \bzero & \bzero & \rone \\
+ \bzero & \bi    & \rzero
+} }
+
+\newcommand{ \gmusix }[0] {
+\mat{ccc}{
+ \bzero & \bzero & \rone  \\
+ \bone  & \bzero & \rzero \\
+ \bzero & \bone  & \rzero 
+} }
+
+\newcommand{ \gmuseven }[0] {
+\mat{rcc}{
+ \bzero & \bzero & \rone  \\
+ \bmi   & \bzero & \rzero \\
+ \bzero & \bi    & \rzero
+} }
+
+\newcommand{ \gmueight }[0] {
+\mat{rcc}{
+ \bzero & \bzero & \bone \\
+ \bzero & \bone  & \bzero \\
+ \bmone & \bzero & \bzero
+} }
+

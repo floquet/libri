@@ -1,0 +1,207 @@
+%% Example matrix a
+\newcommand{ \dimsa }[0]    { \cmplxall{2}{3}{1} }
+
+\newcommand{ \matrixa }[0]
+{
+    \mat{ rr }
+      {
+       1 & -1 \\
+      -1 &  1 \\
+       1 & -1
+      }
+}
+
+%% transpose
+
+\newcommand{ \matrixat }[0]
+{
+    \mat{ rrr }
+      {
+       1 & -1 &  1 \\
+      -1 &  1 & -1
+      }
+}
+
+% x-ray view
+
+\newcommand{ \xaycola }[0]
+{
+  \mat{r|r}
+  { 
+   \bone & \gminus \gone \\
+   \bminus \bone & \gone \\ 
+   \bone & \gminus \gone 
+  }
+}
+
+\newcommand{ \xaycolat }[0]
+{
+  \mat{r|r|r}
+  { 
+   \bone & \gminus \gone & \gone \\
+   \bminus \bone & \gone & \gminus \gone
+  }
+}
+\newcommand{ \xayrowa }[0]
+{
+  \mat{rr} 
+  { 
+   \bone & \bminus \bone \\\hline 
+   \gminus \gone & \gone \\\hline 
+   \gone & \gminus
+  \gone 
+  }
+}
+
+%% data vector b
+\newcommand{ \dataa }[0]
+{
+    \mat{ c }
+      {
+       2 \\
+       1 \\
+       0
+      }
+}
+
+%% pseudoinverse
+
+\newcommand{ \Aplusa }[0]
+{
+  \recip{6}
+  \mat{rrr}
+  {
+   1 &  \phantom{-}1 &  1\\
+  -1 &  1 & -1
+  }
+}
+
+%% decomposition
+
+\newcommand{ \sigmaa }[0] 
+{
+    \mat{ c|cc }
+      {
+        \sqrt{6} & 0 & 0 \\ \hline
+        0 & 0 & 0
+      }
+}
+
+\newcommand{ \sigmaat }[0] 
+{
+    \mat{ c|c }
+      {
+        \sqrt{6} & 0 \\ \hline
+        0 & 0 \\
+        0 & 0
+      }
+}
+
+\newcommand{ \sigmaanude }[0] 
+{
+    \mat{ cc }
+      {
+        \sqrt{6} & 0 \\
+        0 & 0 \\
+        0 & 0
+      }
+}
+
+\newcommand{ \sigmaainv }[0] 
+{
+    \mat{ c|c }
+      {
+        \recip{\sqrt{6}} & 0 \\ \hline
+        0 & 0 \\
+        0 & 0
+      }
+}
+
+\newcommand{ \matrixaX}[0] 
+{
+    \rstwo
+    \mat{ r >{\columncolor{ltgray}}r }
+      {
+       1 &  1\\
+      -1 &  \phantom{-}1
+      }
+}
+
+\newcommand{ \matrixaXt}[0]
+{
+    \rstwo
+    \mat{ rr }
+      {
+       1 &  -1\\
+       \rowcolor{ltgray}
+       \phantom{-}1 &  1
+      }
+}
+
+\newcommand{ \matrixaXf}[0]
+{
+    \recip{\sqrt{2}}
+    \mat{ r >{\columncolor{ltgray}}r }
+      {
+       \rstwo &  \rstwo \\
+      -\rstwo &  \phantom{-}\rstwo
+      }
+}
+
+\newcommand{ \matrixaY}[0]
+{
+    \mat{ r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}r }
+      {
+       \rsthree & 0                 &  \frac{2}{ \sqrt{6} } \\[5pt]
+      -\rsthree & \rstwo            &  \rssix \\[5pt]
+       \rsthree & \phantom{-}\rstwo & -\rssix
+      }
+}
+
+\newcommand{ \matrixaYt}[0]
+{
+    \rst
+    \mat{ rrr }
+      {
+       \rsthree           & -\rsthree &  \rsthree } \\[5pt]
+       \rowcolor{ltgray}
+       \phantom{-}0       &  \rstwo   &  \rssix     \\[5pt]
+       \rowcolor{ltgray}
+       \frac{2}{ \sqrt{6} &  \rstwo   & -\rssix
+      }
+}
+
+%% SVD
+\newcommand{ \svdecompa }[0]     { \matrixaY \, \sigmaa \, \matrixaXt} 
+\newcommand{ \aesvdecompa }[0]   { \A{} = \svdecompa } 
+
+%% spaces
+\newcommand{ \examplearngco }[0] { \lst{ \rsthree \threeveca } }
+\newcommand{ \exampleanllco }[0] { \lst{ \rstwo \threevecd, \rssix \threevece } }
+
+\newcommand{ \examplearngdo }[0] { \lst{ \rstwo \twoveca } }
+\newcommand{ \exampleanlldo }[0] { \lst{ \rstwo \twovecb } }
+
+% partitions
+\newcommand{ \matrixap }[0]
+{
+%\arrayrulecolor{medgray}
+    \mat{ r|r }
+      {
+       1 & -1 \\
+      -1 &  1 \\
+       1 & -1
+      }
+%\arrayrulecolor{black}
+}
+
+\newcommand{ \matrixatp }[0]
+{
+    \mat{ r|r|r }
+      {
+       1 & -1 &  1 \\
+      -1 &  1 & -1
+      }
+}
+
+\endinput

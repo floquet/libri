@@ -1,0 +1,148 @@
+\section[$\A{}=\B{}\C{}$]{Full rank factorization}
+For full rank matrices. Meyer 4.5.20, p. 221
+
+%%
+\subsection{Theory}
+For $\A{}\in\cmplx{\bymn}_{\rho}$ there is a full rank factorization of the form
+\begin{equation}
+  \A{}=\B{}\,\C{}
+\end{equation}
+\begin{quote}
+The foundation is the reduction to row echelon form.
+\begin{equation}
+  \EAR 
+\end{equation}
+The column vectors of the factor $\B{}$ are the basic columns of the target matrix $\A{}$. The row vectors of the factor $\C{}$ are the nonzero rows of $\EA$.
+
+\begin{enumerate}
+\item $\B{\byt{m}{\rho}} = \mat{c|c|c}{\brac{\A{}}_{*,1}&\dots&\brac{\A{}}_{*,\rho}}$: the $\rho$ basic columns of the target matrix;
+\item $\C{\byt{\rho}{n}} = \mat{c}{\brac{\E{\A{}}}_{1,*}\\\hline\vdots\\\hline\brac{\E{\A{}}}_{\rho,*}}$: the $\rho$ nonzero rows of reduced form $\E{\A{}}$.
+\end{enumerate}
+
+\end{quote}
+
+%%
+\subsection{Example 1: No connection to the SVD}
+Meyer 2.5.1, p. 67
+The target matrix is given by this:
+\begin{equation}
+  \A{} = \mat{cccc}{1&2&2&3 \\ 2&4&1&3 \\ 3&6&1&4}.
+\end{equation}
+Attack the problem by clearing one pivot at each step. You can verify that one reduction sequence is shown here:
+\begin{equation}
+\begin{split}
+  \E{\A{}} &= \G{2}\,\G{1}\,\A{},\\
+%%
+ & =
+\mat{rrr}{1&0&0 \\ -2&1&0 \\ -3&1&0}
+%%
+\mat{rrr}{1&0&0 \\ 0&-\frac{1}{3}&0 \\ 0&-\frac{5}{3}&0}
+%%
+\mat{cccc}{1&2&2&3 \\ 2&4&1&3 \\ 3&6&1&4}, \\
+%%%
+   &= 
+\mat{cccc}{1&2&2&3 \\ 0&0&1&1 \\ 0&0&0&0}.
+\end{split}
+\end{equation}
+The reduced form reveals that the matrix $\A{}$ has rank $\rho = 2$.
+
+The pivots in the matrix $\E{\A{}}$ are in columns one and three. Therefore the basic columns of the target matrix are one and three. This specifies the column composition of the $\B{}$ matrix:
+\begin{equation}
+  \B{} = \mat{c|c}{1&2 \\ 2&1 \\ 3&1}.
+\end{equation}
+The nonzero rows of the matrix $\E{\A{}}$ are used to construct the rows of the matrix $\C{}$:
+\begin{equation}
+  \C{} = \mat{cccc}{1&2&2&3 \\ \hline 0&0&1&1}.
+\end{equation}
+ 
+Verify the decomposition by checking that the matrix product produces the target matrix:
+\begin{equation}
+  \begin{split}
+    \A{} &= \B{}\,\C{},\\
+     &= \mat{cc}{1&2 \\ 2&1 \\ 3&1} \mat{cccc}{1&2&2&3 \\ 0&0&1&1},\\
+     &= \mat{cccc}{1&2&2&3 \\ 2&4&1&3 \\ 3&6&1&4}.
+  \end{split}
+\end{equation}
+
+The decomposition is unique as the reduced form is unique and the columns of the target matrix are unique.
+
+%%
+\subsection{SVD}
+For comparison, the SVD for the matrix is shown here:
+\begin{equation}
+  \begin{split}
+    \Y{}   & =
+\left[
+\begin{array}{rrr}
+ \sqrt{\frac{17}{35}-\frac{31}{7 \sqrt{165}}} & -\sqrt{\frac{17}{35}+\frac{31}{7 \sqrt{165}}} & \frac{1}{\sqrt{35}} \\
+ \sqrt{\frac{1}{7}+\frac{5 \sqrt{\frac{5}{33}}}{14}} & \sqrt{\frac{1}{7}-\frac{5 \sqrt{\frac{5}{33}}}{14}} & \frac{-5}{\sqrt{35}} \\
+ \sqrt{\frac{13}{35}+\frac{37}{14 \sqrt{165}}} & \sqrt{\frac{13}{35}-\frac{37}{14 \sqrt{165}}} & \frac{3}{\sqrt{35}}
+\end{array}
+\right] \\
+    \sig{} & =
+\left[
+\begin{array}{ccrr}
+ \sqrt{55+4 \sqrt{165}} & 0 & 0 & 0 \\
+ 0 & \sqrt{55-4 \sqrt{165}} & 0 & 0 \\
+ 0 & 0 & 0 & 0
+\end{array}
+\right] \\
+    \X{}   & =
+\left[
+\begin{array}{rrrr}
+ \sqrt{\frac{1}{330} \left[30+\sqrt{165}\right]} & \sqrt{\frac{1}{11}-\frac{1}{2 \sqrt{165}}} & -\frac{1}{\sqrt{3}} & -\frac{4}{\sqrt{33}} \\
+ \sqrt{\frac{4}{11}+\frac{2}{\sqrt{165}}} & \sqrt{\frac{4}{11}-\frac{2}{\sqrt{165}}} & 0 & \frac{3}{\sqrt{33}} \\
+ \sqrt{\frac{3}{11}-\sqrt{\frac{3}{55}}} & -\sqrt{\frac{3}{11}+\sqrt{\frac{3}{55}}} & -\frac{1}{\sqrt{3}} & \frac{2}{\sqrt{33}} \\
+ \sqrt{\frac{1}{330} \left[90+\sqrt{165}\right]} & -\sqrt{\frac{3}{11}-\frac{1}{2 \sqrt{165}}} & \frac{1}{\sqrt{3}} & -\frac{2}{\sqrt{33}}
+\end{array}
+\right] 
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Example 2: A connection to the SVD}
+Apply this same process to the familiar target matrix
+\begin{equation}
+  \A{} = \Aexample.
+\end{equation}
+The reduction to reduced row-eschelon form is immediate:
+\begin{equation}
+\begin{split}
+  \E{\A{}} &= \G{1}\,\A{},\\
+%%
+   & =
+\mat{rrr}{1&0&0 \\ 1&1&0 \\ -1&0&1}
+%%
+\Aexample, \\
+%%%
+   &= 
+\mat{rr}{1&-1 \\ 0&0 \\ 0&0}.
+\end{split}
+\end{equation}
+The matrix decomposition is given by these expressions:
+\begin{equation}
+    \B{} = \mat{r}{1 \\ -1 \\ 1}, \qquad \C{} = \mat{rr}{1&-1}.\\
+\end{equation}
+Compare the $\B{}$ matrix with the range vectors of the codomain matrix:
+\begin{equation}
+  \Y{}_{*,1} = \sthree \mat{r}{1 \\ -1 \\ 1}.
+\end{equation}
+They differ by the normalization factor. Now compare the $\C{}$ matrix with the range vectors of the domain matrix:
+\begin{equation}
+  \X{T}_{*,1} = \stwo \mat{r}{1 \\ -1}.
+\end{equation}
+Here too the difference the normalization factor. The singular value of 
+$$
+\sqrt{6} = \sqrt{3}\sqrt{2}
+$$
+is aportioned between the two matrices $\B{}$ and $\C{}$:
+\begin{equation}
+  \begin{split}
+    \sqrt{3} \Y{}_{*,1} & = \B{},\\
+    \sqrt{2} \X{}_{*,1} & = \C{}.
+  \end{split}
+\end{equation}
+
+
+
+\endinput

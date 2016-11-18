@@ -1,0 +1,151 @@
+\section{Matrix as map}
+We may envisage matrices by thinking about how they act on unit vectors. (Uniqueness and eigenvectors) 
+\begin{equation}
+  \st = \circletwo, \qquad \stp = \circlethree
+  \label{eq:ftola:sphere}
+\end{equation}
+%
+\begin{equation}
+  \text{preimage} \mapsto \text{image}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    S_{n} &\mapsto \A{}  S_{n} \\
+    S_{m} &\mapsto \A{*} S_{m}
+  \end{split}
+\end{equation}
+%
+
+%%%%%%%%%%%
+\subsection{Matrix (a)}
+The target matrix is the $\by{2}{3}$ example given in \eqref{eq:matrix a}.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix map} 
+This matrix maps \vv s into \vvv s. The image of $\A{}$ is a line segment in $\cmplx{2}$:
+\begin{equation}
+  \A{} \stp = 
+    \paren{ \cos \theta + \sin \theta }
+    \paren{ \cos \phi   - \sin \phi } \vecam .
+\end{equation}
+The mapping action is shown in table \eqref{tab:ftola:maps:(a)}. The line segment in the image can be expressed as
+\begin{equation}
+  y = -x, \qquad -\sqrt{2} \le x \le \sqrt{2}.
+\end{equation}
+
+There are two crucial observations:
+\begin{enumerate}
+%
+\item The one-dimensional image, a line, lives in the space $\cmplx{2}$. Therefore, every point on the line has an address of the form $\tra{\paren{x,y}}$ where $x$ and $y$ are scalars.
+%
+\item Any location on the line can be referenced with a single parameter $t$. 
+%
+\end{enumerate}
+The line can be written as a vector-valued function $p_{2}\colon \cmplx{} \mapsto \cmplx{2}$ given by:
+\begin{equation}
+   p_{2}\paren{ t } = t \vecam.
+\end{equation}
+The free parameter can be expressed as
+\begin{equation}
+  t\paren{ \theta, \phi } = \paren{ \cos \theta + \sin \theta } \paren{ \cos \phi   - \sin \phi } .
+\end{equation}
+The map is not one-to-one. If it were, then the equality
+\begin{equation}
+  t\paren{ \theta_{1}, \phi_{1} } = t\paren{ \theta_{2}, \phi_{2} }
+\end{equation}
+would imply
+\begin{equation}
+  \mat{c}{ \theta_{1} \\ \phi_{1} } = \mat{c}{ \theta_{2} \\ \phi_{2} }.
+\end{equation}
+This is not true. For example
+\begin{equation}
+  t\paren{ \theta, \phi } = t\paren{ -\theta, \phi } .
+\end{equation}
+Why can the map be described with one parameter $t$? Because the matrix $\A{}$ has rank $\rho = 1$.
+
+One the other hand, the function is onto. The coordinates $\paren{r,\theta,\phi}$, $0 \le \theta < 2\pi$, $0 \le \phi < \pi$, $\abs{r} < \infty$ are a representation of $\cmplx{3}$
+\begin{equation}
+  \A{} \paren{ r \stp } = r \A{} \stp = r p(t).
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Adjoint matrix map} 
+The image of $\A{*}$ is
+\begin{equation}
+  \A{} \st = \paren{ \cos \theta - \sin \theta } \vecaa
+\end{equation}
+This mapping action is shown in table \eqref{tab:ftola:maps:(a)}. The color of the unit circle is determined by the angle $\theta$. The image of the matrix is a one-dimensional object which inhabits a three-dimensional space.
+The line can be written as a vector-valued function $p_{3}\colon \cmplx{} \mapsto \cmplx{3}$:
+\begin{equation}
+  p_{3}\paren{ t } = t \vecaa.
+  \label{ftola:image:(a)}
+\end{equation}
+In this case the parameter is written as
+\begin{equation}
+  t = \cos \theta - \sin \theta .
+\end{equation}
+As before this map is onto but is not one-to-one. There is a single free parameter because the matrix rank is 1.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Observation} The images of the matrices $\A{}$ and $\A{*}$ are one parameter curves because the matrix has rank 1.
+
+%%%%%%
+\input{chapters/ftola/"tab maps (a)"}          % table
+
+%%%%%%%%%%%
+\subsection{Matrix (b)}
+The target matrix is the $\by{3}{2}$ example given in \eqref{eq:matrix b}.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix map} 
+This matrix maps \vv s into \vvv s. The image of $\A{}$ is a line segment in $\cmplx{2}$:
+The image of $\A{}$ is a line in $\cmplx{2}$:
+\begin{equation}
+  \A{} \st = \recip{4} \mat{c}{\sin \theta \\ 2 \sin \theta + 3 \cos \theta \\ 2 \sin \theta} .
+\end{equation}
+The mapping action is shown in the top of table \eqref{tab:ftola:maps:(b)}. 
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Adjoint matrix map} 
+The image of $\A{*}$ is
+\begin{equation}
+  \A{} \st = \recip{4} \mat{c}{ 3\paren{\sin \theta \sin \phi} \\ \sin \theta \paren{2 \sin \phi + \cos \phi} + 2 \cos \theta }
+\end{equation}
+
+%%%%%%
+\input{chapters/ftola/"tab maps (b)"}          % table
+
+%%%%%%%%%%%
+\subsection{Matrix (c)}
+The target matrix is the $\by{2}{3}$ example given in \eqref{eq:matrix c}.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix map} 
+This matrix maps \vv s into \vv s. The image of $\A{}$ is an ellipse in $\cmplx{2}$:
+%
+\begin{equation}
+  \A{} \st = 
+    \mat{c}{ \cos \theta - \sin \theta \\ 2\paren{\cos \theta + \sin \theta} } .
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Adjoint matrix map} 
+This matrix maps \vv s into \vv s. The image of $\A{*}$ is another ellipse in $\cmplx{2}$:
+%
+\begin{equation}
+  \A{} \st = \mat{r}{ \cos \theta + 2 \sin \theta \\ - \cos \theta + 2\sin \theta} .
+\end{equation}
+
+%%%%%%
+\input{chapters/ftola/"tab maps (c)"}  % table
+
+
+\endinput

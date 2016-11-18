@@ -1,0 +1,93 @@
+\section{Vector spaces}
+What is a vector space? It is a collection of objects and rules for manipulation of these objects. More specifically, it is a non-empty collection of vectors, an arithmetic field like the complex numbers and a rule for addition of vectors and a rule for multiplication of vectors by scalars. In list form, a vector space is defined by these four properties:
+\begin{enumerate}
+\item A non-empty set of vectors $\mathcal{V}$;
+\item An arithmetic field $\mathcal{F}$;
+\item A rule for addition of vectors;
+\item A rule for scaling vectors.
+\end{enumerate}
+
+%%
+\subsection{Rules}
+The vector spaces of interest to us are the input and output vectors in matrix equations. For example, the domain $X$ consists of all possible $n-$vectors. All vectors add component by component, the usual way
+\begin{equation}
+  \mat{c}
+  {
+  \xi_{1}\\
+  \xi_{2}\\
+  \vdots \\
+  \xi_{n}
+  }
+  +
+  \mat{c}
+  {
+  \eta_{1}\\
+  \eta_{2}\\
+  \vdots \\
+  \eta_{n}
+  }
+  =
+  \mat{c}
+  {
+  \xi_{1}+\eta_{1}\\
+  \xi_{2}+\eta_{2}\\
+  \vdots \\
+  \xi_{n}+\eta_{n}
+  }.
+\end{equation}
+The scaling rule codifies the properties of a vector multiplied by an arbitrary complex number:
+\begin{equation}
+  \alpha \, \xi = 
+  \mat{c}
+  {
+  \alpha \, \xi_{1}\\
+  \alpha \, \xi_{2}\\
+  \vdots  \\
+  \alpha \, \xi_{n}
+  }.
+\end{equation}
+
+%%
+\subsection{Application}
+For the discussions that follow we are very concerned with complete vector spaces. For example, if we are working with \vv s we want a collection that allows us to reach every point in the plane.
+\begin{enumerate}
+\item This is possible if two vectors are \textit{not} colinear.
+\item This is not possible if all of the vectors are colinear.
+\end{enumerate}
+
+The nicest span for a vector space is the minimal spanning set, the complete set of unit vectors. For $\real{2}$ these are the unit vectors
+\begin{equation}
+  \hat{x}_{1}=\mat{c}{1\\0}, \quad \hat{x}_{2}=\mat{c}{0\\1}.
+\end{equation}
+Any point in the plane can be reached by the scaling and combination formula
+\begin{equation}
+  \mat{c}{\alpha \\ \beta} = \alpha \,\hat{x}_{1} + \beta \, \hat{x}_{2}.
+\end{equation}
+We can tidy up the presentation using a matrix formulation
+\begin{equation}
+  \alpha \, \hat{x}_{1} +  \beta \, \hat{x}_{2} = \mat{c|c}{\hat{x}_{1} & \hat{x}_{2}}\mat{c}{\alpha \\ \beta} = \mat{c|c}{1&0\\0&1} \mat{c}{\alpha \\ \beta}.
+\end{equation}
+We can still reach all points in the plane with less desirable basis vectors:
+\begin{equation}
+  x_{1}=\mat{c}{1\\0}, \quad x_{2}=\mat{c}{1\\1}.
+\end{equation}
+The scaling and combination formula is given by this
+\begin{equation}
+  \mat{c}{\alpha \\ \beta} = \paren{\alpha - \beta}  x_{1} + \alpha\,x_{2}.
+\end{equation}
+The matrix formulation is then
+\begin{equation}
+\begin{split}
+  \paren{\alpha - \beta} x_{1} + \alpha x_{2} = \mat{c|c}{\hat{x}_{1} & \hat{x}_{2}}&\mat{c}{\alpha - \beta \\ \beta} \\
+  = \mat{c|c}{1&1\\0&1}&\mat{c}{\alpha - \beta \\ \beta} = \mat{c}{\alpha \\ \beta}.
+\end{split}
+\end{equation}
+We are stymied if the vectors are colinear, as in this case
+\begin{equation}
+  x_{1}=\mat{c}{1\\0}, \quad x_{2}=-\mat{c}{1\\0}.
+\end{equation}
+The only points we can reach through addition are scaling are points on the $x-$axis.
+
+With the caveat that they not be colinear, we see that we need two \vv s to \index{span}\textit{span} the plane of $\real{2}$. In general we need $n$ linearly independent $n-$vectors to span $\real{n}$.
+
+\endinput

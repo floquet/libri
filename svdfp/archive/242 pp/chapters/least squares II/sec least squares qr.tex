@@ -1,0 +1,131 @@
+\section{Solution using $\QR$ factorization}
+The $\QR$ factorization is another powerful tool for solving the least squares problem. Like the SVD, the $\QR$ factorization resolves the column space into orthonormal basis for the range space $\brnga{}$ and orthonormal basis for the \ns \ $\rnlla{*}$. However the row space is not resolved. 
+
+
+%%%%%%%%
+%%%%%%%%
+\subsubsection{The $\QR$ factorization}
+Given a matrix $\aicmnr$ the factorization has this form
+\begin{equation}
+  \A{} = \Q{}\, \R{}
+\end{equation}
+where the matrix $\Q{}\in\cmplxmm$ is unitary
+\begin{equation}
+  \Q{*}\Q{} = \I{m}
+\end{equation}
+and the upper triangular matrix $\R{}\in\cmplxmn$ has the same dimensions as the target matrix. We may think of the $\Q{}$ matrix as a domain matrix with the typical partition
+\begin{equation}
+  \Q{} = \mat{c|c}{\qrng{} & \qnll{}}.
+\end{equation}
+For $\A{}\in\cmplxall{3}{2}{2}$ the factorization has the following form
+%%
+\input{chapters/"least squares"/"eqn qr form"}
+
+
+%%%%%%%%
+%%%%%%%%
+\subsubsection{Transforming the least squares problem}
+The structure of the decomposition for the overdetermined system is this
+\begin{equation}
+  \A{} 
+    = \Q{}\, \R{}
+    = \mat{c|c}{\qrng{} & \qnll{}} \mat{c}{ \mathsf{R} \\ \hline \zero}
+\end{equation}
+Again a unitary matrix transforms the problem into a simpler form
+\begin{equation}
+  \begin{split} 
+    \minimumy 
+      &= \normts{ \Q{*} \paren{ \A{} y - b }  }.
+    \label{eq:qr min}
+  \end{split} 
+\end{equation}
+with $y \in \cmplxn$.
+Now we can apply the factorization in the form of
+\begin{equation}
+  \Q{*} \A{} = \R{}.
+\end{equation}
+The least squares problem becomes
+\begin{equation}
+  \begin{split} 
+    \minimumy 
+      = \normts{ \R{} y - \Q{*} b }
+      &= \normts{ \mat{c}{ \mathsf{R} y \\\hline \zero} - \mat{cc}{\qrng{*}b \\\hline \qnll{*}b } } \\
+%	    &= \normts{ \mat{c}{ \ess{} \bvr{*} y \\\hline\zero  } - \mat{c}{ \bur{*} b \\\hline \run{*} b } }
+  \end{split} 
+\end{equation}
+The contributions of range space and the \ns \ for the column space are now separated.
+
+
+%%%%%%%%
+\subsection{The $\QR$ factorization for least squares}
+The total error is expressed as a quadratic sum of terms using the range and \ns \ components:
+\begin{equation}
+  \minimumy = \underbrace{\normts{ \mathsf{R} y -\qrng{*} b  }}_{y \text{ dependence}} + \underbrace{\normts{ \qnll{*} b  }}_{\text{residual}}
+\end{equation}
+The sole error term that is controlled by the solution vector $x$ is this
+\begin{equation*}
+  \mathsf{R} y -\qrng{*} b .
+\end{equation*}
+Choose $y$ to force this term to zero. This leads to the $\QR$ solution for the least squares problem:
+\begin{equation}
+  y_{LS} = \mathsf{R}^{-1} \qrng{*} b.
+  \label{eq:qr soln}
+\end{equation}
+
+The matrix dimensions of the components are these:
+%%
+\begin{table}[!htdp]
+%\caption[Dimensions of the decomposition]{default}
+\begin{center}
+\begin{tabular}{cccccc}
+%
+  $y$ & $=$ & $\mathsf{R}^{-1}$ &  $\qrng{*}$  & $b$ \\
+%
+  $[n\times 1]$ & $=$ & $[n\times n]$ & $[n\times m]$ & $[m\times 1]$
+%
+\end{tabular}
+\end{center}
+\label{tab:least squares:qr dims}
+\end{table} \\
+%%
+The vector $y$ which minimizes the least squares error in \eqref{eq:qr min} is exactly the same vector given by the QR solution in equation \eqref{eq:qr soln}. 
+
+In the overdetermined case the \ns \ term the total error is computed using the vectors which span the \ns \ 
+\begin{equation}
+  r^{2} = \normts{ \qnll{*} b  } 
+  \label{eq:r2:b}
+\end{equation}
+
+
+%%%%%%%%
+\subsection{Example}
+Take the overdetermined linear system
+\begin{equation}
+  \begin{split}
+    \ayaeb, \\
+    \matrixb \ytwo &= \datab.
+  \end{split}
+\end{equation}
+The $\QR$ decomposition of the system matrix is this
+\begin{equation}
+  \begin{split}
+    \A{} &= \Q{} \, \R{} \\
+    \matrixb &= \matrixbQ \matrixbR
+ \end{split}
+\end{equation}
+The solution is described in \eqref{eq:qr soln}
+\begin{equation}
+  y_{LS} = \mathsf{R}^{-1} \qrng{*} b = \matrixbRinv \matrixbQt \datab = \xlsb.
+\end{equation}
+This is the same solution as computed using the SVD.
+As before, the matrix $\A{}$ has full column rank the \ns \ $\rnlla{}$ is trivial and there is no contribution from an inhomogeneous solution and
+\begin{equation}
+  y_{LS} \in \brnga{*}.
+\end{equation}
+The residual error vector is unchanged as we have
+\begin{equation}
+  \qnll{*} = \run{*}.
+\end{equation}
+
+
+\endinput

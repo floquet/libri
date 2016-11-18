@@ -1,0 +1,131 @@
+\section[The general method for SVD]{The general method for \svdl}
+
+This chapter focuses on the most general method for computing an SVD. The requisite steps are elementary, but the combination of tasks can obscure the process. To minimize this \index{fog of computation}fog of computation the process is dissected and mounted in equation \eqref{eq:gen:flow} and tables \eqref{tab:3:} and \eqref{tab:3:input}. The tables are for reference.
+
+%%
+\begin{landscape}
+\thispagestyle{empty}
+
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+  \A{}&\longrightarrow&\A{*}&\longrightarrow&\W{x}&\longrightarrow&\lambda\paren{\W{x}}&\longrightarrow&\lst{\sigma_{k}}&\longrightarrow&\sig{}\\
+  &&&&\downarrow\\
+  &&&&\lst{x_{k}}&\longrightarrow&\lst{x_{k}}^{\perp}&\longrightarrow&\X{}\\
+  &&&&&&&&\downarrow\\
+  &&&&&&&&\lst{y_{k}}&\longrightarrow&\lst{y_{k}}^{\perp}&\longrightarrow&\Y{}\\
+  \end{array}
+  \label{eq:gen:flow}
+\end{equation}
+Flow chart for a typical \svdl. This layout shows the simplicity of the underlying decomposition process. In general, it is the eigenvalue problem thats gives the SVD a reputation as being difficult.
+
+To compute:
+\begin{enumerate}
+\item $\A{*}$, the Hermitian conjugate: compute $\overline{\A{}}^{\mathrm{T}}$;
+\item $\W{x}$, the product matrix: compute $\prdm{*}$;
+\item $\lambda(\W{x})$, the eigenvalue spectrum: solve $p(\lambda)=0$; i.e. find the $\rho$ nonzero roots of the characteristic polynomial;
+\item $\lst{\sigma_{k}}, \  k=1,\rho$, the singular values of $\A{}$: arrange the nonzero products $\sqrt{\lambda}$ in descending order;
+\item $\sig{}$, the matrix of singular values: embed the singular values along the diagonal of the sabot matrix of zeros;
+\item $\lst{x_{k}},\  k=1,\rho$, the eigenvectors of $\W{x}$: find the null space vectors of $\W{x}-\lambda_{k}\I{n},\  k=1,\rho$;
+\item $\lst{x_{k}}^{\perp},\  k=\rho+1,n$, the orthonormal perpendicular complement to $\lst{x_{k}}$: use the Gram-Schmidt process;
+\item $\X{}$, the orthonormal basis matrix for the domain: arrange the vectors as $\X{}=\mat{c|c}{x_{k} & x^{\perp}_{j}}, \  k=1,\rho, \ j = \rho+1,n$;
+\item $\lst{y_{k}},\  k=1,\rho$, the eigenvectors of $\W{y}$: compute $y_{k} = \sigma_{k}^{-1}\A{}x_{k},\  k=1,\rho;$
+\item $\lst{y_{k}}^{\perp},\  k=\rho+1,m$, the orthonormal perpendicular complement to $\lst{y_{k}}$: use the Gram-Schmidt process;
+\item $\Y{}$, the orthonormal basis matrix for the codomain: arrange the vectors as $\Y{}=\mat{c|c}{y_{k} & y^{\perp}_{j}}, \  k=1,\rho, \ j = \rho+1,m$.
+\end{enumerate}
+
+\clearpage
+\thispagestyle{empty}
+
+%%
+\begin{table}[p]
+\begin{center}
+\begin{tabular}{lllcll}
+ symbol & type & size & census & description & use \\\hline
+ $\A{}$ & matrix & $\cmplx{\by{m}{n}}_{\rho}$ & 1 & target matrix  & input matrix \\
+ $\A{*}$ & matrix & $\cmplx{\by{n}{m}}_{\rho}$ & 1 & Hermitian conjugate & intermediate matrix\\ 
+ $\W{x}$ & matrix & $\cmplx{\by{n}{n}}_{\rho}$ & 1 & product matrix $\A{*}\A{}$ & intermediate matrix\\
+ $\W{y}$ & matrix & $\cmplx{\by{m}{m}}_{\rho}$ & 1 & product matrix $\A{}\A{*}$ & intermediate matrix \\
+ \ &&& \\
+ $x_{k}$ & $n-$vectors & $\cmplx{\by{n}{1}}$ & $\rho$ & eigenvectors of $\W{x}$ & first $\rho$ columns of $\X{}$ \\
+ $y_{k}$ & $m-$vectors & $\cmplx{\by{m}{1}}$ & $\rho$ & eigenvectors of $\W{y}$, $\paren{\sigma_{k}}^{-1}\A{}\X{}_{:,k}$ & first $\rho$ columns of $\Y{}$ \\
+ $\paren{x_{k}}^{\perp}$ & $n-$vectors & $\cmplx{\by{n}{1}}$ & $n-\rho$ & orthogonal null space vector, domain & remaining $n-\rho$ columns of $\X{}$ \\
+ $\paren{y_{k}}^{\perp}$ & $m-$vectors & $\cmplx{\by{m}{1}}$ & $m-\rho$ & orthogonal null space vector, codomain & remaining $m-\rho$ columns of $\Y{}$ \\
+ \ &&& \\
+ $\lambda_{k}$ & reals && $\rho$ & eigenvalues of the smaller of $\W{x}$, $\W{y}$ &intermediate product \\
+ $\sigma_{k}$ & reals && $\rho$ & singular values $\sqrt{\lambda_{k}}$ & diagonal elements of $\sig{}$\\
+ \ &&& \\
+  $\ess{}$ & matrix & $\real{\by{\rho}{\rho}}_{\rho}$ & 1 & singular values matrix & intermediate matrix \\
+  $\sig{}$ & matrix & $\real{\by{m}{n}}_{\rho}$ & 1 & $\sig{}$ matrix & output matrix \\
+  $\X{}$ & matrix & $\cmplx{\by{n}{n}}_{n}$ & 1 & unitary domain matrix & output matrix \\
+  $\Y{}$ & matrix & $\cmplx{\by{m}{m}}_{m}$ & 1 & unitary codomain & output matrix \\
+[10pt]
+\end{tabular}
+\end{center}
+\label{tab:3:personaedramatis}
+\caption{Personae dramatis. This is a directory detailing the inputs, outputs and intermediary quantities used to find an SVD. The column vectors of the domain matrices $\X{}$ and $\Y{}$ are orthonormal.}
+\end{table}
+
+\end{landscape}
+\clearpage
+\break
+%%
+\begin{table}[h]
+Given $\A{}\in\cmplx{\by{m}{n}}_{\rho}$, a matrix of rank $\rho$ with $m$ columns and $n$ rows, compute the \svdl \ $\A{}=\Y{}\,\Sigma\,\X{*}$ using these steps:\\[4pt]
+\begin{enumerate}
+\item Compute $\A{*}$, the conjugate of the transpose.\\[4pt]
+\item Compute $\W{x}=\prdm{*}$.\\[4pt]
+\item Solve for the $\rho$ ordered, nonzero eigenvalues $\lambda_{k}$ of $\W{x}$.\\[4pt]
+\item Compute the $\rho$ singular values $\sigma_{k}=\sqrt{\lambda_{k}}, \ k=1,\rho$.\\[4pt]
+\item Assemble $\sig{}$ the matrix of singular values. It is a sabot matrix of zeros with the $\rho$ singular values $\sigma_{k}$ on the diagonal in descending order.
+\begin{equation}
+  \Sigma = \underbrace{\mat{cccccccc}
+  {
+  \sigma_{1} & 0 & 0 & \cdots &&&& 0\\
+  0 & \sigma_{2} & 0 & \dotsm &&&& 0\\
+  0 & 0 & \ddots &&&&& \vdots \\
+  \vdots & \vdots & & \sigma_{\rho} \\
+   &  & & & 0  \\
+   &  & & & & \ddots  \\
+  0 & 0 &  & \cdots &&&& 0
+  }}_{n \text{ columns}}
+  \left. \phantom{\begin{array}{l}
+  1\\
+  1\\
+  1\\
+  1\\
+  1\\
+  1\\
+  1\\
+  1\\
+  1
+  \end{array}}\right\}
+  m\text{ rows}.
+\end{equation}
+\item Solve for the $\rho$ eigenvectors $x_{k}$ of $\W{x}$.\\[4pt]
+\item Compute $\tau_{x}=n-\rho$ orthonormal null space vectors for the perpendicular complement of the space spanned by these eigenvectors, $\lst{x}^{\perp}=\spn\lst{u_{1},\dots,u_{\tau_{x}}}$.\\[4pt]
+\item Assemble the $\by{n}{n}$ matrix 
+$\X{}=\mat{c|c|c|c|c|c}
+{\hat{x}_{1} & \cdots & \hat{x}_{\rho} & \hat{u}_{1} & \dots & \hat{u}_{\tau_{x}}
+}
+$
+for the domain.\\[4pt]
+\item Solve for the $\rho$ vectors $y_{k}$, the orthonormal decomposition of $\rng{\A{}}$, using
+\begin{equation}
+  y_{k} = \paren{\sigma_{k}}^{-1}\A{} x_{k}.
+\end{equation}
+\item Compute $\tau_{y}=m-\rho$ null space vectors which are the  orthonormal perpendicular to the image space $\lst{y}^{\perp}=\spn\lst{v_{1},\dots,v_{\tau_{x}}}$ for the codomain.\\[4pt]
+\item Assemble the $\by{m}{m}$ matrix 
+$\Y{}=\mat{c|c|c|c|c|c}
+{\hat{y}_{1} & \cdots & \hat{y}_{\rho} & \hat{v}_{1} & \dots & \hat{v}_{\tau_{y}}
+}
+$ for the codomain.\\[4pt]
+\item Verify $\svd{*} = \A{}.$\\[6pt]
+\end{enumerate}
+\caption{Recipe for a \svdl. These are the basic tasks for the general purpose method to complete the full SVD. As with any recipe, there are variants. The simple method in the last chapter is one such variant. Consider these steps to be the most robust and general method. A hat over a vector implies normalization.}
+\label{tab:3:input}
+\end{table}
+
+\clearpage
+\break
+
+\endinput

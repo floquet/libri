@@ -1,0 +1,393 @@
+\chapter{Lines}
+
+\section{Face-centered cubic lattice} %    S    S    S    S    S    S    S    S    S    S    S    S
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{\pathgraphics "patterns"/"lines"/"fcc lattice with cell"} 
+   \caption{A slice of a face-centered cubic lattice showing a single crystal.}
+   \label{fig:pattern fcc}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{\pathgraphics "patterns"/"lines"/"potentials"} 
+   \caption{Simulation output showing atomic shades shaded by potential energy.}
+   \label{fig:pattern potentials}
+\end{figure}
+
+\section{Model}  %    S    S    S    S    S    S    S    S    S    S    S    S
+
+\begin{equation}
+  %\begin{split}
+    y_{(\mu)}(x) = \mu \alpha_{*} + \alpha_{0} + \alpha_{1} x, \qquad \mu = 0,1,2,\dots,M-1 .
+    \label{eq:trial coupled}
+  %\end{split}
+\end{equation}
+
+  \begin{equation}
+    \begin{split}
+    %
+      \begin{cases}
+        0\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{1_{1}} = y_{1_{1}} \\
+        \qquad \qquad \qquad \qquad \quad \vdots \\
+        0\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{m_{1}} = y_{m_{1}} \\
+      \end{cases}
+      row\ 1 \\
+    %
+      \begin{cases}
+        1\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{1_{2}} = y_{1_{2}} \\
+        \qquad \qquad \qquad \qquad \quad \vdots \\
+        1\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{m_{2}} = y_{m_{2}} \\
+      \end{cases}
+      row\ 2 \\
+    %
+      \begin{cases}
+        2\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{1_{3}} = y_{1_{3}} \\
+        \qquad \qquad \qquad \qquad \quad \vdots \\
+        2\cdot\alpha_{*} + \alpha_{0} + \alpha_{1} x_{m_{3}} = y_{m_{3}} \\
+      \end{cases}
+      row\ 3 \\
+    %
+    \end{split}
+  \label{eq:system}
+  \end{equation}
+
+
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{\pathgraphics "patterns"/"lines"/"all with inset"} 
+   \caption{Full data set showing inset.}
+   \label{fig:simulation inset}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "patterns"/"lines"/"parameters"} 
+   \caption{Sample data set showing fit parameters.}
+   \label{fig:parameters}
+\end{figure}
+\clearpage
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set rows"} \\[15pt]
+   \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set cols"} \\[15pt]
+   \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set spokes"} 
+   \caption{Simulation output showing atomic shades shaded by potential energy.}
+   \label{fig:simulation data sets}
+\end{figure}
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Data sets and basic results}
+    \begin{center}
+      \begin{tabular}{lc c r@{.}l c r@{.}l}
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 2.7in ]{\pathgraphics "patterns"/"lines"/"data set rows"}}
+        & $\alpha_{*}$ & = & $0$ & $9899$ & $\pm$ & $0$ & $0032$ \\
+        & $\alpha_{0}$ & = & $3$ & $438$  & $\pm$ & $0$ & $013$ \\
+        & $\alpha_{1}$ & = & $0$ & $3376$ & $\pm$ & $0$ & $0017$ \\[5pt]
+        & $\sqrt{\inner{r^{2}}}$ & = & $0$ & $052$ \\[80pt]
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 2.7in ]{\pathgraphics "patterns"/"lines"/"data set cols"}}
+        & $\alpha_{*}$ & = & $4$  & $974$ & $\pm$ & $0$ & $052$ \\
+        & $\alpha_{0}$ & = & $-2$ & $075$ & $\pm$ & $0$ & $093$ \\
+        & $\alpha_{1}$ & = & $5$  & $168$ & $\pm$ & $0$ & $052$ \\[5pt]
+        & $\sqrt{\inner{r^{2}}}$ & = & $0$ & $18$ \\[80pt]
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 2.7in ]{\pathgraphics "patterns"/"lines"/"data set spokes"}}
+        & $\alpha_{*}$ & = & $1$  & $2322$ & $\pm$ & $0$ & $0039$ \\
+        & $\alpha_{0}$ & = & $-7$ & $505$  & $\pm$ & $0$ & $043$ \\
+        & $\alpha_{1}$ & = & $-0$ & $8576$ & $\pm$ & $0$ & $0038$ \\[5pt]
+        & $\sqrt{\inner{r^{2}}}$ & = & $0$ & $054$
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Data sets and basic results}
+    \begin{center}
+      \begin{tabular}{ll}
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set rows"}}
+        & $\alpha_{*} = 0.9899 \pm 0.0032$ \\
+        & $\alpha_{0} = 3.438  \pm 0.013$ \\
+        & $\alpha_{1} = 0.3376 \pm 0.0017$ \\
+        & $\inner{r^{2}} = 0.123$ \\ [80pt]
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set cols"}}
+        & $\alpha_{*} = 0.9899 \pm 0.0032$ \\
+        & $\alpha_{0} = 3.438  \pm 0.013$ \\
+        & $\alpha_{1} = 0.3376 \pm 0.0017$ \\[60pt]
+        %
+        \multirow{4}{*}{
+        \includegraphics[ width = 3.25in ]{\pathgraphics "patterns"/"lines"/"data set spokes"}}
+        & $\alpha_{*} = 0.9899 \pm 0.0032$ \\
+        & $\alpha_{0} = 3.438  \pm 0.013$ \\
+        & $\alpha_{1} = 0.3376 \pm 0.0017$ \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+\clearpage
+
+  \begin{equation}
+    \begin{array}{cccc}
+      \A{} & \alpha & = & y \\
+      \mat{ccc}{ 
+      0 & 1 & x_{1_{1}} \\ \vdots & \vdots & \vdots \\ 
+      0 & 1 &  x_{\mu_{1}} \\\arrayrulecolor{medgray}\hline
+      1 & 1 & x_{1_{2}} \\ \vdots & \vdots & \vdots \\ 
+      1 & 1 &  x_{\mu_{2}} \\\hline
+      2 & 1 & x_{1_{3}} \\ \vdots & \vdots & \vdots \\ 
+      2 & 1 &  x_{\mu_{3}} \\\hline
+      \vdots & \vdots & \vdots \\\hline
+      M - 1 & 1 & x_{1_{M}} \\ \vdots & \vdots & \vdots \\ 
+      M - 1 & 1 &  x_{m_{M}} \\
+      } &
+      \mat{c}{ \alpha_{*} \\ \alpha_{0} \\ \alpha_{1} } & = &
+      \mat{c}{ 
+      y_{1_{1}} \\ \vdots \\ y_{\mu_{1}} \\\arrayrulecolor{medgray}\hline 
+      y_{1_{2}} \\ \vdots \\ y_{\mu_{2}} \\\hline 
+      y_{1_{3}} \\ \vdots \\ y_{\mu_{3}} \\\hline 
+      \vdots\\\hline
+      y_{1_{M}} \\ \vdots \\ y_{\mu_{M}}
+      }
+    \end{array}
+    \label{eq:lines A}
+  \end{equation}
+
+
+\section{Problem Statement}  %    S    S    S    S    S    S    S    S    S    S    S    S
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Problem statement for grain identification by rows (coupled linear regression).}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $y_{(\mu)}(x) = \mu \alpha_{*} + \alpha_{0} + \alpha_{1} x$ \\
+        \bf{merit function} & $M(p) = \sum_{k=1}^{n}\paren{y_{k} - \mu \alpha_{*} + \alpha_{0} + \alpha_{1} x_{k}}^{2}$ \\
+        \bf{number of zones}& $m = 5$ \\
+        \bf{number of overlaps}& $n = 4$ \\
+        \bf{rank defect}    & $m - n  = 1$ \\
+        \bf{measurements}   & $\lambda = \lst{11, 13, 13, 13, 12}$ \\
+        \bf{measurements}   & $\paren{x_{k}, y_{k}}$, $k=1\colon 1024$ \\
+        \bf{input data}     & $\paren{x_{k}, y_{k}}$, $k=1\colon 1024$ \\
+        \bf{results}        & $\alpha_{*}$ & gap\\
+                            & $\alpha_{0}$ & $y-$axis intercept\\
+                            & $\alpha_{1}$ & slope\\
+        \bf{residual error} & $r = \bl{\Ap b} - \Delta$ \\
+        \bf{linear system}  & \eqref{eq:lines A} \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:find lines problem statement}
+  \end{table}%
+
+\section{Data} %    S    S    S    S    S    S    S    S    S    S    S    S
+%        T A B L E
+{\tiny{
+\begin{table}[htbp]
+\caption{Point membership in data sets shown in figure \ref{fig:sample grain}.}
+  \begin{center}
+    \begin{tabular}{cccccccccccccccc}
+      %
+      % user: rditldmt, CPU: dan-topas-pro-2, MM v. 10.0 for Mac OS X x86, date: Jun 3, 2015, time: 11:04:41, nb: /Users/rditldmt/Dropbox/ nb/drc/molecular dynamics/orientation/dots and numbers 04.nb
+      %
+      set & row & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 \\\hline
+      %
+      1 &  1 & 519 & 520 & 522 & 555 & 556 & 589 & 590 & 591 & 624 & 625 \\
+      %
+      1 &  2 & 551 & 552 & 553 & 554 & 587 & 588 & 621 & 622 & 623 & 656 & 657 & 658 \\
+      %
+      1 &  3 & 582 & 583 & 584 & 585 & 586 & 619 & 620 & 653 & 654 & 655 & 688 & 689 & 690 \\
+      %
+      1 &  4 & 614 & 615 & 616 & 617 & 618 & 651 & 652 & 685 & 686 & 687 & 720 & 721 \\
+      %
+      1 &  5 & 613 & 646 & 648 & 649 & 650 & 683 & 684 & 717 & 718 & 719 & 752 & 753 & 754 & 787 \\
+      %
+      1 &  6 & 644 & 645 & 647 & 680 & 681 & 682 & 682 & 715 & 716 & 749 & 750 & 751 & 784 \\
+      %
+      1 &  7 & 712 & 713 & 714 & 747 & 748 & 781 & 782 & 783 \\
+      %
+      % row census:  {10, 12, 13, 12, 14, 13, 8}
+      % Total count: 82
+      %
+      && \\
+      %
+      %
+      2 &  1 & 658 & 690 & 787 \\
+      %
+      2 &  2 & 625 & 657 & 689 & 721 & 754 \\
+      %
+      2 &  3 & 624 & 656 & 688 & 720 & 753 \\
+      %
+      2 &  4 & 591 & 623 & 655 & 687 & 752 & 784 \\
+      %
+      2 &  5 & 590 & 622 & 654 & 686 & 719 & 751 & 783 \\
+      %
+      2 &  6 & 589 & 621 & 653 & 685 & 718 & 750 & 782 \\
+      %
+      2 &  7 & 556 & 588 & 620 & 652 & 717 & 749 & 781 \\
+      %
+      2 &  8 & 555 & 587 & 619 & 651 & 684 & 716 & 748 & 779 \\
+      %
+      2 &  9 & 522 & 554 & 586 & 618 & 683 & 715 & 747 \\
+      %
+      2 & 10 & 520 & 553 & 585 & 617 & 650 & 682 & 714 \\
+      %
+      2 & 11 & 519 & 552 & 584 & 616 & 649 & 681 & 713 & 745 \\
+      %
+      2 & 12 & 551 & 583 & 615 & 648 & 680 \\
+      %
+      2 & 13 & 582 & 614 & 646 & 647 & 679 \\
+      %
+      2 & 14 & 613 & 645 & 678 \\
+      %
+      % row census:  {3, 5, 5, 6, 7, 7, 7, 8, 7, 7, 8, 5, 5, 3}
+      % Total count: 83
+      %
+      && \\
+      %
+      %
+      3 &  1 & 582 & 551 & 519 \\
+      %
+      3 &  2 & 644 & 613 & 614 & 583 & 552 & 520 \\
+      %
+      3 &  3 & 645 & 646 & 615 & 584 & 553 & 522 \\
+      %
+      3 &  4 & 647 & 648 & 616 & 585 & 554 & 555 & 678 \\
+      %
+      3 &  5 & 679 & 680 & 649 & 617 & 586 & 587 & 556 \\
+      %
+      3 &  6 & 712 & 681 & 650 & 618 & 619 & 588 & 589 \\
+      %
+      3 &  7 & 713 & 682 & 683 & 651 & 620 & 621 & 590 \\
+      %
+      3 &  8 & 745 & 714 & 715 & 684 & 652 & 653 & 622 & 591 \\
+      %
+      3 &  9 & 747 & 716 & 717 & 685 & 654 & 623 & 624 \\
+      %
+      3 & 10 & 748 & 749 & 718 & 686 & 655 & 656 & 625 \\
+      %
+      3 & 11 & 779 & 781 & 750 & 719 & 687 & 688 & 657 \\
+      %
+      3 & 12 & 782 & 751 & 752 & 720 & 689 & 658 \\
+      %
+      3 & 13 & 783 & 784 & 753 & 721 & 690 \\
+      %
+      % row census:  {3, 6, 6, 7, 7, 7, 7, 8, 7, 7, 7, 6, 5}
+      % Total count: 83
+      %
+      && \\
+      %
+    \end{tabular}
+  \end{center}
+\label{tab:tres rows}
+\end{table} }}
+ 
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Excerpted data set}
+    \begin{center}
+      \begin{tabular}{r r@{.}l  r@{.}l  r@{.}l}
+        %        
+        $k$ & \multicolumn{2}{c}{$x_{k}$} & \multicolumn{2}{c}{$y_{k}$} & \multicolumn{2}{c}{$\phi_{k}$}\\\hline
+        %
+         1  & $ -15 $ & $ 879001 $ & $ -16 $ & $ 365496 $ & $ -2 $ & $ 597531 $ \\
+         2  & $ -14 $ & $ 749446 $ & $ -15 $ & $ 995488 $ & $ -2 $ & $ 613017 $ \\
+         3  & $ -13 $ & $ 905339 $ & $ 16 $  & $ 242941 $ & $ -2 $ & $ 557543 $ \\
+         %
+         \vdots \\
+        %
+        1022	 & $	13	$ & $	927362	$ & $	-16	$ & $	235010	 $ & $	-2	$ & $	780323	 $ 	\\
+        1023	 & $	14	$ & $	741765	$ & $	15	$ & $	957687	 $ & $	-2	$ & $	687929	 $ 	\\
+        1024	 & $	15	$ & $	905518	$ & $	16	$ & $	346979	 $ & $	-2	$ & $	599001	 $ 	\\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+\section{Results} %    S    S    S    S    S    S    S    S    S    S    S    S
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4.5in ]{\pathgraphics "patterns"/"lines"/"three lines"} 
+   \caption{Solutions for three data sets.}
+   \label{fig:three lines}
+\end{figure}
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Least squares results for three axes.}
+    \begin{center}
+      \begin{tabular}{c r@{.}l c r@{.}l r@{.}l c r@{.}l r@{.}l c r@{.}l}
+        %
+        axis & \multicolumn{5}{c}{gap} & \multicolumn{5}{c}{intercept} & \multicolumn{5}{c}{slope} \\\hline
+        %
+        1 &  0 & 9899  & $\pm$ &  0 & 0032  & 3 & 438    & $\pm$ &  0 & 013  &  0 & 3376     & $\pm$ &  0 & 0017 \\
+        %
+        2 &  4 & 974   & $\pm$ &  0 & 052   & $-$2 & 075 & $\pm$ &  0 & 093  &  5 & 168      & $\pm$ &  0 & 052 \\
+        %
+        3 &  1 & 2322  & $\pm$ &  0 & 0039  & $-$7 & 505 & $\pm$ &  0 & 043  &  $-$0 & 8576  & $\pm$ &  0 & 0038 \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Intermediate results: angles for the axes.}
+    \begin{center}
+      \begin{tabular}{c r@{.}l c r@{.}l c rcl}
+        %
+        axis & \multicolumn{2}{c}{$\theta$} & $\pm$ & \multicolumn{2}{c}{$\sigma_{\theta}$} \\\hline
+        %
+        1 &   0 & 3256  & $\pm$ &  0 & 0015 & = & $(18.655$ & $\pm$ & $0.086)^{\circ}$\\
+        %
+        2 &   1 & 380   & $\pm$ &  0 & 018  & = & $(79.0$ & $\pm$ & $1.0)^{\circ}$ \\
+        %
+        3 & $-$0 & 7089  & $\pm$ &  0 & 0025 & = & $(-40.62$ & $\pm$ & $0.14)^{\circ}$
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Final results: apex angle measurements}
+    \begin{center}
+      \begin{tabular}{c r@{.}l c r@{.}l c r@{.}l c r@{.}l}
+        %
+        & \multicolumn{2}{c}{$\theta$} & $\pm$ & \multicolumn{2}{c}{$\sigma_{\theta}$} \\\hline
+        %
+        $\alpha$ & $1$ & $040$  & $\pm$ & $0$ & $018$  & = & $(59$ & $6$ & $\pm$ & $1$ & $0)^{\circ}$\\
+        %
+        $\beta$  & $1$ & $0345$ & $\pm$ & $0$ & $0029$ & = & $(59$ & $27$ & $\pm$ & $0$ & $17)^{\circ}$\\
+        %
+        $\gamma$ & $1$ & $041$  & $\pm$ & $0$ & $018$  & = & $(59$ & $7$ & $\pm$ & $1$ & $0)^{\circ}$\\\arrayrulecolor{medgray}\hline
+        %
+        total    & $3$ & $116$  & $\pm$ & $0$ & $026$  & = & $(178$ & $5$ & $\pm$ & $1$ & $7)^{\circ}$
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:apex angles}
+  \end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "patterns"/"lines"/"apex angles"} 
+   \caption{Apex angles displayed in table \ref{tab:apex angles}.}
+   \label{fig:pattern needles}
+\end{figure}
+
+\endinput

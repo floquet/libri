@@ -1,0 +1,57 @@
+\chapter{Post Mortem I}
+
+\begin{chapterquote}[120pt]
+ÒOut of intense complexities intense simplicities emerge.\\
+---{\upshape Winston Churchill}\\[6pt]
+\end{chapterquote}
+\ \\
+
+\section{Recap}
+The trouble with the target matrix in the last example is that it does not have enough linearly independent column vectors to span the domain. For this reason, the matrix does not have a left inverse. Also, a \textit{separate} issue is the lack of linearly independent row vectors to span the codomain. This explains why there is no right inverse. Therefore the linear system can't be solved using obvious methods. Hence the need for the SVD and the pseudoinverse.
+
+The principle of organization for the last two and subsequent chapters is that matrices are collections of row vectors and collection of column vectors. 
+\begin{equation}
+  \A{}=\Aexample = \underbrace{\mat{c|c}{c_{1} & -c_{1}}}_{\text{image of }\A{}}=\underbrace{\mat{r}{r_{1}^{\mathrm{T}}\\\hline-r_{1}^{\mathrm{T}}\\\hline r_{1}^{\mathrm{T}}}}_{\text{image of }\A{T}}
+\end{equation}
+with the linearly independent vectors having the assignments
+\begin{equation}
+  c_{1}=\mat{r}{1\\-1\\1}, \quad r_{1}=\mat{r}{1\\-1}.
+\end{equation}
+The nettlesome issue is that neither image covers the induced matrix spaces of $\real{2}$ and $\real{3}$:
+\begin{equation}
+  \spn\lst{\mat{r}{1\\-1\\1}}=\real{1}\ne\real{3}, \qquad \spn\lst{\mat{r}{1\\-1}}=\real{1}\ne\real{2}.
+\end{equation}
+
+The \svdl \ explicitly separated domain and codomain into two matrices $\X{}$ and $\Y{}$. These matrices resolve the two domains into complete orthonormal spaces for $\real{m=2}$ (domain) and $\real{n=3}$ (codomain).
+ 
+We start with a matrix whose dimension dictates the dimensions of the domains. This separation splits the row and vector spaces apart leaving four fundamental components. For the \vv \ world of the domain they are these:
+\begin{enumerate}
+\item an orthonormal span of the linearly independent \textit{row} vectors; also called the image space of $\A{}$,
+\item an orthonormal span of the perpendicular complement, $\null{\A{}}$; also call the kernel.
+\end{enumerate}
+For the \vvv \ world of the codomain we have these:
+\begin{enumerate}
+\item an orthonormal span of the linearly independent \textit{column} vectors; also called image space of $\A{T}$,
+\item an orthonormal span of the perpendicular complement, $\null{\A{T}}$; also call the cokernel.
+\end{enumerate}
+The diagram in figure \eqref{fig:pm:decomp} shows these relationships in abbreviated form.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+%   \includegraphics[ width = 5in ]{pdf/post_mortem/earlydecomp.pdf} 
+   \includegraphics[ ]{pdf/post_mortem/c321} 
+   \caption[A schematic look at the SVD]{A schematic look at the \svdl. In the previous chapter we took a matrix with one linearly independent column vector (down arrow) and one linearly independent row vector (right arrow) and resolved the domain and codomain into four fundamental subspaces shown here.}
+   \label{fig:pm:decomp}
+\end{figure}
+
+\textbf{Quo vadis?}\\
+This chapter will look at the result in a bit more detail. In particular focus will be drawn to which of this spaces are the physical space of measurements and which are the abstract aphysical spaces of the fit parameters.
+
+The last chapter presented a least squares solution using \textit{orthogonal projection}\index{orthogonal projection} to minimize the distance between the measurement vector and the range of the target matrix. Here we connect this result with solution to the normal equations.
+
+%%
+\input{chapters/"ch 02"/interpretation}
+\input{chapters/"ch 02"/bounty}
+\input{chapters/"ch 02"/exercises}
+
+\endinput

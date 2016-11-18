@@ -1,0 +1,280 @@
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/building blocks/head building blocks.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/complex/head complex.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/decomposition summaries/head decomposition summaries.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/decomposition summaries/tab matrix a.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/decomposition summaries/tab matrix b.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/decomposition summaries/tab matrix c.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/definitions/head definitions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/gram schmidt/head gram schmidt.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/gram schmidt/tab the gram-schmidt orthogonalization process for two vectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/gram schmidt/tab the gram-schmidt orthogonalization process.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/history/head history.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/jargon/head jargon.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/appendices/precis/head precis.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/archive/sec adding noise.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/archive/sec image transition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/archive/sec pixelation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/archive/sec powers.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/archive/sec reducing contrast.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/backmatter/notation/head notation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/head bases.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/sec coordinate systems 2D.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/sec coordinate systems 3D.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/sec pies.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/ssec example Hilbert matrix.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/ssec example Jordan normal form.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab a sampling of 2 x 2 matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab decomposition matrices for sample 3 x 3 matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab pie a.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab pie b.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab pie e.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab pie g.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab successive rotations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab two ways to visualize a unitary matrix X.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/bases/tab two ways to visualize a unitary matrix.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/head computing the svd I.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/sec anatomy of the SVD.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/sec computing the SVD.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/sec the svd in practice.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab column vectors of the domain matrices form an orthonormal span.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab computational elements.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab eigenvectors and null vectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab personae dramatis.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab schema for the svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab svd and truncated svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd I/tab watkins diagram.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd II/head computing the svd II.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd II/sec building a.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd II/sec building b.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd II/sec building c.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd II/tab computational elements example.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/head computing the svd III.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec block structures.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec diagonalization.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec rank one decomposition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec shortcuts.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec special cases.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec uniqueness archive.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec uniqueness.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/sec vectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/tab all rank one.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/tab lineup.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/computing the svd III/tab sign ambiguity.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/head examples.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sec famous matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sec famous matrix types.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sec linear regression.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sec polynomial regression.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec dirac.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec gellman.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec jcf.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec nilpotent.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec pauli.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec rotation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/ssec toeplitz.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sssec jcf 2.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sssec jcf 3.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/sssec jcf 4.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/tab mercer sequence.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/tab nilpotent.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/tab the two different SVDs for the Jordan form J2.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/examples/thm weierstrass.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/frontmatter/literature.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/frontmatter/preface.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/head ftola.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/sec beyond ftola.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/sec example matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/sec ftola statment.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/sec matrix as map.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/sec sample resolutions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/ssec decomp a.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/ssec decomp b.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/ssec decomp c.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab composition of the fundamental subspaces.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab decomposition summary.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab forms of the decomposition X.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab forms of the decomposition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab ftola statement.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab maps (a).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab maps (b).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab maps (c).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/ftola/tab the null spaces of the example matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/figs content measures.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/head information content I.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/head information content Ia.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/sec information content and convolution.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/sec information content.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/sec operations which preserve the energy partition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/sec smoothing the singular values.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/sec transforming the image.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/ssec adding noise.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/ssec image transition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/ssec pixelation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/ssec powers.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/ssec reducing contrast.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab a sequence of matrix powers.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab a sequence of reduced contrast images.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab adding random noise to an image.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab basic manipulations of the svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab convolution with the sobol operator.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab counting pixels.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab energy partitions for the edge sharpening convolutions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab energy partitions for the edge softening convolutions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab low rank dimensions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab matrix structure manipulation flip.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab matrix structure manipulation shift.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab recomposition using a subset of the most dominant singular values.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab recomposition using more complete subsets of the singular values.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab repeated convolution.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab snapshots of global decoherence.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab snapshots of local decoherence.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab the product matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab the transpose operation changes chirality.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab threshold least dominant 01.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab threshold least dominant 02.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content I/tab two recomposition approximations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/head information content Ia.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/sec information content and convolution.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/sec information content.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/sec matrix basics.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/sec powers.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ia/sec smoothing the singular values.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/head information content Ib.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/sec adding noise.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/sec contrast.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/sec image transition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/sec pixelation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ib/sec reducing contrast.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ic/head information content Ic.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ic/sec transformations which preserve singular values.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ic/sec transformations which preserve the energy partition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ic/ssec image decoherence.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content Ic/ssec structure manipulation.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/head information content II.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/sec summaries.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/tab checkerboard.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/tab cross.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/tab stripes, diagonal.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/tab stripes, vertical.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content II/tab the singular value decomposition of Camille's photo.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/fourier/tab diamond fourier.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/fourier/tab euclid fourier.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/head information content III.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/sec bases.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/sec fourier.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/sec wavelets.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/information content III/tab rank one 3.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/eqn overdetermined.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/eqn qr form.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/head least squares II.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/head least squares.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec defining least squares.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec example matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec least squares problem.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec pacification.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec regularization.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec toy problems.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/sec why least squares.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/tab subspace decomposition for tall landscape.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/tab subspace decomposition for tall.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/tab subspace decomposition for wide landscape.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares/tab subspace decomposition for wide.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares II/sec least squares normal.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares II/sec least squares qr.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares II/sec least squares svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/least squares II/sec sensitivity.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/matrix analysis/head matrix analysis.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/matrix analysis/sec inequalities.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/head pantheon.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/sec full rank decomposition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/sec sv decomposition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/tab matrix factorization categorizations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/tab the pantheon of matrix factorizations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pantheon/tab visuals.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/head projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec example projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec fundamental projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec least squares redux.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec rank one projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/sec summary of fundamental projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab (a) rank one codomain.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab (a) rank one domain.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab example (a).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab example (b).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab fundamental projectors for the example matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab fundamental projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab least squares solutions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab mapping properties of the fundamental projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab projection operators and domains.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab projectors for matrix (a).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab projectors for matrix (b).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab projectors for matrix (c).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/projectors/tab rank one expansions for the fundamental projectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/proofs/head proofs.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/proofs/sec proof constructive.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/proofs/sec proof Laub X.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/proofs/sec proof Laub.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/head pseudoinverse.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/sec chiral inverses.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/sec examples of pseudoinverse.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/sec penrose paper.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/sec pseudoinverse.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/ssec lemma.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab all rank one mpp.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab chiral inverses and null spaces.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab chiral inverses.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab constructing the pseudoinverse from the svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab contexts for matrix products.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab equivalence in defining the pseudoinverse chirality.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab exemplars of the pseudoinverse.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/pseudoinverse/tab fundamental projectors for the example matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/head svd ex nihilo.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/sec comparing decompositions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/sec essence of the SVD (from Macbook-pro-de-leticia-topa).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/sec essence of the SVD.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/sec shape and configuration of the decomposition matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab column vectors form an orthonormal span.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab dimension, rank and subspace decomposition.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab dimensions of the subcomponents.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab dimensions of the svd.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab exemplars.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab image (a) (from Macbook-pro-de-leticia-topa).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab image (a).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab image (b) (from Macbook-pro-de-leticia-topa).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab image (b).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab image (c).tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//chapters/svd ex nihilo/tab shape and configuration of the decomposition matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/A.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/abbreviations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/bold letters.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/colors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/convolution kernels.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/declarations.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/delimiters.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/dirac definitions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/example a matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/example b matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/example c matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/ftola.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/gellmann definitions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/hilbert.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/jordan forms.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/least squares.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/matrix basics.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/matrix decompositions.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/norms.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/numbers.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/reciprocals.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/sigma matrices.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/spaces.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/svd forms.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//common/vectors.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//stray.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//SVD.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/fig template.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/head_template.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/sec template.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/ssec template.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/tab template.tex
+/Users/rditldmt/SVN wd/LaTeX/books/siam/trunk//templates/thm template.tex

@@ -1,0 +1,36 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+%%
+\begin{table}[htdp]
+\caption[Subspace decomposition for equation $\eqref{eqn:toy:system:wide}$]{Subspace decomposition for $\A{}\in\cmplx{\by{2}{3}}_{2}$ as in equation $\eqref{eqn:toy:system:wide}$. Due to the simplicity of this system we can see the decomposition immediately. The minimization occurs in the codomain and the minimizing vector is mapped back to the domain. There is a problem with this map: every point on the red dashed line maps to the same point $b$. Therefore every point on this line satisfies the least squares criteria in \eqref{eq:least squares:criterion}. To resolve this ambiguity, another criterion is used and we choose $\xmp$, the solution vector entirely in the range space $\brnga{*}$.}
+%
+\begin{center}
+\begin{tabular}{cc}
+%
+  Domain & Codomain \\\hline
+%
+\\
+%
+  $\cmplx{3}  =  \brnga{*} \oplus \rnlla{}={\bl{ \spn{\xxx, \yyy} }} \oplus {\rd{ \spn{\zzz} }}$ &
+%
+  $\cmplx{2}  =  \brnga{}\ {\mg{ \oplus }}\ {\mg{ \nlla{*} }} = {\bl{ \spn{\xx, \yy} }}\ {\mg{ \oplus }}\ {\mg{ \lst{\zerotwo} }}$ \\
+%%
+   \includegraphics[ trim = 0cm 0cm 0cm 2cm, clip=true, width = 3.5in ]{images/"least squares"/"least squares wide domain"} &
+   \includegraphics[ trim = 0cm 0cm 0cm 1cm, clip=true, width = 3.5in ]{images/"least squares"/"least squares wide codomain"} \\
+%
+%  Solution space & Measurement space
+%
+%   \includegraphics[ ]{images/"least squares"/"least squares tall codomain"} &
+%   \includegraphics[ ]{images/"least squares"/"least squares wide codomain"} \\
+%
+\end{tabular}
+\end{center}
+%
+\label{tab:least squares:decomposition:wide}
+\end{table}
+%%
+\end{landscape}
+
+
+\endinput

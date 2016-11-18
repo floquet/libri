@@ -1,0 +1,174 @@
+\section{Distance}
+This section ponders the notion of distance. How do we measure the distance between point in the domain and the codomain. As we saw in the least squares fit, we minimize the distance in the codomain by finding the point nearest to the range of the target matrix $\A{}$. But the solution is a point in the domain. This means that we solve for a point in the codomain and report the solution in the domain.
+
+When we use numeric calculations, we instantly introduce numeric errors. This is a fact of life. Once we introduce errors we are compelled to study the accuracy of our methods. We usually discover that we are not finding an exact answer to our problem. How close is the computed solution $\tilde{x}$ to the exact solution $x$? %(Golub references)\cite[Golub]
+
+There are many details needed to answer this question formally for every algorithm. Here the approach is more intuitive. Suppose we take a step from point $a$ to point $b$ in the domain. These two points map to two points $p$ and $q$ in the codomain. We will see that in general, the distance between these points in not the same:
+\begin{equation}
+  \dist{a,b} \ne \dist{p,q}.
+\end{equation}
+In terms of units it is folly to compare the distances as they have different units. For example, in a linear regression the domain is the parameter space of slope and intercept and the codomain is the space of measurements $x$ and $y$. We must measure the separation in the codomain as a displacement in the domain. When we take a step in the domain, we must compare it to another step in the domain induced by a a step in the codomain.
+
+For example, consider the matrix given in %\eqref{}.
+\begin{equation}
+  a = \otwo, \quad b = \mat{c}{1\\2}.
+\end{equation}
+The size of the intial step is $\sqrt{3}$.
+\begin{equation}
+   \begin{split}
+     p &= \A{}a = \Aexample \otwo = \othree \\
+     q &= \A{}b = \Aexample \mat{c}{1\\2} = \mat{r}{-1\\1\\-1}
+  \end{split}.
+\end{equation}
+The displacement in the codomain is $\sqrt{3}$. The fact that we are comparing distances between \vv \ and \vvv \ should suggest that we need to go back to the world of \vvv s.
+\begin{equation}
+  \begin{split}
+     \hat{a} &= \A{}p = \Atexample \othree = \otwo \\
+     \hat{b} &= \A{}q = \Atexample \mat{r}{-1\\1\\-1} = \mat{r}{-3\\3}
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \dist{a,b} &= \sqrt{3} \\
+     \dist{\hat{a},\hat{b}} &= \sqrt{18}
+  \end{split}
+\end{equation}
+Money shot
+\begin{equation}
+  \dist{\hat{a},\hat{b}} = \sqrt{6} \, \dist{a,b} = \sigma_{1} \dist{a,b}
+\end{equation}
+
+%%%%
+\subsection{Two directions}
+Let's do it in two dim.
+As you can see from the previous example decompositions, the dimensions of the domain and codomain are not equal in general. We should not expect the distance between two points to be the same as the distance between the two image points. How does the distance between the points in the image
+$$ \normt{x_{1} - x_{2}} $$
+compare to the distance between the points 
+$$ \normt{\A{}x_{1} - \A{}x_{2}}? $$
+Start at $x_{1}$, one point in the domain and travel in a straight line to $x_{2}$. We map these points to the codomain as 
+\begin{equation}
+  \begin{split}
+     y_{1} &= \A{}x_{1},\\
+     y_{2} &= \A{}y_{2}.
+  \end{split}
+\end{equation}
+Let's pick a matrix that maps from a plane into a plane, $\real{2}\mapsto\real{2}$:
+\begin{equation}
+  \A{} = \matrixalpha.
+\end{equation}
+Start at the origin and take a unit step.
+The first thing we will discover is that the \emph{direction} of the step affects the length of the step in the codomain:
+\begin{equation}
+  \A{}e_{1} = \matrixalpha \xhatt = \mat{r}{1\\-1}.
+  \label{eq:05:step1}
+\end{equation}
+In the codomain the distance travelled is this
+\begin{equation}
+  \normt{ \mat{c}{0\\0} - \mat{r}{1\\-1} } = \sqrt{ 2 }.
+\end{equation}
+Now take a unit step in the $2-$direction:
+\begin{equation}
+  \A{}e_{2} = \matrixalpha \yhatt = \mat{r}{2\\2}.
+  \label{eq:05:step2}
+\end{equation}
+In the codomain the distance travelled is this
+\begin{equation}
+  \normt{ \mat{c}{0\\0} - \mat{c}{2\\2} } = 2.
+\end{equation}
+The distance travelled depends upon the direction of travel in the domain. Does it depend upon the distance travelled in the domain? Because the matrices are the embodiment of linear operators, we realize that the size of the step does not matter. Let $\alpha$ be an arbitrary scalar:
+\begin{equation}
+  \A{} \paren{\alpha e_{j}} = \alpha \A{} e_{j}.
+\end{equation}
+
+Let's quantify how much the step size changed as we move from domain to codomain. Define
+\begin{equation}
+\begin{split}
+  \Delta x_{j} &= e_{j} - \mat{c}{0\\0} = e_{j}, \\
+  \Delta y_{j} &= \A{}e_{j} - \A{}\mat{c}{0\\0} = \A{}e_{j}.
+\end{split}
+\end{equation}
+The dilation factor is given by this
+\begin{equation}
+  \frac{ \normt{\Delta y_{j}} }{ \normt{e_{}} } = \frac{ \normt{\A{} e_{j}} }{ \normt{e_{j}} } = \normt{\A{} e_{j}}.
+\end{equation}
+
+%%%%
+\subsection{All directions}
+We can look at the behavior as we step in all possible direction. The locus of all possible unit vectors is called the unit circle. We can parameterize this curve with an angular variable $\theta$:
+\begin{equation}
+  \mathcal{S} = \mat{c}{ \cos \theta \\ \sin \theta }.
+\end{equation}
+We want to study what happens when the target matrix acts upon this curve:
+\begin{equation}
+  \A{} \mathcal{S} = \matrixalpha \mat{c}{ \cos \theta \\ \sin \theta } = \mat{r}{ \cos \theta + 2 \sin \theta \\ -\cos \theta + 2 \sin \theta }.
+\end{equation}
+The result is depicted in figure \eqref{fig:05:steps}. The angular variable is color coded to help the reader see how the coordinate system is rotating.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 2.25in]{pdf/"ch 05"/"x step"}  \qquad
+   \includegraphics[ width = 2.25in]{pdf/"ch 05"/"y step"} \\
+   \ \\
+   $\A{}\xhatt \quad \to \quad \mat{r}{1\\-1}$ \quad \qquad \qquad \qquad $\A{}\yhatt \quad \to \quad \mat{c}{2\\2}$
+   \caption[The matrices in nonsingular decompositions are all square]{Taking steps in domain and the codomain. The inner circle is the unit circle with shading tied to the angular variable. The ellipse is the image of the unit circle under the map $\A{}$. The arrows show the processes in equations \eqref{eq:05:step1} and \eqref{eq:05:step2}. The step in the domain is shown with the solid arrow. The map of this step into the codomain is show with the dashed arrow. We see that the map $\A{}$ dilates the vectors and rotates them. However, the angle between vectors is preserved.}
+   \label{fig:05:steps}
+\end{figure}
+
+%%%%
+\subsection{The return trip}
+The previous section served us well as we saw how to measure steps in the domain and the codomain. Now we must complete the round trip from domain to codomain and back to domain. You might think this prudent because in general the spaces have different dimensions. Another reason that we must return to the domain is that different physical meanings the spaces hold. The domain is the space of the fit parameters, for instance slope and intercept in a linear regression. The codomain is the space of measurements. It is meaningless to compare the lengths of a vector in the domain to a vector in the codomain.
+\begin{equation*}
+  \begin{array}{cccccc}
+    domain &\to& codomain &\to& domain \\\hline
+    \A{}x_{1} &\to& y_{1} \\ && \A{T}y_{1} &\to& \tildx_{1}
+  \end{array}
+\end{equation*}
+For the scale factors we want to check the total dilation:
+\begin{equation}
+  \frac{\norm{ \tildx_{1} }}{ \norm{x_{1}} } = \frac{\norm{ \A{T}\A{}e_{1} }}{ \norm{e_{1}} } = \norm{ \A{T}\A{}e_{1} }.
+\end{equation}
+For the two unit vectors in question, our roundtrip has this effect:
+\begin{equation*}
+  \begin{array}{ccrccc}
+    domain &\to& codomain &\to& domain \\\hline
+    \A{}\xhatt &\to& \mat{r}{1\\-1} \\ && \A{T}\mat{r}{1\\-1} &\to& \mat{c}{2\\0}\\\hline
+    \A{}\yhatt &\to& \mat{c}{2\\2} \\ && \A{T}\mat{c}{2\\2} &\to& \mat{c}{0\\8}
+  \end{array}
+\end{equation*}
+The final dilation factors are these:
+\begin{equation}
+  \begin{split}
+     \normt{ \A{T}\A{}e_{1} } &= \normt{ \mat{c}{2\\0} } = \sqrt{ 2 },\\
+     \normt{ \A{T}\A{}e_{2} } &= \normt{ \mat{c}{0\\8} } = 2\sqrt{ 2 }.
+  \end{split}
+\end{equation}
+These are, of course, the singular values of the matrix $\A{}$:
+\begin{equation}
+  \sigma \paren{ \A{} } = \sqrt{ 2 } \lst{2, 1}.
+\end{equation}
+Thus we arrive at a very natural picture of the singular values as scale factors describing the dilations during the round trip between domain and codomain.
+
+\clearpage
+\break
+
+\begin{SCfigure}
+  \centering
+  \includegraphics[ width = 2.5in ]%
+    {pdf/"ch 05"/"scale factors steps labels"}% picture filename
+  \caption[From the domain to the codomain and back]{From the domain to the codomain and back to the domain. The image of the unit circle under the composite map $\A{T}\A{}$. The circle in the center is the curve $\mathcal{S}\paren{\theta}$, the locus of all unit vectors. The outside ellipse is the figure $\A{T}\A{}\mathcal{S}\paren{\theta}$, the composite map which takes the unit vectors from the domain to the codomain and back to the domain. The angle $\theta$ determines the color of the curve.}
+\end{SCfigure}
+
+
+\clearpage
+\break
+
+\begin{SCfigure}
+  \centering
+  \includegraphics[ width = 2in ]%
+    {pdf/"ch 05"/"tall man"}% picture filename
+  \caption[From the domain to the codomain and back]{From the domain to the codomain and back to the domain. The image of the unit circle under the composite map $\A{T}\A{}$. The circle in the center is the curve $\mathcal{S}\paren{\theta}$, the locus of all unit vectors. The outside ellipse is the figure $\A{T}\A{}\mathcal{S}\paren{\theta}$, the composite map which takes the unit vectors from the domain to the codomain and back to the domain. The angle $\theta$ determines the color of the curve.}
+\end{SCfigure}
+
+
+
+\endinput

@@ -1,0 +1,91 @@
+\section{The normal equations}
+The normal equations are often one's first exposure to the method of least squares. This is partly because it is an easy way to transform a system without a solution into a system with a unique solution. Making the restriction that the system matrix has full column rank, we can always find a solution.
+
+Start with the system
+\begin{equation*}
+  \ls
+\end{equation*}
+which does not have a solution. This is because the data vector $b$ is not in the column space of the matrix $\A{}$. Using the \ft, we see implies that $b$ is not in the span of $\Y{}$.
+\begin{enumerate}
+\item The data vector $b$ is not in the column space of $\A{}$. We can state this in different ways.
+\subitem The direct interpretation:
+\begin{equation}
+  b \notin \spn \lst{ \alpha_{1} a_{1}, \alpha_{2} a_{2}, \dots,  \alpha_{n} a_{n} }.
+\end{equation}
+\subitem We can say that $b$ is not in the range of $A{}$:
+\begin{equation}
+  b \notin \rng{ \A{} }.
+\end{equation}
+where $\alpha$ represents arbitrary scalars and $a_{k}$ represents the column vectors of $\A{}$.
+\subitem In terms of the SVD components we can state that the data vector is not in the space spanned by the columns of $\yrng{}$.
+\item Because we have full column rank, there is no null space for $\A{*}$.
+\begin{equation}
+  \X{} = \xrng{}
+\end{equation}
+This implies that the solution will be unique.
+\end{enumerate}
+
+There is a solution, but we can't use basic tools like the Gaussian elimination to find the it.
+One stratagem is to multiply both sides by the matrix $\A{*}$ which produces the full rank system
+\begin{equation}
+  \prdm{*}x = \A{*}b
+\end{equation}
+Certainly the vector $\A{*}b$ is in $\rng{\A{*}}$ the range of $\A{*}$. Therefore this system has a solution and we can find it through basic tools. The product matrix $\prdm{*}$ is square and full rank, therefore it has an inverse. Therefore the solution to normal equations is this
+\begin{equation}
+  x = \paren{\prdm{*}}^{-1}\A{*}b
+\end{equation}
+
+We can use the SVD to show that this normal equations solution is what we would find if we solved for a  pseudoinverse. Start with the solution matrix given by this:
+\begin{equation}
+  \Ap = \paren{\prdm{*}}^{-1}\A{*}.
+\end{equation}
+The product matrix for the full column rank problem is this
+\begin{equation}
+  \begin{split}
+    \prdm{*} &= \vx{*} \\
+     &= \mat{c}{\xrng{}}\mat{c|c}{\ess{} & \zero}\mat{c}{\ess{} \\\hline \zero}\mat{c}{\xrng{*}}\\
+     &= \xrng{} \ess{2} \xrng{*}
+  \end{split}
+\end{equation}
+The inverse of the matrix follows from the rule for the inverse of a product of matrices:
+\begin{equation}
+  \begin{split}
+     \paren{\xrng{} \ess{2} \xrng{*}}^{-1} &= \paren{ \xrng{*} }^{-1} \paren{ \ess{2} }^{-1} \paren{ \xrng{} }^{-1},\\
+     &= \xrng{} \ess{-2} \xrng{*}.
+  \end{split}
+\end{equation}
+Then we see that the normal equations solution for the full column rank problem is the pseudoinverse solution:
+\begin{equation}
+  \begin{split}
+     \paren{\prdm{*}}^{-1}\A{*} 
+     &= \paren{\mat{c}{\xrng{}}\mat{c}{\ess{-2}}\mat{c}{\xrng{*}}}
+        \paren{\mat{c}{\xrng{}}\mat{c|c}{\ess{} & \zero}\mat{c}{\yrng{*}\\\hline\ynll{*}}},\\
+     &= \mat{c}{\xrng{}} \mat{c}{\ess{-1} \\\hline \zero}\mat{c}{\yrng{*}\\\hline\ynll{*}},\\
+     &= \Ap.
+  \end{split}
+\end{equation}
+
+But this comes at a heavy price. The matrix condition number is squared. For the linear system, the condition number is this:
+\begin{equation}
+  \kappa_{2} = \normt{\A{*}}\normt{\A{}} = \sigma_{1}/\sigma_{2}.
+\end{equation}
+But for the normal equations the condition number is this
+\begin{equation}
+  \kappa_{2} =  \normt{\A{*}\A{}}\normt{\paren{\A{*}\A{}}^{-1}} = \paren{\sigma_{1}/\sigma_{2}}^{2}.
+\end{equation}
+
+Since this matrix has full column rank, we know by \S \eqref{sec:lchiral} that it is also a left inverse:
+\begin{equation}
+  \begin{split}
+     \Ap \A{} &= \I{n}, \\
+     \paren{\prdm{*}}^{-1}\prdm{*} &= \I{n}.
+  \end{split}
+\end{equation}
+
+We have used the \svdl\ to analyze the normal equations and to show that the solution is the pseudoinverse solution
+\begin{equation}
+  \paren{\prdm{*}}^{-1}\A{*}x = \Ap x.
+\end{equation}
+
+
+\endinput

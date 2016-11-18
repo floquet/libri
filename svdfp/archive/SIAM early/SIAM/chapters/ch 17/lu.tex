@@ -1,0 +1,88 @@
+\section[$\pee{}\A{}=\LL{}\U{}$]{Lower-upper decomposition}
+For full rank matrices. Meyer p.144.
+
+%%
+\subsection{Theory}
+For $\A{}\in\cmplx{\by{m}{m}}_{m}$
+\begin{equation}
+  \mathbf{P}\,\A{}=\LL{}\,\U{}
+\end{equation}
+\begin{quote}
+  With permutations $\mathbf{P}$ permitted, every matrix can be written as the product of a unit lower diagonal matrix and a upper triangular matrix.
+\end{quote}
+
+%%
+\subsection{Examples}
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&=&\LL{}&\U{}\\
+    \mat{cc}{1&2\\3&4} &=& \mat{cc}{1&0\\3&1}&\mat{rr}{1&2\\0&-2}
+  \end{array}
+\end{equation}
+
+The decomposition is not unique. This is Meyer's example 3.10.4\cite[p. 151]{meyer2000matrix} with a different solution:
+
+\begin{equation}
+  \begin{array}{ccccc}
+    \mathbf{P}&\A{}&=&\LL{}&\U{}\\
+    \mat{rrr}{1&0&0 \\ 0&0&1 \\ 0&1&0}&
+    \mat{rrr}{1&2&-3 \\ 4&8&12 \\ 2&3&2}&
+    = &
+    \mat{rrr}{
+ 1 & 0 & 0 \\
+ 2 & 1 & 0 \\
+ 4 & 0 & 1}&
+    \mat{rrr}{
+ 1 & 2 & -3 \\
+ 0 & -1 & 8 \\
+ 0 & 0 & 24
+ }
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Application}
+Use the $\L\,\U{}$ decomposition to solve the linear system
+
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x&=&b \\
+    \mat{rrr}{1&1&1 \\ 3&0&-1 \\ -1&2&1}&
+      \mat{r}{x_{1}\\x_{2}\\x_{3}} & = & 
+    \mat{r}{1\\2\\-1}.
+  \end{array}
+\end{equation}
+
+The decomposition is
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&=&\LL{}&\U{}\\
+    \mat{rrr}{1&1&1 \\ 3&0&-1 \\ -1&2&1} &=& \mat{ccc}{1&0&0\\2&1&0\\4&0&1}&\mat{rrr}{1&2&-3\\0&-1&8\\0&0&24}.
+  \end{array}
+\end{equation}
+
+The two steps are these:
+\begin{enumerate}
+\item Solve for the dummy vector $y$ using \index{forward substitution}forward substitution.
+\begin{equation}
+  \begin{array}{cccc}
+    \LL{}&y&=&b\\
+    \mat{rrr}{1&0&0\\3&1&0\\-1&-1&1}&\mat{r}{y_{1}\\y_{2}\\y_{3}}&
+    =&\mat{r}{2\\4\\2}
+  \end{array}
+\end{equation}
+\item Solve for the solution vector $x$ via \index{back substitution}back substitution.
+\begin{equation}
+  \begin{array}{cccc}
+    \U{}&x&=&y\\
+    \mat{rrr}{1&1&1\\0&-3&-4\\0&0&-2}&\mat{r}{x_{1}\\x_{2}\\x_{3}}&
+    =&\mat{r}{2\\-2\\2}
+  \end{array}
+\end{equation}
+\end{enumerate}
+The solution vector is then
+\begin{equation}
+  x = \mat{r}{x_{1}\\x_{2}\\x_{3}} = \mat{r}{1\\2\\-1}.
+\end{equation}
+
+\endinput

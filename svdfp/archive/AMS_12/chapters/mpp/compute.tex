@@ -1,0 +1,55 @@
+\section{Compute the pseudoinverse}
+
+Here are some tempting morsels to practice with. This shows the almost symbiotic relationship between the \svdl \ and the generalized matrix inverse.
+
+%%
+\subsection{When $\paren{\A{}\A{*}}^{-1}$ exists}
+Compute the pseudoinverse $\A{+}$ when the inverse of the product matrix $\paren{\A{}\A{*}}^{-1}$ exists.
+
+Since the inverse of the product matrix exists, the inverse of each component must exist:
+\begin{equation}
+  \paren{\A{}\A{*}}^{-1} = \paren{\A{*}}^{-1}\paren{\A{}}^{-1}.
+\end{equation}
+Therefore the target matrix is full rank. Therefore the pseudoinverse matches the standard inverse: 
+\begin{equation}
+  \A{+} = \A{-1}.
+\end{equation}
+
+In terms of the SVD, the matrix product reduces to
+\begin{equation}
+  \begin{split}
+    \A{}\A{*} & = \paren{\svd{*}}\paren{\svdt{*}}\\
+      &= \Y{}\, \sig{}\sig{T}  \Y{*}.
+  \end{split}
+\end{equation}
+
+Is that your final answer?
+\begin{equation}
+  \A{+} = \A{*}\paren{\prdm{*}}^{-1}
+\end{equation}
+
+As an exercise, check that
+\begin{equation}
+  \A{}\A{+} = \A{+}\A{} = \I{}.
+\end{equation}
+
+%%
+\subsection{When $\prdmm{*}=\I{}$}
+Because the product matrix
+\begin{equation}
+  \prdmm{*} = \I{}
+\end{equation}
+all of the singular values are unity. Therefore
+\begin{equation}
+  \sig{}=\sig{T}=\I{}.
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \prdmm{*}&=\I{},\\
+    \paren{\svdt{*}}\paren{\svd{*}}&=\I{},\\
+    \X{}\X{*}&=\I{}.
+  \end{split}
+\end{equation}
+
+	
+\endinput

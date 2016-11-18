@@ -1,0 +1,26 @@
+\subsection{Functions of matrices}
+
+Diagonalization plays critical role in evaluating functions of matrices.\cite{Higham2008}
+
+How should functions of matrices be defined? The Cayley-Hamilton theorem\cite[p. 509]{Meyer2000}\index{Cayley-Hamilton theorem} is an important perspective. This theorem describes the behavior of polynomial functions of matrices. It says that if we define $p(\lambda)$ the \emph{characteristic polynomial}\index{characteristic polynomial} of a matrix $\Ac{m}$ as 
+\begin{equation}
+  p(\lambda) = \det \paren{\lambda \I{m} - \A{}}
+\end{equation}
+then 
+\begin{equation}
+  p( \A{} ) = 0.
+\end{equation}
+So we know how to square matrices, cube matrices etc. But what about the transcendental functions which can't be expressed in terms of a finite number of algebraic functions?
+
+For instance, what should $\cos \A{}$ mean? We should demand that functions of matrices behave the same as functions of real variables. For example, for $\Ac{m}$,
+\begin{equation}
+  \cos^{2}\A{} + \sin^{2}\A{} = \I{m}.
+\end{equation}
+
+Transcendental matrix functions are defined defined by the same Taylor series used to define them in the complex plane. For example for $\Ac{m}$:
+\begin{equation}
+  e^{\A{}} = \I{m} + \A{} + \frac{1}{2!}\A{2} + \frac{1}{3!}\A{3} + \dots + \frac{1}{n!}\A{n} + \dots
+\end{equation}
+The matrix logarithm can defined as an inverse of this. That is given 
+
+\endinput

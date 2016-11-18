@@ -1,0 +1,57 @@
+\chapter{Polynomial fits}
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{d}\paren{x} = \sum_{j=0}^{d} \alpha_{j} x^{j} = \alpha_{0} + \alpha_{1}x + \alpha_{2}x^{2} + \cdots + \alpha_{d}x^{d}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+As an aside, we point out a crucial distinction between the summation forms and the polynomial forms. The summation series $\sum_{j=0}^{d} \alpha_{j} x^{j}$ is undefined when $x=0$ and $j=0$ because it generates the indeterminate $0^{0}$. Again we define the iterated limit $p_{d}\paren{0} = \alpha_{0}$.
+
+Caution is demanded here.  Summation form
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{d}\paren{x} = \sum_{j=0}^{d} \alpha_{j} x^{j}
+    \label{eqn:summation form}
+  \end{equation}
+  % = =
+generates the indeterminate	form $0^{0}$ when $x=0$ and $j=0$. That is $p_{d}\paren{0}$ is not defined. The root cause is the iterated integral
+  % = =  e q u a t i o n
+  \begin{equation}
+    \lim_{x\rightarrow 0} \lim_{j\rightarrow 0} x^{j} \ne \lim_{j\rightarrow 0} \lim_{x\rightarrow 0} x^{j}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The former tends to unity, the former to zero.
+Longform
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{d}\paren{x} = \alpha_{0} + \alpha_{1}x + \alpha_{2}x^{2} + \cdots + \alpha_{d}x^{d}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+In this form $p_{d}(0) = \alpha_{0}$.
+This is more than mathematical hairsplitting. In a computer code
+  % = =  e q u a t i o n
+  \begin{equation}
+    q_{d}(x) = \alpha_{0} + \sum_{j=1}^{d} \alpha_{j} x^{j}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+
+% SECTION
+\section{Constant value}
+Given a set of measurements which constant best typifies the data?
+\input{\pathtables polynomials/"tab fit types"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+% SECTION
+\section{Linear fit}
+
+% SECTION
+\section{The Weierstrass approximation theorem}
+\input{\paththeorems "thm weierstrass"}
+
+\input{\pathchapter polynomials/"sec optimal dof"}
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

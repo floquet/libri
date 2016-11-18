@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Gell-Mann matrices}
+The matrices form a basis for $\cmplx{3}$
+
+First, define the column vectors of the identity matrix $\I{3}$:
+%
+\begin{equation}
+  e_{3,1} = \xxx, \quad e_{3,2} = \yyy, \quad e_{3,3} = \zzz
+\end{equation}
+%
+For $k=1,2,3$
+\begin{align} 
+\bur{}& = \mat{cc}{ \auo & \aut }&                     \ess{}& = \I{2}&  \bvr{}& = \I{2} \\ 
+\U{}& = \mat{cc|c}{ \auo & \aut & {\rd{ e_{3,3} }} }&  \sig{}& = \II{3,2}& \V{}& = \I{3}
+\end{align}
+%
+For $k=4,5$
+\begin{align} 
+\bur{}& = \mat{cc}{ \auth & \aut }& \ess{}& = \I{2}&  \bvr{}& = \mat{cc}{{\bl{ e_{3,1} }} & {\bl{ e_{3,3} }}} \\ 
+\U{}& = \mat{cc|c}{ \auth & \aut & {\rd{ e_{3,1} }} }&  \sig{}& = \II{3,2}& \V{}& = \mat{ccc}{{\bl{ e_{3,1} }} & {\bl{ e_{3,3} }} & {\rd{ e_{3,2} }}}
+\end{align}
+%
+For $k=6,7$
+\begin{align} 
+\bur{}& = \mat{cc}{ \auth & \but }& \ess{}& = \I{2}&  \bvr{}& = \mat{cc}{{\bl{ e_{3,3} }} & {\bl{ e_{3,2} }}} \\ 
+\U{}& = \mat{cc|c}{ \auth & \but & {\rd{ e_{3,1} }} }&  \sig{}& = \II{3,2}& \V{}& = \K{3}
+\end{align}
+%
+For $k=8$
+\begin{align} 
+\bur{}& = \mat{cc}{ \auth & \aut }& \ess{}& = \gmsb &  \bvr{}& = \mat{cc}{{\bl{ e_{3,3} }} & {\bl{ e_{3,2} }}} \\ 
+\U{}& = \mat{cc|c}{ \auth & \aut & {\rd{ e_{3,1} }} }&  \ess{}& = \gmsb& \V{}& = \K{3}
+\end{align}
+%
+
+%%
+\begin{table}[htdp]
+\caption[The Gell-Mann matrices and decompositions]{The Gell-Mann matrices and decompositions. In an unfortunate duplication of symbols, these matrices are historically denoted by the letter $\lambda$. In linear algebra this letter is used to denote eigenvalues. The classification of decompositions is based upon the domain matrix $\V{}$. In the first three examples, $\V{}$ is the identity matrix $\I{3}$. In the next five $\V{}$ is a permutation matrix; the final three are a complete permutation matrix $\K{3}$. Notice the $\sig{}$ matrix for the first seven matrices is the stencil matrix $\II{3,2}$. The matrix $\lambda_{8}$ is the only case with full rank.}
+\begin{center}
+\begin{tabular}{rcccccc}
+%
+  & $\A{}$  & = & $\U{}$  & $\sig{}$   & $\V{*}$ \\\hline
+%
+$ \lambda_{1}:$ & $\gma$  & = & $\gmuone$   & $\gmsa$ & $\gmvi$ \\
+%
+$ \lambda_{2}:$ & $\gmb$  & = & $\gmutwo$   & $\gmsa$ & $\gmvi$ \\
+%
+$ \lambda_{3}:$ & $\gmc$  & = & $\gmuthree$ & $\gmsa$ & $\gmvi$ \\[20pt]
+%  
+$ \lambda_{4}:$ & $\gmd$  & = & $\gmusix$   & $\gmsa$ & $\gmvone$ \\
+%
+$ \lambda_{5}:$ & $\gme$  & = & $\gmufive$  & $\gmsa$ & $\gmvone$ \\[20pt]
+%
+$ \lambda_{6}:$ & $\gmf$  & = & $\gmusix$   & $\gmsa$ & $\gmvk$ \\
+%
+$ \lambda_{7}:$ & $\gmg$  & = & $\gmuseven$ & $\gmsa$ & $\gmvk$ \\
+%
+$ \lambda_{8}:$ & $\gmh$  & = & $\gmueight$ & $\gmsb$ & $\gmvkb$ \\
+%
+\end{tabular}
+\end{center}
+\label{tab:gellmann}
+\end{table}
+%%
+
+\endinput

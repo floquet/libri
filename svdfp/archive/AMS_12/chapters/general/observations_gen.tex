@@ -1,0 +1,40 @@
+\section{Observations}
+We have experienced the full process of \svdl, a series of basic steps. 
+
+The options at many steps which allow easier decomposition confuse some practitioners. These options may be mistakenly juggled with path variations and the SVD process may seem hazy as a result. Keep these things straight in your mind:
+\begin{enumerate}
+\item Know what you are trying to do;
+\subitem resolve the domain and codomain into orthonormal coordinate systems;
+\subitem resolve the singular values.
+\item Know the foundation issues;
+\subitem the row and vector spaces may not fully span the host space;
+\subitem the row and column vectors may be far from orthogonal.
+\item Remember how to perform each step;
+\subitem know how to find eigenvalues and eigenvectors using augmented reduction or other techniques;
+\subitem know how to construct perpendicular spaces;
+\subitem know how to construct and load the matrix of singular values.
+\end{enumerate}
+
+The examples here are pedagogic and illuminate the process and the machinations. Many useful matrices will quickly submit to a \svdl. Hence these theoretical examples are both helpful and useful. However, the decomposition is intractable for many matrices.
+
+Eigenvector problems can be arbitrarily complex. The space may be incomplete and finding mother-daughter eigenvector pairs become a permutation problem which grows factorially. This can be a major impediment.
+
+There are many excellent texts and on-line resources to help with the machinations of finding eigenvalues and constructing orthogonal complements. A survey is listed here:
+
+\begin{table}[htdp]
+\begin{center}
+\boxed{
+\begin{tabular}{lcccc}
+  topic & Anton [] & Strang1 [] & Strang2 [] & Meyer [] \\\hline
+  augmented reduction & pp. 10-20 & pp. 10-20 & pp. 10-20 & p. 118\\
+  eigenvectors & pp. 10-20 & pp. 10-20 & pp. 10-20 & p. 489\\
+  null spaces  & pp. 10-20 & pp. 10-20 & pp. 10-20 & p. 173
+\end{tabular}
+}
+\end{center}
+\label{default}
+\caption{Resources to help with facets of the \svdl.}
+\end{table}
+
+
+\endinput

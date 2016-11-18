@@ -1,0 +1,127 @@
+\section{Example matrices}
+As we discuss various methods and techniques in linear algebra we will consider the same set of example matrices in  order to provide continuity. In the framework of the \ft, these three matrices are characterized by their rank deficiencies. The cases are
+%
+\begin{description}
+%
+\item{(a)} row and column rank deficiencies,
+\subitem both \ns s are nontrivial
+%
+\item{(b)} column rank deficiency,\footnote{The Hermitian conjugate of this matrix provides the complementary example or a matrix with a row rank deficiency.}
+\subitem only one \ns \ is nontrivial
+%
+\item{(c)} full row and column rank
+\subitem both \ns s are trivial
+%
+\end{description}
+
+We may also think of these examples in terms of the \ns s as shown in table \eqref{tab:ftola:null spaces}.
+Further, we are able to diagnose the \ns \ structure for each matrix by inspection without recourse to formal reduction. To emphasize the importance of inspection, we defer reduction until after the characterization.
+
+%%%%%%
+\input{chapters/ftola/"tab the null spaces of the example matrices"}  % table
+
+Notice that the \ns \ vectors for the trivial case are shown in light gray. One may argue that the origin $\zero$ is included in both $\cmplxm$ and $\cmplxn$. But this point is in an isolated point and so constitutes a trivial vector space. To remind us of this special status we use the special shading.
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Matrix (a): row and column rank deficit}
+The initial example is a matrix which has both row and column rank deficiency and is
+\begin{equation}
+  \A{} = \matrixa.
+  \label{eq:matrix a}
+\end{equation}
+This matrix takes a \vvv \ and returns a \vv. We begin by looking at the codomain or image which will be spanned by \vv s.
+
+There is one linearly independent column; the second and third columns are multiples of the first. Therefore this is a rank one matrix. The image of this matrix is the line through the origin and the point $\tra{\paren{1,-1}}$.
+
+The rank plus nullity theorem tells us that the sum of the rank and of the dimension of the nullity is two, the dimension of the host space $\cmplx{2}$. 
+\begin{equation}
+  \cmplx{2}: \rpn = \bone + \rone = 2  .
+\end{equation}
+This implies the range can be spanned by a single \vv \ and the \ns \ also spanned by a single \vv.
+%
+\begin{equation}
+  \cmplx{3} =  
+    \underbrace{\spn{\bstartwo}}_{\brnga{}} \  \oplus \  
+    \underbrace{\spn{\rstartwo}}_{\rnlla{*}}
+\end{equation}
+%
+Similarly, for the Hermitian conjugate matrix $\A{*}$, there is only one linearly independent column vector and the image of the transpose matrix is the line through the origin and the point $\tra{\paren{1,-1,q}}$. For the row space the range will have dimension one and the \ns \ will have have dimension two:
+\begin{equation}
+  \cmplx{3}: \rpn  = \bone + \rtwo = 3  .
+\end{equation}
+The subspace decomposition will have this form:
+\begin{equation}
+  \cmplx{3} =  
+    \underbrace{\spn{\bstarthree}}_{\brnga{}} \  \oplus \  
+    \underbrace{\spn{\rstarthree, \rstarthree}}_{\rnlla{*}} .
+\end{equation}
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Matrix (b): row rank deficiency}
+The next example matrix $\A{}\in\real{\by{3}{2}}$ has full column rank, but has a row rank deficiency. We know this matrix must have a column rank deficiency  by inspecting the matrix dimensions: $m < n$. There are fewer columns than rows and we cannot have a case of full row rank. The matrix is given by 
+\begin{equation}
+  \A{} = \matrixb.
+  \label{eq:matrix b}
+\end{equation}
+This matrix takes a \vv \ and returns a \vvv.
+
+The host space is $\cmplx{3}$. With two linearly independent columns the rank of the matrix is two. Using the rank plus nullity theorem we see that the nullity is one.
+\begin{equation}
+  \cmplx{3}: \rpn  = \btwo + \rone = 3  .
+\end{equation}
+This implies that the range will have dimension two and the \ns \ will have have dimension two:
+\begin{equation}
+  \cmplx{3} =  
+    \underbrace{\spn{\bstarthree, \bstarthree}}_{\brnga{}}\  \oplus \ 
+    \underbrace{\spn{\rstarthree}}_{\rnlla{*}}   .
+\end{equation}
+
+For the transpose matrix $\A{*}$, there are two linearly independent column vectors and the image is the hyperplane $\cmplx{2}$:
+\begin{equation}
+  \cmplx{2}: \rpn = \btwo + \rzero = 2  .
+\end{equation}
+The decomposition of range and \ns s will have the form
+\begin{equation}
+  \cmplx{2} =  
+    \underbrace{\spn{\bstartwo, \bstartwo}}_{\brnga{*}} .
+\end{equation}
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Matrix (c): full rank}
+The final example matrix $\A{}\in\cmplx{\by{2}{2}}$ and has rank $\rho = 2$ which is full column rank and full row rank:
+\begin{equation}
+  \rho = m = n.
+\end{equation}
+The matrix is 
+\begin{equation}
+  \A{} = \matrixc.
+  \label{eq:matrix c}
+\end{equation}
+This matrix takes a \vv \ and returns another \vv. Both \ns s are trivial:
+\begin{equation}
+  \rnlla{*} = \rnlla{} = \glzerotwo.
+\end{equation}
+
+Both host spaces, the domain and codomain, are $\cmplx{2}$. The rank plus nullity theorem tells us that
+\begin{equation}
+  \cmplx{2}: \rpn  = \btwo + \rzero = 2  .
+\end{equation}
+The spans are identical for domain and codomain
+\begin{equation}
+  \cmplx{2} =  
+    \underbrace{\spn{\bstartwo, \bstartwo}}_{\brnga{} \text{ and } \brnga{*}} .
+\end{equation}
+This is a problem with square matrices. Students can get confused over whether vectors belong to the domain or the codomain. The \ft \ is easier to study when the domain and codomain have different dimensions.
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Summary}
+By simple observation we have examined the three example matrices and determined the forms of the fundamental subspace decompositions. The critical parameters are the number of rows $m$, the number of columns, $n$, and the rank, $\rho$. Table \eqref{tab:ftola:examples} summarizes the findings.
+
+%%%%%%
+\input{chapters/ftola/"tab forms of the decomposition X"}  % table
+
+\endinput

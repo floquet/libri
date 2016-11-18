@@ -1,0 +1,36 @@
+\documentclass[10pt]{newsiambook}
+
+\usepackage{amsmath,amssymb}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{graphicx}
+%\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{crop}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{pstricks}
+\setlength\minrowclearance{4pt}
+\usepackage{sidecap}
+%\usepackage{cancel}
+\usepackage{caption}
+ 
+\crop	
+\newcommand{\pathname}{common/}
+\newcommand{\fullpath}{\pathname}
+
+\input{\pathname declarations.tex}
+	
+\pagestyle{empty}
+
+\begin{document}
+
+\mainmatter
+%%%%%%%
+\input{chapters/strays/"linear map"}
+
+
+\end{document}

@@ -1,0 +1,467 @@
+\chapter{Stitching Local Maps}
+
+\section{What is stitching?}      %    S    S    S    S    S    S    S    S    S    S    S    S
+Stitching is the process of combining local maps to create a global map.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"ABC"} 
+   \caption{Stitching local maps together to form a global map.}
+   %\label{fig:example}
+\end{figure}
+
+  \begin{enumerate}
+    \item $\phi$
+    \item $\nabla \phi$
+    \item $\phi$ and $\nabla \phi$
+  \end{enumerate}
+
+\section{Stitch $\phi$} %    S    S    S    S    S    S    S    S    S    S    S    S
+  \subsection{Genesis}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \phi(x) = \exp \paren{-\frac{x}{5}} \sin \paren{\pi x}  
+    \label{eq:phi}
+  %\end{split}
+  \end{equation*}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch input"} 
+   \caption{The ideal potential function showing five measurement zones and four overlap bands.}
+   \label{fig:example}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"dots and overlaps"} 
+   \caption{Waterfall diagram showing discretization within measurement zones with left and right zone overlaps.}
+   \label{fig:dots and overlaps}
+\end{figure}
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{The input data in continuous and discrete form.}
+    \begin{center}
+      \begin{tabular}{c}
+        %
+        \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch broken labeled"} \\
+        \huge{$\Downarrow$} \\
+        %\includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch discrete in"}
+        \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch discrete steps"}
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch final"} 
+   \caption{Stitching unifies the data.}
+   \label{fig:stitch final}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"pistons grid"} 
+   \caption{A set of piston adjustments which restores continuity across the domain.}
+   \label{fig:pistons}
+\end{figure}
+
+  \subsection{Data}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+The central idea is simple; the mathematical expression is a tedious exercise in index gymnastics.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \zeta = 3
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption[Sample showing two zones with overlap.]{Sample showing an overlap of $\zeta=3$ between the first two zones.}
+    \begin{center}
+      \begin{tabular}{lllllllllll}
+        %
+        $\phi_{1,1}$ & $\phi_{2,1}$ & $\cdots$ & $\phi_{\lambda_{1}-2,1}$ & $\phi_{\lambda_{1}-1,1}$ & $\phi_{\lambda_{1},1}$ \\
+        %
+        &&& $\phi_{1,2}$ & $\phi_{2,2}$ & $\phi_{3,2}$ & $\cdots$ & $\phi_{\lambda_{1}-2,2}$ & $\phi_{\lambda_{2}-1,2}$ & $\phi_{\lambda_{2},2}$ \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:stitch raw data}
+  \end{table}%
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Delta_{12} = \zeta^{-1} \paren{
+      \underbrace{\paren{\phi_{\lambda_{1}-2,1} + \phi_{\lambda_{1}-1,1} + \phi_{\lambda_{1},1}}}_{\text{zone }1} - 
+      \underbrace{\paren{\phi_{1,2} + \phi_{2,2} + \phi_{3,2} }}_{\text{zone }2}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+	%
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Delta_{12} = \zeta^{-1} \paren{
+      \underbrace{ \paren{ \phi_{\lambda_{1}-2,1} - \phi_{1,2} }}_{\text{pair 1}} + 
+      \underbrace{ \paren{ \phi_{\lambda_{1}-1,1} - \phi_{2,2} }}_{\text{pair 2}} +  
+      \underbrace{ \paren{ \phi_{\lambda_{1},1}   - \phi_{3,2} }}_{\text{pair 3}}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+Mean value of the differences.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Delta_{j,j+1} = \zeta^{-1}\sum_{k=1}^{\zeta} p_{j,\lambda_{j}-\zeta+k} - p_{j+1,k}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+First overlap region.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Delta_{12} = \zeta^{-1} \paren{
+      \underbrace{\paren{\phi_{9,1} + \phi_{10,1} + \phi_{11,1} }}_{\text{last 3 elements of zone 1}} -
+      \underbrace{\paren{\phi_{1,2} + \phi_{2,2} + \phi_{3,2} }}_{\text{first 3 elements of zone 2}}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+  
+\subsection{Data and results}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+%\begin{table}[h]
+%	\begin{center}
+%		\begin{tabular}{r r@{.}l r@{.}l r@{.}l r@{.}l r@{.}l}
+%		  %
+%		  & \multicolumn{2}{c}{zone 1} & \multicolumn{2}{c}{zone 2} & \multicolumn{2}{c}{zone 3} & \multicolumn{2}{c}{zone 4} & \multicolumn{2}{c}{zone 5} \\\hline
+%		  %
+%        1 & --0 & 2 &  0 & 500878 &  --0 & 210084 &  --0 & 0642517 &  0 & 325113 \\
+%        
+%        2 & 0 & 102898 &  0 & 258113 &  --0 & 0113248 &  --0 & 226982 &  0 & 458345 \\
+%        
+%        3 & 0 & 364738 &  0 & 0 &  0 & 2 &  --0 & 4 &  0 & 6 \\
+%        
+%        4 & 0 & 561904 &  --0 & 247992 &  0 & 403039 &  --0 & 566234 &  0 & 736101 \\
+%        
+%        5 & 0 & 677936 &  --0 & 462368 &  0 & 578555 &  --0 & 709935 &  0 & 853753 \\
+%        
+%        6 & 0 & 704837 &  --0 & 623794 &  0 & 710719 &  --0 & 818142 &  0 & 942345 \\
+%        
+%        7 & 0 & 643511 &  --0 & 718793 &  0 & 788498 &  --0 & 881821 &  0 & 994482 \\
+%        
+%        8 & 0 & 503326 &  --0 & 740818 &  0 & 806531 &  --0 & 896585 &  1 & 00657 \\
+%        
+%        9 & 0 & 300878 &  --0 & 690609 &  0 & 765423 &  --0 & 862929 &  0 & 979014 \\
+%        
+%        10 & 0 & 0581127 &  --0 & 575834 &  0 & 671453 &  --0 & 785993 &  0 & 916025 \\
+%        
+%        11 & --0 & 2 &  --0 & 410084 &  0 & 535748 &  --0 & 674887 &  0 & 825059 \\
+%        
+%        12 & & &  --0 & 211325 &  0 & 373018 &  --0 & 541655 &  0 & 715978 \\
+%        
+%        13 & & &  0 & 0 &  0 & 2 &  --0 & 4 &
+%      \end{tabular}
+%	\end{center}
+%	\caption{Raw data and results.}
+%	\label{tab:stitch data and results}
+%\end{table}%
+
+\begin{table}
+\sisetup{table-number-alignment=center}
+    \begin{tabular}{SS[table-format=-1.6]S[table-format=-1.6]S[table-format=-1.6]S[table-format=-1.6]S[table-format=-1.6]}
+    $k$ & $y_{1}$ & $y_{2}$ & $y_{3}$ & $y_{4}$ & $y_{5}$ \\\hline
+  1 & \color{medgray}-0.2     & 0.500878                 & \color{blue}-0.210084   & -0.0642517               & \color{blue}0.325113 \\
+  2 & \color{medgray}0.102898 & 0.258113                 & \color{blue}-0.0113248  & -0.226982                & \color{blue}0.458345 \\
+  3 & \color{medgray}0.364738 & 0.                       & \color{blue}0.2         & -0.4                     & \color{blue}0.6 \\
+  4 & \color{medgray}0.561904 & \color{medgray}-0.247992 & \color{medgray}0.403039 & \color{medgray}-0.566234 & \color{medgray}0.736101 \\
+  5 & \color{medgray}0.677936 & \color{medgray}-0.462368 & \color{medgray}0.578555 & \color{medgray}-0.709935 & \color{medgray}0.853753 \\
+  6 & \color{medgray}0.704837 & \color{medgray}-0.623794 & \color{medgray}0.710719 & \color{medgray}-0.818142 & \color{medgray}0.942345 \\
+  7 & \color{medgray}0.643511 & \color{medgray}-0.718793 & \color{medgray}0.788498 & \color{medgray}-0.881821 & \color{medgray}0.994482 \\
+  8 & \color{medgray}0.503326 & \color{medgray}-0.740818 & \color{medgray}0.806531 & \color{medgray}-0.896585 & \color{medgray}1.00657 \\
+  9 & 0.300878                & \color{medgray}-0.690609 & \color{medgray}0.765423 & \color{medgray}-0.862929 & \color{medgray}0.979014 \\
+ 10 & 0.0581127               & \color{medgray}-0.575834 & \color{medgray}0.671453 & \color{medgray}-0.785993 & \color{medgray}0.916025 \\
+ 11 & -0.2                    & \color{blue}-0.410084    & 0.535748                & \color{blue}-0.674887    & \color{medgray}0.825059 \\
+ 12 &                         & \color{blue}-0.211325    & 0.373018                & \color{blue}-0.541655    & \color{medgray}0.715978 \\
+ 13 &                         & \color{blue}0.           & 0.2                     & \color{blue}-0.4 
+    \end{tabular}
+	\caption{Measurements displaying the connection between overlap bands in figure \ref{fig:dots and overlaps}.}
+	\label{tab:stitch measurements}
+\end{table} 
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Computation of the zone shift values.}
+    \begin{center}
+        \begin{tabular}{lclcl}
+            %
+            $\Delta_{12}$ & = & $\frac{1}{3} \paren{\paren{\phi_{9,1} + \phi_{10,1} + \phi_{11,1}} - \paren{\phi_{1,2} + \phi_{2,2} + \phi_{3,2}} }$ \\
+            %
+            $\Delta_{23}$ & = & $\frac{1}{3} \paren{\paren{\phi_{11,2} + \phi_{12,2} + \phi_{13,2}} - \paren{\phi_{1,3} + \phi_{2,3} + \phi_{3,3}} }$ \\
+            %
+            $\Delta_{34}$ & = & $\frac{1}{3} \paren{\paren{\phi_{11,3} + \phi_{12,3} + \phi_{13,3}} - \paren{\phi_{1,4} + \phi_{2,4} + \phi_{3,4}} }$ \\ 
+            %
+            $\Delta_{45}$ & = & $\frac{1}{3} \paren{\paren{\phi_{11,4} + \phi_{12,4} + \phi_{13,4}} - \paren{\phi_{1,5} + \phi_{2,5} + \phi_{3,5}} }$      
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Computation of the zone shift values.}
+    \begin{center}
+        \begin{tabular}{lclcl}
+            %
+            $\Delta_{12}$ & = & $\frac{1}{3} \paren{\paren{ 0.300878 + 0.0581127 - 0.2 } - \paren{ 0.500878 + 0.258113 + 0. } }$ \\
+            %
+            $\Delta_{23}$ & = & $\frac{1}{3} \paren{\paren{ -0.410084 - 0.211325 + 0. } - \paren{ -0.210084 - 0.0113248 + 0.2 } }$ \\
+            %
+            $\Delta_{34}$ & = & $\frac{1}{3} \paren{\paren{ 0.535748 + 0.373018 + 0.2 } - \paren{ -0.0642517 - 0.226982 - 0.4 } }$ \\ 
+            %
+            $\Delta_{45}$ & = & $\frac{1}{3} \paren{\paren{ -0.674887 - 0.541655 - 0.4 } - \paren{ 0.325113 + 0.458345 + 0.6 } }$      
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Input data}
+    \begin{center}
+        \begin{tabular}{lcr@{.}l}
+            %
+            & Shift & \multicolumn{2}{c}{Value} \\
+            %
+1 & $\Delta_{12}$ & --0 & 2 \\
+            %
+2 & $\Delta_{23}$ &   0 & 0 \\
+            %
+3 & $\Delta_{34}$ &   0 & 6 \\ 
+            %
+4 & $\Delta_{45}$ & --1 &  \\      
+            %
+        \end{tabular}
+    \end{center}
+    \label{tab:stitch piston in}
+\end{table}%
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Problem statement for linear regression.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $p_{k} - p_{k+1} = \Delta_{k, k + 1}$, $k = 1\colon n$ \\
+        \bf{merit function} & $M(p) = \sum_{k=1}^{n}\paren{\Delta_{k, k + 1} - p_{k} + p_{k+1}}^{2}$ \\
+        \bf{number of zones}& $m = 5$ \\
+        \bf{number of overlaps}& $n = 4$ \\
+        \bf{rank defect}    & $m - n  = 1$ \\
+        \bf{measurements per zone}& $\lambda = \lst{11, 13, 13, 13, 12}$ \\
+        \bf{measurements}   & $\phi_{k,j}$, $k=1\colon m$, $j=1\colon \lambda_{m}$ \\
+        \bf{input data}     & $\Delta_{k,k+1}$, $k=1\colon n$ \\
+        \bf{results}        & $p_{k}$, $k=1\colon m$ \\
+        \bf{residual error} & $r = \bl{\Ap b} - \Delta$ \\
+        \bf{linear system}  & $\mat{rrrrr}{
+     1 & -1 &  0 &  0 &  0 \\
+     0 &  1 & -1 &  0 &  0 \\
+     0 &  0 &  1 & -1 &  0 \\
+     0 &  0 &  0 &  1 & -1 }
+     \mat{c}{ p_{1} \\ p_{2} \\ p_{3} \\ p_{4} \\ p_{5} } =
+     \mat{c}{ \Delta_{12} \\ \Delta_{23} \\ \Delta_{34} \\ \Delta_{45} }$
+ \\
+        \bf{gauge condition} & $\sum_{k=1}^{m}p_{k} = 0$ \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:stitching problem statement}
+  \end{table}%
+
+\subsection{Linear System}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \A{} p = \Delta
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{rrrrr}{
+     1 & -1 &  0 &  0 &  0 \\
+     0 &  1 & -1 &  0 &  0 \\
+     0 &  0 &  1 & -1 &  0 \\
+     0 &  0 &  0 &  1 & -1 }
+     \mat{c}{ p_{1} \\ p_{2} \\ p_{3} \\ p_{4} \\ p_{5} } =
+     \mat{c}{ \Delta_{12} \\ \Delta_{23} \\ \Delta_{34} \\ \Delta_{45} }
+    \label{eq:stitch linear system}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    p_{LS} = \frac{1}{5}
+    \bl{
+    \mat{rrrr}{
+     4 & 3 & 2 & 1 \\
+     -1 & 3 & 2 & 1 \\
+     -1 & -2 & 2 & 1 \\
+     -1 & -2 & -3 & 1 \\
+     -1 & -2 & -3 & -4 }
+   \mat{c}{ \Delta_{12} \\ \Delta_{23} \\ \Delta_{34} \\ \Delta_{45} }} +
+   \alpha \rd{\mat{c}{ 1 \\ 1 \\ 1 \\ 1 \\ 1 }}
+   \label{eq:stitch general}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \bl{\Ap b} = \frac{1}{25}\bl{\mat{r}{-6\\-1\\4\\-11\\14}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+These are the actual plot values used in figure \ref{fig:pistons}.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Phi_{corrected} = \Phi_{measured} - \bl{\Ap b}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Results for stitching with piston.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{fit parameters}    & $p_{k}$, $k=1\colon m$ & pistons \\
+        \bf{computed solution} & $p = \frac{1}{25}\bl{\mat{r}{-6\\-1\\4\\-11\\14}}$ & $\bl{\Ap b}$ \\
+        \bf{data vector}       & $\frac{1}{5}\mat{r}{-1 \\ 0 \\ 1 \\ -2 \\ 3} = 
+                                  \frac{1}{25}\bl{\mat{r}{-6 \\ -1 \\ 4 \\ -11 \\ 14}} -
+                                  \frac{1}{5}\rd{\mat{r}{1 \\ 1 \\ 1 \\ 1 \\ 1}}$ & $\bl{p_{\atomrng}} + \rd{p_{\atomnll}}$ \\
+        \bf{residual error}    & $r\cdot r$ = 0 \\\arrayrulecolor{medgray}\hline
+        \bf{problem statement} & table \ref{tab:stitching problem statement} \\
+        \bf{measurements}      & table \ref{tab:stitch measurements} \\
+        \bf{input data}        & table \ref{tab:stitch piston in} \\
+        \bf{plots}             & figure \ref{tab:stitch raw data} & raw data (bottom) \\
+                               & figure \ref{fig:stitch final} & corrected data \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"piston"/"stitch merit bullseye"} 
+   \caption{Looking at the merit function on the $p_{2} - p_{3}$ axis.}
+   \label{fig:merit}
+\end{figure}
+
+\subsection{Least Squares Arbitration}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+There is a fundamental ambiguity arising from gradient measurements stemming from the basic fact that
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \tdx{}\phi(x) = \tdx{}\paren{\phi(x) + c}.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+We can recover the function shape, but not the offset. In other words, there is a translation invariance. This lone constant is the poster child for the rank one deficiency in the linear system of \eqref{eq:stitch linear system}. Realizing this, the one dimensional problem could be solved without resort to least squares. 
+
+The system can be solved, for example, by moving from left to right and manually forcing the data to match. If the the overlap difference between zone 1 and zone 2 is $\Delta_{12}$, add $\Delta_{12}$ to every value in zone 2. Now zones 1 and 2 are stitched together. Compute $\Delta_{23}$, add this value to every point in zone 3. Zones 1, 2, and 3 are now stitched together. Continue as needed.
+
+The least squares problem is obviated. How did this happen? The process of least squares is an exercise error arbitration which takes a peanut butter approach by trying to distribute the error evenly. In one dimension, there is no need for arbitration as there is no conflict in measurements.
+
+In two dimensions, the problem changes. Consider the typical cell with a neighbor to the right and a neighbor above. The right--left overlap adjustment conflicts with the up--down overlap adjustment. The least squares process takes all off the overlap conflicts and provides a set of adjustments which minimizes the global error. To close, note that the least squares solution was used even though it is not necessary until dimension 2 or higher.
+
+One last tidbit. Figure \ref{fig:pistons plus} shows the piston values that were input to distort the values. Least squares chooses a distinct set of corrections. Why was this set selected? A tantalizing clue is given by the null space vector in \eqref{eq:stitch general}. Notice this vector is perpendicular to every column vector in $\Ap$ which implies that the sum of each column vector must be 0. Therefore, the gauge condition is that the solution vector will have sum 0:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    p_{1} + p_{2} + p_{3} + p_{4} + p_{5} = 0.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+We may now eliminate a variable; choose the last one:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    p_{5} = -p_{1} - p_{2} - p_{3} - p_{4}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+Instead of \eqref{eq:stitch linear system}, there is now
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{rrrr}{
+     1 & -1 & 0 & 0 \\
+     0 & 1 & -1 & 0 \\
+     0 & 0 & 1 & -1 \\
+     1 & 1 & 1 & 2 }
+     \mat{c}{ p_{1} \\ p_{2} \\ p_{3} \\ p_{4} } =
+     \mat{c}{ \Delta_{12} \\ \Delta_{23} \\ \Delta_{34} \\ \Delta_{45} }.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The solution is the same:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \hat{p}_{gauge} =
+    \bl{ 
+    \mat{rrrr}{
+      4 &  3 &  2 & 1 \\
+     -1 &  3 &  2 & 1 \\
+     -1 & -2 &  2 & 1 \\
+     -1 & -2 & -3 & 1 }
+     \mat{c}{ \Delta_{12} \\ \Delta_{23} \\ \Delta_{34} \\ \Delta_{45} }}.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The 0 sum, or equivalently 0 mean, condition is a gauge condition which restores the column rank of the problem.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{\pathgraphics "stitch"/"piston"/"pistons grid"} \\[10pt]
+   \includegraphics[ width = 3in ]{\pathgraphics "stitch"/"piston"/"pistons input grid"} 
+   \caption[Pistons from the solution and pistons used to create the data]{On top, pistons output from the solution; on bottom, pistons input to create the data.}
+   \label{fig:pistons plus}
+\end{figure}
+The piston values used to create the data set are decomposed into range and null space terms.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \frac{1}{5}\mat{r}{-1 \\ 0 \\ 1 \\ -2 \\ 3} = 
+      \frac{1}{25}\bl{\mat{r}{-6 \\ -1 \\ 4 \\ -11 \\ 14}} -
+      \frac{1}{5}\rd{\mat{r}{1 \\ 1 \\ 1 \\ 1 \\ 1}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+\section{Stitch $\nabla \phi$}  %    S    S    S    S    S    S    S    S    S    S    S    S
+The next challenge is to stitch data together using the gradient $\nabla \phi$ rather than the function value $\phi$. The outputs now will be a set of piston adjustments called tilts which restore continuity of the gradient.
+
+The problem arises in the field of wavefront sensing. Modern devices make exquisite measurements of tilts.  
+The process of wavefront reconstruction takes these tilts and reconstructs the wavefront. Measure $\nabla \phi(x)$ and compute $\nabla \phi(x)$.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"slope"/"tilts"} 
+   \caption{A set of tilt adjustments which restores continuity of the gradient across the domain.}
+   \label{fig:tilts}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{\pathgraphics "stitch"/"slope"/"function and gradient"} 
+   \caption[A function and its gradient.]{A function (black) and its gradient (blue).}
+   \label{fig:function and gradient}
+\end{figure}
+
+Gradient of \eqref{eq:phi}
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \nabla \phi(x) = \frac{1}{5} \exp \paren{-\frac{x}{5}} \paren{5 \pi  \cos (\pi  z)-\sin (\pi  z)}  
+    \label{eq:phi}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \tau = \frac{1}{100}\mat{r}{-90 \\ 85 \\ -40 \\ 35 \\ 10}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+A scaled version of these values is plotted in figure \ref{fig:tilts}.
+
+\endinput

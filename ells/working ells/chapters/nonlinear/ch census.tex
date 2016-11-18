@@ -1,0 +1,337 @@
+\chapter{Population Growth}
+
+In this section we take a nonlinear model for population growth and separate the linear and nonlinear terms.
+
+\section{Model}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y(\tau) = a_{1} + a_{2} \tau + a_{3} e^{d \tau}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \A{}\paren{d + \gamma} \ne \A{}\paren{d} + \A{}\paren{\gamma}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+% https://tex.stackexchange.com/questions/278929/alignment-within-the-equation-environment
+  \begin{equation*}   %  =   =   =   =   =
+  \begin{array}{cccc}\arraycolsep = -0.5pt
+  %
+  %
+  \A{}(d) & a & = & y \\
+  %
+    \mat{ccc}{
+    1 & \tau_{1} & e^{d \tau_{1}} \\
+    1 & \tau_{2} & e^{d \tau_{2}} \\
+    1 & \tau_{3} & e^{d \tau_{3}} \\
+    1 & \tau_{4} & e^{d \tau_{4}} \\
+    1 & \tau_{5} & e^{d \tau_{5}} \\
+    1 & \tau_{6} & e^{d \tau_{6}} \\
+    1 & \tau_{7} & e^{d \tau_{7}} \\
+    1 & \tau_{8} & e^{d \tau_{8}}
+    } &
+    \mat{c}{a_{0} \\ a_{1} \\ a_{3}} & = &
+    \mat{c}{y_{0} \\ y_{1} \\ y_{3} \\ y_{4} \\ y_{5} \\ y_{6} \\ y_{7} \\ y_{8}}
+    %\label{eq:}
+  \end{array}
+  \end{equation*}
+
+% http://tex.stackexchange.com/questions/254650/aligning-multiple-things-under-a-limit
+  \begin{equation} % = =  e q u a t i o n
+    %\begin{split}
+      \min_{\substack{a\in\real{3}\\d\in\real{}\phantom{^{3}}}} \normts{\A{}(d)\mat{c}{a_{1}\\a_{2}\\a_{3}}-y}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+\section{Problem Statement}  %    S    S    S    S    S    S    S    S    S    S    S    S
+
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+     r^{2} = \normts{\A{}(d)\mat{c}{a_{1}\\a_{2}\\a_{3}}-y}
+    \label{eq:census:error}
+  %\end{split}
+  \end{equation}
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Problem statement for population model with linear and exponential growth.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $y(\tau) = a_{0} + a_{1} \tau + a_{2} e^{d \tau}$ & $a\in\real{3}$ \\
+        && $d\in\real{}$ \\
+        \bf{merit function} & $M(a,d) = \sum\limits_{k=1}^{m}\paren{y_{k} - a_{1} + a_{2} \tau + a_{3} e^{d \tau_{k}}}^{2}$ \\
+        \bf{\# measurements}& $m = 8$ \\
+        \bf{\# parameters}  & $n = 4$ \\
+        \bf{rank defect}    & $\rho = n$ & overdetermined \\
+        \bf{input data}     & $\paren{\tau_{k}, y_{k}}$, $k=1\colon 8$ & table \ref{tab:census results}\\
+        \bf{results}        & $a_{0}$ & constant\\
+                            & $a_{1}$ & linear\\
+                            & $a_{2}$ & exponential\\
+                            & $d$      & power term\\
+        \bf{residual error} & $r = \bl{\Ap b} - \Delta$ \\
+        \bf{linear system}  & $\A{}(d)\mat{c}{a_{1}\\a_{2}\\a_{3}} = y$ \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:census problem statement}
+  \end{table}%
+
+\section{Data} %    S    S    S    S    S    S    S    S    S    S    S    S
+
+\section{Example}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+year $= 1900 + 10 (\tau - 1)$
+
+    \begin{table}[t]
+    	\caption{Data v. prediction.}
+    	\begin{center}
+    		\begin{tabular}{rrrrr}
+    		%
+		          &&&& \multicolumn{1}{c}{rel.}\\
+    		 year & census & fit & \multicolumn{1}{c}{$r$} & error \\\hline
+    		%
+    		 1900 & 76.00  & 77.51  & 1.51  & 2.0\% \\
+    		 1910 & 91.97  & 90.98  & $-0.99$ & $-1.1$\% \\
+    		 1920 & 105.71 & 104.87 & $-0.84$ & $-0.8$\% \\
+    		 1930 & 122.78 & 119.48 & $-3.29$ & $-2.7$\% \\
+    		 1940 & 131.67 & 135.36 & 3.69  & 2.8\% \\
+    		 1950 & 150.70 & 153.46 & 2.76  & 1.8\% \\
+    		 1960 & 179.32 & 175.45 & $-3.87$ & $-2.2$\% \\
+    		 1970 & 203.24 & 204.26 & 1.029 & 0.5\% \\
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:census results}
+    \end{table}%
+
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census error wide"}
+        %
+    	\put(52,-3)  {$d$}
+    	\put(-6,20) {\rotatebox{90}{$error, millions^{2}$}}
+	    %
+   \end{overpic}
+      \caption{Residual error for \eqref{eq:census:error} with $a_{1}$, $a_{2}$, and $a_{3}$  at optimal values.}
+   \label{fig:census:line:residual error:wide}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census error zoom"}
+        %
+    	\put(52,-3)  {$d$}
+    	\put(-6,20) {\rotatebox{90}{$error, millions^{2}$}}
+	    %
+   \end{overpic}
+      \caption{Residual error for $a_{1}$ and $a_{2}$ fixed at optimal values.}
+   \label{fig:census:line:residual error:wide}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census data v soln"}
+      %
+    	%\put(53,-3) {$population, millions$}
+    	\put(-6,19) {\rotatebox{90}{$population, millions$}}
+	    %
+   \end{overpic}
+      \caption{Solution plotted against data.}
+   \label{fig:census:data v soln}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census residual scatter"}
+      %
+    	%\put(52,-3)  {$d$}
+    	\put(-6,20) {\rotatebox{90}{$error, millions^{2}$}}
+	    %
+   \end{overpic}
+      \caption{Scatterplot of residual errors.}
+   \label{fig:census:scatterplot}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census merit shaded"}
+        %
+    	\put(53,-3) {$a_{3}$}
+    	\put(-4,49) {$d$}
+	    %
+   \end{overpic}
+      \caption[The merit function showing least squares solution.]{The merit function with $a_{1}$ and $a_{2}$ fixed at best values showing least squares solution (center cross).}
+   \label{fig:census:merit}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"census merit lines"}
+        %
+    	\put(53,-3) {$a_{3}$}
+    	\put(-4,49) {$d$}
+	    %
+   \end{overpic}
+      \caption[The merit function showing least squares solution and the null cline.]{The merit function with $a_{1}$ and $a_{2}$ fixed at best values showing least squares solution (center cross) and the  (dashed line).}
+   \label{fig:census:merit}
+\end{figure}
+
+    \begin{table}[t]
+    	\caption{Results for census analysis}
+    	\begin{center}
+    		\begin{tabular}{ll}
+    		  %
+    		  \bf{fit parameters} & $c = \mat{r@{.}l}{0 & 010 \\ 0 & 0170 \\ 0 & 0096} \pm 
+    		                             \mat{r@{.}l}{0 & 031 \\ 0 & 0014 \\ 0 & 0020}$ \\[18pt]
+    		                      & $d = 0.056136\,\pm\,?.?$ \\[5pt]
+    		  %
+    		  $\rtr{*}$ & $55.12$\\
+		      %
+		      $\sum r_{k}$ & $-6.2 \times 10^{-14}$\\
+		      %
+		      $\sigma_{r}$ & $2.55$\\
+    		  %
+    		  $a$ & $\mat{r@{.}lr@{.}lr@{.}l}
+    		    {0 & 5397 & \mg{-0} & \mg{0188} &  \mg{0} & \mg{0165} \\
+    		    \mg{-0} & \mg{0188} &  0 & 0011 & \mg{-0} & \mg{0014} \\
+    		     \mg{0} & \mg{0165} & \mg{-0} & \mg{0014} &  0 & 0022 }$\\[15pt]
+    		  %
+    		  \bf{plots} & data vs fit: figure \ref{fig:census:data v soln} \\
+    		             & residuals: figure \ref{fig:census:scatterplot} \\
+    		             & merit function in $\brnga{*}$: figure \ref{fig:census:merit} \\[5pt]
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:results census}
+    \end{table}%
+
+\section{Polynomials} %    S    S    S    S    S    S    S    S    S    S    S    S
+There is the model we choose and the model which nature chooses. Are they the same?
+
+  \begin{table}[ht]  %  T A B L E
+    \caption{Fitting the census data with low order polynomials.}
+    \begin{center}
+      \begin{tabular}{cc}
+        %
+        data and solution & residual errors\\
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 0"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 0"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 1"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 1"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 2"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 2"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 3"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 3"} \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+  \begin{table}[ht]  %  T A B L E
+    \caption{Fitting the census data with higher order polynomials.}
+    \begin{center}
+      \begin{tabular}{cc}
+        %
+        data and solution & residual errors\\
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 4"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 4"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 5"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 5"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 6"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 6"} \\[5pt]
+        %
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"fit order = 7"} &
+        \includegraphics[ width = 2.25in ]{\pathgraphics nonlinear/census/"residuals 7"} \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+%\subsection{Amplitudes}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+%\begin{landscape}
+%  \begin{table}[htbp]  %  T A B L E
+%    \caption{Amplitudes by order of fit.}
+%    \begin{center}
+%      \begin{tabular}{ccccccccc}
+%        %
+%        order & \multicolumn{1}{c}{$a_{0}$} & \multicolumn{1}{c}{$a_{1}$} & \multicolumn{1}{c}{$a_{2}$} 
+%              & \multicolumn{1}{c}{$a_{3}$} & \multicolumn{1}{c}{$a_{4}$} & \multicolumn{1}{c}{$a_{5}$} 
+%              & \multicolumn{1}{c}{$a_{6}$} & \multicolumn{1}{c}{$a_{7}$} \\\hline
+%        %
+%%{\tiny{
+%        $0$ & $133\pm41$ \\
+%        %
+%        $1$ & $-3260\pm190$ & $1.75\pm0.10$ \\
+%        %
+%        $2$ & $\paren{378\pm11}\times 10^{3}$ & $-41\pm11$ & $0.011\pm0.0029$ \\
+%        %
+%        $3$ & $\paren{-2.02\pm0.84}\times 10^{6}$ & $3100\pm1300$ & $-1.64\pm0.67$ & $\paren{2.8\pm1.2}\times 10^{-4}$ \\
+%        %
+%        $4$ & $\paren{-7.0\pm9.8}\times 10^{7}$ & $\paren{1.4\pm2.0}\times 10^{5}$ & $-110\pm160$ 
+%            & $0.038\pm0.054$ & $\paren{-4.9\pm7.0}\times 10^{-6}$ \\
+%        %
+%        $5$ & $\paren{1.91\pm0.85}\times 10^{9}$ & $\paren{-4.9\pm2.2}\times 10^{7}$ & $\paren{5.1\pm2.3}\times 10^{4}$ 
+%            & $-26\pm12$ & $\paren{6.8\pm3.0}\times 10^{-3}$  & $\paren{-7.1\pm3.1}\times 10^{-7}$\\
+%        %
+%        $7$ & $\paren{-1.5\pm1.1}\times 10^{12}$ & $\paren{4.7\pm3.2}\times 10^{9}$ & $\paren{-6.1\pm4.3}\times 10^{6}$ 
+%            & $4200\pm2900$ & $-1.6\pm1.1$  & $\paren{3.4\pm2.4}\times 10^{-4}$  & $\paren{-2.9\pm2.0}\times 10^{-8}$\\
+%        %
+%%  }}
+%      \end{tabular}
+%    \end{center}
+%  %\label{tab:?}
+%  \end{table}
+%\end{landscape}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics nonlinear/census/"total error by order"}
+        %
+    \end{overpic}
+      \caption{Total error $\rtr{*}$ by order of fit.}
+   %\label{fig:census:line:residual error:wide}
+\end{figure}
+    
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Projections, by order of fit, for population in 2010.}
+    \begin{center}
+      \begin{tabular}{cr}
+        %
+        order & population \\
+        & (millions) \\\hline
+        %
+         0 & 133 \\
+         1 & 264 \\
+         2 & 320 \\
+         3 & 420 \\
+         4 & 300 \\
+         5 & --928 \\
+         6 & --4,540 \\
+         7 & 22,183 \\
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%    
+\endinput

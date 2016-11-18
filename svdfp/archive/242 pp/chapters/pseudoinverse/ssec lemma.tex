@@ -1,0 +1,170 @@
+%%%%%%%%%%%
+\subsection{Properties of the pseudoinverse}
+The bulk of the paper lies in lemma 1 and its proof.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.1: pseudoinverse of the pseudoinverse}
+The pseudoinverse of the pseudoinverse is the original matrix:
+\begin{equation}
+  \paren{\Ap}^{\sym} = \A{}.
+  \label{eqn:mpp:app}
+\end{equation}
+The inverse of a unitary matrix is the Hermitian conjugate matrix; this is one property which makes unitary matrices so desireable. The critical observation here the repeated application of the pseudoinverse to the $\sig{}$ matrix. In analog to equation \eqref{eqn:mpp:app} we have
+%\begin{equation*}
+%  \sig{} = \sbf{} 
+%    \Rightarrow \quad \sig{\sym} = \sbg{-1}
+%    \Rightarrow \quad \paren{\sig{\sym}}^{\sym}  = \sbf{}
+%\end{equation*}
+\begin{equation}
+  \paren{\sig{\ssym}}^{\sym} = \sig{}.
+  \label{eqn:mpp:spp}
+\end{equation}
+This is a straightforward exercise in $\sig{}$ matrix gymnastics
+%%
+\begin{table}[htdp]
+%\caption[Inverting the $\sig{}$ matrix]{default}
+\begin{center}
+\begin{tabular}{lllllll}
+%
+    $\sig{} = \sbf{}$ & $\Rightarrow$ \\
+%
+  & $\sig{\ssym} = \sbg{-1}$ & $\Rightarrow$ \\
+%
+ && $\paren{\sig{\ssym}}^{\sym}  = \sbf{}$
+\end{tabular}
+\end{center}
+\label{tab:sigma gymnastics}
+\end{table}\\
+The process applied to the $\sig{}$ matrix to form the pseudoinverse is to transpose the sabot and invert the diagonal matrix $\ess{}$.
+%%
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.2: Hermitian conjugate of the pseudoinverse}
+The pseudoinverse of the Hermitian conjugate matrix is the Hermitian conjugate of the pseudoinverse matrix:
+\begin{equation}
+  \Bigl(\A{*}\Bigr)^{\sym} = \paren{\A{\sym}}^{*}.
+\end{equation}
+The first half of the identity is this
+\begin{equation}
+  \paren{\A{*}}^{\sym} = \paren{\svdt{*}}^{\sym} = \svds{*}{-T}
+\end{equation}
+where
+\begin{equation}
+  \sig{-T} = \sbg{-1}
+\end{equation}
+represents the inverse matrix $\ess{-1}$ in a transposed sabot matrix.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.3: pseudoinverse and standard inverse}
+If the matrix $\A{}$ is nonsingular then the pseudoinverse matrix is the standard matrix inverse:
+\begin{equation}
+  \A{-1} = \Ap.
+\end{equation}
+If $\A{-1}$ exists, then $\rho = m = n$. Therefore the \asvd \ is given as
+\begin{equation}
+  \A{} = \svdblockbf.
+\end{equation}
+The pseudoinverse for this matrix is
+\begin{equation}
+  \Ap = \mppa.
+\end{equation}
+It should be apparent that this matrix acts as the standard inverse:
+\begin{equation}
+  \ApA = \AAp = \I{m}.
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.4: pseudoinverse of matrix products}
+Given conformable matrices $\A{}$ and $\B{}$,
+\begin{equation}
+  \paren{\A{}\,\B{}}^{\sym} = \B{\sym}\Ap.
+\end{equation}
+This proof relies upon the fact that the product of two unitary matrices is also unitary. To see this, let the matrices $\C{}$ and $\D{}$ be unitary. The Hermitian conjugate of the product matrix is this
+\begin{equation}
+  \paren{ \C{}\D{} }^{*} = \D{*}\C{*}.
+\end{equation}
+Therefore
+\begin{equation}
+  \paren{ \C{}\D{} }^{*} \paren{\C{}\D{}}  = \I{}
+\end{equation}
+which establishes that the product matrix is also unitary.
+
+Going back to the premise, we state the \asvd s for the target matrices
+\begin{equation}
+  \begin{split}
+    \A{} &= \U{}_{A}\, \sig{}_{A}\, \V{*}_{A}, \\
+    \B{} &= \U{}_{B}\, \sig{}_{B}\, \V{*}_{B}.
+  \end{split}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.5: pseudoinverse and Hermitian conjugate}
+\begin{equation}
+  \Bigl(\wx{*}\Bigr)^{\sym} = \Ap \paren{\Ap}^{*} 
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.6: unitary matrices}
+Given unitary matrices $\C{}$ and $\D{}$ the triple product has the following property
+\begin{equation}
+  \paren{\C{} \A{}\, \D{}}^{\sym} = \D{*} \Ap \C{*}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.7: pseudoinverse of an unitary decomposition}
+Given a target matrix $\A{}$ with the following resolution
+\begin{equation}
+  \A{} = \sum_{i} \A{}_{i} 
+\end{equation}
+with the constraint
+\begin{equation}
+  \A{}_{j}\A{*}_{k} = \A{*}_{j}\A{}_{k} = 0, \quad \text{ for } j\ne k.
+\end{equation}
+Then the pseudoinverse can be written as the sum of pseudoinverses
+\begin{equation}
+  \Ap = \sum_{i} \Ap_{i}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.8: pseudoinverse of normal matrices}
+Given a normal matrix $\A{}$, that is a matrix where
+\begin{equation}
+  \wx{*} = \wy{*},
+\end{equation}
+then we know that
+\begin{equation}
+  \ApA = \AAp,
+\end{equation}
+and that for $n\in\mathbb{Q}$
+\begin{equation}
+  \Bigl(\textbf{A}^{n}\Bigr)^{\sym}  = \paren{\Ap}^{n}.
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Lemma 1.9: pseudoinverse and rank}
+The matrices $\A{}$, $\A{*}$, $\wx{*}$, and $\ApA$ all have a rank given by
+\begin{equation}
+  \rho = \text{tr} \paren{\ApA}. 
+\end{equation}
+
+
+
+
+\endinput

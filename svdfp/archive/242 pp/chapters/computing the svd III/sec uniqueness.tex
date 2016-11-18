@@ -1,0 +1,99 @@
+\section{Uniqueness of the domain expansions}
+\label{sec:computing III:uniqueness}
+One issue with the SVD is the generality of the eigenvector problem. When we solve for the range space vectors there is an arbitrary choice for the signs of the terms. More generally the sign  ambiguity is a phase ambiguity.
+
+%%%%%%%%%%%
+\subsection{Example matrix (a)}
+Let's go back to \S \eqref{sec:svd I:a} and look for a more general solution. We needed to find a normalized \vvv \ for the first column of the domain matrix $\V{}$. This vector solves the eigenvalue equations in table \eqref{tab:uniqueness:sign}. The salient observations are that because the equation is homogenous and because we require a normalized solution, the vectors $\pm \bvo$ are solutions.
+
+%%%%%%
+\input{chapters/"computing the svd III"/"tab sign ambiguity"}  % table
+
+In fact, we can admit the more general solution
+\begin{equation}
+  \begin{split}
+    \bvo  &= {\bl{ e^{i\phi} }}\obvecaa, \quad \bangle{\phi}.
+  \end{split}
+\end{equation}
+because the phase factors have unit modulus
+\begin{equation}
+  \abs{e^{i\phi}} = 1,
+\end{equation}
+therefore,
+\begin{equation}
+  \norm{e^{i\phi} \bvo} = \abs{e^{i\phi}} \norm{\bvo} = \norm{\bvo} = 1.
+\end{equation}
+The implied choice in the previous solution was the case of $\phi = 0$. Leaving the angles as a free parameter allows the phase ambiguity to propagate through the decomposition:
+\begin{equation}
+  \begin{split}
+    \buo &= \recip{\sqrt{8}} \A{}\, \bvo = {\bl{e^{i\phi}}} \obvecam .
+  \end{split}
+\end{equation}
+The single parameter \asvd \ is then
+\begin{equation}
+  \begin{split}
+    \A{} 
+      &= \matrixa \\
+      &= \svdecompag{} \\
+      &= \frac{1}{\sqrt{2}} 
+         \mat{cc}{e^{i\phi}\bl{\vecpm} & \red{\vecpp}}
+         \sigmaa 
+         \mat{r}{
+         \frac{e^{i\phi}}{\sqrt{3}}\bl{\mat{crc}{1&-1&1}} \\
+         \frac{1}{\sqrt{6}}\rd{\mat{crc}{2&\phantom{-}1&1}} \\
+         \frac{1}{\sqrt{2}}\rd{\mat{crc}{0&\phantom{-}1&1}}}\\
+      &= \U{}\!\paren{\phi} \, \sig{}\, \V{*}\!\paren{\phi}. 
+  \end{split}
+\end{equation}
+The alignment between the range spaces is now manifest. This formulation describes how the column vector of $\bur{}$ changes as $\bvr{}$ is changed. Notice that the decomposition in equation \eqref{eq:svd:a} corresponds to a phase angle of $\phi = 0$.
+Another choice is to set the phase angle to $\phi = \frac{\pi}{2}$:
+\begin{equation}
+  \begin{split}
+    \U{}\!\paren{\frac{\pi}{2} } &= \matrixaYgz, \\
+    \V{}\!\paren{\frac{\pi}{2} } &= \matrixaXgtz.
+  \end{split}
+\end{equation}
+Of course we could include phase factors for the \ns s. We neglect to do so in the interest of simplifying the examples.
+
+%%%%%%%%%%%
+\subsection{Example matrix (b)}
+The rank determines the number of phase angles we include in the problem formulation. For example matrix (b) has rank $\rho=2$ so there will be two angles in equation \eqref{eq:b:v}
+\begin{equation}
+  \V{} = \bvr{} = \mat{cc}{ e^{i\phi}\vecbxa &  e^{-i\phi}\vecbxb }.
+  \label{eq:phase:example b:v}
+\end{equation}
+
+The two-parameter \asvd \ is then
+\begin{equation}
+  \begin{split}
+    \A{} 
+      &= \matrixb \\[10pt]
+      &= \svdecompbg{} \\[10pt]  
+      &= \U{} \paren{\theta,\phi} \, \sig{}\, \bvr{*}\bl{ \paren{\theta,\phi} } 
+         \qquad \bangle{ \phi, \theta }
+  \end{split}
+\end{equation}
+
+As an example, 
+\begin{equation}
+  \begin{split}
+    \U{}  {\bl{ \paren{\frac{\pi}{2}, -\frac{\pi}{2}} }} &= \matrixbYgi, \\[10pt]
+    \bvr{}{\bl{ \paren{\frac{\pi}{2}, -\frac{\pi}{2}} }} &= {\bl{ -\frac{i}{\sqrt{2}} \mat{cr}{1&1 \\ 1&-1} }} .
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{Example matrix (c)}
+We are able to recycle the results for the domain matrix in equation \eqref{eq:phase:example b:v}. Following the same methodology the two-parameter \asvd \ is then
+\begin{equation}
+  \begin{split}
+    \A{} 
+      &= \matrixc \\[10pt]
+      &= \svdecompcg{} \\[10pt]  
+      &= \bur{}\bl{ \paren{\theta,\phi} } \, \ess{}\, \bvr{*}\bl{ \paren{\theta,\phi} } 
+         \qquad \bangle{ \phi, \theta }
+  \end{split}
+\end{equation}
+
+
+\endinput

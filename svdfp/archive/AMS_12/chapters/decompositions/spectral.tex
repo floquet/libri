@@ -1,0 +1,78 @@
+\section[$\A{} = \ess{}\Lambda\,\ess{-1}$]{Spectral decomposition}
+
+%%
+\subsection{Theory}
+A foundation theorem is the \index{spectral theorem}spectral theorem.
+
+\begin{equation}
+\A{} = \ess{}\Lambda\,\ess{-1}.
+\end{equation}
+
+In conversational mathematics: 
+\begin{quote}
+Every Hermitian matrix has a spectral decomposition. The component matrices are
+\begin{enumerate}
+\item a diagonal matrix of eigenvalues, and
+\item a unitary matrix of eigenvectors.
+\end{enumerate}
+The spectrum is the list of matrix eigenvalues.
+ \end{quote}
+
+%%
+\subsection{Connection to the \svdl}
+All matrices have a \svdl. Normal matrices also have spectral a decomposition. For a normal matrix $\A{}$ these decompositions are given by
+\begin{equation}
+  \begin{split}
+    \A{}&=\ess{-1}\Lambda\,\ess{} \\
+    \svda{*}
+  \end{split}
+\end{equation}
+The target matrix is normal if and only if
+\begin{equation}
+  \brac{\A{},\A{*}} = 0
+\end{equation}
+or equivalently
+\begin{equation}
+  \prdmm{*} = \prdm{*}.
+  \label{eq:decomp:normal}
+\end{equation}
+In terms of the spectral decomposition equality \eqref{eq:decomp:normal} is expressed in this manner:
+\begin{equation}
+  \begin{split}
+     \prdmm{*} &= \prdm{*},\\
+     \paren{\ess{-1}\Lambda\,\ess{}}\paren{\ess{-1}\Lambda\,\ess{}} &= \paren{\ess{-1}\Lambda\,\ess{}}\paren{\ess{-1}\Lambda\,\ess{}},\\     
+     \ess{-1}\Lambda^{2}\,\ess{} &= \ess{-1}\Lambda^{2}\,\ess{}.     
+  \end{split}
+\end{equation}
+The diagonal matrix $\Lambda^{2}$ contains the squares of the eigenvalues of the full rank matrix $\A{}$ and the $\ess{}$ matrix contains the eigenvectors.
+
+In terms of the SVD equality \eqref{eq:decomp:normal} is expressed this way:
+\begin{equation}
+  \begin{split}
+     \prdmm{*} &= \prdm{*},\\
+     \X{}\, \sig{2}\, \X{*} &= \Y{}\, \sig{2}\, \Y{*}.
+  \end{split}
+\end{equation}
+We have used the facts that the matrix $\sig{}$ is square and full rank to write
+\begin{equation}
+  \sig{}\,\sig{T} = \sig{T}\,\sig{} = \sig{2}.
+\end{equation}
+
+We see
+\begin{equation}
+  \begin{split}
+    \ess{} &= \X{*}\\
+    \ess{-1} &= \Y{}
+  \end{split}
+\end{equation}
+
+
+%%
+\subsection{Examples}
+
+
+%%
+\subsection{Application}
+Use the $\L\,\U{}$ decomposition to solve the linear system
+
+\endinput

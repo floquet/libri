@@ -1,0 +1,38 @@
+\chapter[The Method of Least Squares: Introduction]{The Method of \\Least Squares: Introduction}
+
+The Method of Least Squares is one of the greatest contribution from applied mathematics.
+
+When a system of linear equations is consistent we are able to find an exact solution.
+By relaxing the criteria of an exact solution, we are 
+\begin{equation}
+  \begin{split}
+    x    &= \A{-1} b , \\
+    \xmp &= \Ap b .
+  \end{split}
+\end{equation}
+If the inverse exists, the solutions are the same: $\Ap = \A{-1}$.
+
+Consider the archetypal linear system
+\begin{equation}
+  \axeb
+  \label{eqn:axeb}
+\end{equation}
+with $\aicmm$, $x\in\cmplxm$, $b\in\cmplxm$. The inputs are the system matrix $\A{}$ which encodes information about the experimental system and the data vector $b$ which contains the measurements. The goal is to solve for the solution vector $x$.
+
+When the system matrix is square and has full rank an inverse exists we can write the solution as
+\begin{equation}
+  x = \A{-1} b.
+\end{equation}
+This statement tells us that there is a linear combination of the columns of the matrix $\A{}$ which exactly matches the data vector $b$.
+\begin{equation}
+  x_{1} a_{1} + x_{2} a_{2} + \dots + x_{n} a_{n} = b
+\end{equation}
+
+
+%%
+\input{chapters/"least squares"/"sec defining least squares"}
+\input{chapters/"least squares"/"sec why least squares"}
+\input{chapters/"least squares"/"sec toy problems"}
+\input{chapters/"least squares"/"sec regularization"}
+
+\endinput

@@ -1,0 +1,203 @@
+\section{Example: matrix (a)}
+\label{sec:svd I:a}
+The target matrix $\dimsa$
+\begin{equation}
+  \A{} = \matrixa.
+\end{equation}
+There is both a row rank deficiency and a column rank deficiency so both \ns s are nontrivial.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 1: singular values}
+The Hermitian conjugate and the product matrix are
+\begin{equation}
+  \A{*} = \matrixat, \quad \wv = \wx{*} = \wxa.
+\end{equation}
+To compute the eigenvalues, find the roots of the characteristic equation
+\begin{equation}
+  p\paren{\lambda} = 0. 
+\end{equation}
+For a matrix in $\cmplxmn$ the characteristic equation can be written in terms of the trace and determinant as
+\begin{equation}
+  p\paren{\lambda} = -\lambda^{3} + \lambda^{2} \text{tr}
+\end{equation}
+The trace of the product matrix is
+\begin{equation}
+  \tr{ \wv }  = 1+1+1 = 3.
+\end{equation}
+The determinant of the matrix is zero. There are a few ways to reach this realization.
+%%%
+\begin{enumerate}
+%
+  \item The product matrix is rank deficient and therefore has at least one zero eigenvalue (in fact 2). Because determinant is the product of all the eigenvalues the value must be zero. The spectrum is
+\begin{equation}
+  \lambda \paren{\wv} = \lst{ \lambda_{1}, 0, 0 }.
+\end{equation}
+Therefore the determinant is
+\begin{equation}
+  \det \wv = \lambda_{1} \cdot 0 \cdot 0 = 0.
+\end{equation}
+%
+  \item The last two rows are a multiple of the first row. 
+%
+  \item The last two columns are a multiple of the first column. 
+%
+  \item By brute force: one cofactor expansion is this
+\begin{equation}
+  \abs{\wv} = \dt{rrr}{1 & -1 \\ -1 & 1} - \dt{rrr}{-1 & 1 \\ 1 & -1} + \dt{rrr}{1 & -1 \\ -1 & 1} = 0 + 0 + 0 = 0.
+\end{equation}
+%
+\end{enumerate}
+%%%
+The characteristic polynomial is
+\begin{equation}
+  p\paren{\lambda} = -\lambda^{3} + \lambda^{2} \text{tr}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    p\paren{\lambda} 
+     &= -\lambda^{3} + \lambda^{2} \text{tr} \\
+     &= -\lambda^{3} + 6\lambda^{2} \\
+     &=  \lambda^{2}\paren{6-\lambda}
+  \end{split}
+\end{equation}
+Therefore the eigenvalues are
+\begin{equation}
+  \lambda \paren{\wv} = \lst{ 6, 0, 0 } 
+\end{equation}
+and the lone singular value is
+\begin{equation}
+  \sigma_{1} = \sqrt{ 6 }.
+\end{equation}
+The matrix of singular values is
+\begin{equation}
+  \ess{} = \text{diagonal} \lst{\sigma} = \essa
+\end{equation}
+and the $\sig{}$ matrix becomes
+\begin{equation}
+  \sig{} = \sbb{} = \sigmaa.
+\end{equation}
+
+we know the product matrix is positive semidefinite.
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 2: $\brnga{*}$}
+Orthodoxy turns next to the eigenvalue equation. However, we have enough insight to produce the eigenvector now. We see that only one of the row columns of $\wv$ is linearly independent; all points in the span lie on the line through the origin and the point
+\begin{equation}
+  q = \tra{\lst{ 1, -1, 1 }}.
+\end{equation}
+therefore the range
+\begin{equation}
+  \brnga{} = \spn{ \bvecaa }.
+\end{equation}
+The vector $\bvo$ will be a version of the unit vector $e^{i\theta} \hat{q}$, but which angle $\theta$ is correct? Given the simplicity of this problem, we can find the angle just by checking a few values such as $\theta = 0, \pi, \pi/2, 3\pi/2$. Let the test vector be given by the case $\theta = 0$:
+\begin{equation}
+  p = \hat{q}
+\end{equation}
+and see if it solves
+\begin{equation}
+  \wv p = \sigma_{1} p.
+\end{equation}
+This equation is valid and therefore the first guess is the correct case and we write
+\begin{equation}
+  \buo = \obvecaa .
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 3: $\brnga{}$}
+We resolve the range space for the codomain by direct contraction. The \mv s are scaled images of \nv s:
+\begin{equation}
+  \begin{split}
+    \A{}\,\bvo        &= \sigma_{1} \buo \\
+    \matrixa \obvecaa &= \sqrt{6}\,\buo \\
+    \sqrt{3} \bvecam  &= \sqrt{6}\,\buo 
+  \end{split}
+\end{equation}
+from which we conclude
+\begin{equation}
+  \buo = \obvecam.
+\end{equation}
+Notice that the normalization of the vector is inherent in the definition.
+
+\begin{equation}
+  \V{}= \cvblockf = \mat{c|cc}{ \obvecaa & \orvecae & \orvecaf}.
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 4: $\rnlla{*}$, $\rnlla{}$}
+We now have in hand the truncated \asvd \ (TSVD), sometimes called the thin SVD:
+\begin{equation}
+  \A{} = \svdblockbf{*}.
+\end{equation}
+This form is good enough in most cases. However, at times we wish to complete the full SVD and this requires resolution of the \ns s.
+
+The \ns s can be constructed in any order and we start with the easiest case first, the domain. By inspection we see that
+\begin{equation}
+  \buo \cdot \rut = \zero
+\end{equation}
+for
+\begin{equation}
+  \rut = \rvecan
+\end{equation}
+Normalized
+\begin{equation}
+  \U{} = \cublockf = \mat{c|c}{ \obvecam & \orvecan }.
+\end{equation}
+Instead of $\rut$ we could have used $-\rut$. Neither will affect the final product because these \ns \ vectors are silenced by the zero entries in the $\sig{}$ matrix. In this way we see that the full decomposition is not unique.
+
+The next \ns \ is more complicated as we need to find two \vvv s. The canonical approach is to use the Gram-Schmidt process to a set of vectors
+\begin{equation}
+  \bvoh = \obvecaa, \quad v_{2} = \xxx, \quad v_{3} = \yyy
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \rvt 
+      &= v_{2} - \inner{\bvoh,v_{2}} \bvoh \\[5pt]
+      &= \xxx - \rsthree \paren{\obvecaa}  \\[5pt]
+      &= \recip{3} \rvecae
+  \end{split}
+\end{equation}
+The normalized vector is $\rvth$.
+%
+\begin{equation}
+  \begin{split}
+    {\rd{ v_{3} }} 
+      &= v_{3} - \inner{\bvoh,v_{3}} \bvoh - \inner{\rvth,v_{3}} \rvth \\[5pt]
+      &= \xxx  - \paren{-\rsthree}  \paren{\obvecaa} - \rssix \paren{\orvecae}   \\[5pt]
+      &= \half \rvecaf
+  \end{split}
+\end{equation}
+The final, normalized vector is ${\rd{ \hat{v}_{3} }}$.
+\begin{equation}
+  \V{}= \cvblockf = \mat{c|cc}{ \obvecaa & \orvecae & \orvecaf}.
+\end{equation}
+The complete decomposition is then
+\begin{equation}
+  \aesvdecompa
+  \label{eq:svd:a}
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Observations}
+The product matrices
+\begin{equation}
+  \begin{split}
+    \wv &= \wx{*} \\
+    \wu &= \wy{*}
+  \end{split}
+\end{equation}
+share the same nonzero eigenvalues. (The matrix $\wv$ has $n-\rho$ zero eigenvalues; the matrix $\wu$ has $m-\rho$ zero eigenvalues. Otherwise the spectra are the same.) The importance of this observation is that we may choose to work with the matrix presenting the simplest eigensystem. In this problem the matrix $\wv$ is a $\byy{3}$ matrix. The matrix $\wu$ is a $\byy{2}$ matrix:
+\begin{equation}
+  \wu = 3 \mat{rr}{ 1 & -1 \\ -1 & 1 }
+\end{equation}
+and is simpler to work with.
+
+\endinput

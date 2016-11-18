@@ -1,0 +1,34 @@
+\section{Solution using the normal equations}
+
+Typically, the method of the normal equations is the first tool introduced to solve the least squares problem. The curriculum covers consistent linear systems first. The topic of least squares is introduced to solve inconsistent systems. The method of normal equations is used to convert an inconsistent system into a consistent system. The familiar tool of Gaussian elimination is used to solve the modified problem.
+
+In the problem of interest
+\begin{equation*}
+  \axeb,
+\end{equation*}
+the data vector $b$ is not in the range of the system matrix $\A{}$:
+\begin{equation}
+  b \notin \brnga{}.
+\end{equation}
+Remediation is possible provided that the data vector $b$ is in the \ns. 
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Transforming the linear system}
+To create a consistent system we premultiply both sides by the Hermitian conjugate matrix to produce
+\begin{equation}
+  \A{*} \paren{\Ax} = \A{*} b.
+\end{equation}
+The data vector is now $\A{*} b$ and the solution vector is $\paren{\Ax}$. By construction we ensure that the data vector $\A{*} b$ is in $\brnga{*}$, the range of $\A{*}$. (Unless of course the data vector is in the \ns \  $b \in \rnlla{*}$.)
+
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Least squares and the calculus}
+To some, premultiplication by the Hermitian conjugate matrix $\A{*}$
+
+
+
+\endinput

@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{$\bigstar$ n = 4}
+This is the simplest nontrivial Jordan block.
+\begin{equation}
+  \J{4} = \mat{cccc}{1&1&0&0 \\ 0&1&1&0 \\ 0&0&1&1 \\ 0&0&0&1}
+\end{equation}
+%
+The characteristic polynomial is 
+%
+\begin{equation}
+  p\paren{\lambda} = \lambda ^4-7 \lambda ^3+15 \lambda ^2-10 \lambda + 1 .
+\end{equation}
+%
+After some exploration, for example trying the roots $\pm1$, $\pm2$, we can factor the characteristic polynomial:
+%
+\begin{equation}
+  p\paren{\lambda} = (\lambda - 1) \left(\lambda ^3-6 \lambda ^2+9 \lambda -1\right)
+\end{equation}
+%
+If we define the angle
+%
+\begin{equation}
+  \alpha = \frac{\pi}{18}
+\end{equation}
+%
+the singular values can be written as
+\begin{equation}
+  \sigma = \lst{2\cos 2\alpha, 2 \cos 4\alpha, 1, \cos 2\alpha - \sqrt{3} \sin 2 \alpha}.
+\end{equation}
+%
+To tame the domain matrices define the intermediate variables
+%
+\begin{equation}
+  \begin{split}
+    a &= 3 \sin \paren{4\alpha},  \\
+    b &= 3 \cos \paren{\alpha}, \\
+    c &= 2\cos^{2} \paren{\alpha} - \sin \paren{\alpha} .
+  \end{split}
+\end{equation}
+%
+and the domain matrices then have the docile forms
+%
+\begin{equation}
+  \begin{split}
+%
+    \bur{} = {\bl{ \frac{2}{9} \mat{rrrr}{
+		     a & -b &  \sqrt{3} & -c \\
+		     b & -c & -\sqrt{3} &  a \\
+		 \sqrt{3} &  \sqrt{3} &  0 & -\sqrt{3} \\
+		     c &  a &  \sqrt{3} &  b } }} , \qquad
+%
+    \bvr{} = {\bl{ \frac{2}{9} \mat{rrrr}{
+         c & -a &  \sqrt{3} & -b \\
+         \sqrt{3} & -\sqrt{3} &  0 & \sqrt{3} \\
+         b &  c & -\sqrt{3} & -a \\
+         a &  b &  \sqrt{3} &  c } }}
+%
+  \end{split}
+\end{equation}
+
+
+
+\endinput

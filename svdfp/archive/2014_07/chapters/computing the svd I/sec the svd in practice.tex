@@ -1,0 +1,54 @@
+\section{The SVD in practice}
+We have described the default algorithm for computing a \asvd. Yet much of this book is about the many different shortcuts and variations that are used in practice. So learn the default method and be aware of what you are trying to do and simpler paths may appear. 
+
+%%%%%%%%%%%
+\subsection{The product matrices}
+For example, the eigenvalues of the product matrix $\wv$ provide the singular values. Yet the product matrix $\wu$ will also produce the same nonzero eigenvalues.
+\begin{equation}
+  \begin{split}
+    \wv &= \wx{*} , \\
+    \wu &= \wy{*} .
+  \end{split}
+  \label{eqn:the product matrices}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \lambda{\wv} &= \lst{\sigma_{1}, \sigma_{2}, \dots, \sigma_{\rho}, 0, \dots, 0} \\
+    \lambda{\wu} &= \lst{\sigma_{1}, \sigma_{2}, \dots, \sigma_{\rho}, 0, \dots, 0} 
+  \end{split}
+\end{equation}
+%
+Each of the product matrices have these properties. They are 
+%%%
+\begin{enumerate}
+%
+  \item Hermitian,
+  \item positive semi-definite,
+  \item normal
+%
+\end{enumerate}
+%%%
+We choose the matrix $\wu$ to verify these important properties.
+\begin{equation}
+  \paren{\wu}^{*} = \wx{*} = \wu
+\end{equation}
+
+
+%
+Given $\aicmnr$, the spectrum for $\wv$ has $n-\rho$ zeros while $\wu$ has $m-\rho$. Each zero represents a null vector in the corresponding domain matrix. The crucial point is this: choose the system that is easiest to solve. If $\A{}\in\cmplx{\by{2}{100}}$ then
+\begin{equation}
+  \begin{split}
+    \wv &\in \real{\byy{100}} \\
+    \wu &\in \real{\byy{2}}.
+  \end{split}
+\end{equation}
+Certainly $\wu$ is easier to manipulate. Remember that one must still use $\wv$ to compute the left eigenvectors.
+
+\begin{enumerate}
+\item $\aicmmm$ is unitary or orthogonal - the singular values are unity: $\sig{} = \ess{} = \I{m}$
+\item $\aicmmm$ is idemtpotent - the singular values are unity: $\sig{} = \ess{} = \I{m}$
+\end{enumerate}
+
+
+\endinput

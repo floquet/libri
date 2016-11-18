@@ -1,0 +1,17 @@
+% basic matrices
+\newcommand{ \exemplartall }[0]        { \mat{cc} {1 & 0 \\ 0 & 1 \\\hline 0 & 0} }
+\newcommand{ \exemplarwide }[0]        { \mat{cc|c} {1 & 0 & 0 \\ 0 & 1 & 0} }
+%\newcommand{ \exemplarboth }[0]        { \mat{ccc} {1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0} }
+\newcommand{ \exemplarboth }[0]        { \mat{cc|c} {1 & 0 & 0 \\ 0 & 1 & 0 \\\hline 0 & 0 & 0} }
+
+% basic matrices, block form
+\newcommand{ \exemplarbtall }[0]       { \mat{c} \I{2} \\ \zero }
+\newcommand{ \exemplarbwide }[0]       { \mat{cc} \I{2} & \zero }
+%\newcommand{ \exemplarbboth }[0]       { \mat{ccc} \I{2} & \zero \\ \zero & \zero }
+\newcommand{ \exemplarbboth }[0]       { \mat{cc|c} \I{2} & \zero \\\hline \zero & \zero }
+
+%\newcommand{ \bidtwo }[0]              { \mat{>{\color{red}cc} {1 & 0 \\ \colorrows{\color{red}}0 & 1} }
+%\newcommand{ \bidtwo }[0]              { \mat{>{\color{red}cc} {1 & 0 \\ 0 & 1} }
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

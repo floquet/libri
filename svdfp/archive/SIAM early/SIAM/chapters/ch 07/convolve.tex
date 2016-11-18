@@ -1,0 +1,160 @@
+\clearpage
+\break
+
+\section{Convolution}
+The previous exercise was an example of image convolution. Let's generalize the example
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+filter & convolution & singular value spectrum \\
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"filter 0010"} & 
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"image 0010"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/diamond/"sigma 0010"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"filter 0030"} & 
+\includegraphics[ width = 1.05in ]{pdf/"ch 06"/convolve/diamond/"image 0030"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/diamond/"sigma 0030"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"filter 0050"} & 
+\includegraphics[ width = 1.00in ]{pdf/"ch 06"/convolve/diamond/"image 0050"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/diamond/"sigma 0050"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"filter 0080"} & 
+\includegraphics[ width = 0.85in ]{pdf/"ch 06"/convolve/diamond/"image 0080"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/diamond/"sigma 0080"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/diamond/"filter 0100"} & 
+\includegraphics[ width = 0.65in ]{pdf/"ch 06"/convolve/diamond/"image 0100"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/diamond/"sigma 0100"} \\ [5pt] 
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+\caption{Convolution operations.}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+filter & convolution & singular value spectrum \\
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"filter 0010"} & 
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"image 0010"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/disk/"sigma 0010"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"filter 0030"} & 
+\includegraphics[ width = 1.05in ]{pdf/"ch 06"/convolve/disk/"image 0030"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/disk/"sigma 0030"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"filter 0050"} & 
+\includegraphics[ width = 1.00in ]{pdf/"ch 06"/convolve/disk/"image 0050"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/disk/"sigma 0050"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"filter 0080"} & 
+\includegraphics[ width = 0.85in ]{pdf/"ch 06"/convolve/disk/"image 0080"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/disk/"sigma 0080"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/disk/"filter 0100"} & 
+\includegraphics[ width = 0.65in ]{pdf/"ch 06"/convolve/disk/"image 0100"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/disk/"sigma 0100"} \\ [5pt] 
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+\caption{Convolution operations.}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+filter & convolution & singular value spectrum \\
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"filter 0010"} & 
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"image 0010"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/cross/"sigma 0010"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"filter 0030"} & 
+\includegraphics[ width = 1.05in ]{pdf/"ch 06"/convolve/cross/"image 0030"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/cross/"sigma 0030"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"filter 0050"} & 
+\includegraphics[ width = 1.00in ]{pdf/"ch 06"/convolve/cross/"image 0050"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/cross/"sigma 0050"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"filter 0080"} & 
+\includegraphics[ width = 0.85in ]{pdf/"ch 06"/convolve/cross/"image 0080"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/cross/"sigma 0080"} \\ [5pt] 
+%%%
+\includegraphics[ width = 1.15in ]{pdf/"ch 06"/convolve/cross/"filter 0100"} & 
+\includegraphics[ width = 0.65in ]{pdf/"ch 06"/convolve/cross/"image 0100"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 06"/convolve/cross/"sigma 0100"} \\ [5pt] 
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+\caption{Convolution operations.}
+\end{table}%
+
+%%%%
+\subsection{How much information is in the edges?}
+Filter:
+\begin{equation}
+  \mat{crc}{
+  1 &  1 & 1 \\
+  1 & -8 & 1 \\
+  1 &  1 & 1 }
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \sigma_{1} &= 10.2,\\
+     \sigma_{n} &= 0.00461.
+  \end{split}
+\end{equation}
+Sobol mask for vertical edges:
+\begin{equation}
+  \mat{rrr}{
+  -1 & 0 & 1 \\
+  -2 & 0 & 2 \\
+  -1 & 0 & 1 }
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \sigma_{1} &= 23.5,\\
+     \sigma_{n} &= 0.136.
+  \end{split}
+\end{equation}
+%%%
+Sobol mask for horizontal edges:
+\begin{equation}
+  \mat{rrr}{
+  -1 & -2 & -1 \\
+   0 &  0 &  0 \\
+   1 &  2 &  1 }
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \sigma_{1} &= 27.4,\\
+     \sigma_{n} &= 0.00000399.
+  \end{split}
+\end{equation}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[ width = 1.6in ]{pdf/"ch 06"/convolve/edge/"edges all image"} &
+\includegraphics[ width = 2.85in ]{pdf/"ch 06"/convolve/edge/"edges all spectrum"} \\
+%%
+\includegraphics[ width = 1.6in ]{pdf/"ch 06"/convolve/edge/"edges vert image"} &
+\includegraphics[ width = 2.85in ]{pdf/"ch 06"/convolve/edge/"edges vert spectrum"} \\
+%%
+\includegraphics[ width = 1.6in ]{pdf/"ch 06"/convolve/edge/"edges horz image"} &
+\includegraphics[ width = 2.85in ]{pdf/"ch 06"/convolve/edge/"edges horz spectrum"} \\
+\end{tabular}
+\end{center}
+\label{tab:Jordan:edge}
+\caption[Singular values and edges]{Partial column shifts are valid operations. Rotating the columns shifts the image down and to the left.}
+\end{table}%
+
+
+\endinput

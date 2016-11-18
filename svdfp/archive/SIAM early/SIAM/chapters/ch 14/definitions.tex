@@ -1,0 +1,369 @@
+\section{Definition of the matrix pseudoinverse}
+Can the matrix inverse be generalized? Can we find a consistent framework to talk about the inverse of a rectangular matrix? A singular matrix? Why would we search for such a beast?
+
+We have seen in chapter \eqref{chap:simple} that general linear systems do not have an inverse, but they still offer a least squares solution. A reasonable expectation would be to connect the least squares solution with a generalized matrix inverse. In fact we saw that a generalized inverse would allow a direct solution to the least squares problem. 
+
+The generalized matrix inverse also offers generalized nomenclature. It is also known as the pseudoinverse or the Moore-Penrose inverse.
+
+Connect to the Drazin inverse.
+
+So the concept of a generalized inverse is not far fetched. However, important theoretical work needed to be done to solidify the ideas. We begin with important guidelines which serve 
+An elegant collection of necessary and conditions define the pseudoinverse. These conditions are credited to Sir Arthur Penrose, \cite[Penrose].
+
+\begin{thm}
+The matrix $\G{}$ is a pseudoinverse of the matrix $\A{}$ if and only these four properties are satisfied:
+\begin{enumerate}
+\item $\A{}\G{}\A{} = \A{}$
+\item $\G{}\A{}\G{} = \G{}$
+\item $\paren{\A{}\G{}}^{*} = \A{}\G{}$
+\item $\paren{\G{}\A{}}^{*} = \G{}\A{}$
+\end{enumerate}
+%\label{thm:Penrose}
+\end{thm}
+
+Notice the conventional inverse also satisfies these four properties.
+%
+\subsection{Verifying the pseudoinverse}
+The key to checking the Penrose conditions in %\eqref{thm:Penrose}
+is to compute the products $\aap{*}$ and $\apa{*}$. If they are Hermitian, then the last two conditions are satisfied. We will see shortly that these matrix products play important roles as projectors.
+
+\subsubsection{First example matrix}
+The first example has
+\begin{equation}
+  \A{} = \Aexample, \qquad \Ap = \Aexamplepi.
+\end{equation}
+The matrix products are then
+\begin{equation}
+  \leftinv = \AexampleApA, \qquad \rightinv = \AexampleAAp,
+  \label{eq:mp:projectors:1}
+\end{equation}
+both of which are clearly symmetric and therefore the last two Penrose conditions are met. The first two Penrose tests are these:
+\begin{equation}
+  \begin{split}
+     \mpcone &= \Aexample\AexampleApA = \Aexample = \A{};
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \mpctwo &= \AexampleApA\Aexamplepi = \Aexamplepi = \Ap.
+  \end{split}
+\end{equation}
+%
+
+\subsubsection{Second example matrix}
+The second example matrix has these definitions:
+\begin{equation}
+  \A{} = \matrixbravo, \qquad \Ap = \matrixbravopi.
+\end{equation}
+Because this matrix has full row rank the pseudoinverse is a right inverse:
+\begin{equation}
+  \leftinv = \matrixbravoApA, \qquad \rightinv = \matrixbravoAAp = \I{2}.
+  \label{eq:mp:projectors:2}
+\end{equation}
+As before, both of these are symmetric and therefore the last two Penrose conditions are met. Because this matrix has full row rank, the pseudoinverse is also a right-inverse. The first two Penrose tests are these:
+\begin{equation}
+  \begin{split}
+     \mpcone &= \I{2}\A{} = \A{};
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \mpctwo &= \Ap\I{2} = \Ap.
+  \end{split}
+\end{equation}
+
+\subsubsection{Third example matrix}
+The third and final example matrix has these definitions:
+\begin{equation}
+  \A{} = \matrixbravo, \qquad \Ap = \itwo.
+\end{equation}
+Because this matrix is square and has full rank, it possesses a standard inverse:
+\begin{equation}
+  \leftinv = \rightinv = \A{}.
+  \label{eq:mp:projectors:2}
+\end{equation}
+As before, both of these are symmetric and therefore the last two Penrose conditions are met. Because this matrix has full row rank, the pseudoinverse is also a right-inverse. The first two Penrose tests are these:
+\begin{equation}
+  \begin{split}
+     \mpcone &= \I{2}\A{} = \A{};
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+     \mpctwo &= \Ap\I{2} = \Ap.
+  \end{split}
+\end{equation}
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$\sig{}$ gymnastics}
+Mastering manipulations of the SVD requires a thorough understanding of the basics of the $\sig{}$ matrix. The ideas are simple, yet experience shows this is the area where many mistakes are made.
+
+The critical insight is that the $\sig{}$ matrix is the matrix of singular values $\ess{}$ held in a sabot matrix with zeros. This is apparent in block form:
+\begin{equation}
+  \sig{} = \essmatrix{}
+\end{equation}
+where the block matrix $\zero$ represents a matrix of zeros of the required dimension. While this notation helps clarify what these matrices are being multiplied together, it has a drawback: the matrices $\sig{}$ and $\sig{T}$ have the same block structure. There are two reasons for this:
+\begin{enumerate}
+\item the $\ess{}$ matrix is diagonal, hence $\ess{}=\ess{T}$;
+\item the $\zero$ applies to any size matrix of zeros.
+\end{enumerate}
+\begin{equation}
+  \begin{split}
+     \sig{} &= \essmatrix{},\\
+     \sig{T}&= \essmatrix{T} = \essmatrix{}.
+  \end{split}
+\end{equation}
+
+One fix is to specify the dimensions in the matrix statement like so:
+\begin{equation}
+  \begin{split}
+     \sig{} &= \essmatrix{}^{\by{m}{n}},\\
+     \sig{T}&= \essmatrix{}^{\by{n}{m}}.
+  \end{split}
+\end{equation}
+This can be unwieldily. In general we will avoid the bulkier notation and rely upon the reader being able to read the implied dimensions in the problem statement. To that end, some practice is needed.
+
+Perhaps the most confusing details involve the sabot matrix $\sig{}$. This container of zeros has the same shape as the target matrix. It contains a diagonal matrix $\textbf{S}$ of non-zero singular values.
+
+Because the matrix of singular values is square we have the following two identities:
+\begin{equation*}
+  \ess{} = \ess{T} = \Smatrix, \qquad \ess{-1} = \Smatrixinv,
+\end{equation*}
+\begin{equation*}
+  \ess{}\,\ess{T} = \ess{T}\ess{} = \ess{2}.
+\end{equation*}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lclccc}
+  form && block matrix &&& dimension \\\hline
+  $\sig{}$   &=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}$  &&& $m \times n$ \\
+  $\sig{T}$  &=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}=\mat{cc}{\ess{} & \zero \\ \zero & \zero}$  &&& $n \times m$ \\
+  $\sig{(+)}$&=& $\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}$ &&& $n \times m$ \\
+%%%
+  $\sig{}\sig{T}$  &=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}\mat{cc}{\ess{T} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $m \times m$ \\
+  $\sig{T}\sig{}$  &=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $n \times n$ \\
+  $\sig{}\sig{(+)}$&=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $m \times m$ \\
+  $\sig{(+)}\sig{}$&=& $\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $n \times n$ \\[15pt]
+%%%
+  $\sig{(+)}\sig{}\sig{T}$&=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\sig{}$ & $m \times n$ \\[15pt]
+  $\sig{T}\sig{}\sig{(+)}$&=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ &=& $\sig{T}$ & $n \times m$ \\[15pt]
+\end{tabular}
+\end{center}
+\label{default}
+\caption[$\sig{}$ and $\sig{T}$ have the same block structure]{Note that although the matrices $\sig{}$ and $\sig{T}$ have the same block structure (because $\ess{}=\ess{T}$), the matrix and its transpose have different dimensions.}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ll|ccc}
+  form & block matrix & example 1 & example 2 & example 3  \\\hline
+  $\sig{}$  & $\mat{cc}{\ess{} & \zero \\ \zero & \zero}$  & $\Sigmaexampleb$ & $\matrixbravosigma$ & $\matrixalphasigma$ \\
+  $\sig{T}$ & $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}$ & $\Sigmatexample$ & $\matrixbravosigmat$ & $\matrixalphasigmat$ \\
+  $\sig{(+)}$& $\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}$  & $\Sigmaexamplepi$ & $\matrixbravosigmapi$ & $\matrixalphasigmapi$ \\
+%%%
+  $\sig{}\sig{T}$ & $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $\mat{c|cc}{6&0&0\\\hline0&0&0\\0&0&0}$ & $\mat{cc}{15 & 0 \\0&3}$ & $\mat{cc}{8&0\\0&2}$\\
+  %%%
+  $\sig{T}\sig{}$ & $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $\mat{c|c}{6&0\\\hline0&0}$ & $\mat{cc|c}{15&0&0 \\0&3&0\\\hline0&0&0}$ & $\mat{cc}{8&0\\0&2}$ \\
+  %%%
+  $\sig{}\sig{(+)}$& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $\mat{c|cc}{1&0&0\\\hline0&0&0\\0&0&0}$ & $\itwo$ & $\itwo$ \\
+  $\sig{(+)}\sig{}$& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $\mat{c|c}{1&0\\\hline0&0}$ & $\mat{cc|c}{1&0&0\\0&1&0\\\hline0&0&0}$ & $\itwo$ \\[15pt]
+\end{tabular}
+\end{center}
+\label{default}
+\caption[$\sig{}$ gymnastics for our well-worn example matrices]{$\sig{}$ gymnastics for our well-worn example matrices. Note that although the matrices $\sig{}$ and $\sig{T}$ have the same block structure (because $\ess{}=\ess{T}$), the matrix and its transpose have different dimensions.}
+\end{table}%
+
+ As an example a matrix $\A{}\in\cmplx{\by{4}{3}}_{2}$ the sabot matrix looks like
+\begin{equation}
+  \sig{} = \essmatrix{} = 
+  \mat{cc|c}{\sigma_{1}&0&0\\0&\sigma_{2}&0\\\hline0&0&0\\0&0&0}.
+\end{equation}
+The transpose behaves as expected:
+\begin{equation}
+  \sig{T} = \essmatrix{T} = 
+  \mat{cc|cc}{\sigma_{1}&0&0&0\\0&\sigma_{2}&0&0\\\hline0&0&0&0}.
+\end{equation}
+
+The confusion comes when we try to invert the sabot matrix. The singular value matrix $\textbf{S}$ inverts easily: just take the reciprocal of the diagonal entries. But what about the sabot entries? By looking at the conformability we see that we must also take the transpose of the sabot matrix. That is, if we want to multiply the size $\by{m}{n}$ sabot by its inverse on either the right or the left the inverse must have size $\by{n}{m}$. To form the inverse of the sabot matrix $\sig{}$ form the transpose and invert the matrix $\textbf{S}$. To remind us that this is special process use the following symbol
+\begin{equation}
+  \sig{(+)} = \mat{c|c}{\textbf{S}^{-1} & \zero \\\hline \zero & \zero} = 
+  \mat{cc|cc}{\frac{1}{\sigma_{1}}&0&0&0\\0&\frac{1}{\sigma_{2}}&0&0\\[3pt]\hline0&0&0&0}.
+\end{equation}
+
+%%
+\section{Practice}
+We should practice the $\sig{}$ gymnastics as they are at the heart of using the SVD in matrix analysis. 
+
+%%%
+\subsection{Transpose relations}
+A good place to start is with the product matrices
+\begin{equation}
+  \begin{split}
+    \prdmy{*} = \paren{ \svd{*} } \paren{ \svdt{*} } = \wx{*},\\
+    \prdmx{*} = \paren{ \svdt{*} }\paren{ \svd{*} }  = \wy{*}.\\
+  \end{split}
+\end{equation}
+These are the crucial matrices needed to find the \svdl \ and they involve the matrix products $\sx$ and $\sy$. Though these matrices have the same block structure, they have different dimensions.
+\begin{equation}
+  \begin{split}
+  \sig{T}\sig{} &= 
+  \essmatrix{T}^{\by{n}{m}}_{\rho} 
+  \essmatrix{}^{\by{m}{n}}_{\rho} = 
+  \essmatrix{2}^{\by{n}{n}}_{\rho} \\
+  \sig{}\,\sig{T} &= 
+  \essmatrix{}^{\by{m}{n}}_{\rho} 
+  \essmatrix{T}^{\by{n}{m}}_{\rho} = 
+  \essmatrix{2}^{\by{m}{m}}_{\rho}
+  \end{split}
+\end{equation}
+These are the special cases where there is no sabot:
+\begin{enumerate}
+\item if $\rho=m$ then $\sy = \ess{2}$;
+\item if $\rho=n$ then $\sx = \ess{2}$;
+\item if $\rho=m=n$ then $\sx = \sy = \ess{2}$.
+\end{enumerate}
+
+%%%
+\subsection{Inverse relations}
+No consider the product matrices
+\begin{equation}
+  \begin{split}
+    \invy{*} = \paren{ \svd{*} } \paren{ \mpgi{*} } = \vx{*},\\
+    \invx{*} = \paren{ \mpgi{*} }\paren{ \svd{*} }  = \vy{*}.\\
+  \end{split}
+\end{equation}
+These matrices are used to define the fundamental projectors. Again we have the same block structure despite having different dimensions.
+\begin{equation}
+  \begin{split}
+  \sig{\pssymbol}\sig{} &= 
+  \essmatrix{-1}^{\by{n}{m}}_{\rho} 
+  \essmatrix{}^{\by{m}{n}}_{\rho} = 
+  \idmatrix{\rho}^{\by{n}{n}}_{\rho} = \J{n}{\rho} \\
+  \sig{}\,\sig{\pssymbol} &= 
+  \essmatrix{}^{\by{m}{n}}_{\rho} 
+  \essmatrix{-1}^{\by{n}{m}}_{\rho} = 
+  \idmatrix{\rho}^{\by{m}{m}}_{\rho} = \J{m}{\rho}
+  \end{split}
+\end{equation}
+Because we encounter these matrices regularly, they have their own name and symbol. They are truncated identity matrices, $\J{}{}$. We will see them play a central role in the theory of fundamental projectors. But first, a quick example:
+For example, for $\A{}\in\cmplx{\by{3}{4}}_{2}$
+\begin{equation}
+  \begin{split}
+  \sig{(+)}\sig{} &= 
+  \mat{cc|cc}{1&0&0&0\\0&1&0&0\\\hline0&0&0&0\\0&0&0&0} = \J{4}{2} \\
+  \sig{}\,\sig{(+)} &= 
+  \mat{cc|c}{1&0&0\\0&1&0\\\hline0&0&0} = \J{3}{2}
+  \end{split}
+\end{equation}
+The $\J{}{}$ matrices act as stencils, letting only parts of matrices interact on multiplication. This diagram shows how a stencil blocks the shaded part of the matrices from multiplying. For the SVD, the unshaded columns represent the range space vectors and the shaded columns the null space vectors.
+%%
+\subsection{Truncated identity}
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/svd/mask_06_04_04} 
+   \caption[The stencil action of the truncated identity matrix]{The stencil action of the truncated identity matrix. On the left we see vectors shaded. These vectors not contribute to the product because of the stencil action. . The matrix product is equivalent to the one on the right which uses matrices with the appropriate rows and columns deleted.}
+   \label{fig:svd:stencil}
+\end{figure}
+Here is a product that is common when working with the SVD. Notice how the stencil ``knocks out'' the null space components:
+\begin{equation}
+  \begin{split}
+    \invx & = \wx{*} \\
+    &= \xrn{} \J{n}{\rho} \xtrn{*} \\
+    &= \xrng{} \xrng{*}.
+  \end{split}
+\end{equation}
+
+
+%%
+\subsection[Construction: general case]{Constructing the pseudoinverse when $\A{}$ is singular}
+Let's back up and look at the process more carefully.
+Given a \svdl \ decomposition, how do we construct the pseudoinverse? The simplest step would be to apply the inverse operation to the decomposition. The domain matrices invert easily - they are orthogonal, so forming the Hermitian conjugate forms the inverse. The sticky issue comes from the matrix of singular values, $\sig{}$. How should we ``invert'' a matrix which is not square and which may have zero elements on the lower diagonals?
+
+If two matrices $\U{}$ and $\V{}$ are both nonsingular, then we can relate the inverse of the product to the product of the inverses:
+\begin{equation}
+  \paren{\U{}\V{}}^{-1} = \V{-1}\U{-1}.
+\end{equation}
+
+Consider the case of a nonsingular matrix $\A{}$.
+\begin{equation}
+  \paren{\A{}}^{-1} \Rightarrow \paren{\svd{*}}^{-1} \Rightarrow \paren{\X{*}}^{-1}\paren{\sig{}}^{-1}\paren{\Y{}}^{-1}=\X{}\,\sig{-1}\,\Y{*}.
+\end{equation}
+Because the domain matrices are unitary, their inverses are trivial to compute: form the Hermitian conjugate. When the target matrix is nonsingular the $\sig{}$ matrix is diagonal and can also be inverted easily.
+
+Retreat to the safe case: when $\sig{}$ is square and diagonal with a full diagonal with no zero elements. There we would invert the diagonal elements like so
+\begin{equation}
+  \begin{split}
+   \sig{}       & \quad \Rightarrow \quad \sig{-1},\\    
+   \sig{}_{k,k} & \quad \Rightarrow \quad \frac{1}{\sig{}_{k,k}}, \quad k=1,2,\dots,\rho.    
+  \end{split}
+\end{equation}This motivates us to move to the pathological cases and simply invert all of the singular values. By definition, in this work singular values are non-zero. In order to be conformable we also need to form the transpose.
+
+To invert a singular \index{singular values matrix!inversion}singular values matrix $\sig{}$, perform these two steps:
+\begin{enumerate}
+\item form the transpose matrix $\sig{T}$,
+\item invert the singular values.
+\end{enumerate}
+In terms of the $\ess{}$ matrix the operations look like this:
+\begin{equation}
+  \begin{split}
+    \sig{} &= \mat{c|c}
+    {
+    \ess{} & \zero \\\hline
+    \zero & \zero
+    }^{\paren{m\times n}} \\
+    \sig{(+)} &= \mat{c|c}
+    {
+    \ess{-1} & \zero \\\hline
+    \zero & \zero
+    }^{\paren{n\times m}}
+  \end{split}
+\end{equation}
+The trouble with this formulation is that it obscures the transpose of the sabot matrix.  Hopefully the examples will clarify this transposition of the sabot.
+
+For our well-travelled example matrix this process looks like
+\begin{equation}
+\begin{array}{ccc}
+\sig{} &\Rightarrow& \sig{(+)} \\
+ \mat{c|c}{\sigma_{1} & 0\\\hline0 & 0 \\0 & 0} & \Rightarrow & \mat{c|cc}{\frac{1}{\sigma_{1}} & 0 & 0\\[3pt]\hline0 & 0 & 0} \\
+\Sigmaexampleb  & \Rightarrow & \mat{c|cc}{\ssix & 0 & 0\\[4pt]\hline0 & 0 & 0}.
+\end{array}
+\end{equation}
+Because the process is unique to the $\sig{}$ matrix, it uses a dedicated superscript ``(+)''. In conversational mathematics, we would say
+\begin{quote}
+  To form the inverse of the $\sig{}$ matrix of singular values invert all non-zero entries and form the transpose matrix.
+\end{quote}
+
+These simplistic, intuitive steps work. 
+\begin{equation}
+    \mpgiax{*}
+\end{equation}
+The relationships between \svdl s for the target matrix, the Hermitian conjugate and the psuedoinverse are shown here:
+\begin{equation}
+  \begin{array}{lcccc}
+    \A{} &=& \Y{} & \sig{} & \X{*} \\
+    \A{*} &=& \X{} & \sig{T} & \Y{*} \\
+    \Ap &=& \X{} & \sig{(+)} & \Y{*} \\
+  \end{array}
+\end{equation}
+
+%%
+\subsection[Construction: special case]{Constructing the pseudoinverse when $\A{}$ is nonsingular}
+For the case when the target matrix $\A{}$ is nonsingular there is no sabot matrix: $\sig{}=\ess{}$ and the inversion is process is
+\begin{equation}
+  \begin{split}
+    \sig{} &= \ess{} \\
+    \sig{(+)} &= \ess{-1}
+  \end{split}
+\end{equation}
+Restated another way, a matrix is nonsingular if and only if the matrix of singular values fils the sabot matrix.
+\begin{equation}
+  \A{} \text{ is nonsingular}\qquad \iff \qquad \sig{}=\ess{}
+\end{equation}
+In these cases the $\sig{}$ matrix will be square and diagonal with no zero entries on the diagonal.
+
+%%
+\subsection[Verification: singular case]{Verification of the pseudoinverse: nonsingular case}
+
+\endinput

@@ -1,0 +1,75 @@
+\documentclass[10pt]{newsiambook}
+
+\usepackage{amsmath,amssymb}
+\usepackage{epstopdf} 
+%\usepackage{color}
+%\usepackage{colortbl}
+\usepackage{graphicx}
+%%\usepackage{pifont}
+\usepackage{makeidx}
+%\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{crop}
+%\usepackage{pdfpages}
+%\usepackage{pdflscape}
+%\usepackage{tabularx}
+%\usepackage{pstricks}
+%\setlength\minrowclearance{4pt}
+%\usepackage{sidecap}
+\usepackage{stmaryrd}  % https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
+%\usepackage{cancel}
+ 
+\crop	
+\newcommand{\pathname}{../"new common"/}
+\newcommand{\fullpath}{\pathname}
+
+\input{\pathname declarations.tex}
+	
+\makeindex
+
+\begin{document}
+
+\frontmatter
+%
+\tableofcontents
+%
+\listoffigures
+%%
+\listoftables
+%
+%\input{chapters/frontmatter/preface}
+%\input{chapters/frontmatter/literature}
+
+\mainmatter
+%%%%%%%
+\part{Rudiments}
+\input{chapters/"ch least squares"}
+
+%
+%%%%%%%%
+\part{Appendices}
+\appendix
+%%\input{chapters/appendices/summaries/"head summaries"}
+%\input{chapters/appendices/history/"head history"}
+%\input{chapters/appendices/precis/"head precis"}
+%\input{chapters/appendices/"building blocks"/"head building blocks"}
+%\input{chapters/appendices/"decomposition summaries"/"head decomposition summaries"}
+%\input{chapters/appendices/"gram schmidt"/"head gram schmidt"}
+%\input{chapters/appendices/jargon/"head jargon"}
+%\input{chapters/appendices/complex/"head complex"}
+%\input{chapters/appendices/definitions/"head definitions"}
+
+%%%%%%
+\part{\ \ Backmatter}
+\backmatter
+%\input{backmatter/acronyms}
+%\input{chapters/backmatter/notation/"head notation"}
+%%\input{backmatter/glossary}
+%\bibliography{chapters/backmatter/bibliography/svdfp}
+%\input{chapters/backmatter/bibliography/svdfp.bib}
+
+\input{"ells bibliography"}
+
+\printindex
+
+\end{document}

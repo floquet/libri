@@ -1,0 +1,105 @@
+\chapter[]{Topics}
+\label{chap:general}
+An assortment of topics without a home
+
+%%
+\section{The condition number}
+This section will answer the question: how do errors in linear systems propagate? That is how does error in the input affect error in the output? To begin, start with an ideal system equation is given by this
+\begin{equation}
+  \begin{split}
+    \A{} x = b
+    \label{eq:t:ideal}
+  \end{split}
+\end{equation}
+where
+$$
+\A{}\in\cmplx{\bys{m}}_{m},\ x\in\cmplx{m\times1},\ b\in\cmplx{m\times1}.
+$$
+
+Because of measurement and floating point errors, we can't input an exact value for the data vector $b$. These errors can be collected into an error vector $\delta b$. This implies that we will not be solving for the ideal value of the solution vector $x$, but instead some nearby value. The shift from the ideal value is $\delta x$. How will the error in the input vector affect the error in the output vector?
+
+The practical system equation is this
+\begin{equation}
+  \begin{split}
+    \A{}\paren{x+\delta x} = b+\delta b.
+    \label{eq:t:practical}
+  \end{split}
+\end{equation}
+
+Begin by looking at the difference between equations \eqref{eq:t:ideal} and \eqref{eq:t:practical} which relates the two error vectors
+\begin{equation}
+  \begin{split}
+    \A{} \delta x = \delta b.
+  \end{split}
+\end{equation}
+The error in the solution vector is given by this
+\begin{equation}
+  \begin{split}
+    \delta x = \A{-1}\delta b.
+  \end{split}
+\end{equation}
+Therefore the norm of the error in the solution vector is related to the norm in the measurement errors by this
+\begin{equation}
+  \begin{split}
+    \norm{\delta x} = \norm{\A{-1}\delta b}\le \norm{\A{-1}} \norm{\delta b}.
+  \end{split}
+\end{equation}
+The relative error in the solution vector becomes
+\begin{equation}
+  \begin{split}
+    \frac{ \norm{\delta x}}{\norm{x}} \le \frac{ \norm{\A{-1}} \norm{\delta b}}{\norm{x}}.
+  \end{split}
+  \label{eq:t:errx}
+\end{equation}
+
+However, equation \eqref{eq:t:ideal} shows that
+\begin{equation}
+  \begin{split}
+    \norm{b} = \norm{\A{}x} \le \norm{\A{}}\norm{x}
+  \end{split}
+\end{equation}
+which implies that
+\begin{equation}
+  \begin{split}
+    \norm{x} \ge \frac{\norm{b}}{\norm{\A{}}}.
+  \end{split}
+  \label{eq:t:nrmx}
+\end{equation}
+When this equation \eqref{eq:t:nrmx} is inserted in equation \eqref{eq:t:errx} we see that the relative error in the solution vector becomes
+\begin{equation}
+  \begin{split}
+    \frac{ \norm{\delta x}}{\norm{x}} \le \frac{\norm{\A{}}\norm{\A{-1}}\norm{\delta b}}{\norm{b}}.
+  \end{split}
+\end{equation}
+The relative error in the output vector are now expressed in terms of the relative errors in the input vector. This leads to the definition of $\kappa$ the \textit{condition number}\index{condition number!definition} as
+\begin{equation}
+  \begin{split}
+    \kappa = \norm{\A{}}\norm{\A{-1}}.
+  \end{split}
+\end{equation}
+The final equation bounds the output error by the input error and the condition number:
+\begin{equation}
+\boxed{
+\frac{ \norm{\delta x}}{\norm{x}} \le \kappa \frac{\norm{\delta b}}{\norm{b}}.
+}
+\end{equation}
+Notice that this relationship is true for all induced matrix norms. Also, this relationship shows that the condition number depends upon the matrix norm.
+
+With this inequality we can state the following:
+\begin{quotation}
+  A poorly conditioned (or ill conditioned\index{ill conditioned}) linear system, that is a system with a large condition number, allows small relative changes in the data to create large relative errors in the solution.
+\end{quotation}
+The converse is also true:
+\begin{quotation}
+  A well conditioned\index{well conditioned} linear system is characterized by having small relative errors in the data inducing small relative changes in the solution.
+\end{quotation}
+
+For the case of the $2-$norm, the error equation becomes this
+\begin{equation}
+  \begin{split}
+    \frac{ \normt{\delta x}}{\normt{x}} \le \kappa_{2} \frac{\normt{\delta b}}{\norm{b}} = \frac{\sigma_{1}}{\sigma_{m}}\frac{\normt{\delta b}}{\normt{b}}
+  \end{split}
+\end{equation}
+where $\sigma_{1}$ is the first and largest singular value of $\A{}$ and $\sigma_{m}$ is the last and smallest singular value. If the $m$th or earlier entry on the diagonal is zero, then the matrix is singular and the condition number is infinite.
+
+\endinput

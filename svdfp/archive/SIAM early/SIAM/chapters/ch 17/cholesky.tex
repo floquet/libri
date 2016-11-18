@@ -1,0 +1,125 @@
+\section[$\A{}=\LL{}\LL{*}$]{Cholesky decomposition}
+By further restricting the generality of the target matrix we can develop an even more efficient decomposition, the Cholesky decomposition, which is about twice as efficient as an $\LL{}\U{}$ decomposition.
+
+%%
+\subsection{Theory}
+The formal statement follows
+\begin{quote}
+Any symmetric positive-definite matrix can be expressed as the product of a lower triangular matrix $\LL{}$ and its Hermitian conjugate.
+\end{quote}
+\begin{equation}
+  \A{}=\LL{}\LL{*}
+\end{equation}
+
+To use this decomposition to solve a linear system first realize that
+\begin{equation}
+\begin{array}{rcll}
+  \A{}x&=&b \qquad\qquad\qquad &\text{problem statement},\\
+  \paren{\LL{}\LL{*}}x&=&b \qquad\qquad\qquad &\text{decomposition definition},\\
+  \LL{}\paren{\LL{*}x}&=&b \qquad\qquad\qquad &\text{associative property}.\\
+\end{array}
+\end{equation}
+Then follow these two steps
+\begin{enumerate}
+\item Use forward substitution to find the vector $y$:
+\begin{equation}
+  \LL{}y = b.
+  \label{eq:decomp:LL1}
+\end{equation}
+\item Use backward substitution to find the solution vector $b$:
+\begin{equation}
+  \LL{*}x = y.
+  \label{eq:decomp:LL2}
+\end{equation}
+\end{enumerate}
+
+%%
+\subsection{Examples}
+Here is a sample Cholesky decomposition:
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&=&\LL{}&\LL{*}\\
+  \left[
+\begin{array}{rc}
+ 2 & i \\
+ -i & 2
+\end{array}
+\right]
+&=&
+\frac{1}{\sqrt{2}}\mat{rc}
+{
+ 2 & 0 \\
+ -i & \sqrt{3}
+}
+&\frac{1}{\sqrt{2}}
+\mat{rc}
+{
+ 2 & i \\
+ 0 & \sqrt{3}
+}.
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Application}
+Solve the linear system
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x&=&b\\
+    \mat{rc}
+    {
+  2 & i \\
+ -i & 2
+    }
+    &
+    \mat{c}{x_{1}\\x_{2}}
+    &=&
+    \mat{c}{1\\2}
+  \end{array}
+\end{equation}
+using the given Cholesky decomposition.
+
+The two steps follow.
+\begin{enumerate}
+\item Solve for the intermediate vector $y$ using forward substitution \eqref{eq:decomp:LL1}:
+\begin{equation}
+  \begin{array}{cccc}
+    \LL{} & y & = & b \\
+    \frac{1}{\sqrt{2}}\mat{rc}
+{
+ 2 & 0 \\
+ -i & \sqrt{3}
+}
+    & \mat{c}{y_{1}\\y_{2}} & = &
+    \mat{c}{1\\2}
+  \end{array}
+\end{equation}
+The intermediate vector is given by this
+\begin{equation}
+  y = \frac{1}{\sqrt{6}}\mat{c}{\sqrt{3}\\2+i}
+\end{equation}
+\item Solve for the solution vector $x$ using backward substitution \eqref{eq:decomp:LL2}:
+\begin{equation}
+  \begin{array}{cccc}
+    \LL{*} & x & = & y \\
+    \frac{1}{\sqrt{2}}
+\mat{rc}
+{
+ 2 & i \\
+ 0 & \sqrt{3}
+}
+    & \mat{c}{x_{1}\\x_{2}} & = &
+    \frac{1}{\sqrt{6}}\mat{c}{\sqrt{3}\\2+i}
+  \end{array}
+\end{equation}
+\end{enumerate}
+The solution vector is
+\begin{equation}
+  x = \mat{c}{x_{1}\\x_{2}} = \mat{c}{2-i\\2+i}.
+\end{equation}
+\begin{equation}
+  \W{x}=LD(LD)=XSSXt
+\end{equation}
+
+
+\endinput

@@ -1,0 +1,277 @@
+\section{Toy problems}
+
+Toy problems afford considerable insight into the method of least squares. These are simple problems which help to build intuition. In all cases the system matrix $\A{}$ does not posses an inverse. These exercises should clarify when one must turn to least squares and what the solution implies.
+
+%%%%%%%%%%%
+\subsection{$\A{}$ is wide}
+Start with a system matrix $\A{}$ which has more columns that rows: $n>m$.
+\begin{equation}
+  \begin{split}
+    \axaeb \\
+    \toymatrixa \xthree &= {\bl{ \dataveca }}.
+  \label{eqn:toy:system:wide}
+ \end{split}
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Subspace decomposition}
+The subspace decomposition for this system is shown in table \eqref{tab:least squares:decomposition:wide}.
+%%%%%%
+\input{chapters/"least squares"/"tab subspace decomposition for wide"}  % table
+%%
+The range space $\brnga{}$ fills $\cmplx{m=2}$, so every data vector must be in the range space. Now the issue is how to handle the solution vector.
+Following the trope of subspace decomposition, we resolve the solution vector into a range and \ns \ component.
+%
+\begin{equation}
+  \begin{split}
+    x &= \rxls +  \xlsr \\
+    \xthree &= {\bl{ \mat{c}{x_{1} \\ x_{2} \\ 0} }} + {\rd{ \mat{c}{0\\0\\x_{3}} }}
+  \end{split}
+\end{equation}
+%
+The image of any vector in the \ns\ $\rnlla{}$ is the origin in $\cmplx{m}$, $\zero$. Therefore the \ns \ contribution is silent:
+\begin{equation}
+  \A{} \paren{\rxls +  \xlsr} = \A{}\, \rxls + \zero = \A{}\, \rxls.
+\end{equation}
+%
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Least squares solution}
+What is the square of the residual error?
+%
+\begin{equation}
+  \begin{split}
+    \normts{\Axmb} 
+      &= \normts{\A{} \paren{{\bl{ \mat{c}{x_{1}\\x_{2}\\0} }} + {\rd{ \mat{c}{0\\0\\x_{3}} }}}  - \datavecb} \\
+      &= \normts{{\bl{ \mat{c}{x_{1}\\x_{2}\\0} }} - \datavecb} \\[3pt]
+      &= \paren{x_{1} - b_{1}}^{2} + \paren{x_{2} - b_{2}}^{2} + b_{3}^{2}.
+  \end{split}
+\end{equation}
+%
+The variables under control are $x_{1}$ and $x_{2}$; the data vector $b$ is an input. This implies that we can drive the difference terms to zero by setting
+%
+\begin{equation}
+  \begin{split}
+    x_{1} &= b_{1}, \\
+    x_{2} &= b_{2}.
+  \end{split}
+  \label{eq:xls soln}
+\end{equation}
+%
+What remains is the residual error $b_{3}^{2}$. Because of the nontrivial \ns \ $\rnlla{}$, equation \eqref{eq:xls soln} implies an infinitude of solutions, one for each value of $x_{3}$. 
+%
+\begin{equation}
+  \xls = \datavecc + \alpha {\rd{ \mat{c}{0\\0\\1} }}, \quad \alpha \in \cmplx{}.
+\end{equation}
+%
+All solutions have the same error, and therefore are equivalent. One might impose an additional criterion to recover a point solution: choose the solution vector of smallest norm. The length of vector on the line is given as
+%
+\begin{equation}
+  \normt{\xls} = \sqrt{ b_{1}^{2} + b_{2}^{2} + \alpha^{2} }.
+\end{equation}
+%
+Since $b_{1}$ and $b_{2}$ are inputs determined by the data vector, the only parameter under control is $\alpha$. And so to \emph{minimize the norm of the solution vector} set
+\begin{equation*}
+  \alpha = 0.
+\end{equation*}
+%
+This convention specifies a solution vector $\xmp$ which is the range space component of the least squares solution:
+%
+\begin{equation}
+  \xmp = \rxls.
+\end{equation}
+%
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Pseudoinverse solution}
+This leaves us with the consistent linear system
+%
+\begin{equation}
+  \A{}\, \xmp = {\bl{ b }}.
+\end{equation}
+The geometry of this special solution is shown in table \eqref{tab:least squares:decomposition:wide}. The dashed red line represents the least squares solution $\xls$. Every point on this line produces the same residual error and by the criterion of least squares, every point is a least squares solution\index{least squares!solution!minimum residual error}. The solution in the range space of the domain, $\brnga{*}$, is the quoted solution $\xmp$. Observe that
+\begin{equation}
+  \normt{\xmp} \le \normt{\xls}
+\end{equation}
+with equality attained only when $\alpha = 0$. Hence, the solution $\xmp$ is the \emph{solution of minimum norm}\index{least squares!solution!minimum norm}. We call this vector the pseudoinverse solution shall study it in the following two chapters. For now, we observe that when the \ns\ $\rnlla{*}$ is no
+\begin{equation}
+  \begin{split}
+    \rnlla{} = \zero &: \qquad \xmp = \bxls , \\
+    \rnlla{} \ne \zero &: \qquad \xmp = \rxls .
+  \end{split}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Singular value decomposition}
+This system can be solved using SVD by inspection\index{singular value decomposition!by inspection}. First the singular values. When a matrix $\A{}$ is diagonal, the singular values are the magnitude of the diagonal entries\index{singular values!for diagonal matrices}.
+%
+\begin{equation}
+  \sigma_{k} = \abs{a_{kk}}, \quad k=1:\rho
+\end{equation}
+%
+Now for the domain matrices. A good place to start is by trying an identity matrix for the codomain, that is $\V{} = \I{2}$. We quickly see that the \asvd\ is this:
+%
+\begin{equation}
+  \begin{split}
+    \svdj, \\
+    \toymatrixa &= \toymatrixsvdw .
+  \end{split}
+\end{equation}
+
+
+
+%%%%%%
+\input{chapters/"least squares"/"tab subspace decomposition for wide landscape"}  % table
+
+
+%%%%%%%%%%%
+\subsection{$\A{}$ is tall}
+Now examine the case where the system matrix which has more columns that rows: $m > n$. This corresponds to an overdetermined system where there are more measurements than free parameters.
+The toy problem involves a data vector $b$ which is clearly in the column space of the matrix $\A{}$.
+\begin{equation}
+\begin{split}
+  \axaeb \\
+  \toymatrix {\bl{ \xtwo }} &= {\bl{ \datavecc }}
+  \label{eqn:toy:system:tall}
+ \end{split}
+\end{equation}
+%
+Such a system is consistent and one may use Gaussian elimination to find the answer
+\begin{equation}
+  {\bl{ \xtwo }} = {\bl{ \dataveca }}.
+  \label{eq:ls:rudiments:soln}
+\end{equation}
+This is also the least squares solution. The situation changes significantly when the data has a nonzero component in the $x_{3}$ direction.
+\begin{equation}
+  \begin{split}
+    \axaeb \\
+    \toymatrix {\bl{ \xtwo }} &= \datavecb, \quad b_{3} \ne 0.
+ \end{split}
+ \label{eqn:tall:inconsistent}
+\end{equation}
+There is no solution for this linear system. Yet instead of seeking an exact solution we look for the best solution $\bxls$. How close can we get? We turn to the subspace decomposition in table \eqref{tab:least squares:decomposition:tall}.
+%%%%%%
+\input{chapters/"least squares"/"tab subspace decomposition for tall"}  % table
+%
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Subspace decomposition}
+Let's view this case as an extension of the previous instance; express the new data vector as a combination of the previous data vector and the new component which ``breaks'' the problem:
+%
+\begin{equation}
+  \begin{split}
+     b &= \datarange + \datanull \\
+     \datavecb &= {\bl{ \datavecc }} + {\rd{ \mat{c}{0\\0\\b_{3}} }}
+  \end{split}
+\end{equation}
+%
+This is an orthogonal decomposition of the data vector in terms of a range space component $\datarange$ and a \ns \ component $\datanull$. 
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Least squares solution}
+There are different strategies for finding $\xls$. One is to take a perturbed solution vector
+\begin{equation}
+  {\bl{ x_{\eps} }} = {\bl{ \xls + \eps }} = {\bl{ \mat{c}{x_{1} + \eps_{1} \\ x_{2} + \eps_{2}} }}
+\end{equation}
+and ask how the perturbation affects the solution. If we use the Pythagorean theorem to measure the distance between the data vector and the image of the solution vector we find
+%
+\begin{equation}
+  \normts{\A\,{\bl{ x_{\eps} }} - b} = \normts{{\bl{ \mat{c}{x_{1} + \eps_{1} \\ x_{2} + \eps_{2} \\ 0} }} - \datavecb} = \eps_{1}^{2} + \eps_{2}^{2} + b_{3}^{2}.
+\end{equation}
+%
+The final quantity on the right is the residual error\index{least squares!residual error} and the goal is to make this error as small as possible.
+We only have control over the two $\eps$ terms as the component $b_{3}$ is an input. To minimize 
+\begin{equation*}
+  \eps_{1}^{2} + \eps_{2}^{2} + b_{3}^{2}
+\end{equation*}
+is to enforce $\eps = 0$:
+\begin{equation}
+  \begin{split}
+    \eps_{1} &= 0, \\
+    \eps_{2} &= 0. 
+  \end{split}
+\end{equation}
+The least squares solution is the same as \eqref{eq:ls:rudiments:soln}
+\begin{equation}
+  \bxls = {\bl{ \mat{c}{x_{1} \\ x_{2} } }}.
+\end{equation}
+The inconsistent problem in \eqref{eqn:tall:inconsistent} has been replaced by the consistent system
+%
+\begin{equation}
+  \A{}\, \bxls = \datarange.
+\end{equation}
+This solution is shown geometrically in figure \eqref{fig:least squares:projection}.
+%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   %left, bottom, right and top
+   \includegraphics[ trim = 0cm 2.5cm 0cm 2cm, clip=true ]{images/"least squares"/"least squares tall codomain"} 
+   \caption[The geometry of least squares]{The geometry of least squares. The column space $\cmplx{m=3}$ is resolved into a range space $\brnga{}$ (blue plane) and an orthogonal \ns \ $\rnlla{*}$ (red line). Because the data vector $b$ is not in the range space there is no direct solution. We may relax the solution criterion: instead of looking for an exact solution, find the vector in the range space which is closest to the data vector. This vector is $\Axls$.}
+   \label{fig:least squares:projection}
+\end{figure}
+%%
+\input{chapters/"least squares"/"tab subspace decomposition for tall landscape"}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Singular value decomposition}
+As before, the singular values are harvested from the diagonal system matrix $\A{}$. Here too an identity matrix for the codomain: that is $\V{} = \I{3}$. The \asvd\ is then:
+%
+\begin{equation}
+  \begin{split}
+    \svdj, \\
+    \toymatrix &= \toymatrixsvdt .
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{Pathological case $\datarange = 0$}
+The Method of Least Squares is the most general method for solving linear systems. When the linear system is consistent and has an exact solution the Method finds the same solution and $\xmp=\xbl$. When the system is inconsistent no exact solution exists and the Method will find the best solution $\xmp$. This begs the question of when the solution will exist. There will always be a nontrivial least squares solution as long as the range space component is not zero: $\datarange \ne 0$. If there is no range space component for the data vector the least squares solution is the zero vector. A demonstration follows.
+
+Let's return to equation \eqref{eqn:tall:inconsistent} and this time put the data vector in the \ns\ $\rnlla{*}$.
+%
+\begin{equation}
+    \toymatrix {\bl{ \xtwo }} = {\rd{ \mat{c}{0\\0\\b_{3} }}}
+ \label{eqn:tall:pathological}
+\end{equation}
+%
+Because every point in the \ns\ $\rnlla{*}$ maps to the origin of $\brnga{*}$, we find the trivial solution.
+%
+\begin{equation}
+  \xtwo = \zerotwo
+\end{equation}
+%
+Another way to state this result is to say that the preimage of any point in the \ns\ $\rnlla{*}$ is the origin. Notice the solution vector is rendered in black. Certainly the origin in the domain $\brnga{*}$ would be colored blue, but here that point represents the trivial \ns. Neither blue nor red would be appropriate.
+
+
+%%%%%%%%%%%
+\subsection{Epitome}
+The solution to the prototype linear system
+\begin{equation*}
+  \axeb
+\end{equation*}
+falls into two general classifications: trivial or nontrivial. Classification is determined by whether the data vector has a component in the range space $\brnga{}$.
+%%%
+\begin{enumerate}
+%
+  \item Nontrivial solution: $\datarange \ne 0$
+  \subitem Consistent system: exact solution exists $\normt{\Axmb} = 0$
+  \subitem Inconsistent system: no exact solution, minimize $\normt{\Axmb}$
+%
+  \item Trivial solution: $\datarange = 0$
+ %
+\end{enumerate}
+%%%
+
+One point is clear. The least squares solution on sees the projection of the data vector into the range space $\brnga{}$. In some sense, we are discarding the the \ns\ component. The trivial nature of these toy problems allows us to quickly discard the \ns\ components. In the following section we will generalize this procedure.
+
+
+\endinput

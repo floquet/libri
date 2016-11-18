@@ -1,0 +1,301 @@
+\section{Simple example}
+What are the solutions to the linear system
+\begin{equation}
+  \begin{split}
+    \A{}x &= y \\
+    \mat{cc}{1 & 0 \\ 0 & 1 \\ 0 & 0}
+    \mat{c}{x_{1} \\ x_{2}} &=
+    \mat{c}{y_{1} \\ y_{2} \\ y_{3}}?
+  \end{split}
+\end{equation}
+We can rewrite the left hand side in a more telling form:
+\begin{equation}
+  \A{}x = x_{1} \mat{c}{1\\0\\0} + x_{2} \mat{c}{0\\1\\0}.
+\end{equation}
+There is no solution for this system when $y_{3}$ is different from 0. For example, if
+\begin{equation}
+  y = \mat{c}{0\\0\\1}
+\end{equation}
+there is no solution. If
+\begin{equation}
+  y = \mat{c}{a\\b\\0}
+\end{equation}
+the solution is 
+\begin{equation}
+  x = \mat{c}{a\\b}.
+\end{equation}
+
+
+\begin{equation}
+  \mat{c}{x_{1} \\ x_{2}} = \mat{c}{y_{1} \\ y_{2}} + \alpha \mat{r}{1 \\ -1}
+\end{equation}
+where $\alpha$ is an arbitrary complex constant.
+
+
+
+\section{An example from the method of least squares}
+
+Here we will use the \svdl \ to solve a basic problem in linear algebra using the workhorse method of least squares. This example is constructed to be simple enough to solve with pencil and paper to allow the reader to follow along and duplicate building the solution. This will reinforce the presentation and demonstrate the simplicity of the process.
+
+The sample problem is this: find all of the least squares solutions to the linear system
+%%
+\begin{equation}
+\begin{array}{cccc}
+    \A{} & \xi & = & \phi\\
+    \Aexample &
+    \mat{c}{\xi\\ \eta}
+    & = &
+    \phivector.
+\end{array}
+\label{eq:simple:problem}
+\end{equation}
+
+If you are comfortable with least squares problems you may want to skip ahead to \S \eqref{sec:svd}. Otherwise the following material which builds up the problem should be helpful.
+
+%%
+\subsection{The generic problem in least squares}
+This class of problems is characterized in the literature as $\ls$. In the context of least squares the terms have the following meanings. The desired solution is the vector $x$ which contains the fit parameters. The inputs are the matrix $\A{}$ which encodes information about the measurement device and the vector $b$ which contains the data, the recurring measurement. Schematically we have the following:
+%%
+\begin{equation}
+  \begin{array}{cccc}
+  \text{device} & \text{solution} && \text{measurement}\\
+  \A{} & x & = & b\\
+  \text{input} & \text{output} && \text{input}\\
+  \text{matrix} & \text{vector} && \text{vector}\\
+  \end{array}
+\end{equation}
+The matrix $\A{}$ is called the device matrix\index{device matrix} or the system matrix\index{system matrix}. The vector $b$ is called the data vector\index{data vector} or the measurement vector\index{measurement vector}. The output vector $x$ is called the solution vector\index{solution vector} or the parameter vector\index{parameter vector}.
+
+If the device matrix is not singular it can be inverted and the solution vector for the system is
+\begin{equation}
+  x=\A{-1}b.
+\end{equation}
+This solution is unique. However, the more interesting cases, and the case studied here, do not have a single solution and the device matrix cannot be inverted. But these cases can be solved using the method of least squares.
+
+%%
+\subsection{The example}
+Consider a probe which measures over a plane a scalar value $\phi$, such as the electrostatic field. At every position the scalar field has a unique value. However when measurements are repeated at a location the measurement usually varies from earlier values due to instrumental uncertainties. The measurement sequence\index{measurement sequence} consists of recording the probe position and the value of the measurement. 
+
+%%
+\subsubsection{Problem specification}
+Table \eqref{tab:2:taxon} details the specification of this problem. Such a table is a good way to start least squares problems. Failure to specify the problem often leads to failure to find the solution.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{llc}
+  type & quantity & variables \\ \hline
+  model & $f(x,y) = \phi$ & $\xi x + \eta y = \phi$ \\[3pt]
+  merit function & $M(\xi)$ & $\paren{\A{}\xi - \phi}^{\mathrm{T}}\cdot\paren{\A{}\xi - \phi}$ \\[3pt]
+  fixed input & measurement locations &
+  $\mat{c}
+  {
+  x_{k}\\[3pt]
+  y_{k}
+  }$ \\[3pt]
+  recurring input & measurements & $\phi_{k}$ \\[2pt]
+  output & fit parameters &
+  $\mat{c}
+  {
+  \xi\\
+  \eta
+  }$ \\
+\end{tabular}
+\end{center}
+\caption[Bilinear fit parameters]{Bilinear fit parameters. Start the solution by specifying the problem. Identify the model and the merit function. Distinguish between inputs and outputs.}
+\label{tab:2:taxon}
+\end{table}%
+
+%%
+\subsubsection{Solution strategies}
+The matrix form for this model is
+\begin{equation}
+  \A{}\xi = \phi.
+  \label{eq:2:ls}
+\end{equation}
+The $\by{n}{d}$ system  matrix $\A{}$ encodes information about the device because it relates where measurements were taken over a domain of $d$ dimensions. The $n-$vector $\phi$ contains the $n$ measurement values. The $d-$vector $\xi$ is the parameter vector\index{parameter vector} or the solution vector\index{solution vector}. Finding the solution vector is an inverse problem because we must invert equation \eqref{eq:2:ls} to solve for the parameter vector. This solution represents a point in an abstract parameter space.
+
+To solve the problem one could minimize the summation form of the merit function 
+\begin{equation}
+M(\xi)=\sum_{k=1}^{n}{\paren{\xi x_{k} + \eta y_{k} - \phi_{k}}}^{2}.
+\end{equation}
+This will lead to the \textit{normal equations}\index{normal equations}:
+\begin{equation}
+  \A{T}\A{}\xi = \A{T} \phi.
+  \label{eq:2:normal}
+\end{equation}
+The problem with these normal equations is that they degrade the quality of solution. If the condition number of equation \eqref{eq:2:ls} is $\kappa$, the condition number of the normal equations of equation \eqref{eq:2:normal} is $\kappa^{2}$. In ill-posed problems this can be a fatal flaw. So why use the normal equations? Because often times the data vector is not in the range of $\A{}$, but the vector $\A{T}\phi$ will be in the range of $\A{T}\A{}$. (See problem 7.)
+
+Note however that if the system is large, the product matrix will be much smaller. The dimensions are
+\begin{equation}
+  \A{} \in \real{\by{n}{d}}, \quad \prdm{*} \in \real{\by{d}{d}}.
+\end{equation}
+If there were 1000 measurements the system matrix would be $\by{1000}{2}$ while the product matrix would be just $\by{2}{2}$ and much easier to work with. Solving the normal equations is a useful technique, but not of interest here.
+
+The difference between the measurement and the prediction is called the residual error\index{residual error} and is expressed in this form
+\begin{equation}
+  \begin{split}
+    \epsilon_{k} &= (\xi x_{1} + \eta y_{1}) - \phi_{k},\\
+    \text{error} &= \text{prediction} - \text{measurement}.
+  \end{split}
+\end{equation}
+The goal is to minimize the quadratic sum of these errors
+\begin{equation}
+  \epsilon_{k}^{\mathrm{T}}\,\epsilon_{k} = \paren{\A{}\xi - \phi}^{\mathrm{T}}\cdot\paren{\A{}\xi - \phi} = \normt{\A{}\xi - \phi}^{2}.
+\end{equation}
+The ``least'' in least squares implies minimization; ``squares'' implies the $2-$norm $L_{2}$.
+
+%%
+\subsubsection{Data}
+The measurement sequence is shown in table \eqref{tab:2:data}.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{ccc}
+    & location $\paren{\A{}}$ & measurement $\paren{\phi}$ \\ \hline
+  1 & $\mat{c}{x_{1}\\y_{1}}=\mat{r}{1\\-1}$ & $\phi_{1}=2$ \\[13pt]
+  2 & $\mat{c}{x_{2}\\y_{2}}=\mat{r}{-1\\1}$ & $\phi_{2}=1$ \\[13pt]
+  3 & $\mat{c}{x_{3}\\y_{3}}=\mat{r}{1\\-1}$ & $\phi_{3}=0$ \\[13pt]
+\end{tabular}
+\end{center}
+\caption[The measurement sequence]{The measurement sequence. These values form the system matrix $\A{}$ and the data vector $\phi$. The duplicate measurement locations will completely change the nature of the problem and the solution.}
+\label{tab:2:data}
+\end{table}%
+The linear system\index{linear system} is composed of three equations, one for each measurement:
+\begin{equation}
+  \begin{split}
+    \xi x_{1} + \eta y_{1} &= \phi_{1}, \\
+    \xi x_{2} + \eta y_{2} &= \phi_{2}, \\
+    \xi x_{3} + \eta y_{3} &= \phi_{3}.
+  \end{split}
+\end{equation}
+Usually, and in this case, there is no value for the parameters $\xi$ and $\eta$ which solve all three equations. 
+
+The system matrix will be the target matrix and it describes the device because it contains measurement locations:
+\begin{equation}
+  \A{} = \Aexample.
+\label{eq:simple:IamA}
+\end{equation}
+
+The data vector then contains the measurements:
+\begin{equation}
+  \phi = \mat{c}{\phi_{1} \\\phi_{2} \\ \phi_{3}} = \mat{c}{2 \\ 1 \\ 0}.
+  \label{eq:phi}
+\end{equation}
+
+These measurements complete the linear system
+\begin{equation}
+\begin{array}{cccc}
+    \mat{cc}
+    {
+    x_{1} & y_{1} \\
+    x_{2} & y_{2} \\
+    x_{3} & y_{3} \\
+    }
+    &\mat{c}{\xi\\ \eta}
+    &=
+    &\mat{c}
+    {
+    \phi_{1} \\
+    \phi_{2} \\
+    \phi_{3}
+    }, \\[16pt]
+    \Aexample
+    &\mat{c}{\xi\\ \eta}
+    & =
+    &\phivector.
+\end{array}
+\end{equation}
+
+Going back to the concept of a matrix as a set of vectors, we can write the matrix equation in terms of column vectors:
+\begin{equation}
+  \A{} \xi = \xi\, \textbf{x} + \eta\, \textbf{y} = \xi \mat{r}{1\\-1\\1} + \eta \mat{r}{1\\-1\\1} = \mat{c}{2 \\ 1 \\ 0}.
+\end{equation}
+It should be apparent that the data vector is not in the range of the target matrix because there is no way that we can combine these two column vectors to produce the data vector.
+%%
+\subsection{The solution}
+We have covered how we generated the matrix equation
+\begin{equation*}
+\begin{array}{cccc}
+    \A{} & \xi &=& \phi\\
+    \Aexample
+    & \mat{c}{\xi\\ \eta}
+    & =
+    &\phivector
+    \label{eq:2:problem}
+\end{array}
+\end{equation*}
+and motivated the strategy of solving this form instead of the normal equations. Now we explore the solution using the SVD.
+
+%%
+\subsubsection{Diagnosis}
+Step back and inspect problem \eqref{eq:2:problem} from a linear algebra perspective. Is the system matrix $\A{}$ invertible? Is it well conditioned? How many solutions do we expect, one or an infinite number\footnote{Because $\A{}$ is not square it cannot be inverted. Because it cannot be inverted the condition number is not bounded; this is a poorly conditioned matrix. Because of the rank deficiency we expect an infinite number of solutions: a particular solution plus null space vectors scaled by an arbitrary scalars.}?
+
+Examine the \textit{image} of the $\A{}$ matrix:
+\begin{equation}
+  \Aexample \ximatrix = \paren{\xi-\eta}\mat{r}{1\\-1\\1}.
+\end{equation}
+Clearly there is no number $\xi-\eta$ that solves the problem:
+\begin{equation}
+ \paren{\xi-\eta}\mat{r}{1\\-1\\1} = \phivector.
+\end{equation}
+
+This conundrum reminds us that there is only one fundamental column in $\A{}$. The second column is the negative of the first column:
+\begin{equation}
+  \A{} =
+\left(
+\begin{array}{r|r}
+  c_{1} & -c_{1}    
+\end{array}
+\right).
+\end{equation}
+Since there is only one independent column, the matrix rank $\rho = 1$. Since the rank is less than both the number of rows and the number of columns
+\begin{equation}
+  \rho < m, \quad \rho < n,
+\end{equation}
+the problem is singular. Therefore the condition number $\kappa = \infty$ and there are an infinite number of solutions.
+
+%%
+\subsubsection{Solving singular systems}
+Solutions of singular systems like \eqref{eq:2:ls} have the following form:
+\begin{equation}
+  \xi = \xi_{p} + \alpha\, \xi_{h}.
+  \label{eq:fact}
+\end{equation}
+Here $\xi_{p}$ represents a \index{particular solution}\textit{particular solution}, $\xi_{h}$ a \index{homogeneous solution}\textit{homogeneous solution}, and $\alpha$ is an arbitrary scalar. 
+
+The particular solution is a point solution to the least squares problem. Since the data vector is not in the image of the system matrix we know that the solution vector $\A{}\xi_{p}$ does not reach the data vector $\phi$, but it comes as close as possible using the $2-$norm to measure proximity.
+
+The classic diagram that illustrates this point is shown below in figure \eqref{fig:simple:classic}. Simplify the range of the system matrix as a plane. The data vector $\phi$ projects from the origin to a point outside of the plane. This shows that $b$ is not in the range of $\A{}$, that is
+$$
+\phi\notin \rng{\A{}}.
+$$
+The solution that we compute is $\A{+}\xi=\xi_{p}$ and this is the point in the range closest to the data. Expressed another way, the solution vector is the orthogonal projection of the data vector onto the range of $\A{}$.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[]{pdf/simple/projection} 
+   \caption[The geometry of the least squares solution]{The geometry of the least squares solution. The data vector $\phi$ is not in the image of the target matrix. The plane represents $\rnga{}$, the range of $\A{}$. Orthogonal to the range is $\nll{A}$, the null space of $\A{}$. The least squares solution is the orthogonal projection of the data vector into the range. This point $\xi_{p}$ is the particular solution.}
+   \label{fig:simple:classic}
+\end{figure}
+
+The homogeneous solution satisfies the equation
+\begin{equation}
+  \A{}\xi_{h} = \zero.
+\end{equation}
+In this problem, the homogeneous solution is obvious:
+\begin{equation}
+  \Aexample \mat{r}{1\\1} = \mat{c}{0\\0\\0}.
+\end{equation}
+As such,
+\begin{equation}
+  \xi_{h} = \mat{r}{1\\1}.
+  \label{eq:2:xih}
+\end{equation}
+
+%%
+\subsubsection{A special solution via pseudoinverse}
+However, the object of desire is the particular solution. This solution is computed according to the prescription
+\begin{equation}
+  \A{+}\xi = \xi_{p}.
+\end{equation}
+The matrix $\A{+}$ is called the pseudoinverse\index{pseudoinverse} or the generalized matrix inverse\index{generalized matrix inverse}. While we don't know how to construct a pseudoinverse, we will see how the \svdl \ can be exploited to find this special solution.
+
+\endinput

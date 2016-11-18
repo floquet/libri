@@ -1,0 +1,43 @@
+\section{Summary}
+When the pencil shavings and eraser trailings are cleared away a simple process remains. The $\X{}$ matrix is an orthonormal basis for the the vector space induced by the row vectors of $\A{}$. The $\Y{}$ matrix is an orthonormal basis for the the vector space induced by the column vectors of $\A{}$. The $\sig{}$ matrix in between them has these critical properties:
+\begin{itemize}
+\item this matrix is unique;
+\item this matrix has the same shape as the target matrix;
+\item the diagonal singular values matrix $\ess{}$ is embedded and 
+\subitem the singular values are ordered;
+\subitem the singular values are positive;
+\subitem the singular values populate the diagonal.
+\end{itemize}
+ 
+
+To conjure a mental image of the elementary decomposition process table \eqref{tab:simple:summary} shows a schematic interpretation of the the process we have just completed. The column vectors of the target matrix $\A{T}$ and their perpendicular complements are used to build the domain matrix $X{}$. The column vectors of matrix $\A{}$ and their perpendicular complements are used to build the codomain matrix $\Y{}$. In this example, each image space had dimension one which allowed us to harvest the first column for the span of the induced vector spaces.
+
+The top line of the figure represents the calculations used to resolve the domain matrix as shown in \S\eqref{domain}. 
+The bottom line represents the calculation of the codomain matrix as detailed in \S\eqref{codomain}. The middle section refers to the construction of the $\sig{}$ matrix in \S\eqref{scale}.
+
+\begin{landscape}
+\thispagestyle{empty}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccccccccc}
+ &&image space&&null space\\
+ $\A{T}$ & $\to$ & row space & $\to$ & row space$^{\perp}$ & $\to$ & $\X{}$ \\\hline
+ $\Atexample$Ê&&Ê$\stwo\mat{r}{1\\-1}$Ê&&Ê$\stwo\mat{c}{1\\1}$Ê&&Ê$\Xshade$ \\
+  & \\
+  &&&&&&$\downarrow$ \\
+  &&&&&&$\A{}x_{1}=\sigma_{1}y_{1}$ & $\to$ & $\sig{} = \Sigmaexampleb $\\
+  &&&&&&$\uparrow$ \\
+  & \\
+ &&image space&&null space\\
+ $\A{}$ & $\to$ & column space & $\to$ & column space$^{\perp}$ & $\to$ & $\Y{}$ \\\hline
+ $\Aexample$Ê&&Ê$\sthree\mat{r}{1\\-1\\1}$Ê&&Ê$\lst{\stwo\mat{c}{0\\1\\1},Ê\ssix\mat{r}{2\\1\\-1}Ê}$Ê&&Ê$\Yshade$ \\
+\end{tabular}
+\end{center}
+\label{tab:simple:summary}
+\caption{This special case for the \svdl \ involves using $\A{}$ to construct the codomain matrix $\Y{}$, using $\A{T}$ to construct the domain matrix $\X{}$ and then using these domain matrices to construct $\sig{}$. To construct the codomain and domain spaces extract the first column vector from $\A{}$ and $\A{T}$ respectively, then construct perpendicular vectors for the null space.}
+\end{table}%
+
+\end{landscape}
+
+\endinput

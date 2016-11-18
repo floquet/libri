@@ -1,0 +1,76 @@
+\section{Fundamental projectors}
+
+%%%%%%%%%%%
+\subsection{Defintions}
+Start with the usual matrix $\aicmnr$. Take a vector in the codomain, $x\in\cmplxn$
+%
+\begin{equation}
+  \pras \, x = {\bl{ y }}, \quad \pna  \, x = {\rd{ z }}
+\end{equation}
+%
+Here the vector ${\bl{ y }}\in\cmplx{n}{1}$ is in the range of the matrix $\A{*}$ and ${\rd{ z }}$ is in the \ns \ of $\A{}$. That is,
+\begin{equation}
+  {\bl{ y }} \in \brnga{*}, \quad {\rd{ z }} \in \rnlla{}
+\end{equation}
+
+Now take a vector in the domain, $x\in\cmplxm$
+%
+\begin{equation}
+  \pra  \, x  = {\bl{ y }}, \quad \pnas \, x  = {\rd{ z }}
+\end{equation}
+
+Here the vector ${\bl{ y }}$ is in the range of the matrix $\A{}$ and ${\rd{ z }}$ is in the \ns \ of $\A{*}$. That is,
+%
+\begin{equation}
+  {\bl{ y }} \in \brnga{}, \quad {\rd{ z }} \in \rnlla{*}
+\end{equation}
+
+
+
+%%%%%%
+\input{chapters/"projectors"/"tab fundamental projectors"}                            % table
+\input{chapters/"projectors"/"tab projection operators and domains"}                  % table
+\input{chapters/"projectors"/"tab mapping properties of the fundamental projectors"}  % table
+
+%%
+
+%%%%%%%%%%%
+\subsection{Orthogonal resolution}
+As one may suspect, these orthogonal projectors provide an orthogonal decomposition for vectors in the domains. For $\aicmnr$, $\xi\icn$ and $\eta\icm$. The fundamental projectors resolve vectors into range and \ns \ components.
+
+The product matrices
+\begin{equation}
+  \begin{split}
+    \eta &= \pra  \, \eta + \pnas \, \eta \\
+    \xi  &= \pras \, \xi  + \pna  \, \xi 
+  \end{split}
+\end{equation}
+%%
+\begin{table}[htdp]
+\caption[Range and \ns \ decompositions for arbitrary vectors]{Range and \ns \ decompositions for arbitrary vectors. As always, $\aicmnr$ and $\eta\icm$, $\xi\icn$.}
+\begin{center}
+\begin{tabular}{rcccc}
+%
+   && $\in{\bl{ \atomrng }}$ && $\in{\rd{ \atomnll }}$ \\\hline
+%
+  $\eta$ &=& $\pra  \, \eta$ &+& $\pnas \, \eta$ \\
+%
+  $\xi$  &=& $\pras \, \xi$  &+& $\pna  \, \xi$
+%
+\end{tabular}
+\end{center}
+\label{tab:projectors:range and null spaces}
+\end{table}
+%%
+The product matrices
+\begin{equation}
+  \begin{split}
+    \pra  + \pnas = \AAp &= \W{u} \\
+    \pras + \pna  = \ApA &= \W{v} 
+  \end{split}
+\end{equation}
+
+
+%%
+
+\endinput

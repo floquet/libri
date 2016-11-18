@@ -1,0 +1,28 @@
+\section{Adding noise}
+At each step, pick a random pixel $p$ and add noise uniformly distributed $\eps\in\brac{-0.05,0.05}$:
+%
+\begin{equation}
+  \A{}_{p} \to \A{}_{p} + \eps
+\end{equation}
+%
+Eventually the noise overwhelms and destroy the image.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{images/"information content I"/noise/"noise singular values envelope"} 
+   \caption[The change in the singular value spectra as random noise is added to the image]{The change in the singular value spectra as random noise is added to the image.}
+   \label{fig:noise:spectra}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{images/"information content I"/noise/"noise singular values envelope zoom"} 
+   \caption[The crossover in the singular value spectra as random noise is added]{The crossover in the singular value spectra as random noise is added.}
+   \label{fig:noise:spectra zoom}
+\end{figure}
+
+%%%%%%
+\input{chapters/"information content I"/"tab adding random noise to an image"}  % table
+
+
+\endinput

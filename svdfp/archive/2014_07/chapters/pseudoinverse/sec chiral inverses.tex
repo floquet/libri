@@ -1,0 +1,104 @@
+\section{Chiral inverses}
+The pseudoinverse leads to the concept of a chiral inverse. We characterize the pseudoinverse  according to its action on the right and left-hand side of the target matrix $\A{}$. 
+
+%%%%%%%%%%%
+\subsection{Definition}
+For instance, if we have
+\begin{equation}
+  \ApA = \I{n}
+\end{equation}
+the pseudoinverse would be classified as a left-inverse
+\footnote{One may contend that a consistent nomenclature would call the left-handed inverse aristerochiral and the right-handed inverse dextrochiral. Here we defer to colloquialism.}
+ [example matrix b, \eqref{eq:matrix b}]. If the inverse if ampichiral then
+\begin{equation}
+  \AAp = \ApA = \I{m}
+\end{equation}
+This property defines the standard inverse [example matrix c, \eqref{eq:matrix c}]. The pseudoinverse is ambichiral when
+\begin{equation}
+  \begin{split}
+    \AAp &\ne \I{m}, \\
+    \ApA &\ne \I{n}.
+  \end{split}
+\end{equation}
+
+[example matrix a, \eqref{eq:matrix c}].
+
+
+%%%%%%
+\input{chapters/pseudoinverse/"tab chiral inverses"}  % table
+\input{chapters/pseudoinverse/"tab chiral inverses and null spaces"}  % table
+\input{chapters/pseudoinverse/"tab equivalence in defining the pseudoinverse chirality"}  % table
+%%%%%%%%%%%
+\subsection{Example matrices}
+The three example matrices demonstrate the different kinds of chiral inverses, ampichiral, ambichiral and a definite chirality. To classify the chirality we compute the matrix products $\ApA$ and $\AAp$. In the next chapter we learn of the geometric significance of these forms.
+
+%%%%%%%%%%%
+\subsubsection{Example matrix (a): ampichiral inverse}
+The block structure of the \asvd \ is this.
+\begin{equation}
+  \A{} = \matrixa = \csvdblockb{*}.
+\end{equation}
+The left \ns \ is nontrivial, therefore the pseudoinverse is not a left inverse.
+The right \ns \ is nontrivial, therefore the pseudoinverse is not a right inverse.
+Therefore the pseudoinverse is ampichiral.
+
+\begin{equation}
+  \begin{split}
+    \ApA &= \prasa \\
+    \AAp &= \praa
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsubsection{Example matrix (b): definite chirality}
+The left \ns \ is trivial, therefore the pseudoinverse is a left inverse.
+The right \ns \ is nontrivial, therefore the pseudoinverse is not a right inverse.
+Therefore the pseudoinverse had a definite chirality.
+\begin{equation}
+  \A{} = \matrixb = \csvdblockbc{*}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \ApA &= \prasb = \I{2} \\
+    \AAp &= \prab
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsubsection{Example matrix (c): ambichiral}
+The left \ns \ is trivial, therefore the pseudoinverse is a left inverse.
+The right \ns \ is trivial, therefore the pseudoinverse is a right inverse.
+Therefore the pseudoinverse is ambichiral.
+\begin{equation}
+  \A{} = \matrixc = \svdblockbf{*}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \ApA &= \prasc = \I{2} \\
+    \AAp &= \prac = \I{2}
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{How close do we get to the identity?}
+
+\begin{equation}
+  \begin{split}
+    \normt{ \ApA - \I{n} } &= 1, \\
+    \normt{ \AAp - \I{m} } &= 1.
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{Exercises}
+\begin{enumerate}
+%
+\item Under what circumstances can a matrix $\aicmnr$ have ambichiral inverses when $m\ne n$?
+%
+\item Under what circumstances can a matrix $\aicmnr$ have ambichiral inverses when $m\ne n$?
+%
+\end{enumerate}
+
+
+
+\endinput

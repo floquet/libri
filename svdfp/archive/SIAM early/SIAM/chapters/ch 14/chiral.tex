@@ -1,0 +1,420 @@
+\section{Chiral inverses}
+\label{sec:chiral}
+Chiral matrix inverses are inverses which operate on the left- or right-hand side of the target matrix. In analogy with the concept of chirality in chemistry, the chiral inverses have different shapes; in fact they are transposes.
+
+%%
+\subsection{Definitions}
+For a target matrix $\A{}\in\cmplx{\by{m}{n}}_{\rho}$ the pseudoinverse $\Ap\in\cmplx{\by{n}{m}}_{\rho}$. That is the pseudoinverse has the shape of the transpose of the target matrix and retains the same rank. Figure \eqref{fig:mpp:chiral} shows when the pseudoinverse will be a chiral inverse. When the target matrix has full row rank ($\rho=m$), the pseudoinverse $\Ap$ is a right inverse. When the matrix has full column rank $\Ap$ is a left inverse. When the target matrix has full row and column rank it is square and the pseudoinverse is the standard inverse: $\Ap=\A{-1}$.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{l|clc}
+chirality, $\chi$ & requirement & equivalence & expression\\\hline
+right & $\rho = m$ & $\Ap=\AinvR$ & $\rightinv=\I{m}$\\
+left  & $\rho = n$ & $\Ap=\AinvL$ & $\leftinv=\I{n}$\\
+ambichiral & $\rho=m=n$ & $\Ap=\A{-1}$ & $\rightinv=\leftinv=\I{m}$\\
+ampichiral & $\rho< m,\rho< n$ & \quad none & $\rightinv\ne\I{m},\ \leftinv\ne\I{n}$\\
+\end{tabular}
+\end{center}
+\label{fig:mpp:chiral}
+\caption[Conditions for when the pseudoinverse is a chiral inverse]{Conditions for when the pseudoinverse is a chiral inverse. The conditions are when the target matrix has either full row rank or full column rank.}
+\end{table}%
+
+Examine cases illustrating the four different classifications for the actions of the pseudoinverse. The rules are basic:
+\begin{enumerate}
+\item If the matrix has full \textit{row} rank, the pseudoinverse is a \textit{right} inverse.
+\begin{equation}
+  \rho = m: \quad \Ap = \AinvL
+\end{equation}
+\item If the matrix has full \textit{column} rank, the pseudoinverse is a \textit{left} inverse.
+\begin{equation}
+  \rho = n: \quad \Ap = \AinvR
+\end{equation}
+\end{enumerate}
+
+From this we conclude that if the matrix has full row rank and full column rank the pseudoinverse both a left and right inverse. That is, the pseudoinverse in the classic inverse.
+
+We also conclude that if the matrix is rank deficient in both row and column then the pseudoinverse in neither a right not a left inverse.
+
+Examples of all four cases follow.
+
+%%%
+\subsection{Ambichiral or classic inverse: $\Ap = \A{-1}$}
+What are the two rank conditions?
+\begin{enumerate}
+\item The matrix has full row rank: $\rho = m$.
+\item The matrix has full column rank: $\rho = n$.
+\end{enumerate}
+Therefore the matrix has $\rho$ row and $\rho$ columns. Therefore it is square and of full rank. We don't know what the rank is or what the size is, but we can state
+\begin{equation}
+  \rho = m = n.
+\end{equation}
+
+Choose a target matrix $\Arrr{2}{2}{2}$.
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \matrixalpha &=
+    & \matrixalphaY 
+    & \matrixalphasigma 
+    & \matrixalphaXt.
+  \end{array}
+\end{equation*}
+The pseudoinverse is given by
+\begin{equation*}
+  \begin{array}{ccccc}
+    \Ap &=& \X{} & \sig{(+)} & \Y{T} \\
+    \matrixalphapi &=
+    & \matrixalphaX 
+    & \matrixalphasigmapi
+    & \matrixalphaYt.
+  \end{array}
+\end{equation*}
+The matrix products produce the same result:
+\begin{equation*}
+  \begin{array}{cccc}
+  \A{}&\Ap&=&\I{2},\\
+  \matrixalpha &
+  \matrixalphapi & = &
+  \itwo;\\[25pt]
+  \Ap&\A{}&=&\I{2},\\
+  \matrixalphapi &
+  \matrixalpha & = &
+  \itwo.
+  \end{array}
+\end{equation*}
+
+\subsection{Right inverse only: $\Ap=\AinvR$}
+What are the two rank conditions?
+\begin{enumerate}
+\item The matrix has full row rank: $\rho = m$.
+\item The matrix has partial column rank: $\rho < n$.
+\end{enumerate}
+Therefore the matrix has $\rho$ rows and $\rho$ columns. Therefore it is square and of full rank. We don't know what the rank is or what the size is, but we can state
+\begin{equation}
+  \begin{split}
+     \rho = m,\\
+     \rho < n.
+  \end{split}
+\end{equation}
+
+Consider a target matrix $\Arrr{2}{3}{2}$.
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} &=& \Y{} & \sig{} & \X{T}\\
+  \matrixbravo &=
+  & \matrixbravoY  
+  & \matrixbravosigma
+  & \matrixbravoXt.
+  \end{array}
+\end{equation*}
+The pseudoinverse is constructed in this fashion:
+\begin{equation*}
+  \begin{array}{ccccc}
+    \Ap &=& \X{} & \sig{(+)} & \Y{T} \\
+    \matrixbravopi &=
+    & \matrixbravoX 
+    & \matrixbravosigmapi
+    & \matrixbravoYt.
+  \end{array}
+\end{equation*}
+Postmultiplication by the pseudoinverse produces an identity matrix:
+\begin{equation*}
+  \begin{array}{cccc}
+    \A{}&\Ap&=&\I{2},\\
+   \matrixbravo &
+   \matrixbravopi &=&
+   \itwo.
+  \end{array}
+\end{equation*}
+The complementary result is not as nice. Premultiplication by the pseudoinverse produces this result:
+\begin{equation*}
+  \begin{array}{cccc}
+    \Ap&\A{}&\in&\real{\by{3}{3}}_{2},\\
+   \matrixbravopi &
+   \matrixbravo &=&
+   \frac{1}{5}
+   \mat{ccc}
+   {
+   1&0&2\\
+   0&5&0\\
+   2&0&4
+   }.
+  \end{array}
+\end{equation*}
+
+%%%
+\subsection{Left inverse only: $\Ap = \AinvL$}
+The two rank conditions are these:
+\begin{enumerate}
+\item The matrix has partial row rank: $\rho < m$.
+\item The matrix has full column rank: $\rho = n$.
+\end{enumerate}
+These two statements are equivalent to these mathematical relationships:
+\begin{equation}
+  \begin{split}
+     \rho &= n, \\
+     \rho &< m
+  \end{split}
+\end{equation}
+
+The target matrix for this example is $\A{}\in\cmplx{\by{3}{2}}_{2}$
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{T},\\
+  \mat{rr}{1&2\\0&2i\\1&-2} &=&
+  \left[
+\begin{array}{rc>{\columncolor{ltgray}}r}
+  \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{6}} \\
+  \frac{i}{\sqrt{3}} & 0 & \frac{2i}{\sqrt{6}} \\
+ -\frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}}
+\end{array}
+\right] &
+\left[
+\begin{array}{cc}
+ 2 \sqrt{3} & 0 \\
+ 0 & \sqrt{2} \\\hline
+ 0 & 0
+\end{array}
+\right] &
+\left[
+\begin{array}{cc}
+ 0 & 1 \\
+ 1 & 0
+\end{array}
+\right]
+  \end{array}.
+\end{equation*}
+The pseudoinverse is constructed as so:
+\begin{equation*}
+  \begin{array}{ccccc}
+  \Ap & = & \X{} & \index{Sigma matrix!inverse}\sig{(+)} & \Y{*},\\
+  \frac{1}{6}\left[
+\begin{array}{crr}
+ 3 & 0 & 3 \\
+ 1 & -i & -1
+\end{array}
+\right] &=&
+  \left[
+\begin{array}{cc}
+ 0 & 1 \\
+ 1 & 0
+\end{array}
+\right]&
+\left[
+\begin{array}{cc|c}
+ \frac{1}{2 \sqrt{3}} & 0 & 0 \\
+ 0 & \frac{1}{\sqrt{2}} & 0
+\end{array}
+\right] &
+\left[
+\begin{array}{rcr}
+  \frac{1}{\sqrt{3}} & \frac{i}{\sqrt{3}} & -\frac{1}{\sqrt{3}} \\
+  \frac{1}{\sqrt{2}} & 0                  &  \frac{1}{\sqrt{2}} \\
+  \rowcolor{ltgray}
+ -\frac{1}{\sqrt{6}} & \frac{2i}{\sqrt{6}} & \frac{1}{\sqrt{6}}
+\end{array}
+\right].
+\end{array}
+\end{equation*}
+Premultiplcation by the pseudoinverse produces an identity matrix:
+\begin{equation*}
+  \begin{array}{cccc}
+  \Ap&\A{}&=&\I{2},\\
+  \frac{1}{6}\left[
+\begin{array}{crr}
+ 3 &  0 & 3 \\
+ 1 & -i & -1
+\end{array}
+\right] &
+  \mat{rr}{1&2\\0&2\\1&-2} & = &
+  \itwo.
+  \end{array}
+\end{equation*}
+Postmultiplcation by the pseudoinverse does not produce an identity matrix:
+\begin{equation*}
+  \begin{array}{cccc}
+  \A{}&\Ap&\in&\real{\by{3}{3}}_{2},\\
+  \mat{rr}{1&2\\0&2i\\1&-2} &
+  \frac{1}{6}\left[
+\begin{array}{crr}
+ 3 &  0 & 3 \\
+ 1 & -i & -1
+\end{array}
+\right]
+   & = &
+  \frac{1}{6}
+\left[
+\begin{array}{crr}
+ 5 & -2 i & 1 \\
+ 2 i & 2 & -2 i \\
+ 1 & 2 i & 5
+\end{array}
+\right]
+  \end{array}
+\end{equation*}
+
+%%%
+\subsection{Ampichiral or generalized inverse: $\Ap\ne\AinvB$}
+The two rank conditions are these:
+\begin{enumerate}
+\item The matrix has partial row rank: $\rho < m$.
+\item The matrix has partial column rank: $\rho < n$.
+\end{enumerate}
+
+The target matrix $\A{}\in\real{\by{3}{2}}_{1}$ is studied in the first chapter and the \svdl \ is presented in equation \eqref{eq:simple:svd}; the pseudoinverse is given in equation \eqref{eq:simple:mppdecomp}. The multiplicative properties follow.
+
+%%%
+Multiplication on the left by the pseudoinverse does not produce an identity matrix:
+\begin{equation*}
+  \begin{array}{cccc}
+  \Ap&\A{}&\in&\real{\by{2}{2}}_{1},\\
+  \Aexamplepi &
+  \Aexample 
+   & = &
+  \frac{1}{2}
+  \mat{rrr}{1&-1&\\-1&1}
+  \end{array}.
+\end{equation*}
+
+%
+Multiplication on the right by the pseudoinverse does not produce an identity matrix:
+\begin{equation*}
+  \begin{array}{cccc}
+  \A{}&\Ap&\in&\real{\by{3}{3}}_{1},\\
+  \Aexample &
+  \Aexamplepi
+   & = &
+  \frac{1}{3}
+  \mat{rrr}{1&-1&1\\-1&1&-1\\1&-1&1}
+  \end{array}.
+\end{equation*}
+
+%%
+\section{The $\sig{}$ matrix}
+The condition for the chirality of the pseudoinverse is encoded in the $\sig{}$ matrices. That is, we can classify the chirality of the inverse (left, right, both, neither) simply by inspecting the $\sig{}$ matrix. 
+
+These conditions are summarized in table \eqref{tab:mpp:chiralsigma}.
+%%%%
+\begin{table}[htdp]
+\begin{center}
+%
+\begin{tabular}{l|rclcrcl}
+    $\chi$  & product  && & iff & condition \\\hline
+    left  & $\leftinv$  &$=$& $\I{n}$ & $\iff$ & $\sig{(+)}\sig{}$ &=& $\I{n}$\\
+    right & $\rightinv$ &$=$& $\I{m}$ & $\iff$ & $\sig{}\sig{(+)}$ &=& $\I{m}$\\
+    both  & $\rightinv = \leftinv$ &$=$& $\I{m}=\I{n}$ & $\iff$ & $\sig{}\,\sig{(+)}=\sig{(+)}\sig{}$ &=& $\I{m}$\\
+    neither  & $\rightinv $ &$\ne$& $\I{m}$ & $\iff$ & $\sig{}\,\sig{(+)}$ &$\ne$& $\I{m}$\\
+             & $\leftinv $  &$\ne$& $\I{n}$ &        & $\sig{(+)}\,\sig{}$ &$\ne$& $\I{n}$\\[5pt]
+\end{tabular}
+%
+\end{center}
+\label{tab:mpp:chiralsigma}
+\caption[Necessary and sufficient conditions to classify chirality]{The necessary and sufficient conditions to classify the chirality of the pseudoinverse can be expressed in terms of the $\sig{}$ matrix.}
+\end{table}%
+
+In this case with full row rank the pseudoinverse is also a \index{right inverse}right inverse. In this case with full column rank the pseudoinverse is also a \index{left inverse}left inverse. When the matrix has full rank (the column rank equals the row rank) the pseudoinverse reverts to being the standard inverse. Table \eqref{tab:pmii:rank} summarizes these points.
+\begin{table}[bottom]
+\begin{center}
+\begin{tabular}{lll}
+rank condition   & \ parameters \ & \ inverse condition\\\hline\hline
+full row rank    & \ $\rho = m $  & \ $\Ap = \AinvR$ \\[3pt]
+full column rank & \ $\rho = n $  & \ $\Ap = \AinvL$ \\[3pt]\hline
+full row and column rank \ & \ $\rho = m = n $ \ & \ $\Ap = \AinvL = \AinvR$\\  row and column rank deficit \ & \ $\rho < m, \rho < n $ \ & \ $\Ap \ne \AinvB$ \\[6pt]
+\end{tabular}
+\end{center}
+\label{tab:pmii:rank}
+\caption[Classifications of the pseudoinverse]{Classifications of the pseudoinverse depend upon the rank condition of the target matrix. We see a concise definition of when the pseudoinverse is also the standard matrix inverse.}
+\end{table}%
+%%%
+
+The formulaically minded may prefer this more formal mathematical presentation:
+\begin{equation}
+  \begin{array}{rclrcr}
+    \leftinv &=& \I{n}, & \quad \A{}&\in&\cmplx{\by{m}{n}}_{n},\\
+    \rightinv &=& \I{m}, & \quad \A{}&\in&\cmplx{\by{m}{n}}_{m},\\
+    \leftinv = \rightinv &=& \I{m}, & \quad \A{}&\in&\cmplx{\by{m}{m}}_{m}.\\
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Demonstrations of the four types of chiral inverses}
+
+%%
+\subsubsection{$\Ap=\A{-1}$}
+What are the two rank conditions?
+\begin{enumerate}
+\item The matrix has full row rank.
+\item The matrix has full column rank.
+\end{enumerate}
+Therefore the matrix has $\rho$ row and $\rho$ columns. Therefore it is square and of full rank. We don't know what the rank is or what the size is, but we can state
+\begin{equation}
+  \rho = m = n.
+\end{equation}
+
+%%
+\subsubsection{$\Ap=\AinvL$}
+\label{sec:lchiral}
+The two rank conditions are these:
+\begin{enumerate}
+\item The matrix has partial row rank.
+\item The matrix has full column rank.
+\end{enumerate}
+These two statements are equivalent to these mathematical relationships:
+\begin{equation}
+  \begin{split}
+     \rho &= n, \\
+     \rho &< m
+  \end{split}
+\end{equation}
+
+%%
+\subsubsection{$\Ap=\AinvR$}
+This example flips the tank conditions.
+\begin{enumerate}
+\item The matrix has full row rank.
+\item The matrix has partial column rank.
+\end{enumerate}
+These two statements are equivalent to these mathematical relationships:
+\begin{equation}
+  \begin{split}
+     \rho &= m, \\
+     \rho &< n
+  \end{split}
+\end{equation}
+
+
+%%
+\subsubsection{$\Ap\ne\AinvB$}
+The final case is the least restrictive.
+\begin{enumerate}
+\item The matrix has partial row rank.
+\item The matrix has partial column rank.
+\end{enumerate}
+These two statements are equivalent to these mathematical relationships:
+\begin{equation}
+  \begin{split}
+     \rho &< m, \\
+     \rho &< n
+  \end{split}
+\end{equation}
+We can make no statement about the relationship between the number of rows, $m$ and the number of columns, $n$.
+
+%%
+\subsection{Proximity}
+A quick note before closing. What about the first result in equation \eqref{eq:gen:lr}? How ``close'' is this matrix to the identity matrix?
+\begin{equation}
+\normt{\leftinv-\I{m}} = 
+\normt{\frac{1}{5}
+  \mat{ccc}
+  {
+ 1 & 0 & 2 \\
+ 0 & 5 & 0 \\
+ 2 & 0 & 4
+  }
+  -
+  \ithree} = 1.
+\end{equation}
+We will see this last result a few more times.
+
+\endinput

@@ -1,0 +1,380 @@
+\documentclass[10pt]{newsiambook}
+\usepackage{epsfig}
+\usepackage{amsmath,amssymb }
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{crop}
+\usepackage{pdflscape}
+%\usepackage{pdfpages}
+%\usepackage{tabularx}
+%\usepackage{color}
+\usepackage{algorithmic}
+\usepackage{colortbl}
+\setlength\minrowclearance{4pt}
+%\usepackage[pdftex]{graphicx}
+\usepackage{sidecap}
+
+\newcommand{\pathname}{../common/}
+\newcommand{\fullpath}{\pathname}
+\input{\pathname declarations.tex}
+
+\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\title{The Singular Value Decomposition\\for Pedestrians}
+
+\author{Daniel Topa}
+
+\maketitle
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\section*{The Fundamental Theorem of Linear Algebra}
+
+%%%%%%%%%%
+\clearpage
+\break
+
+\section*{The singular value decomposition resolves the \\Four Fundamental Subspaces}
+Example: $\Arrr{3}{2}{1}$: a matrix with $m=3$ rows, $n=2$ columns and matrix rank $\rho=1$. The codomain is $\real{3}$, the domain is $\real{2}$.
+
+\begin{equation*}
+  \A{} = \Aexample, \qquad \A{T} = \Atexample
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{CODOMAIN} &=\real{m} \\
+      &= \rng{\A{}} \oplus \nll{\A{T}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1\\1}} \oplus \text{span}\lst{\mat{>{\columncolor{ltgray}}r}{0\\1\\1},\mat{>{\columncolor{ltgray}}r}{2\\1\\-1}}\\
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{DOMAIN} &=\real{n} \\
+      &= \rng{\A{T}} \oplus \nll{\A{}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1}} \oplus \text{span}\lst{\mat{>{\columncolor{ltgray}}c}{1\\1}}\\
+  \end{split}
+\end{equation*}
+
+The basis matrix $\Y{}$ is an orthogonal decomposition of the \textit{codomain}.
+
+The basis matrix $\X{}$ is an orthogonal decomposition of the \textit{domain}.
+
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{} \\
+    & = & \mat{c|>{\columncolor{ltgray}}c}{\rng{\A{}} & \nll{\A{T}}} 
+        & \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} 
+        & \mat{c}{\rng{\A{T}} \\\hline \rowcolor{ltgray}\nll{\A{}}} \\[10pt]
+    & = & \mat{c|>{\columncolor{ltgray}}c}{\yrng{} & \ynll{}} 
+        & \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} 
+        & \mat{c}{\xrng{T} \\\hline \rowcolor{ltgray}\xnll{T}} \\[10pt]
+    & = & \mat{c|>{\columncolor{ltgray}}cc}{\sthree \mat{r}{1\\-1\\1} & \stwo \mat{r}{0\\1\\1}\sthree \mat{r}{2\\1\\-1}}
+        & \Sigmaexampleb
+        & \mat{c}{\stwo \mat{rr}{1&-1} \\ \stwo \mat{rr}{1 & \phantom{-}1}}\\[15pt]
+    & = & \Yshade
+        & \Sigmaexampleb
+        & \Xtshade
+  \end{array}  
+\end{equation*}
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\section*{Anatomy of the SVD: row and column rank deficiency}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \Aexample & = & \Yshade & \Sigmaexampleb & \Xtshade
+  \end{array}
+\end{equation*}
+
+Here the target matrix $\Arrr{3}{2}{1}$ has $m = 3$ rows, $n = 2$ columns and matrix rank $\rho = 1$. This matrix has rank deficiency in both the rows and the columns. All components needed for the SVD come from the product matrices $\prdm{T}$ and $\prdmm{T}$. The square root of the nonzero eigenvalues comprise the diagonal entries of $\sig{}$.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = 3 \mat{rr}{1&-1\\-1&1}$ &
+$\W{y} = \A{}\A{T} = 5 \mat{rrr}{1&-1&1\\-1&1&-1\\1&-1&1}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{6,0}$ &
+$\lambda\paren{\W{y}} = \lst{6,0,0}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{r}{-1\\1},\mat{>{\columncolor{ltgray}}c}{1\\1}}$ &
+$\lst{\mat{r}{-1\\1\\-1},\mat{>{\columncolor{ltgray}}r}{0\\-1\\1},\mat{>{\columncolor{ltgray}}r}{2\\1\\-1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{c|>{\columncolor{ltgray}}c}{\stwo \mat{r}{-1\\1} & \stwo \mat{>{\columncolor{ltgray}}r}{-1\\1}}$ &
+$\Y{} = \mat{c|>{\columncolor{ltgray}}c}{\sthree \mat{r}{-1\\1\\-1} & \stwo \mat{r}{0\\-1\\1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \mat{c}{6}, \qquad \sig{}= \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} = \Sigmaexample
+\end{equation*}
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\section*{Anatomy of the SVD: full row rank}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \matrixbravo & = & \matrixbravoY & \matrixbravosigma & \matrixbravoXt
+  \end{array}
+\end{equation*}
+
+Here the target matrix $\Arrr{2}{3}{2}$ has $m=2$ rows, $n=3$ columns and matrix rank $\rho =2$ (full column rank).
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = \mat{ccc}{1&2&2\\2&13&4\\2&4&4}$ &
+$\W{y} = \A{}\A{T} = \mat{cc}{9&6\\6&9}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{15,3,0}$ &
+$\lambda\paren{\W{y}} = \lst{15,3}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{c}{1\\5\\2},\mat{r}{1\\-1\\2},\mat{>{\columncolor{ltgray}}r}{-2\\0\\1}}$ &
+$\lst{\mat{c}{1\\1},\mat{r}{-1\\1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{cc|>{\columncolor{ltgray}}c}{\frac{1}{30}\mat{c}{1\\5\\2} & \ssix \mat{r}{1\\-1\\2} & \sfive \mat{r}{-2\\0\\1}}$ &
+$\Y{} = \stwo \mat{cc}{\mat{c}{1\\1} & \mat{r}{-1\\1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \mat{cc}{\sqrt{15}&0\\0&\sqrt{3}}, \qquad \sig{}= \mat{c|c}{\ess{} & \zero} = \matrixbravosigma
+\end{equation*}
+
+%%%%
+\section*{Anatomy of the SVD: full row and column rank}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \matrixalpha & = & \matrixalphaY & \matrixalphasigma & \matrixalphaXt
+  \end{array}
+\end{equation*}
+
+The target matrix $\Arrr{2}{2}{2}$ has $m=2$ rows, $n=2$ columns and matrix rank $\rho = 2$ (full column rank, full row rank). Notice how the eigenvalues are presented in the target matrix $\W{x}$. This is a diagonal matrix and it is customary (but not obligatory) to read the eigenvalues from the diagonal as $\lst{\lambda_{1}, \lambda_{2}}$. When we order the singular values we must reorder the eigenvectors as well.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = \mat{cc}{2 & 0\\0 & 8}$ &
+$\W{y} = \A{}\A{T} = \mat{cc}{5 & 3 \\ 3 & 5}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{2,8}$ &
+$\lambda\paren{\W{y}} = \lst{2,8}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{c}{0\\1}, \mat{c}{1\\0}}$ &
+$\lst{\mat{r}{1\\-1},\mat{c}{1\\1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{cc}{\xhatt & \yhatt}$ &
+$\Y{} = \mat{cc}{\stwo\mat{c}{1\\1} & \stwo\mat{r}{1\\-1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \sqrt{2} \mat{cc}{2 & 0 \\ 0 & 1}, \qquad \sig{}= \mat{c}{\ess{}} = \matrixalphasigma
+\end{equation*}
+
+%%%%%%%%%%
+\clearpage
+\break
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lclllc}
+  form && decomposition products &&& dimension \\\hline
+  $\A{}$  &=& $\svd{*}$  &&& $m \times n$ \\
+  $\A{*}$ &=& $\svdt{*}$ &&& $n \times m$ \\
+  $\Ap$   &=& $\mpgi{*}$ &&& $n \times m$ \\
+        &&&&\\
+  $\prdm{*}$ &=& $\paren{\svdt{*}}\paren{\svd{*}}$ &=& $\wy{*}$ & $n \times n$ \\
+  $\prdmm{*}$&=& $\paren{\svd{*}}\paren{\svdt{*}}$ &=& $\wx{*}$ & $m \times m$ \\
+        &&&&\\
+  $\leftinv$ &=& $\paren{\mpgi{*}}\paren{\svd{*}}$ &=& $\apa{*}$ = $\xrng{}\xrng{*}$ & $n \times n$ \\
+  $\rightinv$&=& $\paren{\svd{*}}\paren{\mpgi{*}}$ &=& $\aap{*}$ = $\yrng{}\yrng{*}$ & $m \times m$ \\[10pt]
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Basic manipulations with the \svdl.}
+\end{table}%
+  
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lclclccc}
+  pseudoinverse && basis && target & \\
+  products &&      products && projector & space & dimension \\\hline
+  $\leftinv$  &=& $\yrng{}\yrng{*}$ &=& $P_{\rng{\A{}}}$ & $\rng{\A{}}$ & $\bynn$ \\
+  $\rightinv$ &=& $\xrng{}\xrng{*}$ &=& $P_{\rng{\A{*}}}$ & $\rng{\A{*}}$ & $\bymm$ \\
+  $\I{m}-\leftinv$  &=& $\ynll{}\ynll{*}$ &=& $P_{\nll{\A{*}}}$ & $\nll{\A{*}}$ & $\bymm$ \\
+  $\I{n}-\rightinv$ &=& $\xnll{}\xnll{*}$ &=& $P_{\nll{\A{}}}$ & $\nll{\A{*}}$ & $\bynn$ \\[10pt]
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Basic manipulations with the \svdl.}
+\end{table}%
+
+\subsection*{Linear least squares and the SVD}
+Given the linear system
+\begin{equation*}
+  \ls, \qquad \Amnrr, \quad x \in \real{n}, \quad b\in\real{m}
+\end{equation*}
+the least squares $x_{LS}$ solution is given by this expression:
+\begin{equation*}
+  \begin{split}
+    x_{LS} &= \Ap b + \paren{\I{n}-\leftinv}z, \qquad z\in\real{n} \\
+    &= \Ap b + \xnll{}\xnll{*}z
+  \end{split}
+\end{equation*}
+with the vector $z$ being arbitrary. An equivalent formulation is this:
+\begin{equation*}
+    x_{LS} = x_{p} + \paren{\alpha_{1} \X{}_{*,\rho+1} + \alpha_{2} \X{}_{*,\rho+2} + \dots + \alpha_{n-\rho} \X{}_{*,n}}
+\end{equation*}
+where the scalars $\alpha_{k}$ are arbitrary. This solution directly encodes the $n-\rho$ null space vectors in the domain matrix $\X{}$.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lll}
+  condition & pseudoinverse & chirality \\
+  $\rho = n$      & $\Ap = \paren{\A{T}\A{}}^{-1}\A{T}$ & $= \AinvL$ \\
+  $\rho = m$      & $\Ap = \A{}\paren{\A{}\A{T}}^{-1}$ & $= \AinvR$ \\
+  $m = n = \rho$  & $\Ap = \A{-1}$ & $= \AinvL= \AinvR $ \\
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{default}
+\end{table}%
+
+
+%%%%%%%%%%
+\clearpage
+\break
+
+\section*{$\sig{}$ gymnastics}
+
+\begin{equation*}
+  \ess{} = \ess{T} = \Smatrix, \qquad \ess{-1} = \Smatrixinv
+\end{equation*}
+
+\begin{equation*}
+  \ess{}\,\ess{T} = \ess{T}\ess{} = \ess{2}
+\end{equation*}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lclccc}
+  form && block matrix &&& dimension \\\hline
+  $\sig{}$   &=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}$  &&& $m \times n$ \\
+  $\sig{T}$  &=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}=\mat{cc}{\ess{} & \zero \\ \zero & \zero}$  &&& $n \times m$ \\
+  $\sig{(+)}$&=& $\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}$ &&& $n \times m$ \\
+%%%
+  $\sig{}\sig{T}$  &=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}\mat{cc}{\ess{T} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $m \times m$ \\
+  $\sig{T}\sig{}$  &=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\ess{2} & \zero \\ \zero & \zero}$ & $n \times n$ \\
+  $\sig{}\sig{(+)}$&=& $\mat{cc}{\ess{} & \zero \\ \zero & \zero}\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $m \times m$ \\
+  $\sig{(+)}\sig{}$&=& $\mat{cc}{\ess{-1} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ & $n \times n$ \\[15pt]
+%%%
+  $\sig{(+)}\sig{}\sig{T}$&=& $\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}\mat{cc}{\ess{} & \zero \\ \zero & \zero}$ &=& $\sig{}$ & $m \times n$ \\[15pt]
+  $\sig{T}\sig{}\sig{(+)}$&=& $\mat{cc}{\ess{T} & \zero \\ \zero & \zero}\mat{cc}{\I{\rho} & \zero \\ \zero & \zero}$ &=& $\sig{T}$ & $n \times m$ \\[15pt]
+\end{tabular}
+\end{center}
+\label{default}
+\caption{Note that although the matrices $\sig{}$ and $\sig{T}$ have the same block structure (because $\ess{}=\ess{T}$), the matrix and its transpose have different dimensions.}
+\end{table}%
+
+%%%%%%%%%%
+\clearpage
+\break
+
+\begin{equation*}
+  \ess{} = \text{diag}\paren{2,\rthree} = \mat{cc}{2 & 0 \\ 0 & \rthree}
+\end{equation*}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcccc}
+  $\sig{}$   &=& $\mat{c} {\ess{} \\ \zero}$  &=& $\mat{cc}  {2 & 0 \\ 0 & \rthree \\[5pt]\hline 0 & 0}$\\[15pt]
+  $\sig{T}$  &=& $\mat{cc}{\ess{T}  & \zero}$ &=& $\mat{cc|c}{2 & 0 & 0 \\ 0 & \rthree & 0}$\\[5pt]
+  $\sig{(+)}$&=& $\mat{cc}{\ess{-1} & \zero}$ &=& $\mat{cc|c}{\rtwo & 0 & 0 \\ 0 & 3 & 0}$\\[15pt]
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Basic manipulations of the $\sig{}$ matrix.}
+\end{table}%
+
+
+\begin{equation}
+  \sig{} = 
+  \left[
+    \begin{array}{cc}
+      \ess{} & \zero \\
+      \zero  & \zero
+    \end{array}
+  \right]
+  \left.
+    \begin{array}{l}
+    \rho \\
+    m-\rho
+    \end{array}
+  \right.
+\end{equation}
+
+
+\begin{equation}
+  \sig{} = \left.
+  \begin{array}{cc}
+  \left[
+    \begin{array}{cc}
+      \ess{} & \phantom{n}\zero\phantom{n} \\
+      \zero  & \phantom{n}\zero\phantom{n}
+    \end{array}
+  \right] &
+  \left.
+    \begin{array}{l}
+    \rho \\
+    m-\rho
+    \end{array}
+  \right.
+  \\
+  \left.
+  \begin{array}{cc}
+  \rho & n-\rho
+  \end{array}
+  \right.
+  \end{array}
+  \right.
+\end{equation}
+
+
+
+\end{document}

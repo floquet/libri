@@ -1,0 +1,92 @@
+\chapter{Modal Example Continued}
+
+Other solution methods
+
+\section{Normal Equations - Again}  %    S    S    S    S    S    S    S    S    S
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    {\bf{1}} = \mat{c}{1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1}, \quad
+    x        = \mat{c}{1 \\ 2 \\ 3 \\ 4 \\ 5 \\ 6 \\ 7 \\ 8 \\ 9}, \quad
+    T        = \frac{1}{10}\mat{c}{156 \\ 175 \\ 366 \\ 438 \\ 582 \\ 616 \\ 642 \\ 704 \\ 988}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \A{} = 
+      \mat{c|c}{{\bf{1}} & x}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The linear system $\A{}a = T$ looks like this
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+      \mat{cc}{
+         1 & 1 \\
+         1 & 2 \\
+         1 & 3 \\
+         1 & 4 \\
+         1 & 5 \\
+         1 & 6 \\
+         1 & 7 \\
+         1 & 8 \\
+         1 & 9 } 
+      \mat{c}{ a_{0} \\ a_{1} } =
+         \frac{1}{10}\mat{c}{156 \\ 175 \\ 366 \\ 438 \\ 582 \\ 616 \\ 642 \\ 704 \\ 988} .
+    \label{eq:bevington axeb}
+  %\end{split}
+  \end{equation}
+
+  \begin{equation*}   %  =   =   =   =   =
+  \begin{split}
+    \oto &= m = 9 \\
+    \otx &= \xto = 45 \\
+    \xtx &= 285 \\
+    {\bf{1}}^{\mathrm{T}}T &= \frac{4667}{10} \\
+    x^{\mathrm{T}}T        &= 2898
+    %\label{eq:}
+  \end{split}
+  \end{equation*}
+  
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \wx{*} = \mat{cc}{\oto & \otx \\ \xto & \xtx} = \mat{cc}{9 & 45 \\ 45 & 285}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \A{*}T = 
+      \mat{c}{{ \bf{1}}^{\mathrm{T}}T \\ x^{\mathrm{T}}T } =
+      \frac{1}{10} \mat{c}{4667 \\28\,980}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+\eqref{eq:bevington axeb} becomes
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{cc}{\oto & \otx \\ \xto & \xtx}
+    \mat{c}{a_{0} \\ a_{1}} = 
+    \mat{c}{{ \bf{1}}^{\mathrm{T}}T \\ x^{\mathrm{T}}T }
+    \label{eq:bevington vectors}
+  %\end{split}
+  \end{equation}
+
+\section{Singular Value Decomposition}  %    S    S    S    S    S    S    S    S    S
+Solution steps
+\begin{enumerate}
+  \item Compute $\lambda\paren{\wx{*}}$.
+  \item Educated guess at domain matrix $\V{}$.
+  \item Compute codomain matrix $\U{}$.
+\end{enumerate}
+
+
+
+\section{$\Q{}\R{}$ Decomposition}  %    S    S    S    S    S    S    S    S    S
+
+\subsection{Problem Statement}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+\endinput

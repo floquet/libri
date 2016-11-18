@@ -1,0 +1,90 @@
+\section{Domains}
+The concept of a domain comes over very naturally from calculus. A domain is a set of points which defines the set of all valid inputs to a function. Look at the exponential function
+\begin{equation}
+  y(x) = e^{x}.
+\end{equation}
+A function is a map: input a variable $x$ and get a variable $y$. The ``$x$ in, $y$ out'' notation will remain even when we switch to linear systems and matrices.
+The domain\index{domain!function}, the set of all valid inputs for this function is $\abs{x}<\infty$, the entire real line. We can denote the real line using $\real{1}$. The range\index{range!function} is the set of all function outputs. Here the range is the set of positive definite numbers, $y>0$ denoted as $\real{+}$. This is half of the real line. The exponential function maps numbers from the real line on the positive half of the real line. We may write
+\begin{equation}
+  y(x)\colon\real{1}\to\real{+}.
+\end{equation}
+In conversational terms, the function $y(x)$ maps numbers $x$ in the domain $\real{1}$ to values $y$ on the positive half-line $\real{+}$.
+
+
+The inverse function is the natural logarithm
+\begin{equation}
+  y^{-1}(x) = \ln (x).
+\end{equation}
+Here the domain and range are interchanged. The domain is now the positive real numbers $\real{+}$ and the range is the set of all real numbers, $\real{1}$. Here we write
+\begin{equation}
+  y^{-1}(x)\colon\real{1}\to\real{+}.
+\end{equation}
+
+A question to ruminate upon is which function is more fundamental, the exponential or the logarithm? Which is ``the function'' and which is ``the inverse function''? When we think of domains and ranges we see that they interchange under this set of function and inverse. 
+
+The point is that neither function is more fundamental than the other. This means that the assignment of domain and range depend upon the arbitrary choice of whether the exponential is the original function or the inverse function. If we take a pair of functions like the exponential and the logarithm we really can't call one a function and the other an inverse function. They are mutual inverses.
+
+In linear algebra the concept of domain is elaborated upon and we will speak of a domain\index{domain!matrix} and a codomain\index{codomain}. If we take a pair of matrices we really can't call one a matrix and the other a transpose. They are mutual transposes. Therefore the sets of vectors the matrices act upon are a domain and a codomain.
+
+When we looked at functions we saw an example where only part $\real{+}$ of the real line $\real{1}$ was used. If we think of functions as a map we might say that these maps are frustrated because the range did not reach all of the real line, just those numbers greater than zero.
+
+When we jump to linear systems we will see a new wrinkle. Instead of using a \textit{truncation of the real line,} we will use the entire line in \textit{a truncation of dimensionality.}\index{truncation of dimensionality} For example, if the host space were $\real{2}$ we may not use the entire plane. Instead we may be restricted to a line through the origin such as $y(x)=a x$. Of course each point $p$ on this line can be represented as an ordered pair 
+\begin{equation}
+  p = \mat{c}{x\\y}.
+\end{equation}
+But we can characterize any any point on the line  with a single scalar $a$ using the distance from the origin.
+
+In this case the host space is $\real{2}$ and the domain is actually the line $\real{1}$. The concept is simple and it highlights an important aspect of the \svdl: sorting out the domains from the host spaces.
+
+Consider the archetypal linear system
+\begin{equation}
+  \A{}x=y.
+\end{equation}
+The matrix $\A{}$ multiplies the vector $x$ and produces the vector $y$. The set of all possible vectors $x$ represents the domain. For matrix equations such as this one, the domain will be a class of vectors. The class is defined by the number of free variables in the representation of the vector. For example, the classes with one, two, or three parameters can be represented as
+\begin{equation}
+\begin{array}{cccc}
+  \mat{c}{x_{1}} & \mat{c}{x_{1}\\x_{2}} & \mat{c}{x_{1}\\x_{2}\\x_{3}} & \cdots \\
+  \real{1} & \real{2} & \real{3} & \cdots
+  \label{eq:1:r}
+\end{array}
+\end{equation}
+
+The sole restriction on the free parameters $x_{k}$ is that their magnitude is finite: $\abs{x_{k}}<\infty$.
+
+There are distinct ways to reference a point in the domain. Consider a plane. The location 
+\begin{equation}
+  \mat{c}{\alpha\\\beta} = \alpha \hat{x}_{1} + \beta \hat{x}_{2}  = \alpha \mat{c}{1\\0} + \beta \mat{c}{0\\1},
+\end{equation}
+with the associations for the unit vectors
+\begin{equation}
+  \hat{x}_{1} = \mat{c}{1\\0}, \qquad \hat{x}_{2} = \mat{c}{0\\1}.
+\end{equation}
+
+To simplify the rendering of figures, we will consider all inputs to be real numbers. Now the examples in equation \eqref{eq:1:r} can be portrayed geometrically as shown in figure \eqref{tab:0:rn}.
+%%%%
+\begin{table}[htdp]
+\begin{center}
+\boxed{
+\begin{tabular}{{c|c|c}}
+    \includegraphics[ width = 1.45in ]{pdf/prelim/r1} &
+    \includegraphics[ width = 1.45in ]{pdf/prelim/r2} &
+    \includegraphics[ width = 1.45in ]{pdf/prelim/r3} \\\hline
+        $\mat{c}{x_{1}}$ & $\mat{c}{x_{1}\\x_{2}}$ & $\mat{c}{x_{1}\\x_{2}\\x_{3}}$\\
+        $\real{1}$ & $\real{2}$ & $\real{3}$
+\end{tabular}
+}
+\end{center}
+\caption[Domains of increasing dimension, $\real{n}$]{Domains of increasing dimension, $\real{n}$. Here we see representations for a point in $\real{1}$, a line; $\real{2}$, a plane and $\real{3}$, a volume. The axes are mutually orthogonal. Each point in the domain is represented by a $n-$vector $x_{k},\ k=1,n$ which defines a distance from the origin.}
+\label{tab:0:rn}
+\end{table}%
+
+Every domain has a zero element called the origin. For the examples in equation \eqref{eq:1:r} the origins are
+\begin{equation}
+\begin{array}{cccc}
+  \mat{c}{0}, & \mat{c}{0\\0}, & \mat{c}{0\\0\\0}, & \dots \\
+  \real{1} & \real{2} & \real{3} & \dots
+  \label{eq:1:r}
+\end{array}
+\end{equation}
+and can be written generally as $\zero$. A very important realization is that \textit{origins are all coincident.} For example if the line $\real{1}$ is embedded in $\real{3}$, the origins represent the same point. For now, we say little about the orientation of the line: in general the unit vectors will not align the line. Think of the free parameters as \textit{coordinates} which describe displacements from the origin.
+\endinput

@@ -1,0 +1,252 @@
+\section{The pseudoinverse}
+
+When can a matrix be inverted? When it is square, that is when the number of rows equals the number of columns. Also, one of these equivalent statements must be satisfied:
+\begin{enumerate}
+\item the determinant is nonzero;
+\item the column vectors are linearly independent and form a complete spanning set;
+\item none of the eigenvalues are zero.
+\end{enumerate}
+In this case, linear systems like $\ls$ have a single solution
+\begin{equation}
+  x = \A{-1}b.
+\end{equation}
+
+The concept of a matrix inverse can be generalized to all matrices. This means rectangular matrices, matrices with zero eigenvalues, matrices with linearly dependent columns, and matrices where the column vectors are an incomplete set.
+
+This topic deserves a fuller treatment after some theoretical formalities. But for now an excellent perspective to use is the method of least squares. Clearly a linear system may not have a point solution, but it will always have a  least squares solution $x_{ls}$. What matrix $\A{+}$ produces the least squares solution
+\begin{equation}
+  x_{ls}=\A{+}b?
+\end{equation}
+
+Again we take an intuitive approach to this topic, leaving formalities for later. Using the SVD as our starting point we nominate the inverse of the decomposition 
+\begin{equation}
+  \begin{split}
+    \A{+}&=\paren{\svd{T}}^{-1}=\paren{\X{*}}^{-1}\paren{\sig{}}^{-1}\paren{\Y{}}^{-1} \\
+     &= \mpgi{*}
+  \end{split}
+\end{equation}
+One of the great joys of unitary matrices is that they are trivial to invert.
+
+The fly in the ointment is the $\sig{}$ matrix. For rank deficient target matrices such as this case there is no standard matrix inverse. To invert this matrix form the transpose. This insures that we can pre- or post multiply $\sig{}$ with $\sig{(+)}$. Next replace each singular value $\sigma_{k}$ with its reciprocal $\sigma_{k}^{-1}$.
+
+In the example problem these matrices are
+\begin{equation}
+  \sig{}= \Sigmaexampleb, \qquad 
+  \sig{(+)}= \mat{c|cc}
+  {
+  \ssix & 0 & 0\\\hline
+  0 & 0 & 0
+  }.
+\end{equation}
+
+The pseudoinverse for this example is
+\begin{equation}
+  \begin{split}
+  \mpgiax{T} &= \Xshade \mat{c|cc}
+  {
+  \ssix & 0 & 0\\\hline
+  0 & 0 & 0
+  } \Ytshade \\
+  & =
+  \frac{1}{6}
+  \mat{rrr}
+  {
+   1 & -1 &  1 \\
+  -1 &  1 & -1
+  }.
+  \end{split}
+  \label{eq:simple:mppdecomp}
+\end{equation}
+
+%%
+\subsection{Particular solution via pseudoinverse}
+\label{sec:pi}
+The pseudoinverse is not applied in the same fashion as the standard inverse. For the standard inverse, the application looks like this:
+\begin{equation}
+  \begin{split}
+    \lsa\\
+    \A{-1}\paren{\A{}x} & = \A{-1}b\\
+    x&= \A{-1}b.
+  \end{split}
+\end{equation}
+
+When the usual matrix inverse exists we have
+\begin{equation}
+  \A{-1} = \A{+}.
+\end{equation}
+However the game is different when the usual inverse does not exists. The issue with the pseudoinverse is this instance is that in general
+\begin{equation}
+  \A{+}\A{} \ne \I{n}.
+\end{equation}
+This restricts the solution process
+\begin{equation}
+  \begin{split}
+    \lsa,\\
+    \A{+}\paren{\A{}x} & = \A{+}b.\\
+  \end{split}
+  \label{eq:solution:general}
+\end{equation}
+%%
+Later on in \S\eqref{sec:orthproj} we will see that the operator $\A{+}\A{}$ is a projection operator and discuss its geometric interpretation. For now rest assured that the solution we are seeking is given by this relation
+\begin{equation}
+  x = \A{+}b.
+\end{equation}
+
+This is a particular solution. For the example matrix  we find that
+\begin{equation}
+  \xi_{p} = \A{+}\phi = 
+  \frac{1}{6}
+  \mat{rrr}
+  {
+   1 & -1 &  1 \\
+  -1 &  1 & -1
+  } 
+  \mat{c}
+  {
+  2\\1\\0
+  }
+  =
+  \frac{1}{6}
+  \mat{r}
+  {1\\-1},
+  \label{eq:soln:particular}
+\end{equation}
+the particular solution of equation \eqref{eq:fact}.
+
+%%
+\subsection{Complete solution}
+\label{sec:solution:complete}
+The homogeneous solution represents the null space vectors. There will be a free variable for each null space vector. In this case there is only a single null vector
+\begin{equation}
+  \X{}_{*,2} \propto \mat{r}{1\\1}.
+\end{equation}
+The homogeneous solution\footnote{The difference between $\alpha'$ and $\alpha$ is the normalization factor on the column vector.} is then
+\begin{equation}
+  \xi_{h} = \alpha' \X{}_{*,2} = \alpha \mat{c}{1\\1},\quad \alpha \in \cmplx{}.
+\end{equation}
+This is a null solution
+\begin{equation}
+  \A{} \xi_{h} = 0.
+\end{equation}
+
+Using the prescription for the general solution established in equation \eqref{eq:fact} we can state the least squares solutions for equation \eqref{eq:2:problem} are given by
+\begin{equation}
+\boxed{
+  \begin{array}{rccccc}
+    \xi &=& \xi_{p} &\oplus& \xi_{h},\\[7pt]
+      &=& \A{+}\phi &\oplus& \alpha \X{}_{*,2}, & \alpha\in\cmplx{}\\[7pt]
+      &=& \frac{1}{6}\mat{r}{1\\-1} &\oplus& \alpha \mat{c}{1\\1}\\[17pt]
+      &=& \textit{point} &\oplus& \textit{line}
+  \end{array}
+}
+\label{eq:simple:fullsoln}
+\end{equation}
+
+The solution is not a point, it is a direct sum of a point and line; the line implies a continuum solution which implies a null space. This implies that the merit function does not have a minimum point. This implies that the solutions are indistinguishable in the domain. Any point on the line through $\xi_{p}$ and parallel to $\xi=\eta$ 
+\begin{equation}
+  \eta = \xi - \frac{1}{3}
+\end{equation}
+produces the same value for the merit function. This is the red line in figure \eqref{fig:simple:solution}. The invariance is more apparent in the matrix formulation.
+
+Since the vector $(1,1)^{\mathrm{T}}$ defines the null space we have for any vector $\xi$
+\begin{equation}
+  \begin{split}
+      \A{}\paren{\xi_{p}+\xi_{h}} &= \A{}\paren{\xi_{p}+\alpha\mat{c}{1\\1}}\\ 
+      &= \A{}\xi_{p}+\A{}\paren{\alpha\mat{c}{1\\1}}\\
+      &= \A{}\xi_{p} + \mat{c}{0\\0\\0} \\
+      &= \A{}\xi_{p}.
+  \end{split}
+\end{equation}
+
+All of these solutions map to the same point $p$ in the range\index{range} of the target matrix:
+\begin{equation}
+  \A{}\xi_{p} = \frac{1}{3}\mat{r}{1\\-1\\1} = p.
+  \label{eq:simple:map}
+\end{equation}
+
+What did the least squares solution minimize? It minimized the distance between the data point $\phi$ and the solution point $p$. Another way to look at the problem is the find the point in the range of the column vectors closest to the data. Since the data point is not in the range of the column vectors there is no direct solution and we need to find the least squares solution. As we will see later, another way to find the solution is to ask
+\begin{equation}
+  \min_{\alpha\in\cmplx{}} \normt{\phi-\alpha\mat{r}{1\\-1\\1}}^{2}=\min_{\alpha\in\cmplx{}} \paren{(2-\alpha)^{2}+(1+\alpha)^{2}+(-\alpha)^{2}}.
+\end{equation}
+The minimization is in the codomain while the solution is in the domain. This means that after the minimum vector is found in the codomain it must be mapped to the solution vector in the domain.
+
+%%
+\subsection{The solution error}
+We have a solution. In fact, we have the best solution as measured with the $2-$norm. But is the best solution a good solution? The first step in addressing this question is computing the residual error vector
+\begin{equation}
+  r = \A{}x-b
+\end{equation}
+which for this example is the following
+\begin{equation}
+  r = \rthree \mat{r}{-5,-4,1}
+\end{equation}
+\begin{equation}
+  \begin{split}
+     r &= \A{}x-b, \\
+       &= \rthree \mat{r}{1\\-1\\1} - \phivector,\\
+       &= \rthree \mat{r}{-5,-4,1}
+  \end{split}
+  \label{eq:soln:error}
+\end{equation}
+which has a magnitude given by this
+\begin{equation}
+  r^{T}r = r\cdot r = \frac{14}{3}.
+\end{equation}
+
+We computing the error vector explicitly to demonstrate that the error is measured in the codmain, that it, it is in the data space, not the fit parameter space. It is difficult to say much more about the error without knowing the context of the measurement. For example, we might want to look at the magnitude of the error or the relative error or the absolute error. But one point is clear: don't assume that the best fit is a good fit.
+
+%%
+\section{The geometry of the solution}
+The geometry of the solution has a certain grace about it. The solution resides in the vector space induced by the row vectors, here $\real{2}$. This is the space of the solution parameters, in this case $\xi$ and $\eta$. For another type of regression these parameters could represent the slope and the intercept of a solution curve.
+
+The minimization problem is solved in the vector space induced by the column vectors, here $\real{3}$. The closest point to the data is the point $p$ and this point is connected to the solution point $\xi_{p}$ by the target matrix $\A{}$. The solution to the least squares problem is not the $3-$vector $p$, it is the $2-$vector $\xi_{p}$. The correspondence is given by equation \eqref{eq:simple:map}.
+
+The full solution to the least squares problem is given in equation \eqref{eq:simple:fullsoln} and contains the particular solution given by the pseudoinverse and the homogeneous solution given by the null space. The solution can also be seen in terms of the the decomposition of $\real{2}$ below showing the range of the row vectors - the image space - and the null space.
+\begin{equation}
+    \xi = \frac{1}{6}\underbrace{\mat{r}{1\\-1}}_{\text{image space}} + \alpha \underbrace{\mat{c}{1\\1}}_{\text{null space}}.
+\end{equation}
+
+The \svdl \ has resolved the both the domain and the codomain into basis vectors for the range and the null space. These basis matrices are these:
+\begin{equation}
+  \begin{split}
+  \B{}_{\real{2}} &=\X{}= \Xshade,\\[5pt]
+  \B{}_{\real{3}} &=\Y{}=\Yshade.
+  \end{split}
+\end{equation}
+
+Then the decomposition is used to build the pseudoinverse and the homogeneous solution. The seminal point from this example is that the \textit{pseudoinverse identifies the particular solution to the least squares problem.} 
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/simple/solution02} 
+   \caption[The domain resolved into image space and null space vectors]{The domain resolved into image space and null space vectors. These vectors are the an orthogonal basis for $\real{2}$. The particular solution is the point $\xi_{p}$. The homogeneous solution is shown by the red line; this is the line of equivalent solutions. The thick line represents the range of the row vectors, the red line represents the orthogonal null space. This vector space is also the parameter space where the solution resides. It is not a physical space like the measurement space of the codomain.}
+   \label{fig:simple:solution}
+\end{figure}
+
+%%
+\section{Uniqueness of the SVD}
+We would not expect the \svdl \ to be unique. After all, the null space vectors can be reordered. The key fact is that when we resolve the domain and codomain there are sign ambiguities. For example, these two spans are equivalent:
+\begin{equation}
+  \spn \lst{\mat{r}{1\\-1\\1}} \equiv  \spn \lst{\mat{r}{-1\\1\\-1}}.
+\end{equation}
+So we should not expect the decomposition to be unique. For example in this case we could also write that
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+     & = 
+    \mat{r>{\columncolor{ltgray}}r >{\columncolor{ltgray}}r}
+    {-\sthree & -\stwo & \ssix\\
+      \sthree &    0   & \frac{2}{\sqrt{6}}\\
+     -\sthree &  \stwo & \ssix}
+    \Sigmaexampleb
+    \stwo \mat{rr}
+    {-1 & 1\\
+    \rowcolor{ltgray}
+      1 & 1}.
+  \end{split}
+\end{equation}
+Notice the change of sign of the image space vectors and the reordering of the null space vectors.
+
+However while the basis vectors are malleable, the singular values are not. The $\sig{}$ matrix is \textit{invariant}\index{invariance!$\sig{}$ matrix}. 
+
+\endinput

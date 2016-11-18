@@ -1,0 +1,50 @@
+\clearpage
+\break
+
+\section{Pixelation}
+What happens to the singular value spectrum, as we slowly decrease the information in the image by pixelation? In this section we will start with a square image with 256 pixels to a side and reduce each dimension in half. That is, the output matrix $\tilde{\A{}}$ will have half the size of the input matrix $\A{}$:
+\begin{equation}
+  \A{}_{mn} \mapsto \tilde{\A{}}_{\frac{m}{2},\frac{n}{2}}.
+\end{equation}
+This is done by averaging four neighboring pixels to create a new pixel value like so:
+\begin{equation}
+  \tilde{\A{}}_{1,1} = \recip{4} \paren{ \A{}_{1,1} + \A{}_{1,2} + \A{}_{2,1} + \A{}_{2,2} }.
+\end{equation}
+
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccc}
+ image & intensity spectrum & singular value spectrum \\
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"01 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"01 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"01 Jordan pixels sigma"} \\
+%
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"02 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"02 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"02 Jordan pixels sigma"} \\
+%
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"03 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"03 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"03 Jordan pixels sigma"} \\
+%
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"04 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"04 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"04 Jordan pixels sigma"} \\
+%
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"05 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"05 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"05 Jordan pixels sigma"} \\
+%
+\includegraphics[ width = 1.1in ] {pdf/"ch 06"/pixels/"06 Jordan pixels image"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"06 Jordan pixels ints"} &
+\includegraphics[ width = 1.75in ]{pdf/"ch 06"/pixels/"06 Jordan pixels sigma"} \\
+%%%%
+\end{tabular}
+\end{center}
+\caption[The singular value spectrum changes with pixel size]{The singular value spectrum changes with pixel size. The original picture is square with 256 pixels to a side. Each step represents a reduction in half until we get to the 8 pixel width of the final image.	}
+\label{tab:Jordan:pixels}
+\end{table}%
+
+
+\endinput

@@ -1,0 +1,102 @@
+\section{Special cases of the pseudoinverse}
+Here are some captivating morsels to practice with. This shows the almost symbiotic relationship between the \svdl \ and the generalized matrix inverse. We will be exploiting these three relationships:
+\begin{equation}
+  \begin{array}{lcccccc}
+     \A{}  &=& \svd{*}  &=& \yrn{} & \essmatrix{}   & \xtrn{*},\\
+     \A{*} &=& \svdt{*} &=& \xrn{} & \essmatrix{}   & \ytrn{*},\\
+     \Ap   &=& \svd{*}  &=& \xrn{} & \essmatrix{-1} & \ytrn{*}.
+  \end{array}
+\end{equation}
+The generic case for the target matrix is $\Amnr$.
+
+These problems will all distill down to simple cases of manipulating the $\sig{}$ matrices in various forms.
+%%
+\subsection{Underdetermined case}
+\label{sec:underdetermined}
+Compute the pseudoinverse $\Ap$ when the inverse of the product matrix $\W{y} = \paren{\prdmy{*}}^{-1}$ exists. Here the target matrix has full row rank and has more columns than row (a wide matrix):
+\begin{equation}
+  \Accc{m}{n}{m}, \ m\le n.
+\end{equation}
+We know that $\W{y}\in\cmplxmm$. Because the inverse exists, the matrix has full rank and we can state that $\W{y}\in\cmplxmm_{m}$. Therefore
+\begin{equation}
+  \sig{} = \essmatrixw{}.
+\end{equation}
+The product matrix becomes this:
+\begin{equation}
+  \W{y} = \prdmy{*} = \wy{*} = \Y{} \essmatrixw{} \essmatrixt{} \Y{*} = \Y{}\ess{2}\Y{*}.
+\end{equation}
+The inverse of this matrix is given by the following:
+\begin{equation}
+  \W{y}^{-1} = \paren{\prdmy{*}}^{-1} = \Y{}\ess{-2}\Y{*}.
+\end{equation}
+How do we get from this form to the pseudoinverse
+\begin{equation*}
+  \Ap = \mpgi{*}?
+\end{equation*}
+We must premultiply:
+\begin{equation}
+  \begin{split}
+     \Ap &= \paren{\X{}\essmatrixt{T}\Y{*}}\paren{\Y{}\essmatrixw{-2}\Y{*}} ,\\
+         &= \X{}\essmatrix{-1}\Y{*},\\
+         &= \mpgi.
+  \end{split}
+\end{equation}
+We conclude then that the pseudoinverse for the underdetermined case is given by this:
+\begin{equation}
+  \Ap = \A{*}\paren{\prdmy{*}}^{-1}
+\end{equation}
+
+As an exercise, check that this inverse is a right inverse:
+\begin{equation}
+  \A{}\Ap = \A{}\paren{\A{*}\paren{\prdmy{*}}^{-1}} = \paren{\prdmy{*}}\paren{\prdmy{*}}^{-1} = \I{m}.
+\end{equation}
+
+%%
+\subsection{When $\prdmx{*}=\I{n}$}
+By inspection we see that the pseudoinverse is the adjoint:
+\begin{equation}
+  \Ap = \A{*}.
+\end{equation}
+But the derivation is instructive. Start with the observation that the target matrix has full column rank, $\Accc{m}{n}{n}$. Therefore 
+\begin{equation}
+  \sig{} = \essmatrixt{}.
+\end{equation}
+The product matrix can be cast in this form:
+\begin{equation}
+  \W{x} = \prdm{*} = \wx{} = \I{n}.
+\end{equation}
+This implies that
+\begin{equation}
+  \ess{} = \I{n}.
+  \label{eq:14:a}
+\end{equation}
+How do we know this? By exploiting the unitary invariance of the $2-$norm:
+\begin{equation}
+  \begin{split}
+     \normt{\wx{*}} &= \normt{\I{n}}, \\
+     \normt{\sig{T}\sig{}} = \normt{\ess{2}} &= 1.
+  \end{split}
+\end{equation}
+Because the matrix $\ess{}$ is diagonal with real, positive entries, equation \eqref{eq:14:a} follows.
+
+Now these two identities are evident:
+\begin{equation}
+  \begin{split}
+     \sig{\pssymbol} &= \mat{c|c}{\I{n}^{-1} & \zero}  = \mat{c|c}{\I{n} & \zero}, \\
+     \sig{T}         &= \mat{c|c}{\I{n}^{\TT} & \zero} = \mat{c|c}{\I{n} & \zero},
+  \end{split}
+\end{equation}
+and therefore
+\begin{equation}
+  \sig{\pssymbol} = \sig{T}.
+\end{equation}
+The consequence of this is that
+\begin{equation}
+  \begin{split}
+     \mpgi{*} &= \svdt{*}, \\
+     \A{*}  &= \Ap,
+  \end{split}
+\end{equation}
+The expected result.
+	
+\endinput

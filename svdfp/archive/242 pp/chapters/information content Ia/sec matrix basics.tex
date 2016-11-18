@@ -1,0 +1,94 @@
+\section[Matrix basics]{Matrix basics}
+Before computing the singular value spectra we will explore basic matrix forms with the first being the Hermitian conjugate and the pseudoinverse. How does the Hermitian conjugate compare to the transpose? Does the pseudoinverse present an image? The answer are in table \eqref{tab:camille basics}.
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{The decomposition and intermediate matrices}
+We see that the Hermitian conjugation operation not only rotates the image, it also changes the chirality of the image, as though the image is transparent and we are looking in from the other side. For instance, Camille's lapel button appears to change sides in the Hermitian conjugate image. As for the pseudoinverse image, we can't see an image, just some small scale grids.  We will see later that these are imprints of rank one matrices associated with the least dominant singular values.  
+%%%%%%
+\input{chapters/"information content I"/"tab basic manipulations of the svd"}
+%
+This section affords the opportunity to look at the product matrices $\ApA{*}$ and $\AAp{*}$. If the image matrix had full row and column rank, these matrices would be the same identity matrix. But that is not the case here. See figure \eqref{fig:info content:pseudoinverse}
+%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   $\A{}\Ap = \, $
+   \raisebox{-0.5\height}{\includegraphics[ width = 1.63in ]{images/"information content I"/basics/"Camille AA+"}}
+   $ \ne \I{326}$    \\[20pt]
+   %
+   $\Ap \A{} = \, $
+   \raisebox{-0.5\height}{\includegraphics[ width = 1.33in ]{images/"information content I"/basics/"Camille A+A"}}
+   $ = \I{266}$
+   \caption[The pseudoidentities for Camille's photo]{The pseudoidentities for Camille's photo. Because the matrix $\A{}$ has full column rank yet a row rank deficiency, the pseudoinverse matrix is a left inverse but not a right inverse.} 
+   \label{fig:info content:pseudoinverse}
+\end{figure}
+
+Next up are the product matrices used to compute the singular values and the column vectors of $\bvr{}$. The default computation is the matrix $\wv$, however, as mentioned earlier, the companion matrix $\wu$ may present an easier eigensystem computation. These matrices are
+\begin{equation}
+  \begin{split}
+    \wv &= \wx{*} \\
+    \wu &= \wy{*}
+  \end{split}
+  \tag{\ref{eqn:the product matrices}}
+\end{equation}
+\input{chapters/"information content I"/"tab the product matrices"}
+
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Symmetry}
+Certain matrix properties such as eigenvalues are only defined for square matrices. To explore such properties, we will work with a cropped matrix of dimension $\byy{256}$.
+\begin{equation}
+  \begin{split}
+    \A{}_{+} &= \frac{1}{2} \A{} + \frac{1}{2} \A{*} , \\
+    \A{}_{-} &= \frac{1}{2} \A{} - \frac{1}{2} \A{*} .
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+%
+  \A{}_{+} =
+  \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A+"}} = 
+    \frac{1}{2} \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A"}} + 
+    \frac{1}{2} \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille At"}} \\
+%
+  \A{}_{-} =
+  \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A-"}} = 
+    \frac{1}{2} \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A"}} - 
+    \frac{1}{2} \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille At"}}
+%
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+    \A{} = \A{}_{+} + \A{}_{-} = 
+    \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A"}} = 
+    \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A+"}} + 
+    \raisebox{-0.5\height}{\includegraphics[ width = 1in ]{images/"information content I"/basics/"camille A-"}} \\  
+\end{equation}
+%
+%%%%%%%%%%%
+%%%%%%%%%%%
+\subsection{Eigenvalues and singular values}
+\begin{equation*}
+  \abs{ \lambda \paren{\A{}} } \approx \paren{132.855, 22.6908, 16.3493,\dots,0.00113083}
+\end{equation*}
+Note that 93\% of the eigenvalues lie on or within the unit circle.
+%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3.5in ]{images/"information content I"/basics/"eigenvalues big circle"} \\[20pt]
+   \includegraphics[ width = 3.5in ]{images/"information content I"/basics/"eigenvalues small circle"}
+   \caption[The eigenvalues for Camille's photo on two different scales]{The eigenvalues for Camille's photo on two different scales. The top image shows every eigenvalue except the first. The bottom shows the eigenvalues plotted against the unit circle; these eigenvalues contribute the least to the information content.} 
+   \label{fig:info content:evalues}
+\end{figure}
+%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/basics/"Camille spectra"} 
+   \caption[Comparing the singular values to the magnitude of the eigenvalues]{Comparing the singular values to the magnitude of the eigenvalues. The singular values are plotted in blue; the magnitude of the eigenvalues in black. Another way to think of this plot is to consider it as a comparison of the eigenvalues of $\A{}$ (black) to the eigenvalues of $\wx{*}$ (blue).}
+   \label{fig:info content:spectra}
+\end{figure}
+
+\endinput

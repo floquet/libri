@@ -1,0 +1,105 @@
+\chapter[]{Incubator}
+Here are some random thoughts which might require further development.
+
+\section{SVD by inspection}
+\begin{equation}
+  \A{} = \mat{cc}{1&0\\0&1\\1&0}
+\end{equation}
+Full column rank. Therefore $\Ap = \AinvL$. Try an identity matrix for the domain matrix and assemble a null space vector for the codomain matrix: 
+\begin{equation}
+  \X{} = \stwo\itwo, \qquad \Y{} = \mat{rr>{\columncolor{ltgray}}r}{\stwo & 0 & \stwo \\ 0 & 1 & 0 \\ \stwo & 0 & \frac{-1}{\sqrt{2}}}.
+\end{equation}
+If these two matrices are adequate we can find the two singular values using the following relationships
+\begin{equation}
+  \begin{split}
+    \A{}\X{}_{*,1} & = \sigma_{1}\Y{}_{*,1},\\
+    \A{}\X{}_{*,2} & = \sigma_{2}\Y{}_{*,2}.\\
+  \end{split}
+\end{equation}
+When solved, we see that the matrix of singular values is this:
+\begin{equation}
+  \ess{} = \sig{} = \mat{cc}{\sqrt{2} & 0 \\ 0 & 1}.
+\end{equation}
+The final \svdl \ is this:
+\begin{equation}
+  \begin{split}
+    \svda{T},\\
+     \mat{cc}{1&0\\0&1\\1&0} & = 
+     \mat{ccc}{\stwo & 0 & \stwo \\ 0 & 1 & 0 \\ \stwo & 0 & \frac{-1}{\sqrt{2}}}
+     \mat{cc} {\sqrt{2} & 0 \\ 0 & 1}
+     \stwo \itwo.
+  \end{split}
+\end{equation}
+
+\section{Almost linear}
+Consider a matrix which allows us to experiment with the linear independence of the column vectors. To wit
+\begin{equation}
+  \A{} = \mat{cc}{1&1\\\delta&0\\0&\delta}
+\end{equation}
+where $\delta$ is a real and positive number.
+
+This matrix too can be resolved informally. Since the target matrix has rank 2, we can try an identity matrix again for the domain matrix:
+\begin{equation}
+  \X{} = \itwo.
+\end{equation}
+This won't work, so we try the next guess, a rotation by $\pi/4$:
+\begin{equation}
+  \X{} = \stwo \mat{rr}{1&-1\\1&1}.
+\end{equation}
+This works and we find that
+\begin{equation}
+  \begin{split}
+    \svda{T},\\
+     \mat{cc}{1&1\\\delta&0\\0&\delta} & = 
+\left[
+\begin{array}{rr>{\columncolor{ltgray}}r}
+ 0 & \frac{\sqrt{2}}{\sqrt{2+\delta ^2}} & \frac{\delta ^2}{\sqrt{\delta ^2 \left[2+\delta ^2\right)}} \\
+ \frac{1}{\sqrt{2}} & \frac{\delta }{\sqrt{2} \sqrt{2+\delta ^2}} & -\frac{\delta }{\sqrt{\delta ^2 \left[2+\delta ^2\right)}} \\
+ -\frac{1}{\sqrt{2}} & \frac{\delta }{\sqrt{2} \sqrt{2+\delta ^2}} & -\frac{\delta }{\sqrt{\delta ^2 \left[2+\delta ^2\right)}}
+\end{array}
+\right]    
+     \mat{cc} {\delta & 0 \\ 0 & \sqrt{2+\delta^{2}} \\\hline 0 & 0}
+     \stwo \mat{rr}{1&1\\-1&1}.
+  \end{split}
+\end{equation}
+
+Hmmm.
+\begin{equation}
+  \sqrt{2+\delta ^2} > \delta
+\end{equation}
+
+\section{Slow decay}
+Consider a matrix which allows us to experiment with the linear independence of the
+\begin{equation}
+  \A{} = \mat{rr}{2\alpha & \alpha \\ -\alpha & 0 }
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \Y{} & = 
+\left(
+\begin{array}{cc}
+ \frac{\sqrt{2-\sqrt{2}}}{2} & \frac{\sqrt{2+\sqrt{2}}}{2} \\
+ \frac{\sqrt{2+\sqrt{2}}}{2} & -\frac{1}{2} \sqrt{2-\sqrt{2}}
+\end{array}
+\right), \\
+   \sig{} & =
+\left(
+\begin{array}{cc}
+ \sqrt{3-2 \sqrt{2}} \alpha  & 0 \\
+ 0 & \sqrt{3 \alpha ^2+2 \sqrt{2} \alpha ^2}
+\end{array}
+\right), \\
+   \X{} &=
+\left(
+\begin{array}{cc}
+ -\frac{1}{2} \sqrt{2-\sqrt{2}} & \frac{\sqrt{2+\sqrt{2}}}{2} \\
+ \frac{\sqrt{2+\sqrt{2}}}{2} & \frac{1}{\sqrt{2 \left(2+\sqrt{2}\right)}}
+\end{array}
+\right)
+  \end{split}
+\end{equation}
+
+ 
+
+
+\endinput

@@ -1,0 +1,101 @@
+\section{Exercises}
+\begin{enumerate}
+\item Show that the dot product is commutative. That is, for conformable vectors $u$ an $v$ show that
+\begin{equation}
+  u\cdot v=v \cdot u.
+\end{equation}
+\item Reinforce the view of a matrix as a collection of vectors and verify the transpose formula \eqref{eq:mattran}. Start with component equation \eqref{eq:dot} and write the form for the components of the transpose:
+\begin{equation}
+  \begin{array}{rcccc}
+    \C{}_{r,c} &=& \A{}_{r,*}&\cdot&\B{}_{*,c} \\
+    \therefore\ \C{}_{c,r} &=& \A{}_{c,*}&\cdot&\B{}_{*,r} \\
+  \end{array}
+\end{equation}
+Show that
+\begin{equation}
+  \A{}_{c,*}\cdot\B{}_{*,r} = \B{T}_{r,*}\cdot\A{T}_{*,c}
+\end{equation}
+and explain in a short sentence how this validates \eqref{eq:mattran}.
+\item Rank one matrices are constructed most naturally from the unit vectors $\paren{e_{k}}_{j}$ which is the $k$th column of the identity matrix $\I{j}$. We can express the outer product in matrix form
+\begin{equation}
+  e_{r}\otimes e_{c} = e_{r}e_{c}^{\mathrm{T}} = \M{}
+\end{equation}
+where the $\by{m}{n}$ matrix has entries given by
+\begin{equation}
+  \M{}_{\mu,\nu} = \delta_{r}^{\mu}\delta_{c}^{\nu}.
+\end{equation}
+\subitem Given the expression
+\begin{equation}
+  \mat{ccrr}
+  {
+  i & 1 & 3 & -1\\
+  1-i & 1 + i & -1 & -1
+  }
+  -
+  \mat{cccc}
+  {
+  0 & 0 & 1 & 0\\
+  0 & 0 & 0 & 0
+  }
+\end{equation}
+write down the values $\lst{r,c}$ so that the above may be cast as
+\begin{equation}
+  \A{} - e_{r}\otimes e_{c}.
+\end{equation}
+\subitem Write out the vectors $e_{r}$ and $e_{c}$.
+\subitem Answer: The first vector must have length 2; the second vector must have length 4. The index values are these $\lst{r,c} = \lst{1,3}$
+\begin{equation*}
+  \paren{e_{1}}_{2} =\mat{c}{1\\0}, \quad \paren{e_{3}}_{4}= \mat{c}{0\\0\\1\\0}
+\end{equation*}
+\item An important and useful way to verify your command of 	matrix products is to verify the formula
+\begin{equation}
+ \paren{\I{n}+\alpha \beta^{T}}^{-1} = \I{n} - \frac{\alpha \beta^{T}}{1+\beta^{T}\alpha}.
+ \label{eq:1:rou}
+\end{equation}
+Here $\I{n}$ is the $\by{n}{n}$ identity matrix and the column vectors
+\begin{equation}
+  \alpha, \beta \in \cmplx{\by{n}{1}}
+\end{equation}
+have the restriction $\beta^{T}\alpha\ne-1$.
+Two different ways to verify equation \eqref{eq:1:rou} involve direct multiplication. Verify either
+\begin{equation}
+  \begin{split}
+    \paren{\I{n}+\alpha \beta^{T}}\paren{\I{n} - \frac{\alpha \beta^{T}}{1+\beta^{T}\alpha}} &= \I{n},\\
+    \paren{\I{n} - \frac{\alpha \beta^{T}}{1+\beta^{T}\alpha}}\paren{\I{n}+\alpha \beta^{T}} &= \I{n}.
+  \end{split}
+\end{equation}
+The significance of this equation is profound. It hints that one can express the inverse of a perturbed matrix in terms of the original inverse and another perturbation. This means that small changes to a large system will not require the expensive computation of a new inverse. Instead, we just need to compute a rank one update matrix.
+
+Suppose you have a circuit with a thousand components. The system matrix that must be inverted has $1,000^{2}=1,000,000$ elements. If a single resistor is changed there is no need to invert a new megamatrix; just compute an update.
+\item A more complicated problem is to check the \textit{Sherman-Morrison} formula for updating regular matrices. The formula is
+\begin{equation}
+  \paren{\A{}+\alpha \beta^{T}}^{-1} = \A{-1}\paren{1+\frac{\alpha \beta^{T}\A{-1}}{1+\beta^{T}\A{-1}\alpha}}.
+\end{equation}
+Verify this inverse. You may need to use the fact that scalars commute with matrices:
+\begin{equation}
+  \alpha \beta^{T}\alpha \beta^{T}=\alpha \paren{\beta^{T}\alpha} \beta^{T}=\paren{\beta^{T}\alpha}\alpha \beta^{T}.
+\end{equation}
+In order to assure that the outer product attains rank one, what restrictions must be placed on $\alpha$ and $\beta$?
+%%
+\item A matrix has domain $\real{2}$ and has full column rank yet no row rank deficiency. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+$\A{}\in\real{\by{2}{2}}_{2}$
+%%
+\item A matrix has domain $\real{4}$ and has a row rank deficiency of 2. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+$\A{}\in\real{m\times 4}_{2}$
+%%
+\item A matrix has codomain $\real{3}$ and has a row rank deficiency of 2. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+$\A{}\in\real{3\times n}_{n-2}$
+%%
+\item A matrix has rank 2, a column rank deficiency of 3 and no row rank deficiency. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+$\A{}\in\real{2\times 5}_{2}$
+%%
+\item A matrix has has twice as many rows as columns and the matrix rank is twice the column rank deficiency. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+$\A{}\in\real{6k\times 3k}_{2k}, \quad k\in\mathbb{N}$
+%%
+\item A matrix has has twice as many rows as columns and the row rank deficiency is half the column rank deficiency. Specify the matrix in terms of $\A{\byt{m}{n}}_{\rho}$.\\
+This implies $\rho=0$; no such matrix exists.
+
+\end{enumerate}
+
+
+\endinput

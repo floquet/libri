@@ -1,0 +1,77 @@
+\section[Full Jordan forms]{The full $2\times2$ Jordan form}
+\label{sec:Jordan:full}
+
+The most vexations \svdl s involve the full Jordan forms. There are forms which are an entire upper triangular matrices of unit entries. If the target matrix is similar to a full Jordan form the \svdl \ will be arduous.
+
+Consider the full form for the $2\times2$ Jordan forms. The depleted forms have trivial decompositions; the full form is much more complex.
+
+\subsection{$2\times2$ form}
+The full Jordan normal form for size $m=2$ and its decomposition is given by this
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{2,7} = 
+\mat{cc}{
+ 1 & 1 \\
+ 0 & 1
+}
+ &= \svd{T}\\
+\Y{}&=\mat{rr}{
+ \sqrt{\frac{1}{10} \left(5+\sqrt{5}\right)} & -\sqrt{\frac{1}{10} \left(5-\sqrt{5}\right)} \\
+ \sqrt{\frac{1}{10} \left(5-\sqrt{5}\right)} & \sqrt{\frac{1}{10} \left(5+\sqrt{5}\right)}
+}\\
+\sig{}&=\mat{cc}{
+ \frac{1}{2} \left(1+\sqrt{5}\right) & 0 \\
+ 0 & \frac{1}{2} \left(-1+\sqrt{5}\right)
+}
+\\
+\X{}&=\mat{rr}{
+ \sqrt{\frac{1}{10} \left(5-\sqrt{5}\right)} & -\sqrt{\frac{1}{10} \left(5+\sqrt{5}\right)} \\
+ \sqrt{\frac{1}{10} \left(5+\sqrt{5}\right)} & \sqrt{\frac{1}{10} \left(5-\sqrt{5}\right)}
+}.
+  \end{split}
+\end{equation}
+%%%
+
+This looks quite daunting until we see that we are dealing with rotator matrices using complementary angles:
+%%%
+\begin{equation}
+  \begin{array}{ccccccc}
+    \mathcal{J}_{2,7} &=& 
+\mat{cc}
+{
+ 1 & 1 \\
+ 0 & 1
+}
+ &=& \svd{T}\\
+ &&&=& \rat{\theta}{}
+&\mat{cc}{
+ \alpha_{+} & 0 \\
+ 0 & \alpha_{-}
+}
+&\rat{\theta_{c}}{T}\\
+ &&&=& e^{i\theta_{y}}
+&\mat{cc}{
+ \alpha_{+} & 0 \\
+ 0 & \alpha_{-}
+}
+&e^{-i\theta_{x}}
+  \end{array}
+\end{equation}
+where the singular values are
+\begin{equation}
+  \alpha_{\pm} = \frac{1}{2} \left(\pm1+\sqrt{5}\right);
+  \label{eq:j27:1}
+\end{equation}
+and the rotation angle is given by this
+\begin{equation}
+  \theta = \arcsin\paren{\sqrt{\frac{1}{10} \left(5-\sqrt{5}\right)}},
+  \label{eq:j27:2}
+\end{equation}
+with $\theta_{c}$ being the complementary angle:
+\begin{equation}
+  \theta + \theta_{c} = \frac{\pi}{2}.
+  \label{eq:j27:3}
+\end{equation}
+
+
+\endinput

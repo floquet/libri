@@ -1,0 +1,253 @@
+\chapter{Least Squares Problems}
+
+\section{Linear Systems}  %    S    S    S    S    S    S    S    S    S    S    S    S
+
+  This story begins with the archetypal \index{matrix-vector equation} matrix--vector equation
+  \begin{equation}   %  =   =   =   =   =
+    \axeb .
+    \label{eq:axeb}
+  \end{equation}
+The matrix $\A{}$ has $m$ rows, $n$ columns, and has rank $\rho$; the vector $b$ encodes $m$ measurements. The solution vector $x$ represents the $n$ free parameters in the model. In mathematical shorthand,
+  \begin{equation}   %  =   =   =   =   =
+    \aicmnr, \quad b \in \cmplxm, \quad x \in \cmplxn
+  \label{eq:basics}
+  \end{equation}
+with $\cmplx{}$ representing the field of complex numbers. The system matrix $\A{}$ and the data vector $b$ are given, and the task is to find the vector $x$.
+
+\subsection{$\reserr = 0$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+The letters in \eqref{eq:axeb} will change, but the operation remains the same: a matrix operates on an $n-$vector and returns an $m-$vector. We can think of the \index{matrix} matrix as a map from the space of vectors of dimension $n$ to the space of vectors of dimension $m$:
+  \begin{equation*}   %  =   =   =   =   =
+    \A{} \colon \cmplxn \mapsto \cmplxm .
+  \end{equation*}
+
+If the vector $b$ can be expressed a combination of the columns of the matrix $\A{}$ then there is a direct solution:
+%  e q u a t i o n
+\begin{equation*}
+  %\begin{split}
+    \axeb \quad \Longrightarrow \quad x_{1} a_{1} + \cdots + x_{n} a_{n} = b
+%\label{eq:}
+\end{equation*}
+%  e q u a t i o n
+and the residual error \index{residual error} vanishes:
+  \begin{equation*}   %  =   =   =   =   =
+      r = \axmb = \zero
+  \label{eq:axmb}
+  \end{equation*}
+where the zero vector $\zero$ is a list of $m$ zeros. The total error, the norm of the $r$ vector, is 0:
+  \begin{equation*}   %  =   =   =   =   =
+      \normts{r} = \normts{\axmb} = 0.
+  \end{equation*}
+
+For the problem where the system matrix $\A{}$ is the identity matrix $\I{2}$:
+  \begin{equation*}   %  =   =   =   =   =
+      \idtwo \xtwo = \mat{c}{b_{1} \\ b_{2}},
+ %\label{eq:}
+  \end{equation*}
+the solution is
+  \begin{equation*}   %  =   =   =   =   =
+      \xtwo = \mat{c}{b_{1} \\ b_{2}} ;
+ %\label{eq:}
+  \end{equation*}
+there is no residual error 
+  \begin{equation*}   %  =   =   =   =   =
+      r = \A{} x - b = \zerotwo .
+ %\label{eq:}
+  \end{equation*}
+
+\subsection{$\reserr > 0$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+But what happens when the vector $b$ is \emph{not} in the column space of the matrix $\A{}$? The solution criteria must relax. Instead of seeking zero residual error, seek the least residual error
+  \begin{equation*}   %  =   =   =   =   =
+      \norm{r} = \reserr.
+  \end{equation*}
+Instead of a perfect solution, ask for the best solution. One such class of solutions are least squares solutions\index{leasts squares!solutions}.
+
+\section{Least Squares Solutions}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+In the approximation problems which follow, the goal is to minimize the residual error and this work explores the minimal solutions under the $2-$norm, the familiar norm of Pythagorus:
+  \begin{equation*}   %  =   =   =   =   =
+      \normt{ \mat{c}{x_{1} \\ x_{2}} } = \sqrt{x_{1}^{2} + x_{2}^{2}.}
+ %\label{eq:}
+  \end{equation*}
+
+Let's construct a sample problem with $\reserr > 0$ by modifying the previous example:
+  \begin{equation}   %  =   =   =   =   =
+      \mat{cc}{1 & 0 \\ 0 & 0} \xtwo = \mat{c}{b_{1} \\ b_{2}} .
+      \label{eq:simple case}
+  \end{equation}
+When $b_{2} \ne 0$ there is no exact solution; no solution where $\reserr = 0$. Consider the solutions given by
+  \begin{equation}   %  =   =   =   =   =
+      x_{*} = \mat{c}{ x_{1} \\ 0 } ;
+      \label{eq:xstar}
+  \end{equation}
+the error is $\A{} x_{*} - b = -\mat{c}{0 \\ b_{2}}$ which has a norm 
+  \begin{equation}   %  =   =   =   =   =
+      \normt{r} = \normt{\A{}x_{*} - b} = \abs{b_{2}},
+  \label{eq:simple case solution}
+  \end{equation}
+plotted in figure \ref{fig:v graph}. This figure shows the solution is \eqref{eq:xstar}, the least possible error for the problem as the value of $b_{2}$ varies. In this light, the transition from an exact solution to an inexact solution is continuous.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "least squares"/"abs error"}
+		% 
+    	\put(51,-2){$b_2$}
+    	\put(-8,30){$\normt{r}$}
+	    %
+   \end{overpic}
+   \caption{The residual error $\normt{r}$ given in \eqref{eq:simple case solution}.}
+   \label{fig:v graph}
+\end{figure}
+
+Think of the solutions to the linear system
+  \begin{equation*}   %  =   =   =   =   =
+    \axeb
+  \end{equation*}
+as being described by the inequality
+  \begin{equation*}   %  =   =   =   =   =
+    \normt{\axmb} \ge 0.
+  \end{equation*}
+In some cases the equality is attained.
+
+Least squares solutions are classified by the interpretation of the output. In the first case, \emph{zonal approximation}, the output represents data at a physical zone, a point or a region. In the second case, \emph{modal approximation}, the output represents an amplitude, a contribution for a mode. Basic examples follow.
+
+\subsection{Zonal Approximation}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Consider the vector field $F$ described by the gradient of a scalar field $\phi$.
+  \begin{equation*}   %  =   =   =   =   =
+    F = \nabla \phi
+  \end{equation*}
+The forward problem involves taking a given potential $\phi$ and computing the forces $F$. We are instead interested in the inverse problem: measure the forces $F$ and compute the potential $phi$.
+
+\subsubsection{\label{ssec:zonal solution}Zonal Problem}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+The input and approximation for the inverse problem are depicted in \ref{fig:sticks}. The physical field is $\phi(x)$, $0\le x \le 2$, the approximation is $\varphi_{x_{k}}$, $k=0,1,2$. For a cleaner presentation let $\varphi_{x_{k}} \rightarrow \varphi_{k}$. The first measurement $x_{1}$ represents the potential change between $\phi(0)$ and $\phi(1)$; the second measurement $x_{2}$ the change between $\phi(1)$ and $\phi(2)$.
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      \varphi_{1} - \varphi_{0} &\approx \delta_{1} \\
+      \varphi_{2} - \varphi_{1} &\approx \delta_{2}
+    %\label{eq:}
+    \end{split}
+  \end{equation*}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "least squares"/"zonal"}
+   \end{overpic}
+   \caption[Scalar function $\phi$ and approximations.]{Scalar function $\phi(x)$ (curve) and approximation $\varphi_{k}$ (sticks).}
+   \label{fig:sticks}
+\end{figure}
+
+The system matrix 
+  \begin{equation*}   %  =   =   =   =   =
+      \A{} =     \mat{rrr}{ 
+      -1 & 1 & 0 \\
+       0 & -1 & 1 } \in \real{2 \times 3}_{2}.
+ %\label{eq:}
+  \end{equation*}
+There are $m = 2$ measurements, $n = 3$ measurement locations, and the matrix rank is $\rho = 2$. Because the rank is less than the number of columns, $\rho < n$, this problem is \emph{underdetermined}.\index{underdetermined system}
+
+The linear system is
+  \begin{equation}   %  =   =   =   =   =
+    \mat{rrr}{ 
+      -1 & 1 & 0 \\
+       0 & -1 & 1 }
+    \mat{c}{ \varphi_{0} \\ \varphi_{1} \\ \varphi_{2} }
+    =
+    \mat{c}{ \delta_{1} \\ \delta_{2} } .
+    \label{eq:zonalls}
+  \end{equation}
+
+\subsubsection{Zonal Solution}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+
+The solutions for the linear system in \eqref{eq:zonalls} which minimize $\normt{\axmb}$ are
+  \begin{equation*}   %  =   =   =   =   =
+    \mat{c}{ \varphi_{0} \\ \varphi_{1} \\ \varphi_{2} } =
+    \bl{\mat{rr}{ -2 & -1 \\ 1 & -1 \\  1 & 2 }
+    \mat{c}{ \delta_{1} \\ \delta_{2} }} + \gamma
+    \rd{\mat{c}{ 1 \\ 1 \\ 1 }}, \qquad \gamma \in \cmplx{} .
+  \end{equation*}
+The color blue represents vectors in the range space, red vectors in the null space. In this way, the fundamental spaces spring to life.
+
+There is a continuum of solutions due to the fact that
+  \begin{equation*}   %  =   =   =   =   =
+      \Ax = \A{} \paren{x + \gamma \rd{\mat{c}{ 1 \\ 1 \\ 1 } } }
+          = \A{} x + \gamma \A{} \rd{\mat{c}{ 1 \\ 1 \\ 1 } } 
+          = \A{} x.
+  \end{equation*}
+A quick demonstration verifies the null space vector
+  \begin{equation*}   %  =   =   =   =   =
+    \A{} \rd{\mat{c}{ 1 \\ 1 \\ 1 }} 
+      = \mat{rrr}{ -1 & 1 & 0 \\ 0 & -1 & 1 } \rd{\mat{c}{ 1 \\ 1 \\ 1 }} 
+      = \mat{c}{ 0 \\ 0 } .
+  \end{equation*}
+
+\subsection{\label{ssec:modal approx}Modal Approximation}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+\subsubsection{\label{ssec:modal problem}Modal Problem}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+In the modal approximation, the user first selects a set of basis functions to describe measurements. Popular basis functions include orthogonal polynomials, trigonometric functions, or monomials. For example, a linear regression implies a basis set of two elements: a constant function, and a linear function. This leads to the familiar equation for a straight line:
+  \begin{equation*}   %  =   =   =   =   =
+    y(x) = a_{0} + a_{1} x
+  \end{equation*}
+The $n=2$ parameters represent the intercept $\paren{a_{0}}$, and the slope $\paren{a_{1}}$; each of the $m$ measurements represents a straight line:
+  \begin{equation*}   %  =   =   =   =   =
+   \begin{split}
+     a_{0} + a_{1} x_{1} &= y_{1} \\
+       & \ \, \vdots \\
+     a_{0} + a_{1} x_{m} &= y_{m} .
+    %\label{eq:}
+   \end{split}
+  \end{equation*}
+The goal is to simultaneously solve the set of equations.
+
+\subsubsection{\label{ssec:modal solution}Modal Solution}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+The first step is to compose the system
+  \begin{equation}   %  =   =   =   =   =
+   \begin{array}{cccc}
+     \A{} & \alpha & = & y \\
+     \mat{cc}{ 1 & x_{1} \\ \vdots & \vdots \\ 1 & x_{m} } &
+     \mat{c}{ \alpha_{0} \\ \alpha_{1} } &
+       = &
+     \mat{c}{ y_{1} \\ \vdots \\ y_{m} } ,
+    \label{eq:modalls}
+   \end{array}
+  \end{equation}
+which can be expressed using the column vectors
+  \begin{equation*}   %  =   =   =   =   =
+   \begin{split}
+     {\bf{1}} = \mat{cc}{ 1 \\ \vdots \\ 1 }, \quad
+     x = \mat{cc}{ x_{1} \\ \vdots \\ x_{m} }, \quad
+     y = \mat{cc}{ y_{1} \\ \vdots \\ y_{m} } .
+    %\label{eq:}
+   \end{split}
+  \end{equation*}
+The columns of the system matrix $\A{} = \mat{c|c}{\bf{1} & x}$. The solution parameters can be expressed in terms of the column vectors:
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \mat{c}{\alpha_{0} \\ \alpha_{1}} =
+    \paren{ \paren{\oto}\paren{\xtx} - \paren{\otx}^{2}}^{-1}
+     \bl{\mat{rr}{\xtx & -\otx \\
+            -\otx &  \oto }
+    \mat{c}{ \mathbf{1}^\mathrm{T}y \\  x^\mathrm{T}y}} .
+  \end{equation*}
+  % = =
+
+\subsection{Errors}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+When measurements are not exact, solutions are not exact. A great beauty of the method of least squares in that the quality of the solution can be quantified. An ability to discern answers like 3.0 $\pm$ 1.0 from 3.000 $\pm$ 0.0010 is invaluable. The machinery needed to compute uncertainties will be developed in following chapters.
+
+\section{\label{sec:lsp}Least Squares Problem}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+Emboldened by solutions to the two basic problems, we turn attention towards formalities. Starting with a the linear system $\axeb$ where the matrix $\aicmn$, the data vector $b\in\cmplxm$, the least squares solution\index{least squares!solution!definition} $\xls$ is defined as the set
+  \begin{equation}   %  =   =   =   =   =
+    \xlsdef .
+    \label{eq:xlsdef}
+  \end{equation}
+The least squares solution may be a point or it may be a hyperplane. The general solution is a combination of a particular solution (in blue) and a homogenous solution (in red):
+  \begin{equation}   %  =   =   =   =   =
+   \begin{array}{cccccl}
+     \xls 
+       & = & \bsolnlsa{b}{y}, & \qquad y \in \cmplx{n} \\
+       & = & \xbotha
+    \label{eq:general soln}
+   \end{array}
+  \end{equation}
+where the matrix $\Ap$ is the pseudoinverse matrix (\S ???) and $y$ is an arbitrary vector.
+
+
+\endinput

@@ -1,0 +1,271 @@
+\section[The fundamental projections]{The four fundamental orthogonal projections}
+\label{sec:orthproj}
+
+One of the bonuses we reap from the pseudoinverse is the four fundamental orthogonal projections. Each of these matrices projects onto a specific vector space. The spaces are these:
+\begin{enumerate}
+\item the range $\rng{\A{}}$,
+\item the orthogonal complement to the range, $\rng{\A{}}^{\perp}$,
+\item the null space $\nll{\A{}}$,
+\item the orthogonal complement to the null space, $\nll{\A{}}^{\perp}$.
+\end{enumerate}
+
+We can make a simple yet powerful observation about the projectors.
+Given the $\pee{}_{\mathcal{V}}$, the projector onto an $m-$dimensional subspace $\mathcal{V}$, the projector onto the orthogonal complement is
+\begin{equation}
+  \pee{}_{\mathcal{V}^{perp}} = \I{m}-\pee{}_{\mathcal{V}}.
+\end{equation}
+
+Below are these projectors for a matrix $\Accmn_{\rho}$ with pseudoinverse $\Ap$:
+\begin{equation}
+\boxed{
+  \begin{array}{lcllcl}
+    \projra& = &\rightinv & \quad \projrap& = &\I{m}-\rightinv\\
+    \projnap& =& \leftinv & \quad \projna& = &\I{n}-\leftinv\\    
+  \end{array}
+  }
+  \label{eq:fourprojpi}
+\end{equation}
+
+%%
+\subsection{Projection onto the range of $\A{}$}
+Let's explore the matrix product
+\begin{equation}
+  \begin{split}
+    \projra &= \rightinv,\\
+    &= \Y{}\,\sig{}\,\sig{(+)}\Y{T},\\
+    & = \Y{}\,\J{m}{\rho}\,\Y{*}, \\
+    & = \pra{*}.
+  \end{split}
+\end{equation}
+The truncated identity is acting like screen which only allows the first $\rho$ column vectors of $\Y{}$ into play. These are the vectors which span the image of the target matrix.
+
+%%
+\subsection{Projection onto the orthogonal complement\\ of the range of $\A{}$}
+Now subtract this projector from the identity:
+\begin{equation}
+  \begin{split}
+    \projrap& = \I{m}-\projra,\\
+      &= \I{m} - \rightinv,\\
+      &= \I{m} - \pra{*}.
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Projection onto the null space of $\A{}$}
+\begin{equation}
+  \begin{split}
+    \projna &= \leftinv,\\
+    &= \X{}\,\sig{+}\,\sig{}\X{*},\\
+    & = \X{}\,\J{n}{\rho}\,\X{*},\\
+    & = \pnap{*}.
+  \end{split}
+\end{equation}The truncated identity is acting like screen which only allows 
+%%
+\subsection{Projection onto the orthogonal complement\\ of the null space of $\A{}$}
+Let's explore the matrix product
+\begin{equation}
+  \begin{split}
+    \projnap& = \I{n}-\projna,\\
+      &= \I{n}-\leftinv,\\
+      &= \I{n} - \pnap{*}.
+  \end{split}
+\end{equation}
+
+Below are the same projectors shown in \eqref{eq:fourprojpi} for the same matrix $\Accmn_{\rho}$ with \svdl\ $\svd{*}$:
+\begin{equation}
+\boxed{
+  \begin{array}{lcllcl}
+    \projra&  = &\pra{*}  & \qquad  \projrap & = & \I{m}-\pra{*}\\[3pt]
+    \projnap& = &\pnap{*} & \qquad  \projna  & = & \I{n}-\pnap{*}\\    
+  \end{array}
+  }
+  \label{eq:fourprojsvd}
+\end{equation}
+
+%%%
+%%%
+\subsection{Primitives}
+Consider the following simple matrix:
+\begin{equation}
+  \A{}= \mat{cc}{1&0\\0&1\\0&0}.
+\end{equation}
+This matrix is a map from $\cmplx{2}$ to $\cmplx{3}$. This means that the projection onto $\rng{\A{}}$ and the projection onto the orthogonal complement $\nll{\A{*}}$ will be matrices of dimension $\byy{3}$. The projection onto $\rng{\A{*}}$ and the projection onto the orthogonal complement $\nll{\A{}}$ will be matrices of dimension $\byy{2}$.
+
+We can discern the primitives by inspection. Consider the action of this matrix on a \vvv:
+\begin{equation}
+  \A{}x = \mat{cc}{1&0\\0&1\\0&0}
+          \mat{c}{x \\ y}
+        = \mat{c}{x \\ y \\ 0}.
+\end{equation}
+No matter vector $x$ we present to $\A{}$, the result will be in the $x-y$ plane where $z=0$.
+The range of $\A{}$ is the span of the unit vectors $e_{1}^{(3)}$ and $e_{2}^{(3)}$:
+\begin{equation}
+  \rnga{T} = \spn \lst{\xhattt,\yhattt}
+\end{equation}
+The orthogonal complement to the $x-y$ plane in $\cmplx{3}$ is the $z-$axis, or the span
+\begin{equation*}
+  \spn \lst{\mat{c}{0 \\ 0 \\ 1}}.
+\end{equation*}
+Therefore, we know the first two projectors immediately:
+\begin{equation}
+  \projra = \mat{ccc}{1&0&0\\0&1&0\\0&0&0}, \quad \projnat = \mat{ccc}{0&0&0\\0&0&0\\0&0&1}.
+\end{equation}
+
+For the next two projectors we need to look at the transpose matrix:
+\begin{equation}
+  \A{T}y = \mat{ccc}{1&0&0\\0&1&0}.
+\end{equation}
+We see that the range of this matrix is given by this
+\begin{equation}
+  \rnga{T} = \spn \lst{\xhatt,\yhatt} = \cmplx{2}
+\end{equation}
+Since the range is the entire space $\cmplx{2}$, there is no orthogonal complement.
+The last two projectors are then these:
+\begin{equation}
+  \projrat = \mat{ccc}{1&0\\0&1}, \quad \projna = \mat{cc}{0&0\\0&0}.
+\end{equation}
+The moral is that many matrices can be interpreted quickly without recourse to formal computation.
+
+To complete the example, let's show the comptation. Using SVD by inspection we write
+\begin{equation}
+\begin{split}
+  \svda{T},\\
+  &= \I{3}\, \A{}\, \I{2},\\
+  &= \mat{cc>{\columncolor{ltgray}}c}{1&0&0\\0&1&0\\0&0&1} \mat{cc}{1&0\\0&1\\\hline0&0} \itwo.
+\end{split}
+\end{equation}
+The pseudoinverse is then
+\begin{equation}
+  \begin{split}
+     \mpgia{T}, \\
+     & = \itwo \mat{ccc}{1&0&0\\0&1&0} \mat{ccc}{1&0&0\\0&1&0\\\rowcolor{ltgray}0&0&1},\\
+     & = \mat{ccc}{1&0&0\\0&1&0}.
+  \end{split}
+\end{equation}
+
+The projection operators are these:
+\begin{equation}
+  \begin{array}{lcllcl}
+    \projra& = &\rightinv = \mat{ccc}{1&0&0\\0&1&0\\0&0&0} & \quad \projnap& = &\I{3}-\projra = \mat{ccc}{0&0&0\\0&0&0\\0&0&1}\\[10pt]
+    \projrap& =& \leftinv = \mat{ccc}{1&0\\0&1} & \quad \projna& = &\I{2}-\projnap = \mat{cc}{0&0\\0&0}\\    
+  \end{array}
+  \label{eq:primitives}
+\end{equation}
+
+%%
+\subsection{Examples}
+To solidify the theory work through these examples. They will show both formulations of the four fundamental projectors: using the pseudoinverse and using the \svdl.
+
+%%
+\subsubsection{$\Ap=\A{-1}$}
+This class of matrices has full row and full column rank: $\rho=n=m$.
+
+%%
+\subsubsection{$\Ap=\AinvL$}
+This class of matrices has full column rank: $\rho=n$, $m\ge n$.
+%%
+\subsubsection{$\Ap=\AinvR$}
+This class of matrices has full row rank: $\rho=m$, $m\le n$.
+%%
+\subsubsection{$\Ap\ne\A{-1}_{L,R}$}
+This class of matrices is deficient in both row and column rank: $\rho<m$, $\rho<n$.
+%%
+\textbf{Range projections and their complements}
+For this example we need a matrix with both row and column rank deficiency. 
+\begin{equation}
+  \A{} = \Aexample, \quad \Ap = \Aexamplepi.
+\end{equation}
+
+The projection represents these two 
+\begin{equation}
+  \begin{split}
+    \projra &= \rightinv = \rthree
+    \mat{rrr}
+    { 
+    1 & -1 &  1\\
+   -1 &  1 & -1\\
+    1 & -1 &  1\\
+    }\\[5pt]
+    & = \pra{T} =
+    \Yshade\,
+    \mat{ccc}{
+    1 & 0 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 0}
+    \Ytshade\\
+    & =\sthree
+    \mat{r}
+    {1\\-1\\1}
+    \sthree
+    \mat{ccc}
+    {1 & -1 & 1}
+    = \rthree\mat{rrr}
+    { 1 & -1 &  1\\
+     -1 &  1 & -1\\
+      1 & -1 &  1}.
+  \end{split}
+\end{equation}
+
+Tee projection onto the space perpendicular to the range is this
+\begin{equation}
+  \projrap = \I{3} - \rightinv = \rthree
+    \mat{rrr}
+    { 2 & -1 &  1\\
+     -1 &  2 & -1\\
+      1 & -1 &  2}.
+\end{equation}
+
+Given 
+\begin{equation}
+  \A{} = 
+  \mat{ccc}
+  {0 & 3 & 0\\
+   1 & 2 & 2}
+   , \quad \Ap = \rfive
+   \mat{rr}
+   {-2 & 3 \\ 5 & 0 \\ -4 & 6}.
+\end{equation}
+
+The projection represents these two 
+\begin{equation}
+  \begin{split}
+    \projra &= \rightinv = \rthree
+    \mat{rrr}
+    { 
+    1 & -1 &  1\\
+   -1 &  1 & -1\\
+    1 & -1 &  1\\
+    }\\[5pt]
+    & = \pra{T} =
+    \Yshade\,
+    \mat{ccc}{
+    1 & 0 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 0}
+    \Ytshade\\
+    & =\sthree
+    \mat{r}
+    {1\\-1\\1}
+    \mat{ccc}
+    {1 & -1 & 1}
+    = \rthree\mat{rrr}
+    { 1 & -1 &  1\\
+     -1 &  1 & -1\\
+      1 & -1 &  1}.
+  \end{split}
+\end{equation}
+
+Tee projection onto the space perpendicular to the range is this
+\begin{equation}
+  \projrap = \I{3} - \rightinv = \rthree
+    \mat{rrr}
+    { 2 & -1 &  1\\
+     -1 &  2 & -1\\
+      1 & -1 &  2}.
+\end{equation}
+
+
+\input{chapters/"ch 14"/projections_graphics}
+
+	
+\endinput

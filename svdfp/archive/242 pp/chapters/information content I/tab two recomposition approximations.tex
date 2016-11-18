@@ -1,0 +1,25 @@
+\begin{table}[htdp]
+\caption[Two recomposition approximations]{Two recomposition approximations. These two different recomposition methods are not equal until the final step.}
+\begin{center}
+\begin{tabular}{cll}
+%
+ step & top down & bottom up \\\hline
+%
+ 1 & $\lst{\sigma_{1}}$ & $\lst{\sigma_{266}}$ \\
+%
+ 2 & $\lst{\sigma_{1},\sigma_{2}}$ & $\lst{\sigma_{265},\sigma_{266}}$ \\
+%
+ \vdots & \vdots & \vdots \\
+%
+ k & $\lst{\sigma_{1},\sigma_{2},\hdots,\sigma_{k}}$ & $\lst{\sigma_{266-k},\sigma_{266-k-1},\hdots,\sigma_{266}}$ \\
+%
+ \vdots & \vdots & \vdots \\
+%
+ 266 & $\lst{\sigma_{1},\sigma_{2},\hdots,\sigma_{266}}$ & $\lst{\sigma_{1},\sigma_{2},\hdots,\sigma_{266}}$ \\
+%
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
+
+\endinput

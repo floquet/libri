@@ -1,0 +1,226 @@
+\subsection[Example II: Hilbert matrix]{$\bigstar$ Example II: Hilbert matrix}
+\label{sec:vis:2d:II}
+The target matrix is a Hilbert matrix
+\begin{equation}
+  \A{} = \hilbertthree.
+\end{equation}
+which also has full rank: $\rho = m = n = 3$. For the Hilbert matrices the SVD has the property that the domain and codomain matrices are the same:
+\begin{equation}
+  \bur{} = \bvr{}.
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Singular value decomposition}
+The singular value decomposition is best left to \emph{Mathematica}.
+Start with the product matrix $\boxed{2}$ 
+%
+\begin{equation}
+  \W{v} = \wx{*} = \recip{3600} \mat{ccc}{
+    4900 & 2700 & 1890 \\
+    2700 & 1525 & 1080 \\
+    1890 & 1080 & 769 \\
+  }  .
+\end{equation}
+%
+The characteristic polynomial for this matrix is
+\begin{equation}
+  \begin{split}
+     p\paren{\lambda} 
+       &= -\lambda^{3} + \trace\paren{\W{v}} \lambda^{2} + \paren{\trace^{2}\paren{\W{v}}-\trace\paren{\W{v}^{2}}} \lambda + \det{\W{v}}, \\
+       &= \recip{4\,665\,600} \paren{ - 4\,665\,600\lambda^{3} + 9\,323\,424 \lambda^{2} - 138\,537 \lambda + 1} .
+  \end{split}
+\end{equation}
+%
+The eigenvalue spectrum $\boxed{2}$ is
+%
+\begin{equation}
+  \lambda \paren{ \W{v} } = \recip{3}
+  \lst{2398 + 18 \sqrt{69\,409} \cos \alpha_{1}, 2398 + \beta_{\pm}}
+\end{equation}
+%
+where the fundamental parameter is given by
+%
+\begin{equation}
+  \alpha_{1} = \recip{3} \arctan \frac{1200 \sqrt{89\,799}} {18\,282\,673}.
+\end{equation}
+%
+and the derived parameter is
+%
+\begin{equation}
+  \beta_{\pm} = - 9 \sqrt{69\,409} \cos \alpha_{1} \pm 9 \sqrt{208\,227} \sin \alpha_{1}
+\end{equation}
+%
+The $\sig{}$ matrix $\boxed{3}$ is then
+\begin{equation}
+  \sig{} = \recip{3} \mat{ccc}{
+	 92 + 2\sqrt{6559} \cos \alpha_{2} & 0 & 0 \\
+	 0 & 92 + \gamma_{+} & 0 \\
+	 0 & 0 & 92 - \gamma_{-} 
+  } .
+  \label{eq:3d:svd 2:s}
+\end{equation}
+%
+Here the fundamental parameter is given by
+%
+\begin{equation}
+  \alpha_{2} = \recip{3} \arctan \frac{405 \sqrt{89\,799}} {517\,148}.
+\end{equation}
+%
+and the derived parameter is
+%
+\begin{equation}
+  \gamma_{\pm} = -\sqrt{6559} \cos \alpha_{2} \pm \sqrt{19\,677} \sin \alpha_{2}
+\end{equation}
+%
+The decomposition takes the compact form
+\begin{equation}
+  \bur{} = \bvr{} = {\bl{ \mat{ccc}{
+    %
+	  \sqrt{\recip{3} + 2 c_{3}} & 
+	 -\sqrt{\recip{3} - c_{3} + s_{3}} & 
+	  \sqrt{\recip{3} - c_{3} - s_{3}} \\[5pt]
+	  %
+	  \sqrt{\recip{3} - c_{4} - s_{4}} & 
+	  \sqrt{\recip{3} - c_{4} + s_{4}} & 
+	 -\sqrt{\recip{3} + \recip{2} c_{4}} \\[5pt]
+  	 %
+	  \displaystyle \frac{ 74\,223 - c_{5}}         {\sqrt{3 \sqrt{59\,866}}}  &
+	  \displaystyle \frac{148\,446 + c_{5} - s_{5}} {\sqrt{6 \sqrt{29\,933}}}  &
+	  \displaystyle \frac{ 74\,223 + c_{5} + s_{5}} {\sqrt{6 \sqrt{29\,933}}} }}
+  }
+  \label{eq:3d:svd 2:u}
+\end{equation}
+%
+The angular terms are
+%
+\begin{equation}
+  \begin{split}
+    \alpha_{3} &= \recip{3} \arctan \paren{\frac{564\,912 }{1511} \sqrt{\frac{3} {29\,933}} } \\
+    \alpha_{4} &= \recip{3} \arctan \paren{\frac{288\,396 }{3763} \sqrt{\frac{3} {29\,933}} } \\
+    \alpha_{5} &= \recip{3} \arctan \paren{\frac{386\,100 }{9161} \sqrt{\frac{3} {29\,933}} } 
+  \end{split}
+\end{equation}
+%
+The trigonometric terms are
+%
+\begin{align} 
+%
+c_{3}& = \recip{3} \sqrt{ \frac{10\,085} {89\,799} } \cos \alpha_{3} &
+c_{4}& = \recips{3}\recip{2} \sqrt{ \frac{8765}    {89\,799} } \cos \alpha_{4} \\
+%
+s_{3}& = \phantom{\recip{3}} \sqrt{ \frac{10\,085} {89\,799} } \sin \alpha_{3} &
+s_{4}& = \phantom{\recips{3}}\recip{2} \sqrt{ \frac{8765}    {89\,799} } \sin \alpha_{4} \\ 
+%
+\end{align}
+and
+%
+\begin{equation}
+  \begin{split}
+    c_{5} &= \phantom{\sqrt{3}}\ps  28 \sqrt{8\,770\,369} \cos \alpha_{5} - 14\,357 \cos 2 \alpha_{5} \\
+    s_{5} &= \sqrt{3} \paren{28 \sqrt{8\,770\,369} \sin \alpha_{5} + 14\,357 \sin 2 \alpha_{5}}
+  \end{split}
+\end{equation}
+%
+Equations \eqref{eq:3d:svd 2:u} and \eqref{eq:3d:svd 2:s} complete the SVD. Next we characterize the domain matrices as rotation matrices.
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Domain matrices a rotation matrix}
+Let the normal vector $\xi$ define the axis of rotation. This vector solves the eigenvalue equation:
+%
+\begin{equation}
+  \begin{split}
+    \U{} \xi  &= \xi \\
+  \end{split}
+\end{equation}
+%
+The normalized solution vector can be written in a docile form
+%
+\begin{equation}
+  \hat{n}_{u} = \frac{1}{\sqrt{ 1 + p^{2} + q^{2}}} \mat{c}{ p \\ q \\ 1 }
+   \label{eq:fixed point II:u}
+\end{equation}
+The primary variables are
+%
+\begin{equation}
+  \begin{split}
+    p =
+     &-\frac{x (-u w - v z)}{w (w y + x z)} \\
+     &-\frac{\sqrt{89 \, 799} \sqrt{29\,933-\sqrt{301\,874\,305}\paren{ \cos \alpha_{3} + \sqrt{3} \sin \alpha_{3}} }}
+           {-89 \, 799+\sqrt{89 \, 799} \sqrt{29\,933+2 \sqrt{301\,874\,305} \cos \alpha_{3}}} \\
+    q = &- u w - v z
+  \end{split}
+\end{equation}
+%
+and the subordinate variables are
+%
+\begin{align} 
+%
+    u &=         \sqrt{ \recip{3} + \half c_{4}} &
+    v &= \paren{ \sqrt{ \recip{3} - c_{3} - s_{3} } } \\
+%
+    w &=    -1 + \sqrt{ \recip{3} + 2 c_{3}} &
+    x &= \paren{ \sqrt{ \recip{3} - c_{3} + s_{3} } } \\
+%
+    y &=    -1 + \sqrt{ \recip{3} - c_{4} + s_{4} } &
+    z &= \paren{ \sqrt{ \recip{3} - c_{4} - s_{4} } } .
+% 
+\end{align}
+%
+With $\hat{n}$ in hand, we have defined the axis of rotation. Now we may compute the angle which characterizes the rotation and it is
+%
+\begin{equation}
+  \begin{split}
+    \cos \theta_{u} = 
+    \cos \theta_{v} = 
+    \frac{1+y+p^{2} y+q^{2} (1+y)}{1+q^{2}} 
+  \end{split}
+\end{equation}
+%
+The last step is to characterize the unit disk which supports the unit normal. We need two orthogonal vectors on the disk. For the vector of choice $a$, the first vector, we select a simple format. 
+%
+\begin{equation}
+  a = \recips{1+q^{2}} \mat{r}{ 0 \\ -1 \\ q } \\
+\end{equation}
+%
+The complementary $b$ vector follows from computation:
+%
+\begin{equation}
+    b = a \times \hat{n} 
+      = \recips{\paren{1 + q^{2}} \paren{1 + p^{2} + q^{2}}} \mat{c}{ 1 + q^{2} \\ p q \\ p }.
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Depiction}
+The domain and codomain matrices are depicted as rotation matrices in the bottom line of figure \eqref{tab:coin:b}. This shows the unit vectors $\hat{n}_{u} = \hat{n}_{v}$ and the unit disk which is perpendicular to each vector is shaded.
+%
+\begin{equation}
+  \hat{n} \approx \mat{r@{.}l}{ 0 & 799 \\ -0 & 115 \\ 0 & 590 }
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \cos \theta_{u} = 
+    \cos \theta_{v} \approx 0.522. 
+  \end{split}
+\end{equation}
+%
+Therefore the angle is
+\begin{equation}
+  \theta \approx 0.163\, \pi.
+\end{equation}
+%
+The orthogonal vectors used to define the unit circle are these
+%
+\begin{equation}
+  a = \mat{r@{.}l}{0 \\ -0 & 982 \\ -0 & 191 }, \qquad  
+  b = \mat{r@{.}l}{-0 & 602 \\ -0 & 152 \\ -0 & 784} .
+\end{equation}
+
+
+%
+\endinput

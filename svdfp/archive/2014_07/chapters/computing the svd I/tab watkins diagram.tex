@@ -1,0 +1,36 @@
+\begin{table}[htdp]
+\caption[The Watkins diagram]{The Watkins diagram showing the mapping action of a matrix and its adjoint. The relationship between the left and right eigenvectors is shown.}
+\begin{center}
+\begin{tabular}{ccccccc}
+%
+  & $\A{}$ &&&& $\A{*}$ \\
+%
+  $\bvo$ & $\xrightarrow[]{ \phantom{1} \sigma_{1} \phantom{1} }$ & $\buo$ & &
+  $\buo$ & $\xrightarrow[]{ \phantom{1} \sigma_{1} \phantom{1} }$ & $\bvo$ \\
+%
+  $\bvt$ & $\xrightarrow[]{ \phantom{1} \sigma_{2} \phantom{1} }$ & $\but$ & &
+  $\but$ & $\xrightarrow[]{ \phantom{1} \sigma_{2} \phantom{1} }$ & $\bvt$ \\
+%
+  $\vdots$ & & $\vdots$ & & $\vdots$ &  & $\vdots$ \\
+%
+  ${\bl{ v_{\rho} }}$ & $\xrightarrow[]{ \phantom{1} \sigma_{\rho} \phantom{1} }$ & ${\bl{ u_{\rho} }}$ & &
+  ${\bl{ u_{\rho} }}$ & $\xrightarrow[]{ \phantom{1} \sigma_{\rho} \phantom{1} }$ & ${\bl{ v_{\rho} }}$ \\[10pt]
+%
+%
+  ${\rd{ v_{\rho+1} }}$ & $\xrightarrow[]{ \phantom{1} \phantom{\sigma_{\rho}} \phantom{1} }$ & $\zero$ & & 
+  ${\rd{ u_{\rho+1} }}$ & $\xrightarrow[]{ \phantom{1} \phantom{\sigma_{\rho}} \phantom{1} }$ & $\zero$ \\ \\
+%
+  ${\rd {\vdots }}$ & & $\vdots$ & & ${\rd {\vdots }}$ &  & $\vdots$ \\
+%
+  ${\rd{ v_{m} }}$ & $\xrightarrow[]{ \phantom{1} \phantom{\sigma_{\rho}} \phantom{1} }$ & $\zero$ & & 
+  ${\rd{ u_{n} }}$ & $\xrightarrow[]{ \phantom{1} \phantom{\sigma_{\rho}} \phantom{1} }$ & $\zero$ \\ \\\hline \\
+%
+  $\cmplxm$ & $\mapsto$ & $\cmplxn$ && $\cmplxn$ & $\mapsto$ & $\cmplxm$
+%
+\end{tabular}
+\end{center}
+\label{tab:svd I:watkins}
+\end{table}%
+
+
+\endinput

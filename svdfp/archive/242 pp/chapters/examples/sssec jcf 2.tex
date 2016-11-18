@@ -1,0 +1,133 @@
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{n = 2}
+\textbf{Try an identity matrix}
+This is the simplest nontrivial Jordan block.
+\begin{equation}
+  \J{2} = \mat{cc}{1&1 \\ 0&1}
+\end{equation}
+Does it have a \asvd \ of the form
+\begin{equation}
+  \J{2} = \U{} \, \sig{} \, \I{2}?
+\end{equation}
+This implies that
+\begin{equation}
+  \sig{-1} \J{2} = \U{} 
+\end{equation}
+is a unitary matrix. Are there numbers $a$ and $b$ such that
+\begin{equation}
+  \mat{cc}{a & 0 \\ 0 & b} \mat{cc}{1&1 \\ 0&1} = \mat{cc}{a&a \\ 0&b}
+\end{equation}
+is a unitary matrix? Clearly not. For example, consider the first column vector; the norm is $\abs{a}$ which must be 1. The norm of the first row vector is $\sqrt{2}\abs{a}$ which also must be 1. $\bang$
+
+\textbf{Try a single rotation matrix}
+Check to see if an arbitrary rotation with one angle can describe the matrix. Let the domain matrices be
+\begin{equation}
+  \begin{split}
+    \bur{}  &= \R{}\paren{\theta}  = {\bl{ \rot{\theta} }}, \\
+    \bvr{*} &= \R{}\paren{-\theta} = {\bl{ \mat{rc}{\cos \theta & \sin \theta \\ -\sin \theta & \cos \theta} }}.
+  \end{split}
+\end{equation}
+The decomposition is then
+\begin{equation}
+  \begin{split}
+    \J{2} 
+      &= \svd{*} \\
+      &= \R{} \paren{\theta}\,
+         \sig{} \,
+         \R{} \paren{-\theta}
+  \end{split}
+\end{equation}
+A quick test is to check if the $\sig{}$ is diagonal:
+%
+\begin{equation}
+  \begin{split}
+    \R{} \paren{-\theta}\, \J{2}\, \R{} \paren{\theta} = \sig{} 
+      &= 
+    \mat{cc}{ 1 + \cos \theta \sin \theta & \cos^{2} \theta \\
+             -\sin^{2} \theta & 1 - \cos \theta \sin \theta } \\
+      &\iseq \mat{cc}{ \num & 0 \\ 0 & \num }
+  \end{split}
+\end{equation}
+There is no angle $\theta$ which allows both the counterdiagonal terms to both be 0.
+
+\textbf{Try two rotation matrices}
+Let the domain and codomain matrices be characterized by two distinct rotation angles:
+%
+\begin{equation}
+  \begin{split}
+    \bur{}  &= \R{} \paren{\theta} = {\bl{ \rot{\theta} }}, \\
+    \bvr{*} &= \R{} \paren{-\phi}  = {\bl{ \mat{rc}{\cos \phi & \sin \phi \\ -\sin \phi & \cos \phi} }}.
+  \end{split}
+\end{equation}
+%
+Of course this method must work as the unitary matrices $\bur{}$ and $\bvr{}$ are equivalent to rotation matrices. The goal now is to bypass solving for the left eigenvectors.
+%
+\begin{equation}
+  \begin{split}
+    \J{2} 
+      &= \svd{*} \\
+      &= {\bl{ \rot{\theta} }}
+         \mat{cc}{ \sigma_{1} & 0 \\ 0 & \sigma_{2} }
+         {\bl{ \rott{\phi} }}
+  \end{split}
+  \label{eq:jcf:three matrices}
+\end{equation}
+%
+The goal now is to find the angles by a shortcut. The singular values are quick to find and they are
+%
+\begin{equation}
+  \sigma_{\pm} = \sqrt{ \half \paren{3 \pm \sqrt{5}} }.
+\end{equation}
+%
+After multiplying the three matrices in equation {eq:jcf:three matrices}, a new angle characterizes the result
+%
+\begin{equation}
+  \psi_{\pm} = \theta \pm \phi.
+\end{equation}
+%
+The Jordan normal form is then
+\begin{equation}
+  \J{2} = \half
+          \mat{rr}{
+          \cos \psi_{+} + \sqrt{5} \cos \psi_{-} &  \sin \psi_{+} - \sqrt{5} \sin \psi_{-} \\
+          \sin \psi_{+} + \sqrt{5} \sin \psi_{-} & -\cos \psi_{+} + \sqrt{5} \cos \psi_{-} }
+        = \mat{cc}{1&1 \\ 0&1} 
+\end{equation}
+%
+There are a few ways to solve this system for the angles $\psi_{\pm}$: Solve for a row, solve for a column, solve for the diagonal. We choose to concentrate on the counterdiagonal terms. The linear system is
+%
+\begin{equation}
+  \mat{cr}{1 & \sqrt{5} \\ 1 & -\sqrt{5}} 
+  \mat{c}{ \sin \psi_{+} \\ \sin \psi_{-}} =
+  \mat{c}{ 0 \\ 2 } .
+\end{equation}
+%
+The solution in terms of $\psi_{\pm}$ is then
+%
+\begin{equation}
+  \mat{c}{ \psi_{+} \\ \psi_{-} } = 
+  \mat{r}{ \frac{\pi}{2} + 2j\pi \\ \arcsin\paren{-\recip{\sqrt{5}}} + 2k\pi }, \qquad j,k \iints.
+\end{equation}
+%
+In terms of the rotation angles the solution is
+%
+\begin{equation}
+  \mat{c}{ \theta_{k} \\ \phi_{k} } = \half \arcsin\paren{-\frac{1} {\sqrt{5}}} + \pi \paren{k+\recip{4}} \mat{r}{1\\-1} , \quad k \iints
+\label{eq:examples:jcf2}
+\end{equation}
+%
+The angles are $2\pi-$periodic since
+\begin{equation}
+  \begin{split}
+    e^{i\theta_{k}} &= e^{i\theta_{k+2}}, \\
+    e^{i\phi_{k}} &= e^{i\phi_{k+2}}.
+  \end{split}
+\end{equation}
+%
+With this formalism, there are two distinct states corresponding to $k=\lst{0,1}$.
+
+%%%%%%%%
+\input{chapters/examples/"tab the two different SVDs for the Jordan form J2"}  % table
+
+\endinput

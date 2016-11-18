@@ -1,0 +1,102 @@
+\section[3D coordinate systems]{Coordinate systems in 3 dimensions}
+Three ways to think about a matrix: numeric, analytic, as a rotation
+%
+\begin{equation}
+  \begin{split}
+%
+  \A{} &= \mat{r@{.}lr@{.}lr@{.}l}{
+ 0 & 2500000 & -0 & 808013 & -0 & 533494 \\
+ 0 & 0580127 &  0 & 562500 & -0 & 824760 \\
+ 0 & 9665060 &  0 & 175240 &  0 & 187500
+  } \\
+%
+ \A{} &= \mat{ccc}{
+ \frac{1}{4} & \frac{1}{8} \left(-3-2 \sqrt{3}\right) & \frac{1}{8} \left(-6+\sqrt{3}\right) \\
+ \frac{1}{8} \left(-3+2 \sqrt{3}\right) & \frac{9}{16} & \frac{1}{16} \left(-8-3 \sqrt{3}\right) \\
+ \frac{1}{8} \left(6+\sqrt{3}\right) & \frac{1}{16} \left(8-3 \sqrt{3}\right) & \frac{3}{16} } \\
+%
+\A{} &= \T{}_{3} \paren{\nhat, \psi}, \ 
+\nhat = \recip{4} \mat{r}{2 \\ -\sqrt{3} \\ 3}, \
+\psi = \frac{\pi} {2} 
+%
+  \end{split}
+\end{equation}
+
+%%%%%%
+\input{chapters/bases/"tab two ways to visualize a unitary matrix"}  % table
+%
+
+%%
+In three dimensions we are also able to express the unitary matrices in terms of a rotation angle. Given an arbitrary vector 
+%
+\begin{equation}
+  x = \mat{c}{\mathsf{x} \\ \mathsf{y} \\ \mathsf{z} } \in\cmplx{3},
+\end{equation}
+%
+the fixed point $x$ is the solution to the eigenvalue equation
+%
+\begin{equation}
+  \T{}_{3} x = x.
+\end{equation}
+%
+This formulation is equivalent to finding the \ns
+\begin{equation}
+  \paren{\T{}_{3} - \I{}} x = \zero.
+\end{equation}
+\begin{equation}
+  \nhat = \frac{x} {\norm{x}}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{The mixing parameter $\psi$}
+%
+Let the unit vector $x = \tra{\lst{\mathsf{x},\mathsf{y},\mathsf{z}}}$
+\begin{equation}
+  \T{}_{3}\paren{x,\psi} = \mat{ccc}{
+    \mathsf{x}^{2} + \paren{1-\mathsf{x}^{2}} \cos \psi & 
+    \mathsf{x}\mathsf{y} \paren{1 - \cos \psi} - \mathsf{z} \sin \psi &
+    \mathsf{x}\mathsf{z} \paren{1 - \cos \psi} + \mathsf{y} \sin \psi \\
+    %
+    \mathsf{x}\mathsf{y} \paren{1 - \cos \psi} + \mathsf{z} \sin \psi &
+    \mathsf{y}^{2} +  \paren{1 - \mathsf{y}^{2}} \cos \psi &
+    \mathsf{y}\mathsf{z} \paren{1 - \cos \psi} - \mathsf{x} \sin \psi \\
+    %
+    \mathsf{x}\mathsf{z} \paren{1 - \cos \psi} - \mathsf{y} \sin \psi &
+    \mathsf{y}\mathsf{z} \paren{1 - \cos \psi} + \mathsf{x} \sin \psi &
+    \mathsf{z}^{2} +  \paren{1 - \mathsf{z}^{2}} \cos \psi } 
+  \label{eq:3d rotation}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \T{}_{3}\paren{x, 0} &= \idthree , \\[5pt]
+    \T{}_{3}\paren{x, \frac{\pi}{2} } &= 
+      \mat{ccc}{
+      \mathsf{x}^2 & \mathsf{x} \mathsf{y}-\mathsf{z} & \mathsf{y}+\mathsf{x} \mathsf{z} \\
+      \mathsf{x} \mathsf{y}+\mathsf{z} & \mathsf{y}^2 & -\mathsf{x}+\mathsf{y} \mathsf{z} \\
+     -\mathsf{y}+\mathsf{x} \mathsf{z} & \mathsf{x}+\mathsf{y} \mathsf{z} & \mathsf{z}^2 } , \\[5pt]
+    \T{}_{3}\paren{x, \pi } &= 
+      \mat{ccc}{
+      -1+2 \mathsf{x}^2 & 2 \mathsf{x} \mathsf{y} & 2 \mathsf{x} \mathsf{z} \\
+         2 \mathsf{x} \mathsf{y} & -1+2 \mathsf{y}^2 & 2 \mathsf{y} \mathsf{z} \\
+         2 \mathsf{x} \mathsf{z} & 2 \mathsf{y} \mathsf{z} & -1+2 \mathsf{z}^2 } , \\[5pt]
+    \T{}_{3}\paren{x, \frac{3}{2} \pi } &= 
+      \mat{ccc}{
+      \mathsf{x}^2 & \mathsf{x} \mathsf{y}+\mathsf{z} & -\mathsf{y}+\mathsf{x} \mathsf{z} \\
+      \mathsf{x} \mathsf{y}-\mathsf{z} & \mathsf{y}^2 & \mathsf{x}+\mathsf{y} \mathsf{z} \\
+      \mathsf{y}+\mathsf{x} \mathsf{z} & -\mathsf{x}+\mathsf{y} \mathsf{z} & \mathsf{z}^2 }
+      = \T{}_{3}\paren{-x, \frac{\pi}{2} }
+  \end{split}
+\end{equation}
+%
+The following two sections compute the mixing angle and the invariant axis of rotation for two different $\byy{3}$ matrices. First a Jordan normal form, then a Hilbert matrix. The symbol $\bigstar$ indicates that these examples are quite challenging. But note that while the details are intricate, the final results are simple.
+
+%%%%%%
+\input{chapters/bases/"tab decomposition matrices for sample 3 x 3 matrices"}  % table
+\clearpage
+
+% example
+\input{chapters/bases/"ssec example Jordan normal form.tex"}
+\input{chapters/bases/"ssec example Hilbert matrix.tex"}
+
+\endinput

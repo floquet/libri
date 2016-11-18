@@ -1,0 +1,326 @@
+\clearpage
+
+\begin{enumerate}
+\item Follow the same procedure here to compute the following singular value decompositions:
+$$
+\begin{array}{ ccccccrr }
+   &
+\mat{ rr }{
+ 1 & 0 \\
+ 0 & 0
+}
+   & = & \svd{T} & = 
+   & \itwo
+   &
+\mat{ cc }{
+ 1 & 0 \\
+ 0 & 0
+}
+   & \itwo \\[12pt]
+%%%%%%%%%%%%%%%%%%%%
+   &
+\mat{ rr }{
+ 1 & 1 \\
+ 0 & 0
+}
+   & = & \svd{T} & = 
+   & \itwo
+   &
+\mat{ cc }{
+ \sqrt{2} & 0 \\
+ 0 & 0
+}
+   & \frac{ 1 }{ \sqrt{2} }
+   \mat{ rr }{
+     1 & 1 \\
+     -1 & 1
+}
+   \\[12pt]
+%%%%%%%%%%%%%%%%%%%%
+   &
+\mat{ rr }{
+ 1 & 1 \\
+ 1 & 1
+}
+   & = & \svd{T} & = 
+   & \itwo
+   &
+\mat{ cc }{
+ 2 & 0 \\
+ 0 & 0
+}
+   & \frac{ 1 }{ \sqrt{2} }
+   \mat{ rr }{
+     1 & 1 \\
+     -1 & 1
+}
+   \\
+%%%%%%%%%%%%%%%%%%%%
+   &
+\mat{ rr }{
+ 1 & i \\
+ 0 & 0
+}
+   & = & \svd{*} & = 
+   & \itwo
+   &
+\mat{ cc }{
+ \sqrt{2} & 0 \\
+ 0 & 0
+}
+   & \frac{ 1 }{ \sqrt{2} }
+   \mat{ cc }{
+     1 & i \\
+     -i & 1
+}
+   \\
+\end{array}
+$$
+What is the relationship between the singular values and the Frobenius norm of the target matrix? Recall that for $ \A{} \in \cmplx{ m \times m } $ the Frobenius norm is
+\begin{equation}
+  \norm{ \A{} }_F = \left[ \sum_{ r = 1 }^{ m }{ \sum_{ c = 1 }^{ m }{ \abs{ \A{}_{\paren{ r,c }} }^2 } } \right]^{ \frac{ 1 }{ 2 } }.
+\end{equation}
+\item We have seen that at least some matrices decompose easily; now we will see that at least one matrix is nightmarish. Feel free to skip the algebra in part (a) and move on to the conceptual questions that follow.
+\begin{description}
+\item[a)] 
+Consider the innocuous matrix
+\begin{equation}
+  \svd{T} =
+\mat{ rr }{
+ 1 & 2 \\
+ 0 & 2
+}.
+\end{equation}
+%%
+\providecommand{\locala}{\sqrt{\frac{1}{130} \paren{65 + \sqrt{65}}}}
+\providecommand{\localb}{\sqrt{\frac{1}{130} \paren{65 - \sqrt{65}}}}
+%%
+First, preliminary definitions. Call
+\begin{equation}
+  \alpha_{y} = \cos \theta_{y} = \locala,
+\end{equation}
+then we know that we can define
+\begin{equation}
+  \beta_{y} = \sqrt{1 - \alpha_{y}^{2}} = \localb.
+\end{equation}
+%%%
+Similarly, we can define
+\begin{equation}
+  \alpha_{x} = \cos \theta_{x} = \localc,
+\end{equation}
+then we know that we can define
+\begin{equation}
+  \beta_{x} = \sqrt{1 - \alpha_{x}^{2}} = \locald.
+\end{equation}
+%%%
+\begin{equation}
+  \begin{split}
+\Y{} & = 
+\mat{ cr }{
+ \alpha_{y} & -\beta_{y} \\
+ \beta_{y} & \alpha_{y}} \\ 
+\X{} & = 
+\mat{ cr }{
+ \alpha_{x} & -\beta_{x} \\
+ \beta_{x} & \alpha_{x}}
+  \end{split}
+  \label{eq:ex:001}
+\end{equation}
+show that
+\begin{equation}
+  \Sigma =
+\mat{ cc }{
+ \sqrt{\half \paren{9+\sqrt{65}}} & 0 \\
+  0 & \sqrt{\half \paren{9+\sqrt{65}}}}.
+\end{equation}
+  \item[b)] It's all a question of perspective really. You can write the coordinate matrices $ \Y{} $ and $ \X{} $ as  rotation matrices:
+\begin{equation}
+\begin{split}
+ \Y{} & = 
+\mat{ rr }{
+  \cos \theta_y & - \sin \theta_y \\
+  \sin \theta_y & \cos \theta_y
+}
+ = \R{}(\theta_y), \\
+ \X{} & = 
+\mat{ rr }{
+  \cos \theta_x & - \sin \theta_x \\
+  \sin \theta_x & \cos \theta_x
+} = \R{}(\theta_x).
+\end{split}
+\end{equation}
+Find the small parameters $ \epsilon_x $ and $ \epsilon_y $ such that
+\begin{equation}
+  \begin{split}
+    \theta_x & = \frac{ 5 \pi }{ 12 } \left[ 1 + \epsilon_x \right], \\
+    \theta_y & = \frac{ 2 \pi }{ 9 } \left[ 1 + \epsilon_y \right]. \\
+  \end{split}
+\end{equation}
+We see that the algebraic complexity of these solutions comes from finding closed forms for these rotation angles. 
+  \item[c)] This alludes to a class of $ 2 \times 2 $ matrices with decompositions of the form
+\begin{equation}
+  \textbf{A}^{ 2 \times 2 } = e^{ i \theta_y } \ \Sigma \  e^{ -i \theta_x }.
+\end{equation}
+Why does the exponential on the right-hand side have a negative sign?
+  \item[d)] Below is a plot showing spans of the domain. The first set of longer vectors is from using the rows vectors as a span. Is the angle between these two vectors acute, right or oblique? The second set are unit vectors from the $ columns $ of $ \Y{} $. Is the angle between these two vectors acute, right or oblique? Where is the rotation angle $ \theta_x $? Which of the matrices in exercise 1 are in this class?
+  \item[e)] Prepare a similar plot for the image. Plot the column vectors of $ \textbf{A} $ against the $ columns $ of $ \Y{} $.
+\end{description}
+%%%
+\item Show that all the least squares solutions to
+\begin{equation}
+  \begin{split}
+    \lsa \\
+ \mat{ rr }{
+ 1 & -1 \\
+ -1 & 1 \\
+}
+\mat{ c }{
+ x_1 \\
+ x_2
+}
+  & =
+\mat{ c }{
+ 2 \\
+ 1 \\
+}.
+  \end{split}
+\end{equation}
+are given by 
+\begin{equation}
+  x = \frac{ 1 }{ 4 }
+\mat{ r }{
+ 1 \\
+ -1
+}
+  + \alpha
+\mat{ c }{
+ 1 \\
+ 1
+}
+\end{equation}
+where $ \alpha $ can be any complex number.
+%%
+\item The Pauli spin matrices are a set of $ 2 \times 2 $ Hermitian, unitary and involutary matrices. They are defined as
+\begin{equation}
+  \begin{split}
+    \sigma_1 = \paulia, \qquad \sigma_2 = \paulib, \qquad \sigma_3 = \paulic. \\
+  \end{split}
+\end{equation}
+\begin{description}
+  \item[a)] For practice, verify each of the properties mentioned for all three matrices. That is, show that they are Hermitian
+\begin{equation}
+  \sigma_k = \overline{ \sigma_{k}^{\mathrm{T}} } = \overline{ \sigma_{k} }^{\mathrm{T}} = \sigma_k^{ * };
+\end{equation}
+they are unitary
+\begin{equation}
+  \sigma_{k}^{*} = \sigma_{k}^{ -1 };
+\end{equation}
+and they are involutary
+\begin{equation}
+  \sigma_k^2 = \I{2}.
+\end{equation}
+  \item[b)] Verify that the matrices are traceless and that the determinant is $ -1 $. What does this tell us about the eigenvalues?
+  \item[c)] For each of the matrices
+\begin{equation}
+  \Sigma_k = \I{2} = \itwo, \qquad
+  \X{}_k = \itwo.
+\end{equation}
+Compute all three $ \Y{} $ matrices to verify these singular value decompositions:
+%%
+\begin{equation}
+  \begin{array}{ccccrcc}
+    \sigma_{1} & = & \svdtag{1} & = & \I{2} & \I{2} & \sigma_{2}, \\[3pt]
+    \sigma_{2} & = & \svdtag{2} & = & -i \sigma_{3} & \I{2} & \sigma_{2}, \\[3pt]
+    \sigma_{3} & = & \svdtag{3} & = &  i \sigma_{2} & \I{2} & \sigma_{2}. \\
+  \end{array}
+\end{equation}
+\end{description}
+%%%
+\item Rotations matrices in the plane take the form
+\begin{equation}
+  \rot = 
+  \left[
+  \begin{array}{ rr }
+    \cos \theta & -\sin \theta \\
+    \sin \theta & \cos \theta
+  \end{array}
+  \right].
+\end{equation}
+\begin{description}
+  \item[a)] Compute the trace and the determinant and  build the characteristic polynomial:
+\begin{equation}
+  p(\lambda) = \det \paren{\rot - \lambda \I{2}} = \lambda^{2} - \lambda \tr \rot + \det \rot.
+\end{equation}.\\
+ANSWER: $p(\lambda) = \lambda^{2} - 2 \lambda \cos \theta + 1$
+  \item[b)] Solve $p(\lambda) = 0$ to find the two eigenvalues. \\
+ANSWER: $\lambda_{\pm} = e^{\pm i \theta}$
+  \item[c)] To rotate a vector $ \textbf{ x } $ counterclockwise, use the relation
+\begin{equation}
+  \textbf{ x }' = \left[ 
+         \begin{array}{ c }
+           x_1'  \\
+           x_2'
+         \end{array}
+         \right]
+       = \rot \textbf{ x }.
+\end{equation}
+Calculate a functional form for $ x' $ in terms of $ x, y, \theta $.
+  \item[d)] In the complex plane multiplication by $ e^{ i \theta } $ rotates a complex number $ z = x + i y $ counterclockwise by an angle $ \theta $, that is $ \Arg( e^{ i \theta } z ) = \Arg( z ) + \theta $. We can see this in simple multiplication in with $ z = r e^{ i \phi } $:
+\begin{equation}
+   e^{ i \theta } \left[ r e^{ i \phi } \right] = r e^{ i ( \theta + \phi ) }.
+\end{equation}
+Start with the Taylor expansion for the exponential function
+\begin{equation}
+\begin{split}
+  e^x & = 1 + x + \frac{ 1 }{ 2 } x^2 + \frac{ 1 }{ 6 } x^3 + \frac{ 1 }{ 24 } x^4 + \frac{ 1 }{ 120 } x^5 + \dots + \frac{ 1 }{ n! } x^n + \dots \\
+  & = 1 + \sum_{ n = 1 }^{ \infty }{ \frac{ 1 }{ n! } x^n } \\
+\end{split}
+\end{equation}
+and let $x\to i\theta$ to deduce the famous $ Euler $ $ identity $
+\begin{equation}
+  e^{ i \theta } = \cos \theta + i \sin \theta.
+\end{equation}
+Now use this formula and the Cartesian form for complex numbers to compute
+\begin{equation}
+  z' = e^{ i \theta } z
+\end{equation}
+to show that this is equivalent to the functional form you found in part (c).
+\end{description}
+%%%
+\item Compute a singular value decomposition for these rotation matrices. Using $ \Sigma = \I{2} $ and $ \X{} = \sigma_1 $ show that
+\begin{equation}
+  \left[
+  \begin{array}{ rr }
+    \cos \theta & -\sin \theta \\
+    \sin \theta & \cos \theta
+  \end{array}
+  \right]
+    =
+    \svd{T}
+    =
+  \left[
+  \begin{array}{ rr }
+    -\sin \theta & \cos \theta \\
+    \cos \theta & \sin \theta
+  \end{array}
+  \right] \Sigma \X{T}.
+\end{equation}
+That is, show that $ \Y{} $ is $ \rot $ with the columns exchanged
+\begin{equation}
+  \Y{} = \ktwo \rot.
+  \label{eq:01:last}
+\end{equation}
+Equation \eqref{eq:01:last} expresses $ \Y{} $ in terms of $ \rot $. Invert this form to express $ \rot $ in terms of $ \Y{} $.
+\item After considering the range and codomain of the two formulations, write a single sentence to explain how the equation
+\begin{equation}
+  \A{}x=b
+\end{equation}
+may not have a solution but the normal equations
+\begin{equation}
+  \A{T}\A{}x=\A{T}b
+\end{equation}
+will have a solution. 
+\textit{Answer:} In the first case the data vector $b$ may not be in the range of the target matrix whereas the vector $\A{T}b$ is by construction within the range of the transpose matrix.
+\end{enumerate}
+
+\endinput

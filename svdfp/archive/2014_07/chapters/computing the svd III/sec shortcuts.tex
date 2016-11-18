@@ -1,0 +1,67 @@
+\section{Shortcuts}
+In some cases, we are able to obviate the eigenvalue problem altogether.
+
+\begin{equation}
+  \A{} = \mat{rr}{
+   1 & -1 \\
+  -1 &  1 \\
+   1 & -1 }
+\end{equation}
+
+Let the left- and right-hand eigenvectors be
+\begin{equation}
+  u_{1} = \recip{\sqrt{2}} \mat{r}{1 \\ -1}, \qquad
+  v_{1} = \recip{\sqrt{3}} \mat{r}{1 \\ -1 \\ 1}.
+\end{equation}
+
+What would the singular value $\sigma_{1}$ be?
+%
+\begin{equation}
+  \begin{split}
+  \A{} 
+  &= \mat{rr}{
+   1 & -1 \\
+  -1 &  1 \\
+   1 & -1 } \\
+%
+  &=
+  \bur{}\, \ess{}\, \bvr{*} \\
+%
+  &=
+  {\bl{ \recip{\sqrt{3}} \mat{r}{1 \\ -1 \\ 1} }} 
+  \mat{c}{ \sigma_{1} }
+  {\bl{ \recip{\sqrt{2}} \mat{cr}{1 & -1} }} \\
+%
+  &=
+  \frac{\sigma_{1}} {\sqrt{6}}
+  \mat{rr}{
+   1 & -1 \\
+  -1 &  1 \\
+   1 & -1 }.
+%
+  \end{split}
+\end{equation}
+%
+Certainly then $\sigma_{1} = \sqrt{6}$.
+  
+What of the \ns s? To complete the codomain $\cmplx{2}$, the only real choice is
+\begin{equation}
+  v_{2} = {\rd{ \recip{\sqrt{2}} \mat{c}{1 \\ 1} }}
+\end{equation}
+or the negative of this. We need two vectors to complete $\cmplx{3}$. A first attempt should include a 0.
+\begin{equation}
+  \begin{split}
+    \bvo \cdot \rvt &= 0 , \\
+%
+   {\bl{ \mat{r}{1 \\ -1 \\ 1} }} \cdot
+   {\rd{ \mat{r}{0 \\ \num \\ \num}}} &= 0 
+%
+   \quad \Rightarrow\quad  \rvt =
+   {\rd{ \mat{c}{0 \\ 1 \\ 1} }}
+%
+  \end{split}
+\end{equation}
+
+
+
+\endinput

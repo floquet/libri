@@ -1,0 +1,36 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+%%
+\begin{table}[htdp]
+\caption[Chirality of the pseudoinverse]{Chirality of the pseudoinverse. This table shows the definition of the chiral inverse and specifies the \ns \ conditions which spawn these inverses.}
+\begin{center}
+\begin{tabular}{cllllll}
+%
+  &              &                &                &                    & rank and  & \ns \\
+  icon & chirality    & equivalence    & definition     & $\sig{}$ condition & dimension & condition \\\hline
+%
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"transparent right"} } &
+  right-handed & $\Ap = \AinvR$ & $\AAp = \I{n}$ & $\spb = \I{n}$ & $\rho = n \le m$ & $\rnlla{}= \trivial$  \\
+%
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"transparent left"} } &
+  left-handed  & $\Ap = \AinvL$ & $\ApA = \I{m}$ & $\spa = \I{m}$ & $\rho = m \le n$ & $\rnlla{*}= \trivial$  \\
+%
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"transparent left"} } \ 
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"transparent right"} } &
+  ambichiral (both)   & $\Ap = \A{-1}$ & $\ApA = \I{n}$ and & $\spb = \I{n}$ and & $\rho = n$ and  & $\rnlla{}= \trivial$ and  \\
+              &&                & $\AAp = \I{m}$     & $\spa = \I{m}$     & $\rho = m$ & $\rnlla{*}= \trivial$ \\[10pt]
+%
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"not left"} } \ 
+  \raisebox{-0.5\height}{ \includegraphics[ width = 0.45in ]{images/pseudoinverse/"not right"} } &
+   ampichiral (neither)   & $\Ap \ne \AinvR$ and & $\ApA \ne \I{n}$ and & $\spb \ne \I{n}$ and & $\rho \ne m$ and & $\rnlla{}\ne \trivial$ and  \\
+               && $\Ap \ne \AinvL$ & $\AAp \ne \I{m}$     & $\spa \ne \I{m}$     & $\rho \ne n$& $\rnlla{*}\ne \trivial$
+%
+\end{tabular}
+\end{center}
+\label{tab:chiral inverses}
+\end{table}
+%%
+\end{landscape}
+
+\endinput

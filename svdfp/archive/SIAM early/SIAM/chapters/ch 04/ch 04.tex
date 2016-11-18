@@ -1,0 +1,14 @@
+\chapter{Post Mortem II}
+
+The previous chapter introduced the general method for resolving a matrix into its \svdl. This method involved finding the singular values by resolving the eigensystem of a product matrix. The next section explores the geometry of the eigenvalues and motivates the perception that the singular values are a set of scale factors.
+
+However, because of the weight of the details in the last chapter, we will exhibit another example. This will provide more insight into the geometry of the singular values.
+
+The trouble with the target matrix in the preceding example is that while it does have enough linearly independent column vectors to span the domain it lacks enough linearly independent row vectors to span the codomain. Therefore there is a left inverse but no right inverse. Therefore the linear system can't be solved using obvious methods again we need the SVD.
+ 
+%%
+\input{chapters/"ch 04"/simple}
+\input{chapters/"ch 04"/lrinverse}
+\input{chapters/"ch 04"/anatomy}
+
+\endinput

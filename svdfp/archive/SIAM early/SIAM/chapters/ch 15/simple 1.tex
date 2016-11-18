@@ -1,0 +1,166 @@
+\section{Solution using the SVD}
+Let's return to using an SVD to solve the linear systems like $\ls$ as shown in \S\eqref{sec:formal:simple}.
+
+Once you have the SVD life is good.
+ 
+%%
+\subsection{Extended example SVD}
+We don't want $\byy{3}$, go to $\by{3}{5}$
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x &=& b\\
+    \mat{rrrrr}
+    {
+     1 & -1 &  1 & -1 &  1\\
+    -1 &  1 & -1 &  1 & -1\\
+     1 & -1 &  1 & -1 &  1\\
+    }
+    &
+    \mat{c}{x_{1}\\x_{2}\\x_{3}\\x_{4}\\x_{5}}
+    &=& \phivector.
+  \end{array}
+\end{equation}
+
+\textbf{Recycling:} The good news is that we can solve this system using the simple \svdl \ method of the first chapter allowing us to bypass the eigensystem problem. Even more good] news is that we can recycle the codomain matrix $\Y{}$. The active column vector in the domain matrix is this:
+\begin{equation}
+  \X{}_{*,1} = \sfive\mat{r}{1 \\ -1 \\  1 \\ -1 \\  1}.
+\end{equation}
+Using the fact that
+\begin{equation}
+  \begin{split}
+    \A{}\X{}_{*,1}=\sigma_{1}\Y{}_{*,1}
+  \end{split}
+\end{equation}
+we can compute the lone singular value of
+\begin{equation}
+  \sigma_{1} = 15^{-1/2}.
+\end{equation}
+
+Without doing noticeable calculation, we already have the partial decomposition
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    &=
+    \Yshade
+    \mat{c|cccc}
+    {
+     15^{-1/2} & 0 & 0 & 0 & 0\\\hline
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+    }
+    \mat{ccccc}
+    {\sfive & -\sfive & \phantom{-}\sfive & -\sfive & \phantom{-}\sfive\\
+     \rowcolor{ltgray}
+     \cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot \\
+     \rowcolor{ltgray}
+     \cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot  &  \phantom{-}\cdot  & \phantom{-}\cdot}\\
+  \end{split}
+\end{equation}
+
+The Gram-Schmidt process in the appendix \eqref{sec:gs} will complete the $\X{}$ matrix. Using the seed vectors
+\begin{equation}
+  U = \lst{
+  \mat{r}{1 \\ -1 \\  1 \\ -1 \\  1},
+  \mat{c}{1\\0\\0\\0\\0},
+  \mat{c}{0\\1\\0\\0\\0},
+  \mat{c}{0\\0\\1\\0\\0},
+  \mat{c}{0\\0\\0\\1\\0}
+  }
+\end{equation}
+the domain matrix becomes
+\begin{equation}
+  \X{} = 
+  \left[
+\begin{array}{ r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}r >{\columncolor{ltgray}}c }
+  \sfive &  \frac{4}{2\sqrt{5}} &  0 &  0 &  0 \\
+ -\sfive &  \frac{1}{2\sqrt{5}} &  \frac{3}{2\sqrt{3}} &  0 &  0\\
+  \sfive & -\frac{1}{2\sqrt{5}} &  \frac{1}{2\sqrt{3}} & -\frac{2}{6} &  0\\
+ -\sfive &  \frac{1}{2\sqrt{5}} & -\frac{1}{2\sqrt{3}} &  \ssix & \stwo\\
+  \sfive & -\frac{1}{2\sqrt{5}} &  \frac{1}{2\sqrt{3}} & -\ssix & \stwo\\
+\end{array}
+\right]
+\end{equation}
+
+Now do the change of coordinates stuff in the section on a more formal introduction.
+ 
+%%
+\subsection{Extended example solution}
+The particular solution for the problem is given by this
+\begin{equation}
+  x_{p} = \A{+}b.
+  \label{eq:lsq:a}
+\end{equation}
+Since the domain matrices are mainly composed of null vectors, the pseudoinverse is a quick construction. We need only one outer product
+\begin{equation}
+  \begin{split}
+    \A{+} &= \sigma_{1}\X{}_{*,1}\otimes \Y{T}_{1,*}\\
+     &= \paren{15^{-1/2}}
+     \paren{\sfive \mat{r}{1\\-1\\1\\-1\\1}}
+     \paren{\sthree \mat{rrr}{1&-1&1}} =
+     \frac{1}{15}\mat{rrr}{1 & -1 & 1\\-1 & 1 & -1\\1 & -1 & 1\\-1 & 1 & -1\\1 & -1 & 1}.
+  \end{split}
+\end{equation}
+The point solution, the particular solution, of equation \eqref{eq:lsq:a} is then
+\begin{equation}
+  x_{p} = \frac{1}{15}\mat{rrrrr}{1 & -1 & 1 & -1 & 1}^{\mathrm{T}}.
+\end{equation}
+The homogenous solutions add considerable flavor to the full solution. The null space is spanned by four vectors.
+\begin{equation}
+  \begin{split}
+    x &= x_{p} + x_{h}\\
+      &= \underbrace{\frac{1}{15}\mat{r}{1\\-1\\1\\-1\\1}}_{\text{particular}}
+       + \underbrace{
+         \alpha_{1}  \mat{r}{4\\1\\-1\\1\\-1} 
+       + \alpha_{2}  \mat{r}{0\\3\\1\\-1\\1} 
+       + \alpha_{3}  \mat{r}{0\\0\\-2\\1\\-1} 
+       + \alpha_{4}  \mat{r}{0\\0\\0\\1\\1}
+         }_{\text{homogeneous}} 
+  \end{split}
+\end{equation}
+where the constants $\alpha$ are arbitrary complex numbers.
+ 
+%%
+\subsection{Extended example solution}
+Using the coordinate transformations of equation \eqref{eq:moreformal:a}
+\begin{equation*}
+  \begin{split}
+    \mathbb{X} & = \X{*} x  \\
+    \mathbb{B} & = \Y{*} b
+    \label{eq:moreformal:a}
+  \end{split}
+\end{equation*}
+The $\mathbb{B}$ vector is unchanged from equation \eqref{eq:morefomal:B}
+\begin{equation*}
+    \mathbb{B} = \mat{r}{\sthree \\ \stwo \\ \frac{-2}{\sqrt{6}}}.
+\end{equation*}
+The new $\mathbb{X}$ vector is now given by this
+\begin{equation}
+  \mathbb{X} = \mat{c}{
+  \frac{1}{\sqrt{5}}\paren{x_{1}+2x_{2}} \\
+ -\frac{1}{\sqrt{5}}x_{1}+\frac{1}{2\sqrt{5}}x_{2}+\frac{\sqrt{3}}{2}x_{3} \\
+  \frac{1}{\sqrt{5}}x_{1}-\frac{1}{2 \sqrt{5}}x_{2}+\frac{1}{2 \sqrt{3}}x_{3}+\sqrt{\frac{2}{3}} x_{4}\\[5pt]
+ -\frac{1}{\sqrt{5}}x_{1}+\frac{1}{2 \sqrt{5}}x_{2}-\frac{1}{2 \sqrt{3}}x_{3}+\frac{1}{\sqrt{6}}x_{4}+\frac{1}{\sqrt{2}}x_{5}\\[5pt]
+  \frac{1}{\sqrt{5}}x_{1}-\frac{1}{2 \sqrt{5}}x_{2}+\frac{1}{2 \sqrt{3}}x_{3}-\frac{1}{\sqrt{6}}x_{4}+\frac{1}{\sqrt{2}}x_{5}
+  }.
+\end{equation}
+
+The simplified solution of equation \eqref{eq:formal:svdsoln} is given by
+\begin{equation}
+  \begin{split}
+    \mathbb{X} &= \sig{(+)}\, \mathbb{B}\\
+    \mat{r}{
+    \sfive            \paren{x_{1} - x_{2} + x_{3} - x_{4} + x_{5}} \\
+    \frac{2}{\sqrt{5}}\paren{4x_{1}+ x_{2} - x_{3} + x_{4} - x_{5}} \\
+    \frac{2}{\sqrt{3}}\paren{       3x_{2} + x_{3} - x_{4} + x_{5}} \\
+    \ssix             \paren{              -2x_{3} + x_{4} - x_{5}} \\
+    \stwo             \paren{                        x_{4} + x_{5}} \\
+  }
+  &= \mat{c}{\sqrt{5}\\[5pt]0\\[5pt]0\\[5pt]0\\[5pt]0}
+  \end{split}
+\end{equation}
+
+\endinput

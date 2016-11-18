@@ -1,0 +1,303 @@
+\section{SVD in pictures}
+Let's explore the SVD visually.
+Explain chirality.
+
+The decompositions are given here:
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+
+\begin{equation}
+  \begin{array}{rcrrr}
+    \A{}\ \ \ \ \ \ \  &=& \Y{}\ \ \ \ \ \ \  & \sig{}\ \ \ \ \ \ & \X{T}\ \ \ \ \ \\
+    %% one
+    \mat{rr}{1&\phantom{-}2\\-1&2} &=
+    & \stwo \mat{rr}{1&1\\\phantom{-}1&-1}
+    %% sigma
+    & \sqrt{2}\mat{cc}{2&0\\0&1}
+    & \mat{rr}{0&1\\\phantom{-}1&\phantom{-}0}
+\\[10pt]
+    %% nine
+    \mat{rr}{\phantom{-}2&-1\\2&1} &=
+    %% right
+    & \stwo
+      \mat{rr}{\phantom{-}1 & -1\\
+               1 &  1}
+    %% sigma
+    & \sqrt{2}\mat{cc}{2&0\\0&1}
+    %% right
+    & \mat{rr}{1&0\\\phantom{-}0&\phantom{-}1}
+\\[10pt]
+    %% eight
+    \mat{rr}{-1&\phantom{-}1\\2&2} &=
+    & \mat{rr}{0&1\\\phantom{-}1&\phantom{-}0}
+    %% sigma
+    & \sqrt{2}\mat{cc}{2&0\\0&1}
+    %% right
+    & \stwo
+      \mat{rr}{ 1 & 1\\
+               -1 & \phantom{-}1}
+\\[10pt]
+    %% six
+    \mat{rr}{\phantom{-}1&0\\0&-1} &=
+    %% right
+    & \mat{rr}{0 & 1\\
+              -1 & \phantom{-}0}
+    %% sigma
+    & \itwo
+    %% right
+    & \mat{rr}{0&1\\\phantom{-}1&\phantom{-}0}
+\\[10pt]
+    %% seven
+    \mat{rr}{\phantom{-}1&-1\\1&-1} &=
+    %% left
+    & \stwo
+      \mat{rr}{-1 & -1\\
+               -1 &  1}
+    %% sigma
+    & \mat{cc}{2&0\\0&0}
+    %% left
+    & \stwo
+      \mat{rr}{-1 & \phantom{-}1\\
+                1 &  1}
+\\[10pt]
+  \end{array}
+\end{equation}
+\clearpage
+%%
+\thispagestyle{empty}
+\begin{equation}
+  \begin{array}{rcrrr}
+    \A{} \qquad \ &=& \Y{} \quad \ & \sig{} \qquad \ & \X{T} \quad\ \\[3pt]\hline
+    %% two
+    %% right
+    \mat{rr}{1&\phantom{-}\rtwo\\-1&\rthree} &=
+    & \mat{rr}{\cos \theta_{1} & -\sin \theta_{1}\\
+               \sin \theta_{1} &  \cos \theta_{1}}
+    %% sigma
+    & \frac{1}{12}\mat{cc}{5+\sqrt{145}&0\\0&-5+\sqrt{145}}
+    %% right
+    & \mat{rr}{\cos \theta_{2} & -\sin \theta_{2}\\
+               \sin \theta_{2} &  \cos \theta_{2}}
+\\[20pt]
+    %% three
+    \mat{rr}{1&0\\-1&-1} &=
+    %% left
+    & \mat{rr}{ \sin \theta_{3} & -\cos \theta_{3}\\
+               -\cos \theta_{3} & -\sin \theta_{3}}
+    %% sigma
+    & \rtwo\mat{cc}{1+\sqrt{5}&0\\0&-1+\sqrt{5}}
+    %% right
+    & \mat{rr}{\cos \theta_{3} & -\sin \theta_{3}\\
+               \sin \theta_{3} &  \cos \theta_{3}}
+\\[20pt]
+    %% four
+    \mat{rr}{\phantom{-}1&\phantom{-}2\\0&2} &=
+    %% right
+    & \mat{rr}{\cos \theta_{4} & -\sin \theta_{4}\\
+               \sin \theta_{4} &  \cos \theta_{4}}
+    %% sigma
+    & \stwo\mat{cc}{\sqrt{9+\sqrt{65}}&0\\0&\sqrt{9-\sqrt{65}}}
+    %% right
+    & \mat{rr}{\cos \theta_{5} & -\sin \theta_{5}\\
+               \sin \theta_{5} &  \cos \theta_{5}}
+\\[20pt]
+    %% five
+    \mat{rr}{\phantom{-}1&1\\0&-1} &=
+    %% right
+    & \mat{rr}{\cos \theta_{6} & -\sin \theta_{6}\\
+               \sin \theta_{6} &  \cos \theta_{6}}
+    %% sigma
+    & \stwo
+      \mat{cc}{1+\sqrt{5}&0\\0&-1+\sqrt{5}}
+    %% right
+    & \mat{rr}{\sin \theta_{6} & -\cos \theta_{6}\\
+               \cos \theta_{6} &  \sin \theta_{6}}
+\\
+  \end{array}
+\end{equation}
+%%
+\end{landscape}
+The trigonometric functions are defined like this:
+\begin{equation}
+  \begin{array}{rcrl}
+    \sin \theta_{1} &=& -\paren{290}^{-1/2}  &\sqrt{145 - \sqrt{145}};\\
+    \sin \theta_{2} &=&  \paren{1450}^{-1/2} &\sqrt{725 - 59\sqrt{145}};\\
+    \sin \theta_{3} &=&  \paren{10}^{-1/2}   &\sqrt{5 - \sqrt{5}};\\
+    \sin \theta_{4} &=&  \paren{130}^{-1/2}  &\sqrt{65 - \sqrt{65}};\\
+    \sin \theta_{5} &=& -\paren{260}^{-1/4}  &\sqrt{7 + \sqrt{65}};\\
+    \sin \theta_{5} &=& -\paren{10}^{-1/2}   &\sqrt{5 - \sqrt{5}}.
+  \end{array}
+\end{equation}
+Or course here
+\begin{equation}
+  \cos \theta = \sqrt{1-\sin^{2}\theta}
+\end{equation}
+so for example
+\begin{equation}
+  \cos \theta_{1} = \sqrt{1-\sin^{2}\theta_{1}} = \paren{290}^{-1/2} \sqrt{145 + \sqrt{145}}.
+\end{equation}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&2\\-1&2}$ 
+ & $\A{T} = \mat{rr}{1&-1\\2&2}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x2} \\[20pt]
+ $\sig{}$ & \,\,   \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_s1}
+          & \,\,   \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsa}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&\rtwo\\-1&\rthree}$ 
+ & $\A{T} = \mat{rr}{1&-1\\\rtwo&\rthree} $ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x2} \\[20pt]
+ $\sig{}$ &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_s1}
+          &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsb}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&0\\-1&-1}$ 
+ & $\A{T} = \mat{rr}{1&-1\\0&-1}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x2} \\[20pt]
+ $\sig{}$ &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_s1}
+          &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsc}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&0\\-1&-1}$ 
+ & $\A{T} = \mat{rr}{1&-1\\0&-1}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x2} \\[20pt]
+ $\sig{}$ & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_t1}
+          & \,\    \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_t2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsd}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&1\\0&1}$ 
+ & $\A{T} = \mat{rr}{1&0\\1&1}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_x2} \\[20pt]
+ $\sig{}$ &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_s1}
+          &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/05_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualse}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&0\\0&-1}$ 
+ & $\A{T} = \mat{rr}{1&0\\0&-1}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_x2} \\[20pt]
+ $\sig{}$ & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_s1}
+          & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/06_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsf}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&-1\\1&-1}$ 
+ & $\A{T} = \mat{rr}{1&1\\-1&-1}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_x2} \\[20pt]
+ $\sig{}$ & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_s1}
+          & \,\    \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/07_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsg}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{-1&1\\2&2}$ 
+ & $\A{T} = \mat{rr}{-1&2\\1&2}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_x2} \\[20pt]
+ $\sig{}$ &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_s1}
+          &        \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/08_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsh}
+\caption{default}
+\end{table}%
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+ & $\A{}  = \mat{rr}{1&2\\-1&2}$ 
+ & $\A{T} = \mat{rr}{1&-1\\2&2}$ \\[35pt]
+ $\Y{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_y1} 
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_y2} \\[15pt]
+ $\X{}$   & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_x1}
+          & \qquad \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_x2} \\[20pt]
+ $\sig{}$ & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_s1}
+          & \quad  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/09_s2} \\[20pt]
+\end{tabular}
+\end{center}
+\label{tab:pmII:visualsi}
+\caption{default}
+\end{table}%
+\clearpage
+
+\endinput

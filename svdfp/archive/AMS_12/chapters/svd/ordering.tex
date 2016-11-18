@@ -1,0 +1,51 @@
+\section{Archimedian ordering}
+By convention, the singular values are placed in decreasing order in the matrix of singular values. This is all straightforward and allows us to study the structure of domain decomposition matrices.
+
+The reason this is straightforward is that the singular values are by construction real variables. However, the target matrix may be complex and the numbers in the complex plane cannot be ordered as numbers in the real plane $\real{1}\times\real{1}$. 
+
+Consideration of complex variables will as usual lead to a more interesting problem and deeper insights. But first, a examination of the more orthodox case.
+
+%%
+\subsection{Real matrices}
+The real numbers are ordered on the real line. 
+\begin{equation}
+  \abs{a}>\abs{b}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \mat{rr}{a&0\\0&b}&=\mat{rr}{\sgn a&0\\0&\sgn b}\mat{cc}{\abs{a}&0\\0&\abs{b}}\mat{cc}{1&0\\0&1}\\
+    \mat{rr}{b&0\\0&a}
+    &=\mat{rr}{0&\sgn a\\\sgn b&0}\mat{cc}{\abs{a}&0\\0&\abs{b}}\mat{cc}{0&1\\1&0}\\
+    &=\mat{rr}{\sgn a&0\\0&\sgn b}\mat{cc}{\abs{a}&0\\0&\abs{b}}\itwo
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \begin{split}
+    \mat{rr}{\pm3&0\\0&2}&=\mat{rr}{\pm1&0\\0&1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}\\
+    \mat{rr}{3&0\\0&\pm2}&=\mat{rr}{1&0\\0&\pm1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \begin{split}
+    \mat{rr}{\pm2&0\\0&3}&=\mat{rr}{\pm1&0\\0&1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}\\
+    \mat{rr}{2&0\\0&\pm3}&=\mat{rr}{1&0\\0&\pm1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \begin{split}
+    \mat{rr}{3\pm2i&0\\0&2\pm3i}&=\mat{rr}{\pm1&0\\0&1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}\\
+    \mat{rr}{3&0\\0&\pm2}&=\mat{rr}{1&0\\0&\pm1}\mat{cc}{3&0\\0&2}\mat{cc}{1&0\\0&1}
+  \end{split}
+\end{equation}
+
+Permutation or basis matrix. Rotation of orthogonal axes.
+
+%%
+\subsection{Complex matrices}
+Rudin provides a discussion of why the complex numbers cannot be ordered. One way to think of the issue is to consider the variable $z$ and it's conjugate $\bar{z}$. Which number is larger? Do we define $z<\bar{z}$?
+
+\endinput

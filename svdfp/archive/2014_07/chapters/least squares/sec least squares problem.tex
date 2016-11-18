@@ -1,0 +1,100 @@
+\section{The least squares problem}
+
+A crisp problem statement is a value tool when casting for solution methods. This section defines the least squares problem.
+
+%%%%%%%%%%%
+\subsection{When least squares?}
+The method of least squares will provide a nontrivial solution as long as the data vector is not in the \ns \ $\rnlla{*}$. This is the most robust and most general method to solve linear systems. There are also 
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Class I: Classic inverse exists}
+This class of linear equations is the most restrictive. The matrix $\A{}$ is square and has full rank. Therefore all data vectors lie in the range $\brnga{}$.
+\begin{equation}
+  \begin{split}
+    \axaeb \\
+    \matrixc \xtwo &= {\bl{ \mat{r}{-1\\1} }}
+  \end{split}
+\end{equation}
+Solution: Gaussian elimination.
+\begin{equation}
+  \R{} \mat{c|c} { \A{} & b }
+     = \mat{cc}  { 1 & 0 \\ 1 & 1 } 
+       \mat{rr|r}{ 1 & 2 & \bminus \bone \\ -1 & \phantom{-}2 & \bone }
+     = \mat{cc|r}{ 1 & 2 & \bminus \bone \\ 0 & 4 & \bzero }
+\end{equation}
+This implies the solution vector is
+\begin{equation}
+  {\bl{ x }} = {\bl{ \mat{r}{-1\\0} }}
+\end{equation}
+The solution using the matrix inverse is the same:
+\begin{equation}
+  {\bl{ x }} = \A{-1} {\bl{ b }} = \Aplusc {\bl{ \mat{r}{-1\\1} }} = {\bl{ \mat{r}{-1\\0} }}.
+\end{equation}
+
+These problems with square matrices can be confusing because the range spaces have the same dimensions. For example, in this instance the vectors all belong to $\cmplx{2}$. We must remember to which spaces the data and solution vectors are associated:
+%
+\begin{equation}
+  \begin{split}
+    {\bl{ x }} &\in \brnga{*} \in \cmplx{2}, \\
+    {\bl{ b }} &\in \brnga{} \in \cmplx{2}.
+  \end{split}
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Class II: No classic inverse, consistent system}
+This is the most general class of problem. The matrix is either not square or it has a rank deficit. But since it is consistent there is a solution.
+\begin{equation}
+  \begin{split}
+    \axaeb \\
+    \matrixa \xtwo &= \bvecaa
+  \end{split}
+\end{equation}
+Solutions: $x = \xx, \ \mat{r}{0\\-1}$.
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Class I: Trivial solution}
+\begin{equation}
+  \begin{split}
+    \axaeb \\
+    \matrixa \xtwo &= {\rd{ \mat{c}{1\\1\\0} }}
+  \end{split}
+\end{equation}
+Solution: $x = \zerotwo$.
+\begin{equation}
+  \aesvdecompa
+\end{equation}
+
+
+%%%%%%%%%%%
+\subsection{Forming the least squares problem}
+The least squares problem starts with a linear system
+\begin{equation}
+  \axeb 
+\end{equation}
+where the inputs are the matrix $\aicmnr$ and the data vector $b\in \cmplxm$. The goal is to find the solution vector $x\in \cmplxn$ which solves the linear system.
+\begin{equation}
+  \lsmin 
+  \label{eq:lsmin}
+\end{equation}
+
+
+The focus of this work is on the {\it{overdetermined}} least squares problem where there are more measurement points than solution parameters. The system has full column rank
+$$
+  \A{} \in \cmplxall{m}{n}{n}, \quad m \ge n
+$$
+%
+\input{chapters/"least squares"/"eqn overdetermined"}
+
+%%%%%%%%%%%
+
+%%%%%%%%%%%
+\subsection{How least squares?}
+
+
+\endinput

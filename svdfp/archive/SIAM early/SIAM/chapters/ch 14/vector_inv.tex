@@ -1,0 +1,175 @@
+\section{Back to vectors}
+What is the pseudoinverse of a vector? Laub \cite[p. ??]{Laub2005} presents the formula for the pseudoinverse of a vector $v\in\cmplxm$
+\begin{equation}
+  v^{\psymbol} = \paren{v^{*}v}^{\psymbol}v^{*} = \frac{ v^{*} }{ v^{*}v }.
+\end{equation}
+The derivation follows.
+
+%%
+\subsection{Derivation of the pseudoinverse}
+We will construct the pseudoinverse from the thin SVD. That is, we will only compute the range space contributions to the SVD. As is so often the case, we don't need to the full rigor of the general decomposition. Instead, we can
+\begin{enumerate}
+\item Form the product matrix $\W{x} = v^{*}v$: dimension $\byy{1}$.
+\item Form the domain basis matrix $\X{} = \mat{c}{1}$: dimension $\byy{1}$.
+\item Find the lone eigenvalue: $\lambda\paren{\W{x}}$.
+\item Compute the lone singular value $\sigma_{1} = \sqrt{\lambda_{1}}$.
+\item Form the matrix $\ess{} = \mat{c}{\sigma_{1}}$: dimension $\byy{1}$.
+\item Find the lone range space column vector $y_{1}$ for the codomain matrix $\Y{}$: dimension $\by{n}{1}$.
+\item The SVD is the $v = y_{1}\sigma_{1}x_{1}$.
+\item The pseudoinverse is $v^{*} = x_{1}\sigma_{1}^{-1}y_{1}$.
+\end{enumerate}
+
+(1) Form the product matrix:
+\begin{equation*}
+  \W{x} = v^{*}v = \mat{c}{\normt{v}^{2}}.
+\end{equation*}
+(2) The domain basis has dimension $\byy{1}$:
+\begin{equation*}
+  \X{} = \mat{c}{1}.
+\end{equation*}
+(3) The matrix $\W{x} = \mat{c}{\normt{v}^{2}}$ is diagonal and the eigenvalue is therefore given by the diagonal entry:
+\begin{equation}
+  \lambda\paren{\W{x}} = \lst{\normt{v}^{2}}.
+\end{equation}
+(4) The singular value is $\sigma_{1} = \sqrt{\lambda_{1}} = \normt{v}$.\\
+(5) The matrix of singular values $\ess{} = \mat{c}{\normt{v}}$.\\
+(6) The range space column vector is the solution to this:
+\begin{equation*}
+  \begin{split}
+     \A{}x_{1} &= \sigma_{1} y_{1},\\
+     v \mat{c}{1} &= \normt{v} y_{1},\\
+     \frac{v}{\normt{v}} &= y_{1}.
+  \end{split}
+\end{equation*}
+(7) The SVD is given by this:
+\begin{equation*}
+  v = \svd{*} = v \mat{c}{\normt{v}}\mat{c}{1}.
+\end{equation*}
+(7) The pseudoinverse is given by this:
+\begin{equation*}
+  v = \mpgi{*} = \mat{c}{1} \mat{c}{\normt{v}^{-1}}v^{*} = \frac{v*}{\normt{v}}.
+\end{equation*}
+
+We have yet another example of an important SVD which required little. The next step is to check the Moore-Penrose conditions.
+In this case the target matrix $\Arr{n}{1}$ is a vector which maps $1-$vectors (scalars) into $n-$vectors and so the vector space of the domain is a point. Since there is no null space component, if a solution exists it will be unique. The subspace decomposition takes the form:
+\begin{equation}
+  \A{} = \Y{}\,\Sigma\,\X{T} = 
+  \mat{cc}{\Y{}_{\rng{\A{}}} & \Y{}_{\nll{\A{T}}}} 
+  \mat{c}{\ess{} \\\hline \zero} 
+  \mat{c}{1}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Construction of the SVD}
+In the general SVD construction one starts by resolving the eigensystem of the product matrix 
+\begin{equation}
+  \W{x} = \A{*}\A{}
+\end{equation}
+and then uses these right singular vectors $x_{k}$ to compute the left-singular vectors $y_{k}$ using the relationship
+\begin{equation}
+  \A{}x_{k} = \sigma_{k} y_{k}, \quad k=1\colon\rho.
+\end{equation}
+In this case the algebra is trivial because the product matrix is a $\byy{1}$ matrix:
+\begin{equation}
+  \W{x} = \A{T}\A{} = \mat{c}{n}.
+\end{equation}
+The lone eigenvector is obviously
+\begin{equation}
+  x_{1} = \mat{c}{1}.
+\end{equation}
+and the single eigenvalue is then
+\begin{equation}
+  \lambda_{1} = n.
+\end{equation}
+The singular value is the square root of this eigenvalue
+\begin{equation}
+  \sigma_{1} = \sqrt{\lambda_{1}} = \sqrt{n}.
+\end{equation}
+
+We may now complete the domain matrix $\X{}$ and the $\Sigma$ matrix:
+\begin{equation}
+  \Sigma = \mat{c}{\sigma_{1} \\ 0 \\ \vdots \\ 0},
+\end{equation}
+and 
+\begin{equation}
+  \X{} = \mat{c}{1}.
+\end{equation}
+There is one range space vector in the domain matrix and therefore there will be one range space vector in codomain matrix. This vector, $y_{1}$, is the solution to this equation:
+\begin{equation}
+  \A{}x_{1} = \sigma_{1}y_{1} \qquad \Longrightarrow \qquad \mat{c}{1\\1\\\vdots\\1}\mat{c}{1} = \sqrt{n} y_{1}
+\end{equation}
+which has the solution
+\begin{equation}
+  y_{1} = \recip{\sqrt{n}}\mat{c}{1\\1\\\vdots\\1}
+\end{equation}
+This is the column vector describing the range space of the codomain, $\rng{\A{}}$.
+
+To complete the decomposition of the codomain, we need an orthonormal basis which spans the null space of the domain, $\nll{\A{T}}$. By inspection we see one set of such vectors can be these:
+\begin{equation}
+  \mat{r}{-1\\1\\0\\0\\\vdots\\0}, \mat{r}{-1\\0\\1\\0\\\vdots\\0}, \mat{r}{-1\\0\\0\\1\\\vdots\\0}, \dots, \mat{r}{-1\\0\\0\\0\\\vdots\\1}.
+\end{equation}
+
+The decomposition is complete and can be written as this:
+\begin{equation}
+  \begin{split}
+     \A{} &= \Y{}\,\Sigma{}\,\X{T},\\
+     \mat{c}{1\\1\\\vdots\\1} & =
+     \mat{c|>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{
+     \mat{c}{\recip{\sqrt{n}}\\\recip{\sqrt{n}}\\\vdots\\\recip{\sqrt{n}}} &
+     \mat{c}{-\recip{\sqrt{2}}\\\recip{\sqrt{2}}\\0\\0\\\vdots\\0} &
+     \dots &
+     \mat{c}{-\recip{\sqrt{2}}\\0\\0\\0\\\vdots\\\recip{\sqrt{2}}} 
+     }
+     \mat{c}{\sqrt{n}\\0\\\vdots\\0}
+     \mat{c}{1}
+  \end{split}
+\end{equation}
+The null space vectors are shaded to remind us that they are silent.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Constructing the pseudoinverse}
+The psuedoinverse in \eqref{eq:1:ap} can be constructed from either the full SVD or the thin SVD which only uses the range space components and the matrix of singular values $\ess{}$. Our pseudoinverse is given by this:
+\begin{equation}
+  \begin{split}
+     \Ap &= \X{}_{\rng{\A{*}}} \, \ess{-1} \, \Y{*}_{\rng{\A{}}},\\
+         &= \mat{c}{1} \mat{c}{\recip{\sqrt{n}}} \recip{\sqrt{n}}\mat{cccc}{1&1&\dots&1}, \\
+         &= \recip{n}\mat{cccc}{1&1&\dots&1}.
+  \end{split}
+\end{equation} 
+
+%%
+\subsection{Verification of the pseudoinverse}
+Does the pseudoinverse for a vector satisfy the four Moore-Penrose conditions? We can simplify the process if we do the last two identities first.
+%%%
+\begin{enumerate}
+\item Does $v v^{\psymbol} v =v$?
+Yes.
+\begin{equation}
+  \begin{split}
+     v \paren{v^{\psymbol}} v &= v \paren{\frac{v^{*}v}{v^{*}v}} v,\\
+     &= v \frac{v^{*}v}{v^{*}v},\\
+     &= v
+  \end{split}
+\end{equation}
+\item Does $v^{\psymbol} v v^{\psymbol} = v^{\psymbol} $?
+Yes.
+\begin{equation}
+  \begin{split}
+     v^{\psymbol} \paren{v v^{\psymbol}} &= v^{\psymbol}\paren{\frac{v^{*}v}{v^{*}v}},\\
+     &= v^{\psymbol}
+  \end{split}
+\end{equation}
+\item Does $\paren{v v^{\psymbol}}^{*} = v v^{\psymbol}$?
+Yes, because $vv^{\psymbol}$ is a scalar and unchanged by the adjoint operation.
+\item Does $\paren{v^{\psymbol}v}^{*} = v^{\psymbol}v $?
+Yes, because $v^{\psymbol}v$ is a scalar.
+\begin{equation}
+  \begin{split}
+     v^{\psymbol}v &= \mat{c}{v_{1}v\\\hline v_{2}v\\\hline \vdots\\\hline v_{n}v} = \mat{cccc}{v_{1}v_{1} & v_{1}v_{2} & \dots & v_{1}v_{n} \\\hline v_{2}v_{1} & v_{2}v_{2} & \dots & v_{2}v_{n} \\\hline  \vdots & \dots && \vdots \\ v_{n}v_{1} & v_{n}v_{2} & \dots & v_{n}v_{n} }
+  \end{split}
+\end{equation}
+\end{enumerate}
+
+
+\endinput

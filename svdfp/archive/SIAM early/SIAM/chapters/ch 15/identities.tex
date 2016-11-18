@@ -1,0 +1,93 @@
+\section{Crucial identities}
+This section showcases the SVD in matrix analysis. Golub \cite[p. 243]{Golub} derives a beautiful result on the sensitivity of least squares solutions for overdetermined problems. In this case the target matrix
+\begin{equation}
+  \Ain{n}, \ m\ge n
+\end{equation}
+The relative error between the computed solution $\hatx$ and the exact solution $x$ is bound by the following
+\begin{equation}
+  \frac{\normt{\hatx - x}}{\normt{x}} \le \eps \paren{\kappa_{2}(\A{}) \frac{1 + \cos \theta} {\cos \theta} + \kappa_{2}^{2}(\A{}) \tan \theta} + \Order{\eps^{2}}
+\end{equation}
+where $\eps$ represents machine rounding error.
+
+To make this estimate, one must establish these identities \cite[equations 5.3.7, p. 242]{Golub}:
+\begin{equation}
+  \begin{split}
+     \kappa_{2}(\A{})     &= \normt{\A{}}  \normt{\paren{\prdm{T}}^{-1}\A{T}}.\\
+     \kappa_{2}^{2}(\A{}) &= \normts{\A{}} \normt{\paren{\prdm{T}}^{-1}}.
+  \end{split}
+\end{equation}
+We will use the primary decompostions
+\begin{equation}
+  \begin{split}
+     \svda{T}, \\
+     \svdta{T},\\
+     \mpgia{T}.
+  \end{split}
+\end{equation}
+
+%%%%%
+\subsection{First identity}
+Begin with the definition of the condition number in an operator norm:
+\begin{equation}
+  \kappa\paren{\A{}} = \norm{\A{}}\norm{\A{-1}}.
+\end{equation}
+In the $2-$norm this reduces to the ratio between the largest and smallest singular values:
+\begin{equation}
+  \kappa_{2} = \normt{\A{}}\normt{\A{-1}} = \frac{\sigma_{1}}{\sigma_{n}} 
+\end{equation}
+We begin by expanding the matrix products in terms of the SVD components:
+\begin{equation}
+  \prdm{T} = \paren{\svdt{T}} \paren{\svd{T}} = \X{}\,\ess{2}\,\X{*}
+\end{equation}
+Because the target matrix has full column rank, this matrix product has full rank.
+Therefore\footnote{It should be clear that $\ess{-2} = \paren{\ess{-1}}^{2}$.}
+\begin{equation}
+  \paren{\prdm{T}}^{-1} = \X{}\,\ess{-2}\,\X{*},
+  \label{eq:golub:atainv}
+\end{equation}
+Assemble the matrix operator for the normal equations:
+\begin{equation}
+  \paren{\prdm{T}}^{-1}\A{T} = \paren{\X{}\,\ess{-2}\,\X{*}} \paren{\svdt{T}} = \X{}\,\ess{-2}\,\sig{T}\Y{*}.
+\end{equation}
+The norm is easy to work with since the domain matrices are unitary:
+\begin{equation}
+  \normt{ \paren{\prdm{T}}^{-1}\A{T} } = \normt{ \X{}\,\sig{-T}\Y{} } = \normt{ \sig{-T} } = \frac{1}{\sigma_{n}}.
+\end{equation}
+And we are done.
+To summarize,
+\begin{equation}
+  \begin{split}
+     \normt{\A{-1}} &= \normt{\paren{\prdm{T}}^{-1}\A{T}} \qquad \qquad = \frac{1}{\sigma_{n}},  \\
+     \normt{\A{}}\normt{\A{-1}} &= \normt{\A{}}\normt{\paren{\prdm{T}}^{-1}\A{T}}, \\
+     \kappa_{2}(\A{}) &= \normt{\A{}}\normt{\paren{\prdm{T}}^{-1}\A{T}} \quad \qquad = \frac{\sigma_{1}}{\sigma_{n}}.
+  \end{split}
+\end{equation}
+
+%%%%%
+\subsection{Second identity}
+For the second identity, we need to prove that
+\begin{equation}
+  \normt{\A{-1}}^{2} = \normt{\paren{\prdm{T}}^{-1}}.
+\end{equation}
+The first part is trivial:
+\begin{equation}
+  \normt{\A{-1}}^{2} = \paren{\frac{1}{\sigma_{n}}}^{2}.
+\end{equation}
+The second part is cracked using the SVD. From equation \eqref{eq:golub:atainv}
+\begin{equation}
+  \paren{\prdm{T}}^{-1} = \X{*}\,\ess{-2}\,\X{}.
+\end{equation}
+Therefore
+\begin{equation}
+  \normt{ \paren{\prdm{T}}^{-1} } = \normt{ \X{*}\,\ess{-2}\,\X{} } = \normt{ \ess{-2} } = \paren{\frac{1}{\sigma_{n}}}^{2}.
+\end{equation}
+
+From these facts we can establish the second identity of Golub:
+\begin{equation}
+  \begin{split}
+     \normt{\A{-1}}^{2}   &= \normt{ \paren{\prdm{T}}^{-1} } \qquad \qquad = \frac{1}{\sigma^{2}_{n}}, \\
+     \normt{\A{}}^{2}\normt{\A{-1}}^{2} &= \normt{\A{}}^{2}\normt{ \paren{\prdm{T}}^{-1} }, \\
+     \kappa_{2}^{2}(\A{}) &= \normt{\A{}}^{2} \normt{\paren{\prdm{T}}^{-1}}
+  \end{split}
+\end{equation}
+\endinput

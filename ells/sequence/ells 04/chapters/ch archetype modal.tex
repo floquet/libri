@@ -1,0 +1,205 @@
+\chapter{\label{ch:archetype modal}Modal Example}
+
+\section{\label{sec:modal problem}Modal Approximation}  %    S    S    S    S    S    S    S    S    S
+The following example represents a problem in linear regression. A sequence of $m$ data points $\paren{x_{k}, y_{k}}$, $k=1\colon m$ are recored. The goal is to find the best approximation to a straight line. The \emph{trial function} is
+  \begin{equation*}   %  =   =   =   =   =
+    y(x) = a_{0} + a_{1} x .
+    \label{eq:lr trial}
+  \end{equation*}
+The residual errors are the difference between the measurements and predictions:\\
+\begin{center}
+residual error$_{k}$ = measurement$_{k}$ -- prediction$_{k}$.
+\end{center} 
+ More formally the residual error is
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    r_{k} = y_{k} - y(x_{k}), \quad k=1\colon m.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+From this springs the \emph{merit function}, the target of minimization,
+  \begin{equation*}   %  =   =   =   =   =
+  \begin{split}
+    M(a) 
+      &= \sum_{k=1}^{m} r_{k}^{2} \\
+      &= \sum_{k=1}^{m} \paren{\text{measurement}_{k} - \text{prediction}_{k}}^{2} \\
+      &= \sum_{k=1}^{m} \paren{y_{k} - y\paren{x_{k}}}^{2} \\
+      &= \sum_{k=1}^{m} \paren{y_{k} - a_{0} - a_{1} x_{k}}^{2}
+    \label{eqn:merit}
+  \end{split}
+  \end{equation*}
+The least squares solution $a_{LS}$ is formally defined as 
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+    a_{LS} = \lst{a \in \cmplx{2} \colon \normts{y(x_{k}) - a_{0} - a_{1} x_{k}} \text{ is minimized} }.
+    \label{eq:gradient lr}
+    %\label{eq:}
+  %\end{split}
+  \end{equation}
+The solution satisfies
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+    \nabla M( a )\vert_{a_{LS}} = 
+    \mat{c} { \pd{M}{a_{0}} \\ \pd{M}{a_{1}} \\ \vdots \\  \pd{M}{a_{n-1}} } =
+    \mat{c} { 0 \\ 0 \\ \vdots \\ 0 } = \zero.
+    \label{eq:merit}
+  %\end{split}
+  \end{equation}
+
+\section{\label{sec:bevington example}Bevington Example}  %    S    S    S    S    S    S    S    S    S
+To provide a common reference, see the example in \cite[ch 6]{Bevington}. The data is summarized below in table \ref{tab:bevington data and results}. The problem involves temperature measurements $y_{k}$ made at position $x_{k}$. 
+
+\subsection{\label{ssec:modal data}Data}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+\begin{table}[t]
+	\begin{center}
+		\begin{tabular}{rcc|rr@{.}l}
+		  %
+		  & \multicolumn{2}{c}{Input} &  \multicolumn{3}{c}{Output} \\
+		  %
+		  $k$ & $x_{k} (cm) $ & $y_{k} (^{\circ}C)$ & $y\paren{x_{k}} (^{\circ}C)$ & \multicolumn{2}{c}{$r_{k} (^{\circ}C)$} \\\hline
+		  %
+			 1 & 1 & 15.6 & 14.2222 & --1 & 37778 \\
+			 2 & 2 & 17.5 & 23.6306 &   6 & 13056 \\
+			 3 & 3 & 36.6 & 33.0389 & --3 & 56111 \\
+			 4 & 4 & 43.8 & 42.4472 & --1 & 35278 \\
+			 5 & 5 & 58.2 & 51.8556 & --6 & 34444 \\
+			 6 & 6 & 61.6 & 61.2639 & --0 & 336111 \\
+			 7 & 7 & 64.2 & 70.6722 &   6 & 47222 \\
+			 8 & 8 & 70.4 & 80.0806 &   9 & 68056 \\
+			 9 & 9 & 98.8 & 89.4889 & --9 & 31111 \\
+		  %
+		\end{tabular}
+	\end{center}
+	\caption{Raw data and results.}
+	\label{tab:bevington data and results}
+\end{table}%
+
+\subsection{\label{ssec:Normal Equations via Calculus}Normal Equations via Calculus}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+In \S 6.4, Bevington solves the problem by applying calculus to the final form in \eqref{eqn:merit}, effectively solving \eqref{eq:gradient lr}. Introducing the notation
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+       \partial_{j} M = \frac{\partial M(a_{0}, a_{1})}{\partial a_{j}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+the simultaneous equations to solve are
+\begin{equation}
+  \begin{split}
+    \partial_{0} M &= 0, \\
+    \partial_{1} M &= 0,
+  \end{split}
+\end{equation}
+which become
+\begin{equation}
+  \begin{split}
+    &-2 \sum_{k} \paren{y_{k} - a_{0} - a_{1}x_{k}} \phantom{x_{k}} = 0, \\
+    &-2 \sum_{k} \paren{y_{k} - a_{0} - a_{1}x_{k}} x_{k}  = 0.
+  \end{split}
+\end{equation}
+Recast as a linear system, the minimization criteria become
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+      \mat{cc}{\sum 1 & \sum x_{k} \\ \sum x_{k} & \sum x_{k}^{2}}
+      \mat{c}{a_{0} \\ a_{1} } = 
+      \mat{c}{\sum y_{k} \\ \sum x_{k}y_{k}}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+where summation from 1 to $m$ is implied. (Therefore $\sum 1 = m$.)
+
+Defining the determinant
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Delta = m \sum x_{k}^{2} - \paren{\sum x_{k}}^{2}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+the matrix inverse is
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{cc}{\sum 1 & \sum x_{k} \\ \sum x_{k} & \sum x_{k}^{2}}^{-1} = \Delta^{-1} 
+    \mat{cc}{\sum x_{k}^{2} & -\sum x_{k} \\ -\sum x_{k} & m }
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The solution to equation \eqref{eqn:calculus} is the matrix product
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{a_{0} \\ a_{1} } = \Delta^{-1}
+    \mat{rr}{\sum x_{k}^{2} & -\sum x_{k} \\ -\sum x_{k} & \sum 1}
+    \mat{c}{\sum y_{k} \\ \sum x_{k}y_{k}}
+    \label{eqn:bevington solution product}
+  \end{equation}
+  % = =
+Compare the final results to Bevington's equations 6-19:
+  \begin{equation}
+  \begin{split}
+    a_{0} &= \Delta^{-1} \paren{\sum x_{k}^{2}\sum y_{k} - \sum x_{k}\sum x_{k}y_{k}}, \\
+    a_{1} &= \Delta^{-1} \paren{m \sum x_{k}y_{k} - \sum x_{k}\sum y_{k}}.
+  \label{eqn:bevington soln}
+  \end{split}
+  \end{equation}
+
+% SUBSECTION
+\subsection{Error propagation}
+Bevington's greatest contribution may be his masterful explanation of error propagation.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+    s^{2} \approx \frac{\rtr{T}} {m-n}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+\begin{equation}
+  \begin{split}
+    %
+    \eps_{0}^{2} &= \frac{r^{\mathrm{T}}r}{\Delta\paren{m-n}} \sum x_{k}^{2} \\
+    \eps_{1}^{2} &= \frac{r^{\mathrm{T}}r}{\Delta\paren{m-n}} \sum 1 \\
+    %
+  \end{split}
+  \label{eqn:bevington error terms}
+\end{equation}
+
+The results in equation \eqref{eqn:soln vector}.
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      a_{0} &= 4.8 \pm 4.9 \quad \text{\ \ \ (intercept)} \\
+      a_{1} &= 9.41 \pm 0.87 \quad \text{(slope)}
+    \end{split}
+    \label{eqn:soln vector}
+  \end{equation}
+% = =
+An alternative presentation is
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      a_{0} &= 4.8 \paren{4.9} \quad \text{\ \ \ (intercept)} \\
+      a_{1} &= 9.41 \paren{0.87} \quad \text{(slope)}
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+The residual error vector is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      r = \frac{1}{360}
+          \mat{r}{-496 \\ 2207 \\ -1282 \\ -487 \\ -2284 \\ -121 \\ 2330 \\ 3485 \\ -3352}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+making the total error
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \rtr{T} = 317.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+\endinput

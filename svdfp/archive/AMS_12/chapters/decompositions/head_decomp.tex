@@ -1,0 +1,35 @@
+\chapter[Other matrix decompositions]{A survey of other matrix decompositions}
+
+There are other matrix decompositions and it is helpful to catalog them and it is interesting to compare them with the \svdl \ when possible.
+
+\begin{table}[htdp]
+\begin{center}
+\boxed{
+\begin{tabular}{ccl}
+ & decomposition & restriction on target matrix \\\hline
+ 1 & spectral & $\A{}$ Hermitian \\
+ 2 & $\LL{}\U{}$ & $\A{}$ square, nonsingular \\
+ 3 & Cholesky & $\A{}$ symmetric positive definite \\
+ 4 & $\C{}\ess{}$ & $\A{}$ square, nonsingular \\
+ 5 & polar & $\A{}$ square, nonsingular \\
+ 6 & Schur & $\A{}$ square \\
+ 7 & $\B{}\C{}$ & NONE \\
+ 7 & $\Q{}\R{}$ & NONE \\
+ 8 & SVD & NONE
+\end{tabular}
+}
+\end{center}
+\label{tab:decomp:compare}
+\caption{Comparing the limitations on the target matrix for different decompositions. The quality of the target matrix relaxes as one goes down the list. The \svdl is clearly the most robust tool. This universality comes at a steep computational price.}
+\end{table}%
+
+\input{chapters/decompositions/spectral}
+\input{chapters/decompositions/lu}
+\input{chapters/decompositions/cholesky}
+\input{chapters/decompositions/cs}
+\input{chapters/decompositions/polar}
+\input{chapters/decompositions/schur}
+\input{chapters/decompositions/BC}
+\input{chapters/decompositions/qr}
+
+\endinput

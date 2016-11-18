@@ -1,0 +1,477 @@
+%% Example matrix a
+\newcommand{ \dimsa }[0]    { \cmplxall{2}{3}{1} }
+
+\newcommand{ \matrixa }[0]
+{
+    \mat{ rrr }
+      {
+       1 & -1 &  1 \\
+      -1 &  1 & -1
+      }
+}
+
+%% transpose
+\newcommand{ \matrixat }[0]
+{
+    \mat{ rr }
+      {
+       1 & -1 \\
+      -1 &  1 \\
+       1 & -1
+      }
+}
+
+% x-ray view
+\newcommand{ \xaycola }[0]
+{
+  \mat{r|r|r}
+  { 
+   \bone & \gminus \gone & \gone \\
+   \bminus \bone & \gone & \gminus \gone
+  }
+}
+
+\newcommand{ \xaycolat }[0]
+{
+  \mat{r|r}
+  { 
+   \bone & \gminus \gone \\
+   \bminus \bone & \gone \\ 
+   \bone & \gminus \gone 
+  }
+}
+
+%% pseudoinverse
+\newcommand{ \Aplusa }[0]
+{
+  \recip{6}
+    \mat{ rr }
+      {
+       1 & -1 \\
+      -1 &  1 \\
+       1 & -1
+      }
+}
+
+%% projectors A
+\newcommand{ \praa }[0]
+{
+  \half
+  \mat{rr}
+  {
+   1 & -1\\
+  -1 &  1
+  }
+}
+
+\newcommand{ \pnasa }[0]
+{
+  \half
+  \mat{rr}
+  {
+      1 &    1 \\
+   \ps1 & \ps1
+  }
+}
+
+\newcommand{ \prasa }[0]
+{
+  \recip{3}
+  \mat{rrr}
+  {
+   1 & -1 &  1 \\
+  -1 &  1 & -1 \\
+   1 & -1 &  1 
+  }
+}
+
+\newcommand{ \pnaa }[0]
+{
+  \recip{3}
+  \mat{rrr}
+  {
+   2 & 1 & -1 \\
+   1 & 2 &  1 \\
+  -1 & \ps1 &  2
+  }
+}
+
+%% projectors A^{*}
+\newcommand{ \praas }[0]
+{
+  \prasa
+}
+
+\newcommand{ \pnasas }[0]
+{
+  \pnaa
+}
+
+\newcommand{ \prasas }[0]
+{
+  \praa
+}
+
+\newcommand{ \pnaas }[0]
+{
+  \pnasa
+}
+
+%% product matrices
+
+\newcommand{ \wxa }[0]
+{
+  2
+  \mat{rrr}
+  {
+   1 & -1 &  1 \\
+  -1 &  1 & -1 \\
+   1 & -1 &  1 
+  }
+}
+
+\newcommand{ \wya }[0]
+{
+    3
+    \mat{ rrr }
+      {
+       1 & -1 \\
+      -1 &  1
+      }
+}
+
+%% decomposition
+\newcommand{ \essa }[0] 
+{
+    \mat{ c }
+      {
+        \sqrt{6}
+       }
+}
+
+\newcommand{ \sigmaa }[0] 
+{
+    \mat{ c|cc }
+      {
+        \sqrt{6} & 0 & 0 \\ \hline
+        0 & 0 & 0
+      }
+}
+
+\newcommand{ \sigmaat }[0] 
+{
+    \mat{ c|c }
+      {
+        \sqrt{6} & 0 \\ \hline
+        0 & 0 \\
+        0 & 0
+      }
+}
+
+
+\newcommand{ \sigmaainv }[0] 
+{\mg{ \mat{c|c}{ {\bk{ \rssix }} & \bkzero \\[4pt]\hline \bkzero & \bkzero \\ \bkzero & \bkzero} }}
+
+\newcommand{ \matrixaY}[0] 
+{
+    \rstwo
+    \mat{ rr }
+      {
+       \bone &  \rone \\
+       \bminus \bone &  \phantom{-}\rone
+      }
+}
+
+\newcommand{ \matrixaYt}[0]
+{
+    \rstwo
+    \mat{ rr }
+      {
+       \bone     & \bminus \bone\\
+       \ps \rone & \rone
+      }
+}
+
+\newcommand{ \matrixaYg}[0] 
+{
+    \rstwo
+    \mat{ rr }
+      {
+       { \bl{ e^{i\phi} } } &  { \rd{ 1 } } \\
+       { \bl{-e^{i\phi} } } &  { \rd{ 1 } }
+      }
+}
+
+\newcommand{ \matrixaYgz}[0] 
+{
+    \rstwo
+    \mat{ rc }
+      {
+       { \bl{ i } } &  { \rd{ 1 } } \\
+       { \bl{-i } } &  { \rd{ 1 } }
+      }
+}
+
+\newcommand{ \blrsthree }[0]  { \bl{ \rsthree } }
+\newcommand{ \rdrstwo }[0]    { \rd{ \rstwo } }
+\newcommand{ \rdrssix }[0]    { \rd{ \rssix } }
+\newcommand{ \rdrstsix }[0]   { \rd{ \frac{2} { \sqrt{6} } } }
+
+\newcommand{ \matrixaXgt}[0]
+{
+    \mat{ crr }
+      {
+      { \bl{ \frac{e^{-i\phi}} { \sqrt{3} } } } & { \bl{-\frac{e^{-i\phi}} { \sqrt{3} } } } & { \bl{ \frac{e^{-i\phi}} { \sqrt{3} } } } \\[5pt]
+      \rdrstsix & \rdrssix & \rminus \rdrssix   \\[5pt]
+      \rzero    & \rdrstwo & \rdrstwo
+      }
+}
+
+\newcommand{ \matrixaXt }[0]
+{
+    \mat{ crr }
+      {
+       \ps \blrsthree & \bminus \blrsthree & \blrsthree \\[5pt]
+       \ps \rzero     & \rdrstwo           & \rdrstwo   \\[5pt]
+       \ps \rdrstsix  & \rdrssix           & \rminus \rdrssix
+      }
+}
+
+\newcommand{ \matrixaX}[0]
+{
+    \mat{ rrc }
+      {
+       \blrsthree         & \rdrstsix        & \ps \rzero   \\[5pt]
+       \bminus \blrsthree & \rdrssix         & \ps \rdrstwo \\[5pt]
+       \blrsthree         & \rminus \rdrssix & \ps \rdrstwo
+      }
+}
+\newcommand{ \matrixaXg}[0]
+{
+    \mat{ rrc }
+      {
+       \blrsthree         & \rdrstsix        & \ps \rzero   \\[5pt]
+       \bminus \blrsthree & \rdrssix         & \ps \rdrstwo \\[5pt]
+       \blrsthree         & \rminus \rdrssix & \ps \rdrstwo
+      }
+}
+
+\newcommand{ \matrixaXgtz}[0]
+{
+    \mat{ crr }
+      {
+      { \bl{-\frac{i} { \sqrt{3} } } } & { \bl{\frac{i} { \sqrt{3} } } } & { \bl{-\frac{i} { \sqrt{3} } } } \\[5pt]
+      \rdrstsix & \rdrssix & \rminus \rdrssix   \\[5pt]
+      \rzero    & \rdrstwo & \rdrstwo
+      }
+}
+
+%% SVD
+\newcommand{ \svdecompa }[0]     { \matrixaY \, \sigmaa \, \matrixaXt} 
+\newcommand{ \aesvdecompa }[0]   { \A{} = \svdecompa } 
+\newcommand{ \svdecompag }[0]    { \matrixaYg \, \sigmaa \, \matrixaXgt} 
+
+%% spaces
+\newcommand{ \examplearngco }[0] { \lst{ \rsthree \bvecaa } }
+\newcommand{ \exampleanllco }[0] { \lst{ \rstwo \rvecaa, \rssix \bvecaa } }
+
+\newcommand{ \examplearngdo }[0] { \lst{ \rstwo \twoveca } }
+\newcommand{ \exampleanlldo }[0] { \lst{ \rstwo \twovecb } }
+
+%% data vector a
+\newcommand{ \dataa }[0]
+{
+    \mat{ c }
+      {
+       2 \\
+       1
+      }
+}
+
+%% data vector a transpose
+\newcommand{ \dataat }[0]
+{
+    \mat{ cc }
+      {
+       2 & 1 
+      }
+}
+
+%% x_{LS}
+\newcommand{ \xlsa }[0]
+{
+   {\bl{  
+    \recip{6}
+    \mat{ r }
+      {
+        1 \\
+       -1 \\
+        1
+      }
+    }}
+}
+
+%% subspace decomposition
+%% codomain
+\newcommand{ \rngao }[0]
+{
+   {\bl{  
+    \recip{\sqrt{2}}
+    \mat{ r }
+      {
+        1 \\
+       -1
+      }
+    }}
+}
+
+\newcommand{ \nllaso }[0]
+{
+   {\rd{  
+    \recip{\sqrt{2}}
+    \mat{ c }
+      {
+        1 \\
+        1
+      }
+    }}
+}
+
+%% domain
+\newcommand{ \rngaso }[0]
+{
+   {\bl{  
+    \recip{\sqrt{3}}
+    \mat{ r }
+      {
+        1 \\
+       -1 \\
+        1
+      }
+    }}
+}
+
+\newcommand{ \nllao }[0]
+{
+   {\rd{  
+    \recip{\sqrt{6}}
+    \mat{ r }
+      {
+        2 \\
+        1 \\
+       -1
+      }
+    }}
+}
+
+\newcommand{ \nllat }[0]
+{
+   {\rd{  
+    \recip{\sqrt{2}}
+    \mat{c }
+      {
+        0 \\
+        1 \\
+        1
+      }
+    }}
+}
+
+\newcommand{ \nllaou }[0]
+{
+   {\rd{  
+    \mat{ r }
+      {
+        2 \\
+        1 \\
+       -1
+      }
+    }}
+}
+
+\newcommand{ \nllatu }[0]
+{
+   {\rd{  
+    \mat{c }
+      {
+        0 \\
+        1 \\
+        1
+      }
+    }}
+}
+
+
+%% r
+\newcommand{ \dataar }[0]
+{
+    {\rd{ -\frac{3}{2}
+    \mat{ c }
+      {
+       1 \\
+       1
+      }
+     }}
+}
+
+%% ||r||
+\newcommand{ \normar }[0]
+{
+    \frac{3} {\sqrt{2}}
+}
+
+%% ||r||^{2}
+\newcommand{ \normars }[0]
+{
+    \frac{9} {2}
+}
+
+
+%% 3 vectors
+\newcommand{ \vecaa }    { \mat{r}{  1\\ -1\\   1 } }
+\newcommand{ \vecab }    { \mat{r}{ -1\\  1\\  -1 } }
+\newcommand{ \vecac }    { \mat{c}{  1 \\ 1 \\  0 } }
+\newcommand{ \vecad }    { \mat{r}{ -1 \\ 0 \\  1 } }
+\newcommand{ \vecae }    { \mat{c}{  1 \\ 1 \\  0 } }
+\newcommand{ \vecaf }    { \mat{r}{  2 \\ 1 \\ -1 } }
+
+\newcommand{ \bvecaa }   { {\bl{ \vecaa }} }
+\newcommand{ \rvecac }   { {\rd{ \vecac }} }
+\newcommand{ \rvecad }   { {\rd{ \vecad }} }
+\newcommand{ \rvecae }   { {\rd{ \vecae }} }
+\newcommand{ \rvecaf }   { {\rd{ \vecaf }} }
+
+\newcommand{ \obvecaa }  { {\bl{ \rsthree \vecaa }} }
+\newcommand{ \orvecae }  { {\rd{ \rstwo   \vecae }} }
+\newcommand{ \orvecaf }  { {\rd{ \rssix   \vecaf }} }
+\newcommand{ \obvecaat } { {\bl{ \rsthree \mat{ccc}{ 1 & -1 & 1 } }} }
+\newcommand{ \orvecaet } { {\rd{ \rstwo   \mat{ccc}{ 0 &  1 &  1 } }} }
+\newcommand{ \orvecaft } { {\rd{ \rssix   \mat{ccc}{ 2 &  1 & -1 } }} }
+
+%% 2 vectors
+\newcommand{ \vecam }    { \mat{r}{  1\\ -1 } }
+\newcommand{ \vecan }    { \mat{c}{  1\\  1 } }
+
+\newcommand{ \bvecam }   { {\bl{ \vecam }} }
+\newcommand{ \rvecan }   { {\rd{ \vecan }} }
+
+\newcommand{ \obvecam }  { {\bl{ \rstwo \vecam }} }
+\newcommand{ \orvecan }  { {\rd{ \rstwo \vecan }} }
+\newcommand{ \obvecamt } { {\bl{ \rstwo \mat{cc}{  1 & -1 } }} }
+\newcommand{ \orvecant } { {\rd{ \rstwo \mat{cc}{  1 &  1 } }} }
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\newcommand{ \obavo }      { \bl{ \rsthree  \mat{r}   { 1 \\ -1 \\  1 } } }
+\newcommand{ \obavot }     { \bl{ \rsthree  \mat{ccc} { 1  & -1  &  1 } } }
+\newcommand{ \oravt }      { \rd{ \rssix    \mat{r}   { 2 \\  1 \\ -1 } } }
+\newcommand{ \oravtt }     { \rd{ \rssix    \mat{ccc} { 2  &  1  & -1 } } }
+\newcommand{ \oravr }      { \rd{ \rstwo    \mat{c}   { 0 \\  1 \\  1 } } }
+\newcommand{ \oravrt }     { \rd{ \rstwo    \mat{ccc} { 0  &  1  &  1 } } }
+
+\newcommand{ \obauo }      { \bl{ \rstwo \mat{r}   { 1 \\ -1} } }
+\newcommand{ \obauot }     { \bl{ \rstwo \mat{cc}  { 1  & -1} } }
+\newcommand{ \oraut }      { \rd{ \rstwo \mat{r}   { 1 \\  1} } }
+\newcommand{ \orautt }     { \rd{ \rstwo \mat{cc}  { 1  &  1} } }
+
+\endinput

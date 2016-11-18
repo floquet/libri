@@ -1,0 +1,78 @@
+\section{Solutions to $\ls$}
+
+The chapters of this book discussed the solution for linear systems according to various classifications. For example, does the system matrix $\A{}$ have full rank? Is the data vector $b$ in the range of the system matrix $\rng{\A{}}$? This appendix aggregates and distills all the different examples that were considered.
+
+The lens that we are looking through here is the \svdp. It always works, but when is it the only solution? What is the role of the SVD? How is the SVD used to express solutions?
+
+There are two classification schemes and we will relate them. The primal classification of \textit{solutions}. The number of solutions is either 0, 1 or $\infty$. The irony here is that when we encounter a linear system we typically don't know the cardinality of solutions. We usually state with the classification of \textit{systems}. Here the SVD is the universal tool which always cracks this nut open. 
+
+%%%
+\section{Classification of solutions}
+First of course, the most basic fact is that every linear system will have either 0, 1 or an infinite number of solutions. More specifically these cases are characterized by these conditions.
+\begin{enumerate}
+\item No solution exists. The data vector is in the null space of the system matrix:
+\begin{equation}
+  b \in \nll{\A{}}.
+\end{equation}
+\item A unique point solution exists. The system matrix has full row rank
+\begin{equation}
+  \begin{split}
+    m & = \rho,\\
+    m & \le n.
+  \end{split}
+\end{equation}
+Because the system matrix has full row rank there is no null space for the codomain and there is no place for a data vector to hide. Therefore
+\begin{equation}
+  b \in \rng{\A{}}.
+\end{equation}
+When the matrix is square $m=n$ and the standard matrix inverse exists and the solution can be cast as this:
+\begin{equation}
+  x=\A{-1}b.
+\end{equation}
+When the matrix is wide $m<n$ and the standard matrix inverse does not exist. However the pseudoinverse is a left-inverse and the point solution is written thusly:
+\begin{equation}
+  x=\AinvL b.
+\end{equation}
+\item An infinite number of solutions exist. The general solution $x_{g}$ is a particular solution (a point) $x_{p}$ and the homogeneous solution (line, plane, hyperplane, etc.) $x_{h}$:
+\begin{equation}
+  x_{g} = x_{p} + x_{h}
+\end{equation}
+The general solution is the full span of the null space of the domain. In terms of the SVD 
+\begin{equation}
+  x_{g} = \underbrace{\phantom{.}\mpgi{*}\, b_{\phantom{.}}}_{x_{p}=\Ap b} + \underbrace{\alpha_{1} \X{}_{\rho+1} + \dots + \alpha_{\eta_{x}} \X{}_{n}}_{x_{h}}.
+\end{equation}
+where the the $\alpha$ are arbitrary complex constants.
+\end{enumerate}
+
+%%%
+\section{Classification of systems}
+Consider the linear system where the system matrix $\Amnr$ and the data vector $b\in\cmplx{m\times 1}$. The solution vector is then $x\in\cmplx{n\times 1}$. There are three criteria used to classify solutions.
+\begin{enumerate}
+\item Matrix shape, $m$ rows and $n$ columns - determined by inspection:
+\begin{equation*}
+  \begin{array}{ll}
+    m=n & \text{square} \\
+    m<n & \text{tall} \\
+    m>n & \text{wide}
+  \end{array}
+\end{equation*}
+\item Matrix rank $\rho$ - the number of nonzero singular values. Usually determined reduction or computation:
+\begin{equation*}
+  \begin{array}{ll}
+    \rho = m = n & \text{full rank} \\
+    \rho = m & \text{full row rank} \\
+    \rho = n & \text{full column rank}
+  \end{array}
+\end{equation*}
+\item Data vector location - the data vector is either in the range or the null space of $\A{}$:
+\begin{equation*}
+  b\in\rng{\A{}} \qquad \text{ or } \qquad b\in\nll{\A{}}
+\end{equation*}
+\end{enumerate}
+The word or here implies an exclusive or: one and only case applies.
+
+
+%\input{appendices/linear systems/projections_summaries}
+
+
+\endinput

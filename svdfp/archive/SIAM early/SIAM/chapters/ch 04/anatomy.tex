@@ -1,0 +1,137 @@
+\section{Anatomy of the SVD}
+To close out the chapter we will summarize the important findings on the anatomy of the \svdl \ as seen through central examples. We have seen that the SVD can be viewed in the general case as flowing fromthe solution to the eigensystem for the product matrix $\W{x}$. This is not an absolute rule of course; we opened up in chapter 1 with a class of examples where there was no need to find the eigensystem. We have discussed cases where $m<n$ and it is more expedient to find the eigenvalue to $\W{y}$. This kind of variability makes the decomposition a fascinating subject. But the framework best used to order the different variants is the framework of the eigensystem solution. 
+
+For the thin SVD, we must find the nonzero eigenvalues and their corresponding eigenvectors. For a full SVD we will need to resolve an orthogonal basis for the null vectors, the vectors corresponding to the zero eigenvalues.
+
+The cases on the following pages consider the standard three examples. The target matrix $\A{}$ has either:
+\begin{enumerate}
+\item rank deficiency in both rows and columns,
+\item full row rank with column rank deficiency,
+\item full row and column rank.
+\end{enumerate}
+
+Notice how the eigenvectors of the product matrices appear in the domain matrices. We show that the general method for finding the column vectors of $\Y{}$ involves solve equation \eqref{ax=sy}. This will guarantee that the signs of the terms are correct.  Notice, though, the we can construct eigenvectors to match the column vectors of $\Y{}$.
+
+%%%
+\break
+\subsection[Anatomy of the SVD: row, column rank deficiency]{Anatomy of the SVD: row and column rank deficiency}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \Aexample & = & \Yshade & \Sigmaexampleb & \Xtshade
+  \end{array}
+\end{equation*}
+
+Here the target matrix $\Arrr{3}{2}{1}$ has $m = 3$ rows, $n = 2$ columns and matrix rank $\rho = 1$. This matrix has rank deficiency in both the rows and the columns. All components needed for the SVD come from the product matrices $\prdm{T}$ and $\prdmm{T}$. The square root of the nonzero eigenvalues comprise the diagonal entries of $\sig{}$.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = 3 \mat{rr}{1&-1\\-1&1}$ &
+$\W{y} = \A{}\A{T} = 2 \mat{rrr}{1&-1&1\\-1&1&-1\\1&-1&1}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{6,0}$ &
+$\lambda\paren{\W{y}} = \lst{6,0,0}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{r}{-1\\1},\mat{>{\columncolor{ltgray}}c}{1\\1}}$ &
+$\lst{\mat{r}{-1\\1\\-1},\mat{>{\columncolor{ltgray}}r}{0\\1\\1},\mat{>{\columncolor{ltgray}}r}{1\\0\\-1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{c|>{\columncolor{ltgray}}c}{\stwo \mat{r}{-1\\1} & \stwo \mat{>{\columncolor{ltgray}}r}{1\\1}}$ &
+$\Y{} = \mat{c|>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{\sthree \mat{r}{-1\\1\\-1} & \stwo \mat{r}{0\\1\\1} & \stwo \mat{r}{2\\1\\-1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \mat{c}{6}, \qquad \sig{}= \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} = \Sigmaexampleb
+\end{equation*}
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\subsection{Anatomy of the SVD: full row rank}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \matrixbravo & = & \matrixbravoY & \matrixbravosigma & \matrixbravoXt
+  \end{array}
+\end{equation*}
+
+Here the target matrix $\Arrr{2}{3}{2}$ has $m=2$ rows, $n=3$ columns and matrix rank $\rho =2$ (full column rank).
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = \mat{ccc}{1&2&2\\2&13&4\\2&4&4}$ &
+$\W{y} = \A{}\A{T} = \mat{cc}{9&6\\6&9}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{15,3,0}$ &
+$\lambda\paren{\W{y}} = \lst{15,3}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{c}{1\\5\\2},\mat{r}{1\\-1\\2},\mat{>{\columncolor{ltgray}}r}{-2\\0\\1}}$ &
+$\lst{\mat{c}{1\\1},\mat{r}{-1\\1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{cc|>{\columncolor{ltgray}}c}{\frac{1}{30}\mat{c}{1\\5\\2} & \ssix \mat{r}{1\\-1\\2} & \sfive \mat{r}{-2\\0\\1}}$ &
+$\Y{} = \stwo \mat{cc}{\mat{c}{1\\1} & \mat{r}{-1\\1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \mat{cc}{\sqrt{15}&0\\0&\sqrt{3}}, \qquad \sig{}= \mat{c|c}{\ess{} & \zero} = \matrixbravosigma
+\end{equation*}
+
+%%%%
+\subsection[Anatomy of the SVD: full row, column rank]{Anatomy of the SVD: full row and column rank}
+
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T} \\
+    \matrixalpha & = & \matrixalphaY & \matrixalphasigma & \matrixalphaXt
+  \end{array}
+\end{equation*}
+
+The target matrix $\Arrr{2}{2}{2}$ has $m=2$ rows, $n=2$ columns and matrix rank $\rho = 2$ (full column rank, full row rank). Notice how the eigenvalues are presented in the target matrix $\W{x}$. This is a diagonal matrix and it is customary (but not obligatory) to read the eigenvalues from the diagonal as $\lst{\lambda_{1}, \lambda_{2}}$. When we order the singular values we must reorder the eigenvectors as well.
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c|c}
+product matrix: & product matrix: \\
+$\W{x} = \A{T}\A{} = \mat{cc}{2 & 0\\0 & 8}$ &
+$\W{y} = \A{}\A{T} = \mat{cc}{5 & 3 \\ 3 & 5}$ \\[30pt]
+%%%
+eigenvalues: & eigenvalues: \\
+$\lambda\paren{\W{x}} = \lst{2,8}$ &
+$\lambda\paren{\W{y}} = \lst{2,8}$ \\[20pt]
+%%%
+eigenvectors: & eigenvectors: \\
+$\lst{\mat{c}{0\\1}, \mat{c}{1\\0}}$ &
+$\lst{\mat{r}{1\\-1},\mat{c}{1\\1}}$ \\[30pt]
+%%%
+domain matrix: & codomain matrix: \\
+$\X{} = \mat{cc}{\xhatt & \yhatt}$ &
+$\Y{} = \mat{cc}{\stwo\mat{c}{1\\1} & \stwo\mat{r}{1\\-1}}$\\[25pt]
+%%%
+\end{tabular}
+\end{center}
+\label{default}
+%\caption{Origin of the components in a \svdl. The singular values are the square root of the nonzero eigenvalues. The domain matrices are shown in terms of column vectors to emphasize the connection to the eigenvectors of the product matrices.}
+\end{table}%
+
+\begin{equation*}
+  \ess{} = \sqrt{2} \mat{cc}{2 & 0 \\ 0 & 1}, \qquad \sig{}= \mat{c}{\ess{}} = \matrixalphasigma
+\end{equation*}\endinput

@@ -1,0 +1,30 @@
+\clearpage
+\thispagestyle{empty}
+
+\begin{landscape}
+%\arrayrulecolor{medgray}
+\begin{table}[htdp]
+\caption[Forms of the decomposition in the four fundamental subspaces]{Range and \ns \ decompositions of the sample matrices. Knowing the matrix dimensions and the rank we can state the forms of the decomposition in the four fundamental subspaces.}
+\begin{center}
+\begin{tabular}{ccc|ccc|ccc}
+% 
+ &&&& $\cmplxm$ &&& $\cmplxn$ \\[4pt]
+ & matrix & matrix rank & $\brnga{}$ & $\oplus$ & $\rnlla{*}\phantom{m}$ & $\brnga{*}$ & $\oplus$ &$\rnlla{}$ \\ \hline
+%
+  &&&&&\\
+%
+(a) & $\matrixa$ & $\rho = 1$ & $\spn{\bstartwo}$ & $\oplus$ & $\spn{\rstartwo}$ & $\spn{\bstarthree}$ & $\oplus$ & $\spn{\rstarthree,\rstarthree}$ \\ [40pt]
+%
+(b) & $\matrixb$ & $\rho = 2$ & $\spn{\bstarthree,\bstarthree}$ & $\oplus$ & $\spn{\rstarthree}$ & $\spn{\bstartwo,\bstartwo}$ & $\goplus$ & $\glzerotwo$ \\[40pt]
+%
+(c) & $\matrixc$ & $\rho = 2$ & $\spn{\bstartwo,\bstartwo}$ & $\goplus$ & $\glzerotwo$ & $\spn{\bstartwo,\bstartwo}$ & $\goplus$ & $\glzerotwo$
+%
+%\arrayrulecolor{black}
+\end{tabular}
+\end{center}
+\label{tab:ftola:examples}
+\end{table}
+\end{landscape}
+%%
+
+\endinput

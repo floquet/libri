@@ -1,0 +1,23 @@
+\section{Sample resolutions}
+Gaussian elimination is a foundation topic in linear algebra and is treated with skill and detail in Meyer \cite[\S 12]{Meyer2000}, Strang and Laub. The point of this section is to refresh the memory and to make the process less abstract and more definitive. 
+
+We examine three types of matrices through example. The first type has both row and column rank deficiencies. The second has full column rank and a row rank deficiency. (Notice that the transpose of this matrix has full row rank and column rank deficiency.) The third example is a square matrix with full rank. The examples typify the different types of subspace decompositions.
+
+While elementary, this concept is often not connected to the SVD. To make this concept is less abstract and more concrete, three examples follow. Readers comfortable with orthogonal decomposition may wish to skip this section and proceed to \S \eqref{sec:beyond ft}.
+
+Table \eqref{tab:ftola:spans} details how the spanning vectors for each subspace arise from the matrix reduction. 
+\input{chapters/ftola/"tab composition of the fundamental subspaces"}
+
+%%%%%%
+\input{chapters/ftola/"ssec decomp a"}              % table
+\input{chapters/ftola/"ssec decomp b"}              % table
+\input{chapters/ftola/"ssec decomp c"}              % table
+
+%%%%%%%%%%%
+\subsection{Summary}
+The results of the reductions for the three example matrices are shown in table \eqref{tab:ftola:reductions}. Compare this with the results in table \eqref{tab:ftola:examples}. The reduction process leaves us with a minimal spanning set of vector for each range and null space. But these vectors typically are not orthogonal. Finding an orthonormal span for each subspace will pay nice dividends.
+
+\input{chapters/ftola/"tab decomposition summary"}  % table
+
+%%%%%%
+\endinput

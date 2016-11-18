@@ -1,0 +1,53 @@
+\section{Find the pseudoinverse}
+Build a few samples of the pseudoinverse. The target matrix in all cases is $\aicmn$
+
+%%%%%%%%%%%
+\subsection{When $\paren{\wy{*}}^{-1}$ exists}
+\begin{equation}
+  \begin{split}
+    \wy{*} 
+      &= \paren{\svd{*}} \paren{\svdtt{*}{T}} \\
+      &= \U{} \sig{} \sig{T} \U{*} \\
+      &= \I{m} \\
+  \end{split}
+\end{equation}
+\begin{equation}
+  \sig{} \sig{T} = \I{m}
+\end{equation}
+Therefore the matrix $\A{}$ has full column rank: $\rho = n$.
+\begin{equation}
+  \sig{} \sig{T} = \sbr{}\sbctt{} = \ess{2}
+\end{equation}
+\begin{equation}
+  \A{} = \csvdblockbr{*}
+\end{equation}
+
+
+
+%%%%%%%%%%%
+\subsection{When $\wx{*}=\I{n}$}
+We cannot restrict the matrix $\A{}$ to being unitary.
+
+%%%%%%%%%%%
+\subsection{When $\A{*}=\A{}$ and $\A{2}=\A{}$}
+The target matrix is Hermitian and idempotent. Because the target matrix is Hermitian, the matrix is square so $m = n$. Intuitively, we expect that $\ess{}=\I{\rho}$ when we think of the matrix image on the unit circle. Because
+\begin{equation}
+  \A{}\circletwo = \A{}\paren{\A{}\circletwo}  = \A{}\paren{\A{2}\circletwo} = \cdots
+\end{equation}
+we see that repeated applications of $\A{}$ to the image leave the image unchanged. 
+\begin{equation}
+  \sig{} = \stencil
+\end{equation}
+\begin{equation}
+  \A{} = \cublockf \stencil \cvblockfs{ * }
+\end{equation}
+
+
+We conclude that pseudoinverse matrix is identical to the Hermitian conjugate:
+\begin{equation}
+  \Ap = \A{*}
+\end{equation}
+
+
+
+\endinput

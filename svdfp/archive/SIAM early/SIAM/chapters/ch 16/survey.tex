@@ -1,0 +1,62 @@
+\section{The breadth and depth of the SVD}
+This shit is not only useful, it is cool. If we have an SVD we can do a lot of other things.
+
+%%
+\subsection{Polar decomposition}
+The \index{polar factorization}\textit{polar factorization} is another useful matrix decomposition. It is analogous to finding the polar form of a complex number $z$ into the form
+\begin{equation}
+  z = r e^{i \theta}.
+\end{equation}
+This form resolves the complex number into a length $r$ and a direction $e^{i \theta}$. 
+
+For the matrix form of the polar decomposition a target matrix $\A{}$ is resolved into the product of a unitary matrix $\Q{}$ and an Hermitian matrix $\mathbf{P}$ that is also positive semi-definite. Every matrix
+$$
+\A{}\in\cmplx{\by{n}{n}}_{\rho}
+$$
+has a polar decomposition, even when $\rho<n$.
+The decomposition takes the form
+\begin{equation}
+  \A{} = \Q{}\mathbf{P}.
+\end{equation}
+
+The task here is to create the polar decomposition from the \svdl. The common trick is to insert a form of the identity matrix. In this case we will use
+\begin{equation}
+  \I{n} = \X{*}\X{}.
+\end{equation}
+The chain of reasoning is 
+\begin{equation}
+  \begin{split}
+    \svdax{*} &= \Y{}\I{n}\sig{}\X{*} \\
+      &= \Y{}\paren{\X{*}\X{}}\sig{}\X{*} \\
+      &= \underbrace{\paren{\Y{}\X{*}}}_{\Q{}}\underbrace{\paren{\X{}\sig{}\X{*}}}_{\mathbf{P}}.
+  \end{split}
+\end{equation}
+The polar decomposition can be expressed in terms of the \svdl with the assignemnts
+\begin{equation}
+  \begin{split}
+    \Q{} &= \Y{}\X{*},\\
+    \mathbf{P} &= \X{}\sig{}\X{*}.
+  \end{split}
+\end{equation}
+
+Is the $\Q{}$ matrix unitary? We must demonstrate that $\Q{*}=\Q{-1}$.
+\begin{equation}
+  \Q{*} = \paren{\Y{}\X{*}}^{*} = \X{}\Y{*}.
+\end{equation}
+\begin{equation}
+  \Q{-1} = \paren{\Y{}\X{*}}^{\mathrm{-1}} = \paren{\X{*}}^{\mathrm{-1}}\paren{\Y{}}^{\mathrm{-1}} = \X{}\Y{*}.
+\end{equation}
+
+
+Is the $\mathbf{P}$ matrix unitary? Does $\mathbf{P}^{*}=\mathbf{P}^{-1}$. The left-hand side is the most direct as it relies only upon the transpose of a product:
+\begin{equation}
+  \mathbf{P}^{*} = \paren{\X{}\sig{}\X{*}}^{*} = \X{*}\sig{T}\X{}.
+\end{equation}
+The right-hand-side uses both the transpose and inverse of a product:
+\begin{equation}
+  \Q{-1} = \paren{\Y{}\X{*}}^{\mathrm{-1}} = \paren{\X{*}}^{\mathrm{-1}}\paren{\Y{}}^{\mathrm{-1}} = \X{}\Y{*}.
+\end{equation}
+
+
+
+\endinput

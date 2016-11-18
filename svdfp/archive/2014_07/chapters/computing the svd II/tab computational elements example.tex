@@ -1,0 +1,40 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+
+%%
+%\arrayrulecolor{blue}
+\begin{table}[htdp]
+\caption[An example of the computational elements of the \asvd]{An example of the computational elements of the \asvd. This is table \eqref{tab:computational elements} for the example matrix (c). In the instance both \ns s are trivial and the truncated SVD is the same as the full SVD.}
+\begin{center}
+\begin{tabular}{ccccccrcl}
+%
+  $\matrixc$   & $\xrightarrow[]{ \phantom{1} 1 \phantom{1} }$ 
+& $\wxc$ & $\xrightarrow[]{ \phantom{1} 2 \phantom{1} }$ 
+& $\sigma = \sqrt{ \lst{8, 2} } $ & $\xrightarrow[]{ \phantom{1} 3 \phantom{1} }$
+& $\ess{}$ &=& $\sigmac$ \\[20pt]
+%
+&&&& {\scriptsize{4}}\ $\downarrow$\\[15pt]
+%
+&&&& $\wxc\, \bvk = \sigma_{k} \bvk$ & $\xrightarrow[]{ \phantom{1} 5 \phantom{1} }$ 
+& $\bvr{}$ &=& $\matrixcX $ \\[20pt]
+%
+&&&& {\scriptsize{6}}\ $\downarrow$ \\[10pt]
+%
+&&&& $\buk = \sigma_{k}^{-1}\matrixc\, \bvk$ & $\xrightarrow[]{ \phantom{1} 7 \phantom{1} }$ 
+& $\bur{}$ & = & $\matrixcY $ \\[15pt]
+%
+&&&&&&& {\small{8}}\ $\downarrow$\\[5pt]
+%
+&&&&&& $\A{}$  &=& $\svdecompc$ 
+%
+\end{tabular}
+\end{center}
+\label{tab:computational elements example}
+\end{table}
+%\arrayrulecolor{black}
+
+\end{landscape}
+
+
+\endinput

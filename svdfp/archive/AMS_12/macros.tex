@@ -1,0 +1,363 @@
+\chapter*{macros}
+
+%%%
+\section{common.tex}
+\begin{equation}
+ xhatt = \xhatt,  \quad yhatt = \yhatt
+\end{equation}
+
+\begin{equation}
+ xhattt = \xhattt, \quad yhattt = \yhattt, \quad zhattt = \zhattt
+\end{equation}
+
+\begin{equation}
+ xtwo = \xtwo, \quad xthree = \xthree	
+\end{equation}
+
+\begin{equation}
+ itwo = \itwo,  \quad ithree = \ithree, \quad ifour = \ifour
+\end{equation}
+
+\begin{equation}
+ ktwo = \ktwo, \quad  kthree = \kthree, \quad kfour = \kfour
+\end{equation}
+
+%%%
+\section{declarations.tex}
+\begin{equation}
+  abs x = \abs{x}
+\end{equation}
+\begin{equation}
+  \begin{array}{rclrcl}
+    norm \{x\}  &=& \norm{x}  & normo \{x\} &=& \normo{x}\\
+    normt \{x\} &=& \normt{x} & norminf \{x\} &=& \norminf{x}\\
+    normf \{x\} &=& \normf{x} & normf \{x\} &=& \normf{x}
+  \end{array}
+\end{equation}
+\begin{equation}
+    real\lst{m} = \real{m}, \quad cmplx\lst{n} = \cmplx{n}, \quad complex\lst{k}\complex{k}
+\end{equation}
+
+%%
+\subsection{Inclusions}
+\begin{equation}
+  \begin{split}
+    Ain\lst{m} &= \Ain{k}\\
+    Ar\lst{m} &= \Ar{m}\\
+    Ac\lst{m} &= \Ac{m}\\
+    Acc\lst{m}\lst{n} &= \Acc{m}{n}\\
+    Accmn &= \Accmn\\
+    Amnr  &= \Amnr
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    nll \{x\} &= \nll{x}\\
+    rng \{x\} &= \rng{x}
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Decompositions}
+\begin{equation}
+  \begin{split}
+    svd\lst{T} &= \svd{T}\\
+    svdthin\lst{T} &= \svdthin{T}\\
+    svdt\lst{T} &= \svdt{T}\\
+    svdtag\lst{T} &= \svdtag{T}\\
+    mpgi\lst{T} &= \mpgi{T}\\
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Equations}
+Basic equations:
+\begin{enumerate}
+%%
+\item svdax\{T\}
+\begin{equation}
+  \begin{split}
+    \svdax{T}
+  \end{split}
+\end{equation}
+%%
+\item svdtagA\{T\}
+\begin{equation}
+  \begin{split}
+    \svdtagA{T}
+  \end{split}
+\end{equation}
+%%
+\item mpgiax\{k\}
+\begin{equation}
+  \begin{split}
+    \mpgiax{k}
+  \end{split}
+\end{equation}
+%%
+\item ls
+\begin{equation}
+  \begin{split}
+    \ls
+  \end{split}
+\end{equation}
+%%
+\item archetype
+\begin{equation}
+  \begin{split}
+    \archetype
+  \end{split}
+\end{equation}
+\end{enumerate}
+
+
+Split equations:
+\begin{enumerate}
+%%
+\item svda\{T\}
+\begin{equation}
+  \begin{split}
+    \svda{T}
+  \end{split}
+\end{equation}
+%%
+\item mpgia\{T\}
+\begin{equation}
+  \begin{split}
+    \mpgia{T}
+  \end{split}
+\end{equation}
+%%
+\item lsa
+\begin{equation}
+  \begin{split}
+    \lsa
+  \end{split}
+\end{equation}
+%%
+\item archetypez
+\begin{equation}
+  \begin{split}
+    \archetypez
+  \end{split}
+\end{equation}
+\end{enumerate}
+
+%%
+\subsection{Shorthand}
+\begin{equation}
+  rat\lst{m}\lst{n} = \rat{m}{n}
+\end{equation}
+
+%%
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  Ap          & $\to$ & $\Ap$      \\
+  AinvL       & $\to$ & $\AinvL$   \\
+  AinvR       & $\to$ & $\AinvR$   \\
+  wx$\lst{T}$ & $\to$ & $\wx{T}$   \\
+  wy$\lst{T}$ & $\to$ & $\wy{T}$   \\
+  leftinv     & $\to$ & $\leftinv$ \\
+  rightinv    & $\to$ & $\rightinv$\\
+  projra      & $\to$ & $\projra$  \\
+  projrap     & $\to$ & $\projrap$ \\
+  projna      & $\to$ & $\projna$  \\
+  projnap     & $\to$ & $\projnap$ \\
+  projrat     & $\to$ & $\projrat$ \\
+  projratp    & $\to$ & $\projratp$\\
+  projnat     & $\to$ & $\projnat$ \\
+  projnatp    & $\to$ & $\projnatp$\\
+\end{tabular}
+\end{center}
+\caption{product matrices}
+\end{table}%
+%%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  pra$\lst{T}$ & $\to$ & $\pra{T}$\\
+  pnap$\lst{T}$ & $\to$ & $\pnap{T}$\\
+  prodx$\lst{T}\lst{k}$ & $\to$ & $\prodx{T}{k}$\\
+  prody$\lst{T}\lst{k}$ & $\to$ & $\prody{T}{k}$\\
+\end{tabular}
+\end{center}
+\caption{projections}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  paren{A} & $\to$ & $\paren{\A{}}$\\
+  inner{A} & $\to$ & $\inner{\A{}}$\\
+  brac{A}  & $\to$ & $\brac{\A{}}$\\
+  lst{A}   & $\to$ & $\lst{\A{}}$\\
+  dim{A}   & $\to$ & $\dim{\A{}}$\\
+  rank{A}  & $\to$ & $\rank{\A{}}$\\
+\end{tabular}
+\end{center}
+\caption{delimiters}
+\end{table}%
+
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  svdl & $\to$ & \svdl\\
+  svdp & $\to$ & \svdp\\
+  ft & $\to$ & \ft\\
+  ftola & $\to$ & \ftola\\
+  qr & $\to$ & \qr\\
+  mv & $\to$ & \mv\\
+  nv & $\to$ & \nv\\
+  vv & $\to$ & \vv\\
+  vvv & $\to$ & \vvv\\
+  zero & $\to$ & \zero\\
+  one & $\to$ & \one\\
+  tr & $\to$ & $\tr$\\
+  mx & $\to$ & $\mx$\\
+  dm & $\to$ & $\dm$\\
+  adj & $\to$ & $\adj$\\
+  Arg & $\to$ & $\Arg$\\
+  sgn & $\to$ & $\sgn$\\
+  spn & $\to$ & $\spn$\\
+  rref & $\to$ & $\rref$\\
+  rot & $\to$ & $\rot$\\
+\end{tabular}
+\end{center}
+\caption{phrases}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcllcllcllcl}
+  A\{T\} & $\to$ & $\A{T}$ & B\{T\} & $\to$ & $\B{T}$ & C\{T\} & $\to$ & $\C{T}$ & D\{T\} & $\to$ & $\D{T}$\\
+  LL\{T\} & $\to$ & $\LL{T}$ & M\{T\} & $\to$ & $\M{T}$ & N\{T\} & $\to$ & $\N{T}$ & pee\{T\} & $\to$ & $\pee{T}$\\
+  Q\{T\} & $\to$ & $\Q{T}$ & R\{T\} & $\to$ & $\R{T}$ & T\{T\} & $\to$ & $\T{T}$ & V\{T\} & $\to$ & $\V{T}$\\
+  W\{T\} & $\to$ & $\W{T}$ & X\{T\} & $\to$ & $\X{T}$ & Y\{T\} & $\to$ & $\Y{T}$ & Z\{T\} & $\to$ & $\Z{T}$\\
+  ess\{T\} & $\to$ & $\ess{T}$ & E\{T\} & $\to$ & $\E{T}$ & I\{T\} & $\to$ & $\I{T}$ & K\{T\} & $\to$ & $\K{T}$\\
+  W\{T\} & $\to$ & $\W{T}$ & sig\{T\} & $\to$ & $\sig{T}$\\
+\end{tabular}
+\end{center}
+\caption{matrices}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  by$\lst{m}\lst{n}$   & $\to$ & $\by{m}{n}$\\
+  bys$\lst{m}$         & $\to$ & $\bys{m}$\\
+  byt$\lst{m}\lst{n}$  & $\to$ & $\byt{m}{n}$\\
+  bymn$\lst{m}\lst{n}$ & $\to$ & $\bymn$\\
+  bymm$\lst{m}\lst{n}$ & $\to$ & $\bymm$\\
+\end{tabular}
+\end{center}
+\caption{by}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcl}
+  paren$\{\cdot\}$ & $\to$ & $\xthree{\A{*},\B{T},\C{-1},P^{2}_{2}}$\\
+  inner$\{\cdot\}$ & $\to$ & $\inner{\A{*},\B{T},\C{-1},P^{2}_{2}}$\\
+  brac$\{\cdot\}$  & $\to$ & $\brac{\A{*},\B{T},\C{-1},P^{2}_{2}}$\\
+%%  list$\{\cdot\}$  & $\to$ & $\list{\A{*},\B{T},\C{-1},P^{2}_{2}}$\\
+  lst$\{\cdot\}$   & $\to$ & $\lst{\A{*},\B{T},\C{-1},P^{2}_{2}}$\\
+\end{tabular}
+\end{center}
+\caption{delimeters}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcllcl}
+  rtwo & $\to$ & $\rtwo$ & stwo & $\to$ & $\stwo$\\
+  rthree & $\to$ & $\rthree$ & sthree & $\to$ & $\sthree$\\
+  rfour & $\to$ & $\rfour$\\
+  rfive & $\to$ & $\rfive$ & sfive & $\to$ & $\sfive$\\
+  rsix & $\to$ & $\rsix$ & ssix & $\to$ & $\ssix$\\
+\end{tabular}
+\end{center}
+\caption{square roots}
+\end{table}%
+
+\begin{equation}
+\begin{split}
+  order \{n^{2}\} & = \order{n^{2}}\\
+  Order \{n^{2}\} & = \Order{n^{2}}\\
+\end{split}
+\end{equation}
+
+
+%%%
+\section{matrices.tex}
+\begin{equation}
+  \begin{split}
+    Aexample &= \Aexample\\
+    Aplus &= \Aplus\\
+    Atexample &= \Atexample\\
+  \end{split}
+\end{equation}
+\begin{equation}
+  phivector = \phivector
+\end{equation}
+\begin{equation}
+  ximatrix = \ximatrix
+\end{equation}
+\begin{equation}
+  veca = \veca, \quad vecb = \vecb
+\end{equation}
+%%
+\begin{equation}
+  \begin{split}
+    Sigmatexamplea &= \Sigmatexamplea \\
+    Sigmaexampleb &= \Sigmaexampleb \\
+    Sigmaexample &= \Sigmaexample \\
+    Sigmainverse &= \Sigmainverse \\
+    Sigmatexample &= \Sigmatexample
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    Xshadex &= \Xshadex \\
+    Xshade &= \Xshade \\
+    Xtshade &= \Xtshade \\
+    Xexample &= \Xexample \\
+    Xtexample &= \Xtexample
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    Yshade &= \Yshade \\
+    Ytshade &= \Ytshade
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    Aexamplecol &= \Aexamplecol \\
+    Aexamplerow &= \Aexamplerow \\
+    Aexamplepi &= \Aexamplepi
+  \end{split}
+\end{equation}
+
+%%%
+\section{gellmann.tex}
+\begin{equation}
+  \begin{array}{rclrclrcl}
+  gma &=&\gma & gmb &=&\gmb & gmc &=&\gmc \\
+  gmd &=&\gmd & gme &=&\gme & gmf &=&\gmf \\
+  gmg &=&\gmg & gmh &=&\gmh \\
+  \end{array}
+\end{equation}
+
+%%%
+\section{pauli.tex}
+\begin{equation}
+  \begin{array}{rclrclrcl}
+  paulia &=&\paulia & paulib &=&\paulib & paulic &=&\paulic
+  \end{array}
+\end{equation}
+
+
+\endinput

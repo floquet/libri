@@ -1,0 +1,135 @@
+\documentclass[10pt]{newsiambook}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{makeidx}
+%\usepackage{mathabx}
+\usepackage{multicol}
+\usepackage{crop}
+\usepackage{pdflscape}
+%\usepackage{pdfpages}
+\usepackage{tabularx}
+%\usepackage{color}
+\usepackage{verbatim}
+\usepackage{algorithmic}
+\usepackage{colortbl}
+\setlength\minrowclearance{4pt}
+%\usepackage[pdftex]{graphicx}
+\usepackage{sidecap}
+%\usepackage{cancel}
+ 
+\crop
+\newcommand{\pathname}{common/}
+%\newcommand{\fullpath}{\pathname declarations}
+\newcommand{\fullpath}{\pathname}
+\input{\pathname declarations.tex}
+
+\makeindex
+
+\begin{document}
+
+%%%%%%%%%%%%%
+\subsection{The SVD solution for least squares}
+Here we mimic the development in the previous section and start with a matrix of full column rank: $\Accmn_{n}$. Therefore there is no null space component in the domain matrix. Because we have full column rank the null space for the domain is trivial and the general decomposition simplifies accordingly:
+\begin{equation}
+  \X{} = \mat{cc}{ \xrng{} & \xnll{} } \Rightarrow \mat{c}{ \xrng{} }
+\end{equation}
+
+The goal is to convert the problem statement into a more tractable form exploiting unitary transformation. The minimization problem which defines the least squares solution is defined this way:
+\begin{equation}
+  \normt{\A{}x-b}^{2} = \normt{\Y{*}\paren{ \A{}x-b }}^{2} = \normt{\Y{*}\A{}x-\Y{*}b}^{2}.
+\end{equation}
+To simplify this and remove the $\A{}$ matrix we need to rewrite the \svdl:
+\begin{equation}
+  \svdax{*} \qquad \Rightarrow \qquad \Y{*}\A{} = \sig{}\X{*}.
+\end{equation}
+Using this relationship we can transform the norm as follows:
+\begin{equation}
+  \normt{\Y{*}\A{}x-\Y{*}b}^{2} = \normt{\sig{}\X{*}x-\Y{*}b}^{2}.
+\end{equation}
+%
+Expand then isolate range and null space contributions inside the norm
+\begin{equation}
+\begin{split}
+  \normt{\sig{}\X{*}x-\Y{*}b}^{2} 
+    &= \normt{\essmatrix{}\mat{c}{\xrng{*}\\\xnll{*}}x-\mat{c}{\yrng{*}\\\ynll{*}}b}^{2} \\
+    &= \normt{\mat{c}{\ess{}\xrng{*}x\\\zero}-\mat{c}{\yrng{*}b\\\ynll{*}b}}^{2}.
+\end{split}
+\end{equation}
+%
+This result and the theorem of Pythagoras establishes the equivalence of the minimization problems
+\begin{equation}
+  \min\limits_{x\in\real{n}} \normt{\A{}x-b}^{2} = \min\limits_{x\in\real{n}} \paren{\ \normt{\ess{}\xrng{*}x - \yrng{*}b}^{2}\ +\ \normt{\ynll{*}b}^{2}\ }.
+\end{equation}
+The classic definition of the least squares problem on the left has been reduced to an equivalent problem on the right which uses the fundamental subspace components on the left. This is a beautiful and powerful result which tells us two facts:
+\begin{enumerate}
+\item The minimizer $x_{LS}$ solves
+\begin{equation}
+  \ess{}\xrng{*}x_{LS} = \yrng{*}b.
+\end{equation}
+\item The residual error $r$ is again determined by the ``silent'' components of the codomain matrix
+\begin{equation}
+  r^{2} = \normts{\ynll{*}b} .
+\end{equation}
+\end{enumerate}
+
+By minimizing the $2-$norm of the error using the SVD expansion we have shown that the SVD solution for the least squares problem is given by the pseudoinverse:
+\begin{equation}
+\boxed{
+  x_{LS} = \xrng{}\ess{-1}\yrng{*}b = \Ap b.
+  }
+  \label{eq:13:bingo}
+\end{equation}
+This is a remarkable result, for by simply using the \svdl \ we have recovered the pseudoinverse solution! This is a natural consequence of the unitary transformation of the least squares problem. This is a main reason why the SVD and the pseudoinverse are considered to be intimately related subjects.
+
+The norm of the error here is also given by the ``silent'' null space contribution
+\begin{equation}
+  \normt{\A{}x_{LS} - b}^{2} =  r^{2} = \normt{\ynll{*}b}^{2}.
+\end{equation}
+
+For a similar perspective see Golub, \cite[p. 257]{Golub}.
+
+\textbf{Example:} Once more we use the transpose of the example matrix $\Arrr{3}{2}{2}$. The matrix and an \svdl \  are given by this:
+\begin{equation}
+  \begin{array}{ccccc}
+    \A{} & = & \mat{c|>{\columncolor{ltgray}}c}{\yrng{} & \ynll{}}
+             & \essmatrix{}
+             & \mat{c}{\xrng{T}}, \\
+    \matrixbravot & = &
+    \matrixbravoX & \matrixbravosigmat & \matrixbravoYt.
+  \end{array}
+\end{equation}
+The data vector is
+\begin{equation}
+  b = \phivector.
+\end{equation}
+
+The least squares solution is then
+\begin{equation}
+  \begin{split}
+    x_{LS} & = \xrng{}\ess{-1}\yrng{T}\,b,\\
+     &= \matrixbravoYt
+        \mat{cc}{\recip{\sqrt{15}} & 0 \\ 0 & \sthree }
+        \mat{crc}{
+     \frac{1}{\sqrt{30}} & \frac{5}{\sqrt{30}} & \frac{2}{\sqrt{30}} \\
+     \frac{1}{\sqrt{6}}  & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\
+     }
+        \phivector,\\
+     &= \frac{1}{15}\mat{c}{1\\6}.
+  \end{split}
+\end{equation}
+This is the same answer as in equation \eqref{eq:transform:systems:qr:answer}.
+
+The magnitude of the residual error vector is computed in this way:
+\begin{equation}
+  r^{2} = \paren{ \Q{*}_{\mathcal{N}}\,b}^{2} = \frac{16}{5}.
+\end{equation}
+\begin{equation}
+  \begin{split}
+     r^{2} &= \normts{ \ynll{T}\,b}, \\
+     &= \normts{ \mat{ccc}{\frac{2}{\sqrt{5}} & 0 & \frac{1}{\sqrt{5}}} \phivector}, \\
+     &= \frac{16}{5}.
+  \end{split}
+\end{equation}
+This is in agreement with equation \eqref{eq:transform:systems:qr:r2}.
+
+\end{document}

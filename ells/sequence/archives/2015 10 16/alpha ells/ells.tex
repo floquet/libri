@@ -1,0 +1,166 @@
+%-----------------------------------------------------------------------
+% Beginning of chapter-template.tex
+%-----------------------------------------------------------------------
+%
+%    This is a template file for monographs prepared with AMS author
+%    packages, for use with AMS-LaTeX.  Separate chapters should be
+%    included at the appropriate position.
+%
+%    Templates for various common text, math and figure elements are
+%    given following the \end{document} line.
+%
+%    Start by copying this file to <filename>.tex, using a distinctive
+%    name suitable for your book in place of <filename>.  This will
+%    be the driver file for your book.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%    Replace amsbook by the documentclass code for the monograph series.
+\documentclass{amsbook}
+
+%    If you need symbols beyond the basic set, uncomment this command.
+%\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+
+%    If your book includes graphics, or such features as rotation or
+%    scaling, uncomment this command.
+\usepackage{graphicx}
+\usepackage{colortbl}
+
+%    If the book includes commutative diagrams:
+%\usepackage[cmtip,all]{xy}
+
+%    If you are using the author-year citation style:
+%\usepackage{natbib}
+
+%    Include other referenced packages here.
+\usepackage{color}
+
+\newcommand{\pathname}     {../common/}
+\newcommand{\fullpath}     {\pathname}
+\newcommand{\pathchapter}  {../chapters/}
+\newcommand{\pathappendix} {../appendices/}
+\newcommand{\pathgraphics} {../graphics/}
+\newcommand{\pathequations}{../equations/}
+\newcommand{\pathfigures}  {../figures/}
+\newcommand{\pathtables}   {../tables/}
+\newcommand{\paththeorems} {../theorems/}
+
+\input{\pathname declarations.tex}
+
+%    For use when working on individual chapters
+%\includeonly{}
+
+%    For a single index; for multiple indexes, see the manual
+%    "Instructions for preparation of papers and monographs:
+%    AMS-LaTeX" (instr-l.pdf in the AMS-LaTeX distribution).
+%    Do not \usepackage{makeidx}; all facilities are contained
+%    within the AMS document classes.
+\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\title{Excursions in linear least squares}
+
+%    Remove any unused author tags.
+
+%    author one information
+\author{Daniel Topa}
+\address{}
+\curraddr{}
+\email{dantopa@gmail.com}
+\thanks{}
+
+%    If any version of the Mathematics Subject Classification other
+%    than the 2010 edition appears, then you have an old version
+%    of the AMS-LaTeX collection and need to upgrade.  Download from
+%    http://www.ams.org/tex/amslatex.html .
+\subjclass[2010]{Primary }
+
+\keywords{least squares, \Ltwo, \ltwo}
+
+\date{}
+
+\begin{abstract}
+\end{abstract}
+
+\maketitle
+
+%    Dedication.  If the dedication is longer than a line or two,
+%    remove the centering instructions and the line break.
+%\cleardoublepage
+%\thispagestyle{empty}
+%    If this book uses the documentclass stml-l or mmono-s, change
+%    13.5pc to 10.5pc.
+%\vspace*{13.5pc}
+%\begin{center}
+%  Dedication text (use \\[2pt] for line break if necessary)
+%\end{center}
+%\cleardoublepage
+
+%    Change page number to 7 if a dedication is present.
+\setcounter{page}{5}
+
+\tableofcontents
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\include{}
+
+\mainmatter
+
+%    Include main chapters here.
+\part{\label{part:first}Rudiments}  %  *  *  *  *  *  *  *  *  *  *  *  *
+%  \include{../chapters/formulation/"chap formulation"}
+\input{\pathchapter formulation/"chap formulation"}
+\input{\pathchapter archetype/"chap archetype"}
+
+\part{\label{part:zonal}Zonal fits}  %  *  *  *  *  *  *  *  *  *  *  *  *
+\input{\pathchapter matrices/"chap matrices"}
+%\input{\pathchapter matrices/"chap gradients"}
+
+\part{\label{part:zonal}Modal fits}  %  *  *  *  *  *  *  *  *  *  *  *  *
+\input{\pathchapter polynomials/"chap polynomials"}
+\input{\pathchapter orthogonals/"chap orthogonals"}
+
+%    Include main chapters here.
+\part{\label{part:nonlinear}Nonlinear problems}  %  *  *  *  *  *  *  *  *  *  *  *  *
+\chapter{Strays}
+
+Blindly applying linear tools to nonlinear problems presents many paths to perdition. Hope, no matter how fervent, cannot remedy mathematical maladies.
+
+We stress the definition of the least squares problem in \eqref{eqn:definition} as the first indication that something is amiss. We stress visualization methods to help reveal the status of a calculation.
+\begin{enumerate}
+\item finding reasonable approximations which nudge the problem into linearity;
+\item iterating the solution to a linear problem to improve a nonlinear problem; 
+\item separating a problem into linear and nonlinear components.
+\end{enumerate}
+
+%\part{\label{part:first}Scalar fields}  %  *  *  *  *  *  *  *  *  *  *  *  *
+%
+%\part{\label{part:first}Vector fields}  %  *  *  *  *  *  *  *  *  *  *  *  *
+%
+%\part{\label{part:first}Tensor fields}  %  *  *  *  *  *  *  *  *  *  *  *  *
+%
+%
+%\part{\label{part:first}Zonal fits}  %  *  *  *  *  *  *  *  *  *  *  *  *
+%  
+%\part{\label{part:}Stitching}  %  *  *  *  *  *  *  *  *  *  *  *  *
+
+%\part{\label{part:}This is a Part Title Sample}  %  *  *  *  *  *  *  *  *  *  *  *  *
+
+\appendix
+%    Include appendix "chapters" here.
+\input{\pathappendix exemplars/"app precis"}
+
+\backmatter
+%    Bibliographies can be prepared with BibTeX using amsplain,
+%    amsalpha, or (for "historical" overviews) natbib style.
+\bibliographystyle{amsplain}
+\bibliography{}
+
+%    See note above about multiple indexes.
+\printindex
+
+\end{document}

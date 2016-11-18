@@ -1,0 +1,251 @@
+\section[The fundamental projections]{The four fundamental orthogonal projections}
+\label{sec:orthproj}
+
+One of the bonuses we reap from the pseudoinverse is the four fundamental orthogonal projections. Each of these matrices projects onto a specific vector space. The spaces are these:
+\begin{enumerate}
+\item the range $\rng{\A{}}$,
+\item the orthogonal complement to the range, $\rng{\A{}}^{\perp}$,
+\item the null space $\nll{\A{}}$,
+\item the orthogonal complement to the null space, $\nll{\A{}}^{\perp}$.
+\end{enumerate}
+
+We can make a simple yet powerful observation about the projectors.
+Given the $\pee{}_{\mathcal{V}}$, the projector onto an $m-$dimensional subspace $\mathcal{V}$, the projector onto the orthogonal complement is
+\begin{equation}
+  \pee{}_{\mathcal{V}^{perp}} = \I{m}-\pee{}_{\mathcal{V}}.
+\end{equation}
+
+Below are these projectors for a matrix $\Accmn_{\rho}$ with pseudoinverse $\Ap$:
+\begin{equation}
+\boxed{
+  \begin{array}{lcllcl}
+    \projra& = &\rightinv & \quad \projrap& = &\I{m}-\rightinv\\
+    \projnap& =& \leftinv & \quad \projna& = &\I{n}-\leftinv\\    
+  \end{array}
+  }
+  \label{eq:fourprojpi}
+\end{equation}
+
+%%
+\subsection{Projection onto the range of $\A{}$}
+Let's explore the matrix product
+\begin{equation}
+  \begin{split}
+    \projra &= \rightinv,\\
+    &= \Y{}\,\sig{}\,\sig{(+)}\Y{*},\\
+    & = \Y{}\,\J{m}{\rho}\,\Y{*}.
+  \end{split}
+\end{equation}
+The truncated identity is acting like screen which only allows the first $\rho$ column vectors of $\Y{}$ into play. These are the vectors which span the image of the target matrix.
+
+%%
+\subsection{Projection onto the orthogonal complement of the range of $\A{}$}
+Now subtract this projector from the identity:
+\begin{equation}
+  \begin{split}
+    \projrap& = \I{m}-\projra,\\
+      &= \I{m}-\rightinv,\\
+      &= \I{m} - \Y{}\,\J{m}{\rho}\,\Y{*}.
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Projection onto the null space of $\A{}$}
+\begin{equation}
+  \begin{split}
+    \projna &= \leftinv,\\
+    &= \X{}\,\sig{+}\,\sig{}\X{*},\\
+    & = \X{}\,\J{n}{\rho}\,\X{*}.
+  \end{split}
+\end{equation}The truncated identity is acting like screen which only allows 
+%%
+\subsection{Projection onto the orthogonal complement of the null space of $\A{}$}
+Let's explore the matrix product
+\begin{equation}
+  \begin{split}
+    \projnap& = \I{n}-\projna,\\
+      &= \I{n}-\leftinv,\\
+      &= \I{n} - \X{}\,\J{n}{\rho}\,\X{*}.
+  \end{split}
+\end{equation}
+
+Below are the same projectors shown in \eqref{eq:fourprojpi} for the same matrix $\Accmn_{\rho}$ with \svdl\ $\svd{*}$:
+\begin{equation}
+\boxed{
+  \begin{array}{lcllcl}
+    \projra&  = &\pra{*}  & \qquad  \projrap & = & \I{m}-\pra{*}\\[3pt]
+    \projnap& = &\pnap{*} & \qquad  \projna  & = & \I{n}-\pnap{*}\\    
+  \end{array}
+  }
+  \label{eq:fourprojsvd}
+\end{equation}
+
+%%%
+%%%
+\subsection{Primitive example}
+Consider the following simple matrix:
+\begin{equation}
+  \A{}= \mat{cc}{1&0\\0&1\\0&0}.
+\end{equation}
+Using SVD by inspection we write
+\begin{equation}
+\begin{split}
+  \svda{T},\\
+  &= \I{3}\, \A{}\, \I{2},\\
+  &= \mat{cc>{\columncolor{ltgray}}c}{1&0&0\\0&1&0\\0&0&1} \mat{cc}{1&0\\0&1\\\hline0&0} \itwo.
+\end{split}
+\end{equation}
+The pseudoinverse is then
+\begin{equation}
+  \begin{split}
+     \mpgia{T}, \\
+     & = \itwo \mat{cc|c}{1&0&0\\0&1&0} \mat{ccc}{1&0&0\\0&1&0\\\rowcolor{ltgray}0&0&1},\\
+     & = \mat{ccc}{1&0&0\\0&1&0}.
+  \end{split}
+\end{equation}
+
+The fundamental spaces are revealed in the SVD and listed in table \eqref{tab:proj:ff}.
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lll}
+ subspace & \qquad \qquad span & source\\\hline
+ $\rng{\A{}}$  & $\spn\lst{\mat{c}{1\\0\\0},\mat{c}{0\\1\\0}}$ \qquad & $\spn\lst{\Y{}_{*,1},\Y{}_{*,2}}$\\[19pt]\hline
+ $\nll{\A{T}}$ & $\spn\lst{\mat{c}{0\\0\\1}}$ & $\spn\lst{\Y{}_{*,3}}$ \\[19pt]\hline
+ $\rng{\A{T}}\qquad $ & $\spn\lst{\mat{c}{1\\0},\mat{c}{0\\1}}$ & $\spn\lst{\X{}_{*,1},\X{}_{*,2}}$\\[13pt]\hline
+ $\nll{\A{}}$  & \qquad \qquad  $\emptyset$ & \quad  \quad $\emptyset$\\[2pt]\hline
+\end{tabular}
+\end{center}
+\label{tab:proj:ff}
+\caption{The fundamental spaces are revealed in the SVD. The codomain matrix $\Y{}$ encodes the vector spaces for the range of $\A{}$, $\rng{\A{}}$ and  the null space of the transpose, $\nll{\A{T}}$. The domain matrix $\X{}$ encodes the vector spaces for the range of the transpose $\A{T}$, $\rng{\A{T}}$ and  the null space of $\A{}$, $\nll{\A{}}$.}
+\end{table}%
+
+The analagous projectors are shown in table \eqref{tab:proj:fp}. The projection operators are these:
+\begin{equation}
+  \begin{array}{lcllcl}
+    \projra& = &\rightinv = \mat{ccc}{1&0&0\\0&1&0\\0&0&0} & \quad \projrap& = &\I{m}-\projra = \mat{ccc}{0&0&0\\0&0&0\\0&0&1}\\
+    \projnap& =& \leftinv = \itwo & \quad \projna& = &\I{n}-\projnap = \mat{cc}{0&0\\0&0}\\    
+  \end{array}
+  \label{eq:primitives}
+\end{equation}
+%%
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{llc}
+ projection \\
+ onto & \qquad vector space & projector\\\hline
+ $\rng{\A{}}$  & $\spn\lst{\mat{c}{1\\0\\0},\mat{c}{0\\1\\0}}$ \qquad & $\mat{ccc}{1&0&0\\0&1&0\\0&0&0}$\\[19pt]\hline
+ $\rng{\A{}}^{\perp}$ & $\spn\lst{\mat{c}{0\\0\\1}}$ & $\mat{ccc}{0&0&0\\0&0&0\\0&0&1}$ \\[19pt]\hline
+ $\nll{\A{T}}\qquad $ & $\spn\lst{\mat{c}{1\\0},\mat{c}{0\\1}}$ & $\itwo$\\[13pt]\hline
+ $\nll{\A{T}}^{\perp}$  & \qquad \qquad  $\emptyset$ & $\emptyset$\\[2pt]\hline
+\end{tabular}
+\end{center}
+\label{tab:proj:fp}
+\caption{The four fundamental projectors constructed from the target matrix $\A{}$ and the pseudoinverse $\A{T}$.}
+\end{table}%
+
+Study the action of the projectors on arbitrary vectors from the domain and the codomain. Because the target matrix is row rank deficient, there will be a null space as shown by the shaded column in the $\Y{}$ matrix. For the codomain the projection actions are these:
+\begin{equation}
+  \projra (y) = \mat{ccc}{1&0&0\\0&1&0\\0&0&0} 
+     \mat{c}{y_{1}\\y_{2}\\y_{3}} = \mat{c}{y_{1}\\y_{2}\\0},
+     \label{eq:mpp:red}
+\end{equation}
+\begin{equation}
+  \projrap (y) = \mat{ccc}{0&0&0\\0&0&0\\0&0&1} 
+     \mat{c}{y_{1}\\y_{2}\\y_{3}} = \mat{c}{0\\0\\y_{3}}.
+     \label{eq:mpp:blue}
+\end{equation}
+The first case shows that the operator $\projra$ acts on vectors and projects them onto the $y_{1}-y_{2}$ plane. The complementary operator $\projra$ projects onto $y_{3}$ axis. These actions are shown graphically in figure \eqref{fig:projections3d}.
+
+The case for the domain projection is trivial because the target matrix has full column rank.
+\begin{equation}
+  \projnap (x) = \itwo \mat{c}{x_{1}\\x_{2}} = \mat{c}{x_{1}\\x_{2}}.
+\end{equation}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[]{pdf/mpp/projections} 
+   \caption{Codomain projection examples. An arbitrary vector $\phi$ is represented by the black arrow. The red arrow shows the orthogonal projection onto the range of $\A{}$ as given by $\projra\paren{\phi}$ as shown in equation \eqref{eq:mpp:red}. The blue arrow shows the orthogonal projection onto the perpendicular complement of range of $\A{}$ as given by $\projrap\paren{\phi}$ as shown in equation \eqref{eq:mpp:blue}.}
+   \label{fig:projections3d}
+\end{figure}
+
+%%
+\subsection{Canonical example}
+To solidify the theory work through one more example explicitly. This will show both formulations of the four fundamental projectors: using the pseudoinverse and using the component matrices from \svdl.
+
+Start with the target matrix and the pseudoinverse:s 
+\begin{equation}
+  \A{} = \Aexample, \quad \Ap = \Aexamplepi.
+\end{equation}
+
+The projection onto the range of $\A{}$ is calculated in two different ways.
+\begin{equation}
+\begin{split}
+  \projra &= \leftinv = \rthree
+    \mat{rrr}
+    { 
+    1 & -1 &  1\\
+   -1 &  1 & -1\\
+    1 & -1 &  1\\
+    }.
+\end{split}
+\end{equation}
+However, we can bypass assembling the pseudoinverse and work directly with the decomposition matrices like so:
+\begin{equation}
+\begin{split}
+  \projra &= \Y{}\,\sig{}\,\sig{(+)}\Y{T},\\
+    & = \Y{}\,\J{m}{\rho}\,\Y{T},\\
+    &= \Yshade \mat{ccc}{1&0&0\\0&0&0\\0&0&0} \Ytshade,\\
+    &= \rthree
+    \mat{rrr}
+    { 
+    1 & -1 &  1\\
+   -1 &  1 & -1\\
+    1 & -1 &  1\\
+    }.
+\end{split}
+\end{equation}
+
+The projection onto the perpendicular complement space  is this
+\begin{equation}
+  \projrap = \I{3} - \projra = \rthree
+    \mat{rrr}
+    { 2 & -1 &  1\\
+     -1 &  2 & -1\\
+      1 & -1 &  2}.
+\end{equation}
+
+Let's look at the action of these projectors.
+\begin{equation}
+  \projra(y) = \rthree
+    \mat{rrr}
+    { 1 & -1 &  1\\
+     -1 &  1 & -1\\
+      1 & -1 &  1}
+    \mat{c}{y_{1}\\y_{2}\\y_{3}}
+    = \rthree \mat{r}{y_{1}-y_{2}+y_{3}\\-y_{1}+y_{2}-y_{3}\\y_{1}-y_{2}+y_{3}}
+\end{equation}
+If we define
+\begin{equation}
+  \zeta = \rthree \paren{y_{1}-y_{2}+y_{3}}
+\end{equation}
+we can write
+\begin{equation}
+  \projra(y) = \zeta\mat{r}{1\\-1\\1}.
+\end{equation}
+The is, we are projecting onto a line. The same line so in equation \eqref{} in fact.
+
+\begin{equation}
+  \projrap(y) = \rthree
+    \mat{rrr}
+    { 2 & -1 &  1\\
+     -1 &  2 & -1\\
+      1 & -1 &  2}
+    \mat{c}{y_{1}\\y_{2}\\y_{3}}
+    = \rthree \mat{c}{2y_{1}-y_{2}+y_{3}\\-y_{1}+2y_{2}-y_{3}\\y_{1}-y_{2}+2y_{3}}
+\end{equation}
+
+
+\input{chapters/mpp/projections_graphics}
+
+	
+\endinput

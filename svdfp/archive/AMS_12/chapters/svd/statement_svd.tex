@@ -1,0 +1,140 @@
+\section{Theorem statement}
+
+Given $\A{}\in\cmplx{\by{m}{n}}_{\rho}$, a complex matrix with $m$ rows and $n$ columns and rank $\rho$, where $\rho \le \min( m, n )$ then there exists a matrix decomposition of the format
+\begin{equation}
+  \svdax{*} .
+\end{equation}
+\begin{enumerate}
+  \item The unitary matrix $\Y{}$ represents an orthonormal basis for the \textit{codomain}.
+  \item The unitary matrix $\X{}$ represents an orthonormal basis for the \textit{domain}.
+  \item There are $\rho$ positive \textit{singular values} which are the square roots of the nonzero eigenvalues of the product matrices $\prdm{*}$ and $\prdmm{*}$.
+  \item The ordered singular values $\left( \sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_{\rho} > 0 \right)$ populate the diagonal $\textbf{S}$ matrix which is embedded in the $\sig{}$ matrix.
+  \item The dimensions of associated matrices are shown here:
+\begin{equation}
+  \A{\byt{m}{n}}_{\rho} = 
+  \Y{\byt{m}{m}}_{m}
+  \mat{c|c}{
+  \textbf{S}^{\by{\rho}{\rho}}_{\rho}  &  \zero \\\hline
+  \zero  &  \zero
+  }^{\by{m}{n}}_{\rho} 
+  (\X{*})^{\by{n}{n}}_{n}.
+\end{equation}
+\end{enumerate}
+
+%
+\subsection{Important properties}
+Thanks to the \index{Fundamental Theorem of linear algebra!dimensions for the SVD}Fundamental Theorem, the dimensions of the associated vector spaces are easily defined. Also, other important properties are evident.
+\begin{enumerate}
+\item The component matrices, $\sig{}$ and $\textbf{S}$ have the same rank $\rho$ as the target matrix.
+\item In general the domain matrices are complex. The singular value matrix $\textbf{S}$ is always real. Therefore the sabot matrix $\sig{}$ which only pads the $\textbf{S}$ matrix with zero entries is always real.
+\item The domain matrices $\Y{},\ \X{}$ along with the singular values matrix $\textbf{S}$ are square and invertible.
+\item Because the domain matrices are unitary (orthogonal), the inverse matrix is the Hermitian conjugate (transpose).
+\item Because the matrix of singular values is a full rank diagonal matrix, the matrix is square and the inverse matrix is has reciprocal values on the diagonal.
+\item The sabot matrix $\sig{}$ has the same shape as the target matrix. This is a conformability bridge to allow the multiplication with the domain matrices.
+\item The $\sig{}$ matrix is always unique.
+\item The domain matrices are unique up to rotations or permutations.
+\item Therefore, the \svdl \ is \textit{not} unique.
+\item The nullity of the domain matrices is computed using the \index{rank plus nullity theorem:nullity of the domain matrices}rank plus nullity theorem. So while the domain matrices always have the same rank, they will have different nullities in general.
+\subitem The nullity of the domain matrix is
+\begin{equation}
+  \eta_{x} = n - \rho.
+\end{equation}
+\subitem The nullity of the codomain matrix is
+\begin{equation}
+  \eta_{y} = m - \rho.
+\end{equation}
+\end{enumerate}
+
+To reinforce these concepts we state the application of the rank plus nullity theorem to the $n-$dimensional vector space of the domain and the $m-$dimensional vector space of the codomain
+\begin{equation}
+\boxed{
+  \begin{array}{rcllclclcl}
+    \text{rank } \rng{\A{}} &+& \text{nullity } \nll{\A{}} & = & \rho + \eta_{x} & = & \rho + (n-\rho) & = & n,\\
+    \text{rank } \rng{\A{*}} &+& \text{nullity } \nll{\A{*}} & = & \rho + \eta_{y} & = & \rho + (m-\rho) & = & m.
+  \end{array}
+}
+\end{equation}
+As basic as it seems it is still something users stumble over.
+
+In terms of matrix rank, a rank deficient matrix is resolved into a product of a full rank matrix with a rank deficient matrix with another full rank matrix.
+
+%
+\subsection{Unimportant properties}
+The SVD is bound by convention. One could develop an equivalent theorem based upon the formulation
+\begin{equation}
+  \A{} = \Y{*}\,\sig{}\,\X{}.
+\end{equation}
+In other words, we could move the Hermitian conjugation to the other side.
+
+Also, as mentioned before, we could allow the singular values to be left unsorted. Keeping them arranged in descending order is a good housekeeping practice which makes applications cleaner and easier to formulate.
+
+Some authors allow the singular values to be zero. The first $\rho$ values are nonzero, and the last $min(m,n)-\rho$ values are zeros. Again, it is a preference which could be accounted for by modest rewording of applications.
+
+One way to state the theorem may be a bit preferable to some readers. We can write equivalently that
+\begin{equation}
+  \Y{*}\,\A{}\,\X{} = \sig{}.
+\end{equation}
+Fans of diagonalization may champion this form.
+
+%%
+\section{Four fundamental subspaces}
+The \svdl \ resolves a matrix into its four fundamental subspaces:
+\begin{enumerate}
+\item Codomain: the range of the target matrix, $\rng{\A{}}$,
+\item Codomain: the null space of the Hermitian conjugate of target matrix,  $\nll{\A{*}}$,
+\item Domain: the range of the Hermitian conjugate of the target matrix, $\rng{\A{*}}$,
+\item Domain: the null space of the target matrix,  $\nll{\A{}}$,
+\end{enumerate}
+
+The figure below shows how the vectors are represented in the decomposition.
+\begin{enumerate}
+\item First $\rho$ columns of $\Y{}$: $\rng{\A{}}$.
+\item Last $m-\rho$ columns of $\Y{}$: $\nll{\A{*}}$.
+\item First $\rho$ rows of $\X{*}$: $\rng{\A{*}}$.
+\item Last $n-\rho$ rows of $\X{}$: $\nll{\A{}}$.
+\end{enumerate}
+
+Big four in pictures. Pedro's diagram.
+
+
+%%
+\section{Dimension and size}
+\index{size!matrix}\index{dimension!vector space}
+The size of a matrix describes the number of rows and columns. The dimension of  a vector space describes the length of the constituent vectors.
+
+%%
+\section{The spectral theorem and SVD}
+We know from linear algebra that a symmetric matrix can be diagonalized by a unitary matrix. So given a matrix
+\begin{equation}
+  \lst{\W{} \in \cmplx{\bys{m}}_{m}\colon\mathbf{W}_{r,c}=\mathbf{W}_{c,r}, r,c=1\dots m}
+\end{equation}
+there exists a unitary matrix $\Q{}$ such that the matrix $\Lambda$ is diagonal.
+\begin{equation}
+  \W{} = \Q{}\,\Lambda\,\Q{*}.
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \W{x} = \prdm{*} &= \paren{\X{}\,\sig{T}\Y{*}}\paren{\svd{*}} \\
+    &= \X{}\,\sig{T}\sig{}\,\X{*}.
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \W{y} = \prdmm{*} &= \paren{\svd{*}}\paren{\X{}\,\sig{T}\Y{*}}\\
+    & = \Y{}\,\sig{}\,\sig{T}\,\Y{*}.
+  \end{split}
+\end{equation}In terms of the spectral theorem, the product matrices can be decomposed into similarity transform where $\Lambda$ is a diagonal matrix of eigenvalues and the matrix $\Q{}$ is unitary.
+\begin{equation}
+  \begin{split}
+    \W{x} &= \X{}\,\sig{T} \sig{}\,\X{*}\\
+          &= \Q{}\,\Lambda\,\Q{*}.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \W{x} = \mat{c}{r_{1}\\r_{2}\\\vdots\\r_{n}} \mat{c}{\sigma_{1}r_{1}^{\mathrm{T}}}
+\end{equation}
+
+
+\endinput

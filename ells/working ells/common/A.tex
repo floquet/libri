@@ -1,0 +1,71 @@
+% basic matrices
+\newcommand{ \A }[1]        { \textbf{A}^{\mathrm{\!#1}} }  % pull in exponent
+
+% inverses
+\newcommand{ \Ap }[0]       { \A{\sym} }
+\newcommand{ \Ainv }[0]     { \A{-1} }
+\newcommand{ \Ainvs }[0]    { \A{-*} }
+\newcommand{ \AinvL }[0]    { \A{-L} }
+\newcommand{ \AinvR }[0]    { \A{-R} }
+
+% projectors
+\newcommand{ \ApA }[0]      { \A{\sym}\A{} }
+\newcommand{ \AAp }[0]      { \A{}\,\A{\sym} }
+
+% matrix vector products
+\newcommand{ \Ax }[0]       { \A{}\,x }
+\newcommand{ \Axez }[0]     { \Ax = \zero }
+\newcommand{ \Axey }[0]     { \Ax = y }
+\newcommand{ \Axeb }[0]     { \Ax = b }
+\newcommand{ \Asyex }[0]    { \A{*}y = x }
+\newcommand{ \Axmb }[0]     { \Ax - b }
+\newcommand{ \Axls }[0]     { \A{}\,x_{LS} }
+\newcommand{ \Avk }[0]      { \A{}\,{\bl{ v_{k} }} }
+
+% membership
+\newcommand{ \aicmm }[0]    { \A{} \in \cmplxmm }
+\newcommand{ \aicmn }[0]    { \A{} \in \cmplxmn }
+\newcommand{ \aicmnr }[0]   { \A{} \in \cmplxmnr }
+\newcommand{ \aicmmm }[0]   { \A{} \in \cmplxmmm }
+\newcommand{ \aicmnm }[0]   { \A{} \in \cmplxmnm }
+\newcommand{ \aicmnn }[0]   { \A{} \in \cmplxmnn }
+
+\newcommand{ \airmn }[0]    { \A{} \in \realxmn }
+\newcommand{ \airmnr }[0]   { \A{} \in \realxmnr }
+\newcommand{ \airmmm }[0]   { \A{} \in \realmmm }
+
+\newcommand{ \xicn }[0]     { x    \in \cmplxn }
+
+% product matrices
+\newcommand{ \wx }[1]       { \A{#1}  \A{} }
+\newcommand{ \wy }[1]       { \A{} \, \A{#1} }
+\newcommand{ \wxi }[1]      { \paren{\A{#1}  \A{}}^{-1} }
+
+% product matrix equations
+\newcommand{ \wxe }[1]      { \W{V} = \wx{#1} }
+\newcommand{ \wye }[1]      { \W{U} = \wy{#1} }
+
+\newcommand{ \wv }[0]       { \W{V} }
+\newcommand{ \wu }[0]       { \W{U} }
+
+% SVD equations
+\newcommand{ \aesvd }[1]    { \A{}  = \svd{ #1 } }
+\newcommand{ \aaesvd }[1]   { \A{} &= \svd{ #1 } }
+\newcommand{ \aetsvd }[1]   { \A{}  = \bur{}\, \ess{}\, \bvr{ #1 } }
+
+% SVD transpose equations
+\newcommand{ \aesvdt }[1]   { \A{ #1 }  = \svdt{ #1 } }
+\newcommand{ \aaesvdt }[1]  { \A{ #1 } &= \svdt{ #1 } }
+
+% Moore-Penrose pseudoinverse equations
+\newcommand{ \apempp }[1]   { \Ap   = \mpp{ #1 } }
+\newcommand{ \apaempp }[1]  { \Ap  &= \mpp{ #1 } }
+
+\newcommand{ \apemppfr }[1] { \Ap   = \mppfr{ #1 } }
+\newcommand{ \apaemppfr }[1]{ \Ap  &= \mppfr{ #1 } }
+
+% combos
+\newcommand{ \ax }[0]       { \A{}\,\X{} }  % pull in 
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

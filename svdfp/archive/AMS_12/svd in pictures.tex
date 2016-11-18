@@ -1,0 +1,58 @@
+\documentclass[theoremb]{gsm-l}
+
+%If you need symbols beyond the basic set, uncomment this command.
+\usepackage{amssymb}
+%\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{mathdots}
+
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+%\usepackage{pstricks}
+\usepackage{color}
+%\textcolor{color}{words to be in color}
+%available colors: red, green, and blue (for screen display) and cyan, magenta, and yellow (to go with black for the CMYK color model for printing)
+
+%     If the book includes commutative diagrams, ...
+%\usepackage[cmtip,all]{xy}
+
+%    Include other referenced packages here.
+\usepackage{colortbl}
+%\usepackage{ucs}
+%\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+
+\input{common/declarations.tex}
+
+\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\title{The Singular Value Decomposition\\for Pedestrians}
+
+\author{Daniel Topa}
+\address{University of New Mexico\\Albuquerque, New Mexico}
+\curraddr{Los Alamos National Laboratory\\Los Alamos, New Mexico}
+\email{dantopa@lanl.gov}
+
+\maketitle
+
+%    Change page number to 7 if a dedication is present.
+\setcounter{page}{7}
+
+\tableofcontents
+
+\mainmatter
+
+\part{The SVD in pictures}
+\include{chapters/xrays/head_xrays}
+\include{chapters/2dfourier/head_2dfourier}
+%\include{chapters/fourier/head_fourier}
+\include{chapters/Jordan_pic/head_Jordan_pic}
+\include{chapters/Jordan/head_Jordan}
+
+
+\end{document}

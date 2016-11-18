@@ -1,0 +1,43 @@
+\section{Shape and configuration of the decomposition matrices}
+%%
+For now, posit a decomposition of the form
+%
+\begin{equation}
+  \aesvd{*}
+  \label{eq:svd:genesis}
+\end{equation}
+%
+where the
+\begin{enumerate}
+%
+\item column vectors of $\U{}$ represent an orthonormal span for $\cmplxm$,
+%
+\item column vectors of $\V{}$ represent an orthonormal span for $\cmplxn$,
+%
+\item matrix $\sig{}$ contains scale factors and ensures conformability.
+%
+\end{enumerate}
+Nomeclature alert: the word \emph{domain}\index{domain!context} appears in two different contexts.
+\begin{itemize}
+%
+\item The matrix $\U{}$ is a unitary matrix whose column vectors span the domain, while the column vectors of $\V{}$ span the codomain.
+%
+\item The matrices $\U{}$ and $\V{}$ are the domain matrices.
+%
+\end{itemize}
+Therefore, \emph{the} domain matrix is $\V{}$, \emph{a} domain matrix refers to either $\U{}$ and $\V{}$.
+
+These basic rules define the shapes of the decomposition matrices. For not only do the column vectors span the domain and codomain, they are a \emph{minimal spanning set}.\index{minimal spanning set} As a consequence we know that there are $m$ columns in the domain matrix $\U{}$ and $n$ columns in the codomain matrix $\V{}$.
+
+Because $\U{}\icm$ and $\V{}\icn$ then by conformability, we have the dimensions of the matrix of scale factors: $\sig{}\irmn$.
+
+%%%%%%
+\input{chapters/"svd ex nihilo"/"tab shape and configuration of the decomposition matrices"}  % table
+%
+\begin{equation}
+  {\underset{\bymn} {\A{}} } = {\underset{\bymm} {\U{}} } \quad {\underset{\bymn} {\sig{}} } \quad {\underset{\bynn} {\V{*}} }
+  \label{eq:svden:conform}
+\end{equation}
+%
+
+\endinput

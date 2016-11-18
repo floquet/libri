@@ -1,0 +1,68 @@
+\section{Special cases of the pseudoinverse}
+
+Here are some tempting morsels to practice with. This shows the almost symbiotic relationship between the \svdl \ and the generalized matrix inverse. We will be exploiting these three relationships:
+\begin{equation}
+  \begin{split}
+     \A{}  &= \svd{*} = \yrn \essmatrix{} \xtrn{*},\\
+     \A{*} &= \svdt{*} = \xrn \essmatrix{T} \ytrn{*},\\
+     \Ap   &= \svd{*} = \xrn \essmatrix{-1} \ytrn{*},\\
+  \end{split}
+\end{equation}
+The generic case for the target matrix is $\Amnr$.
+
+%%
+\subsection{Underdetermined case}
+\label{sec:underdetermined}
+Compute the pseudoinverse $\Ap$ when the inverse of the product matrix $\paren{\prdmy{*}}^{-1}$ exists.
+Here the target matrix has full row rank and has more columns than row (a wide matrix):
+\begin{equation}
+  \Accc{m}{n}{m}, \ m\le n.
+\end{equation}
+
+Since the inverse of the product matrix $\prdmy{*}$ it must have full rank:
+\begin{equation}
+  \paren{\prdmy{*}}^{-1} = \paren{\A{*}}^{-1}\paren{\A{}}^{-1}.
+\end{equation}
+Therefore the target matrix is full rank. Therefore the pseudoinverse matches the standard inverse: 
+\begin{equation}
+  \Ap = \A{-1}.
+\end{equation}
+
+In terms of the SVD, the matrix product reduces to
+\begin{equation}
+  \begin{split}
+    \prdmy{*} & = \paren{\svd{*}}\paren{\svdt{*}}\\
+      &= \Y{}\, \sig{}\sig{T}  \Y{*}.
+  \end{split}
+\end{equation}
+
+Is that your final answer?
+\begin{equation}
+  \Ap = \A{*}\paren{\prdm{*}}^{-1}
+\end{equation}
+
+As an exercise, check that
+\begin{equation}
+  \A{}\Ap = \Ap\A{} = \I{}.
+\end{equation}
+
+%%
+\subsection{When $\prdmm{*}=\I{}$}
+Because the product matrix
+\begin{equation}
+  \prdmm{*} = \I{}
+\end{equation}
+all of the singular values are unity. Therefore
+\begin{equation}
+  \sig{}=\sig{T}=\I{}.
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \prdmm{*}&=\I{},\\
+    \paren{\svdt{*}}\paren{\svd{*}}&=\I{},\\
+    \X{}\X{*}&=\I{}.
+  \end{split}
+\end{equation}
+
+	
+\endinput

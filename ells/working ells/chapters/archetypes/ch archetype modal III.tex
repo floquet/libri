@@ -1,0 +1,205 @@
+\chapter[Modal Example III: Observations]{Modal Example III\\Observations}
+
+A deeper look at the example.
+
+\section{Invariances}  %    S    S    S    S    S    S    S    S    S
+Separate methods, test solutions
+
+\subsection{Translation Invariance}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+For the example in figure \ref{fig:bar}, the temperature gradient was measured over the length of a 10 cm bar. For convenience, the end of the bar in contact with the ice bath was taken as the origin. But just as readily, that point could have been taken as $x$ = 5 cm. The end of the bar touching the boiling water bath is then 15 cm. This would not change the thermal profile shown in the figure.
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \nabla T = \frac{T_{1} - T_{0}} { (x_{1} + x_{*}) - (x_{0} + x_{*}) }
+             = \frac{T_{1} - T_{0}} { x_{1} - x_{0} }
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+\subsubsection{Translation}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+Intuitively, a translation of the coordinate system will not change the temperature measurements, which means the gradient of the temperature is invariant under translation of the coordinate system.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    x_{k} \rightarrow x_{k} + x_{*}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{c}{x_{1} \\ x_{2} \\ \vdots \\x_{m}} \rightarrow
+    \mat{c}{x_{1} + x_{*} \\ x_{2} + x_{*} \\ \vdots \\x_{m} + x_{*}} =
+    \mat{c}{x_{1} \\ x_{2} \\ \vdots \\x_{m}} +
+    \mat{c}{x_{*} \\ x_{*} \\ \vdots \\ x_{*}} 
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    x \rightarrow x + \mathbf{1}x_{*}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+\subsubsection{Demonstrations}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+
+Basic inner products
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      \oto &\rightarrow \oto, \\
+      \otx &\rightarrow \otx + x_{*} \poto, \\
+      \xtx &\rightarrow \xtx + 2x_{*} \potx + x_{*}^{2} \potx, \\
+      \xtt &\rightarrow \xtt + x_{*} \pott.
+     \label{eq:translation:dot products}
+     \end{split}
+  \end{equation*}
+
+Invariance of determinant \eqref{eq:det again}:
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      \Delta 
+        &= \poto \pxtx - \potx^{2} , \\
+        &\rightarrow \poto \paren{\xtx + 2x_{*} \potx + x_{*}^{2} \potx} - \paren{\otx + x_{*} \poto}^{2} , \\
+        &= \Delta + \poto \paren{2x_{*} \potx + x_{*}^{2} \potx} - \paren{2x_{*} \poto\potx} - \paren{x_{*}\poto}^{2} , \\
+        &= \Delta.
+    %\label{eq:}
+    \end{split}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    y(0) \rightarrow y(-x_{*})
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+Solutions in \eqref{eq:bevington:soln:vectors}.
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      a_{1} &= \Delta^{-1} \paren{\poto \pxtt -
+               \potx \pott}, \\
+            &\rightarrow \Delta^{-1} \paren{\poto \paren{\xtt + x_{*} \pott} -
+               \paren{\otx + x_{*} \poto} \pott}, \\
+            &= a_{1} + \Delta^{-1} \paren{x_{*} \poto \pott - x_{*}\poto\pott}, \\
+            &= a_{1} 
+    %\label{eq:}
+    \end{split}
+  \end{equation*}
+
+\subsubsection{Computations}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+
+The slope is invariant, the intercept:
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      a_{1} & \rightarrow a_{1}, \\
+      a_{0} & \rightarrow a_{0} - x_{*} a_{1}.
+    %\label{eq:}
+    \end{split}
+  \end{equation*}
+
+Predictions for $x_{*} = 1$. 
+  \begin{equation}   %  =   =   =   =   =
+    \begin{split}
+      a_{0} & \rightarrow -\frac{827}  {180}, \\
+      a_{1} & \rightarrow  \frac{1129} {120}.
+    \label{eq:bev:prediction}
+    \end{split}
+  \end{equation}
+
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \begin{split}
+      \mat{c}{a_{0} \\ a_{1} } 
+        &= \Delta^{-1}
+           \bl{
+            \mat{ll}{\ps \sum x_{k}^{2} & -\sum x_{k} \\ -\sum x_{k} & \ps \sum 1}
+            \mat{l}{\sum T_{k} \\ \sum T_{k} x_{k}}} , \\
+        &= 540^{-1}
+           \bl{
+            \mat{rr}{384 & -54 \\ -54 & 9} \frac{1}{10}
+            \mat{r}{4667 \\ 33\,647}} , \\
+        &= \frac{1}{360}
+           \bl{
+           \mat{r}{1733 \\ 3387}}.
+      %\label{eqn:bevington solution product}
+    \end{split}
+  \end{equation*}
+  % = =
+In agreement with \eqref{eq:bev:prediction}.
+
+\subsubsection{Visuals}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS
+
+Compare to figure \ref{fig:bevington soln v data}
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+		{\pathgraphics "bevington III"/"translate data v soln"}
+		% 
+    	\put(42,65){$x_{k} \rightarrow x_{k} + x_{*}$}
+    	\put(50,-3){$x,$ cm}
+    	\put(-10,31.5){$T, ^{\circ}$C}
+	    %
+   \end{overpic}
+   \caption{Solution after translation along $x$ axis: the slope is invariant.}
+   \label{fig:bevington translate soln v data}
+\end{figure}
+
+Compare to \ref{fig:bevington residuals}
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+		{\pathgraphics "bevington III"/"translate residuals"}
+		% 
+    	\put(50,-3){$x,$ cm}
+    	\put(-25,31.5){$T_{k}-T(x_{k}), ^{\circ}$C}
+	    %
+   \end{overpic}
+   \caption[Scatter plot of residual errors.]{Scatter plot of residual errors after translation along $x$ axis: the residuals are invariant.}
+   \label{fig:bevington translate residuals}
+\end{figure}
+
+Compare to figure \ref{fig:bevington merit}
+\begin{figure}[htbp]
+\centering
+    \begin{overpic}[ scale = \myscale ]{\pathgraphics "bevington III"/"translate merit"}
+        \put(40,102){$x_{k} \rightarrow x_{k} + x_{*}$}
+    	\put(50,-3){$a_{0}$}
+    	\put(-5,52){$a_{1}$}
+    \end{overpic}
+   \label{fig:bevington translate merit}
+   \caption[The merit function after translation.]{Contour plot of merit function after translation along $x$ axis: $a_{1}$ is invariant.}
+\end{figure}
+
+
+\subsection{Reflection Invariance}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+A demonstration of the reflection method of \S \ref{sec:reflection invariance}.
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \sum_{k=1}^{m} r^{2} = \sum_{k=1}^{m} \paren{-r}^{2}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+table \ref{tab:bevington solution} 
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "bevington plus"/"reflect bars"}
+        %
+      	\put(50,-3) {$a_{0}$}
+      	\put(-4,33) {$a_{1}$}
+	      %
+   \end{overpic}
+   \caption{The merit function for the learning curve showing the minimum and the value.}
+   \label{fig:learn:merit}
+\end{figure}
+
+\section{Fitting To Higher Orders}  %    S    S    S    S    S    S    S    S    S
+
+\endinput
+
+%\section{Section Title}  %    S    S    S    S    S    S    S    S    S
+%\subsection{Subsection Title}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+%\subsubsection{Subsubsection Title}  %  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS  SSS

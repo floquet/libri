@@ -1,0 +1,115 @@
+\break
+\clearpage
+\section[Image as matrix]{Image as matrix}
+
+For the obligatory discussion on the SVD and low rank approximation we start with a picture of Camille Jordan. This photo is treated as an array of grayscale values, each entry varies from 0 (black) to 1 (white).
+
+%%%%%%
+\input{chapters/"information content I"/"tab basic manipulations of the svd"}  % table
+
+%%%%%%%%%%%
+\subsection[Information content of the singular values]{Information content of the singular values}
+
+The singular values are a fingerprint which uniquely describes the information in an image, albeit in a complicated manner.
+ We will study how submatrices of the decomposition matrices $\U{}$, $\V{}$, and $\sig{}$ and can be used to form a new image of comparable quality and requiring much fewer matrix elements. A critical tool is the residual error matrix, the difference between the input matrix and the low rank approximation. While our brains are quite good at image recognition, we will see that the residual error matrix is a valuable quality measure.
+
+The number of pixels in the image with $m$ rows and $n$ columns is $\by{m}{n} = mn$. For the image in figure \eqref{fig:camille:class photo} this is
+\begin{equation*}
+  326 \times 266 = 86,716.
+\end{equation*}
+
+%%%%%%%%%%%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{images/"information content I"/intro/"camille matrix".pdf} 
+   \caption[Camille Jordan, circa 1915]{Camille Jordan, circa 1915\index{Jordan, Camille!photo!as matrix}. This image represents a matrix with $m = 326$ rows and $n = 266$ columns for a total of $mn=86,716$ pixels. We will treat the matrix as having full column rank. The entries vary from 0 (black) to 1 (white). As a matrix the origin is in the upper left-hand corner; the rows increase as you move downward.}
+   \label{fig:camille:class photo}
+\end{figure}
+
+
+%%%%%%
+\input{chapters/"information content I"/"tab the transpose operation changes chirality"}  % table
+
+%%%%%%%%%%%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/intro/"deluxe spectrum"} 
+   \caption[The singular value spectrum for Camille's photo]{The singular value spectrum plotted on a logarithmic scale for Camille Jordan's photo.\index{Jordan, Camille!photo!singular value spectrum}\index{singular values!spectrum!Camille Jordan photo} The first few terms are dominant and well separated. As the terms decrease in size the separation between them shrinks. This chapter explores the information content of this singular value spectrum.}
+   \label{fig:camille:spectrum}
+\end{figure}
+
+%%%%%%%%%%%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/intro/"energy partition"} 
+   \caption[The energy partition for Camille's photo]{The energy partition for Camille Jordan's photo.\index{Jordan, Camille!photo!singular value spectrum!energy partition} This fingerprint places $\log\paren{\sigma}$ into bins.}
+   \label{fig:camille:spectrum}
+\end{figure}
+
+An SVD expansion of rank $\rho$ has $\rho \paren{\rho + m + n} $ matrix elements:
+%%%%%%
+\input{chapters/"information content I"/"tab counting pixels"}  % table
+
+Treat each matrix entry as a pixel. 
+Basic arithmetic: 
+\begin{equation}
+  \begin{split}
+    326 \times 266 &= 86,716 \text{ pixels} \\
+    266 \paren{266 + 326 + 266} &= 228,228 \text{ matrix elements}
+  \end{split}
+\end{equation}
+
+The break even point \index{low rank approximation!break even point} occurs at rank $r=121$. The total number of matrix elements is
+\begin{equation}
+  121\paren{121 + 592} = 86,273
+\end{equation}
+which is close to the number of pixels in the original image.
+
+All singular values less than 0.328 are ignored.
+
+The approximation by rank $r$ is 
+tab low rank dimensions
+%%%%%%
+\input{chapters/"information content I"/"tab low rank dimensions"}  % table
+
+%%
+\begin{equation}
+  \begin{split}
+    \mathbb{A}\paren{r} &= \brac{\U{}}_{\by{m}{r}} \brac{\sig{}}_{\by{r}{r}} \brac{\V{*}}_{\by{n}{r}}
+  \end{split}
+\end{equation}
+\index{Jordan, Camille!photo!data volume}
+where the brackets denote a submatrix. For instance the submatrix $\brac{\sig{}}_{\by{r}{r}}$ is a matrix comprised of the first $r$ rows and the first $r$ columns of the matrix $\sig{}$. The residual error matrix is 
+\begin{equation}
+  \xi\paren{r} = \A{} - \mathbb{A}\paren{r}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 2.25in ]{images/"information content I"/threshold/"s v image t = 121"} \qquad
+   \includegraphics[ width = 2.25in ]{images/"information content I"/threshold/"s v error t = 121"} \\
+   $\mathbb{A}\paren{121}$ \quad \qquad \qquad \qquad \qquad \qquad \qquad $\A{} - \mathbb{A}\paren{121}$
+   \caption[The break even point for image compression]{The break even point for image compression. On the left is the result of the rank $r=121$ approximation $\mathbf{A}\paren{121}$.\index{Jordan, Camille!photo!data volume!break-even point} Beside that is the residual error matrix which displays the difference between the input image and the approximation and shows what information has been lost. Ideally, this error would be completely random and there would be no large-scale structures like those seen here.}
+   \label{fig:camille:break even}
+\end{figure}
+
+\begin{equation}
+  \begin{split}
+    \frac{r}{\rho} &= \frac{121}{266} = 45\% \\
+    \frac{r}{\rho} &= \frac{86,273}{228,228} = 38\% \\
+  \end{split}
+\end{equation}
+%
+
+%%%%
+\input{chapters/"information content I"/"tab two recomposition approximations"}  % table
+
+%%%%
+\input{chapters/"information content I"/"tab recomposition using a subset of the most dominant singular values"}  % table
+\input{chapters/"information content I"/"tab recomposition using more complete subsets of the singular values"}   % table
+\input{chapters/"information content I"/"tab threshold least dominant 01"}  % table
+\input{chapters/"information content I"/"tab threshold least dominant 02"}  % table
+
+\endinput

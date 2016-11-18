@@ -1,0 +1,212 @@
+\section{The SVD as a rank one decomposition}
+
+Another way to think of the \svdp \ is as an expansion in terms of a fixed set of rank one matrices. These matrices are defined in terms of outer products of column vectors from the basis matrices. The amplitudes which determine the contribution from each matrix are the squared singular values.
+
+We have seen that the SVD expressed as a matrix product:
+\begin{equation*}
+  \svdax{*}.
+\end{equation*}
+
+Another useful way is to express the decomposition in terms of vector operations. Then the SVD is a summation of outer products. Given our canonical matrix $\Accmn_{\rho}$ the vector operations are these:
+\begin{equation}
+  \begin{split}
+    \A{} & = \sum_{k=1}^{\rho}{\sigma_{k}y_{k}x_{k}^{\mathrm{T}}}
+  \end{split}
+\end{equation}
+where $y_{k}$ and $x_{k}$ are the $k$th column vectors from there respective domain matrices. 
+Many readers may prefer the equivalent notation
+\begin{equation}
+  \A{} = \sum_{k=1}^{\rho}{\sigma_{k}y_{k}\otimes x_{k}}.
+\end{equation}
+
+These compact notations stand for this sum of rank one matrices and can be recast using column vectors from the domain matrices:
+\begin{equation}
+  \begin{split}
+    \A{} &= \sigma_{1} \Y{}_{*,1}\X{*}_{*,1} + \sigma_{2} \Y{}_{*,2}\X{*}_{*,2} + \dots + \sigma_{\rho} \Y{}_{*,\rho}\X{*}_{*,\rho},\\
+         &= \sum_{k=1}^{\rho}{\sigma_{k}\Y{}_{*,k}\X{*}_{*,k}}.
+  \end{split}
+\end{equation}
+
+We know these outer product matrices are of rank one because they only have one linearly independent row.
+\begin{equation}
+  y_{k}x_{k}^{\mathrm{T}} = \mat{c}{y_{k_{1}}x_{k}^{\mathrm{T}}\\[2pt]\hline y_{k_{2}}x_{k}^{\mathrm{T}}\\[2pt]\hline \vdots\\\hline y_{k_{m}}x_{k}^{\mathrm{T}}}.
+\end{equation}
+Here the independent row is the transpose of the vector $x_{k}$ and it is multiplied by the components of the vector $y_{k}$. Of course we could also argue that the outer product matrix is rank one because it has but one linearly independent column:
+\begin{equation}
+  y_{k}x_{k}^{\mathrm{T}} = \mat{c|c|c|c}{ x_{k_{1}}y_{k} & x_{k_{2}}y_{k}& \cdots & x_{k_{n}}y_{k} }.
+\end{equation}
+
+%%
+\subsection{Rank one example}
+The template for a rank one matrix is the following:
+\begin{equation}
+ \A{} = \sigma_{1}\, \Y{}_{1}\, \X{T}_{1}.
+\end{equation}
+
+The first matrix presented fits in this class:
+\begin{equation}
+  \begin{split}
+    \svda{T},\\
+    \archetypez.
+  \end{split}
+\end{equation}
+
+The decomposition becomes
+\begin{equation}
+  \begin{array}{rcccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1},\\
+         &=& \sqrt{6}  & \sthree \mat{r}{1\\-1\\1} & \stwo \mat{rr}{1\\-1},\\
+         &=& \sqrt{6}  & \ssix \Aexample.
+  \end{array}
+\end{equation}
+The amplitude is $\sqrt{6}$ and the rank one matrix is this:
+\begin{equation}
+  \ssix \Aexample
+\end{equation}
+
+
+
+%%
+\subsection{Rank two examples}
+\begin{equation}
+ \A{} = \sigma_{1}\, \Y{}_{1}\, \X{T}_{1} + \sigma_{2}\, \Y{}_{2}\, \X{T}_{2}
+\end{equation}
+
+%%
+\subsection{Full rank}
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{rr}{1&2\\-1&2}&=\frac{1}{\sqrt{2}}\mat{rr}{1&1\\1&-1}\,\sqrt{2}\mat{cc}{2&0\\0&1}\mat{cc}{0&1\\1&0}    
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\[5pt]
+     &=& 2\sqrt{2} & \frac{1}{\sqrt{2}}\mat{r}{1\\1} & \mat{rr}{0&1} &+& \sqrt{2} & \frac{1}{\sqrt{2}}\mat{r}{1\\-1} & \mat{rr}{1&0}\\[10pt]
+     &=&& \mat{cc}{0&2\\0&2} &&+&& \mat{rr}{1&0\\-1&0}\\[5pt]
+     &=&& \mat{rr}{1&2\\-1&2}
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Rank deficient}
+The Gell-Mann matrix 2:
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \gmb&=\left[
+\begin{array}{rr>{\columncolor{ltgray}}r}
+ -i & 0 & 0 \\
+ 0 & i & 0 \\
+ 0 & 0 & 1
+\end{array}
+\right]\left[
+\begin{array}{rr|r}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\\hline
+ 0 & 0 & 0
+\end{array}
+\right]\left[
+\begin{array}{rrr}
+ 0 & 1 & 0 \\
+ 1 & 0 & 0 \\
+\rowcolor{ltgray}
+ 0 & 0 & 1
+\end{array}
+\right]    
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2}, \\
+     &=& 1 & \mat{r}{-i\\0\\0} & \mat{rrr}{0&1&0} &+& 1 & \mat{c}{0\\i\\0} & \mat{rrr}{1&0&0}.
+  \end{array}
+\end{equation}
+%%
+This leads to the matrix sum
+\begin{equation}
+     \A{} = \mat{rrr}{0&-i&0\\0&0&0\\0&0&0} + \mat{ccc}{0&0&0\\i&0&0\\0&0&0}= \mat{crr}{0&-i&0\\i&0&0\\0&0&0}.
+\end{equation}
+%%
+\subsection{Full rank}
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{ccc}{0&3&0 \\ 1&2&2} &=\frac{1}{\sqrt{2}}\mat{rr}{1&-1\\1&1}\,\mat{cc|c}{\sqrt{15}&0&0 \\ 0&\sqrt{3}&0}\, \mat{rrr}{\frac{1}{\sqrt{30}}&\frac{5}{\sqrt{30}}&\frac{2}{\sqrt{30}} \\ \frac{1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\ \rowcolor{ltgray}
+\frac{-2}{\sqrt{5}} & 0 & \frac{1}{\sqrt{5}}}.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\
+     &=& \sqrt{15} & \stwo \mat{r}{1\\1} & \mat{rrr}{\frac{1}{\sqrt{30}}&\frac{5}{\sqrt{30}}&\frac{2}{\sqrt{30}}} &+& \sqrt{3} & \stwo \mat{r}{-1\\1} & \mat{rrr}{\frac{1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}}}
+  \end{array}
+\end{equation}
+The two rank one component matrices combine like so:
+\begin{equation}
+    \A{} = \rtwo \mat{ccc}{1&5&2\\1&5&2} + \rtwo \mat{rrr}{-1&1&-2\\1&-1&2} = \mat{rrr}{0&3&0 \\ 1&2&4}
+\end{equation}
+
+%%
+\subsection{Rank three examples}
+The Gell-Mann matrix 8, the only matrix with a nonzero trace and full rank:
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \gmh&=\left[
+\begin{array}{rrr}
+ 0 & 0 & 1 \\
+ 0 & 1 & 0 \\
+ -1 & 0 & 0
+\end{array}
+\right]
+\frac{1}{\sqrt{3}}\left[
+\begin{array}{ccc}
+ 2 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+ 0 & 0 & 1 \\
+ 0 & 1 & 0 \\
+ 1 & 0 & 0
+\end{array}
+\right]
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{1} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} \\
+    &=& \frac{2}{\sqrt{3}} & \mat{r}{0\\0\\-1}&\mat{rrr}{0&0&1}
+  \end{array}
+\end{equation}
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{2} &=& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\
+    &=& \sthree& \mat{r}{0\\1\\0}&\mat{rrr}{0&1&0}
+  \end{array}
+\end{equation}
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{3} &=& \sigma_{3} & \Y{}_{3} & \X{T}_{3} \\
+    &=& \sthree & \mat{r}{1\\0\\0}&\mat{rrr}{1&0&0}
+  \end{array}
+\end{equation}
+The three rank one component matrices sum to the original matrix
+\begin{equation}
+  \begin{array}{ccccccc}
+    \A{} &=& \A{}_{1} &+& \A{}_{2} &+& \A{}_{3},\\
+         &=& \frac{2}{\sqrt{3}}  \mat{rrr}{0&0&0 \\ 0&0&0 \\ 0&0&-1} &+& \frac{1}{\sqrt{3}}  \mat{rrr}{0&0&0 \\ 0&1&0 \\ 0&0&0} &+& \frac{1}{\sqrt{3}}  \mat{rrr}{1&0&0 \\ 0&0&0 \\ 0&0&0}\\
+    &=&\frac{1}{\sqrt{3}} \mat{rrr}{1&0&0 \\ 0&1&0 \\ 0&0&-2}
+  \end{array}
+\end{equation}
+
+
+
+\endinput

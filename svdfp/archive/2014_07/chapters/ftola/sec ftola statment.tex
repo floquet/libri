@@ -1,0 +1,66 @@
+\section{Theorem Statement}
+
+Consider a matrix of scalars $\A{}$ with $m$ rows and $n$ columns. A scalar is a number, either real or complex. This matrix $\aicmn$ and it induces two vector spaces: $\cmplxm$ and $\cmplxn$. Furthermore, these spaces have an orthogonal decomposition into range spaces and \ns s. This is the crux of the \ft.
+
+In spaces with finite dimension one mathematical prescription for the \ft \ is this:
+%%%%%%
+\input{chapters/ftola/"tab ftola statement"}  % table
+
+Here $\bl{\rng{\cdot}}$ specifies the span of the range and $\rd{\nll{\cdot}}$ the span of the \ns. Throughout this book we will follow this coloring scheme. Vectors in the range are blue, those in the \ns \ are red. The asterisk denotes the Hermitian conjugate of a matrix. That is,
+%
+\begin{equation}
+  \A{*} = \overline{\A{T}} = \tra{\overline{\A{}}}.
+\end{equation}
+%
+Note that the asterisk only appears once in each decomposition.
+For example, the codomain $\cmplxn$ is resolved into a range space $\brnga{*}$ and its orthogonal complement $\rnlla{}$ and the symbol $\oplus$ signifies a direct sum.
+
+In colloquial mathematics one may say that 
+\begin{itemize}
+%
+\item the \emph{column} space or \emph{codomain} of $\A{}$ in the direct sum of the range space $\brnga{}$ and the \ns \ $\rnlla{*}$.
+%
+\item the \emph{row} space or \emph{domain} of $\A{}$ in the direct sum of the range space $\brnga{*}$ and the \ns \ $\rnlla{}$.
+%
+\end{itemize}
+%
+The range and null spaces are complimentary:
+%
+\begin{equation}
+  \begin{split}
+    \brnga{*} \, &\cap \, \rnlla{}  = \zero, \\
+    \brnga{}  \, &\cap \, \rnlla{*} = \zero .
+  \end{split}
+\end{equation}
+%
+The range of $\A{}$ is also spanned by the columns of $\A{}$ 
+%
+\begin{equation}
+  \brnga{} = \spn{{\bl{ a_{1} }},\dots,{\bl{ a_{n} }}}
+\end{equation}
+%
+%
+
+The range space is defined \cite[p. 140]{Meyer2000} 
+
+%
+\begin{equation}
+  \brnga{} \quad = \quad \lst{\Ax \colon x \in \cmplxn } \quad \subseteq \quad \cmplxm
+\end{equation}
+%
+\begin{equation}
+  \brnga{*} \quad = \quad \lst{\A{*}y \colon y \in \cmplxm } \quad \subseteq \quad \cmplxn
+\end{equation}
+%
+The null space can be defined \cite[p. 174]{Meyer2000} 
+%
+\begin{equation}
+  \rnlla{*} \quad = \quad \lst{x \in \cmplxn \colon \Axez } \quad \subseteq \quad \cmplxm
+\end{equation}
+%
+\begin{equation}
+  \rnlla{} \quad = \quad \lst{y \in \cmplxm \colon \paren{ y^{*}\A{} }^{*} = \zero } \quad \subseteq \quad \cmplxn
+\end{equation}
+
+
+\endinput

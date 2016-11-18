@@ -1,0 +1,669 @@
+%% Example matrices
+\newcommand{ \dimsb }[0]    { \cmplxall{3}{2}{2} }
+
+\newcommand{ \matrixb }
+{
+    \recip{4}
+    \mat{ cc }
+      {
+       0 & 1 \\
+       3 & 2 \\
+       0 & 2
+      }
+}
+
+%% transpose
+\newcommand{ \matrixbt }
+{
+    \recip{4}
+    \mat{ ccc }
+      {
+       0 & 3 & 0 \\
+       1 & 2 & 2
+      }
+}
+
+%% product matrices
+\newcommand{ \wxb }[0]
+{
+    \frac{3}{16}
+    \mat{ rrr }
+      {
+       3 &  2 \\
+       2 &  3
+      }
+}
+
+\newcommand{ \wyb }[0]
+{
+    \recip{16}
+    \mat{ rrr }
+      {
+       1 &  2 & 3 \\
+       2 & 13 & 4 \\
+       2 &  4 & 4
+      }
+}
+
+% x-ray view
+\newcommand{ \xaycolb }[0]
+{
+  \recip{4}
+  \mat{c|c|c}
+  { 
+   \bzero & \bthree & \gzero \\ 
+   \bone  & \btwo   & \gtwo 
+  }
+}
+
+\newcommand{ \xaycolbt }[0]
+{
+  \recip{4}
+  \mat{c|c}
+  { 
+   \bzero  & \bone \\ 
+   \bthree & \btwo  \\
+   \bzero  & \btwo  
+  }
+}
+\newcommand{ \xayrowb }[0]
+{
+  \recip{4}
+  \mat{ccc} 
+  { 
+   \bzero & \bthree & \bzero \\\hline 
+   \bone  & \btwo   & \btwo 
+  }
+}
+
+%% pseudoinverse
+\newcommand{ \Aplusb }[0]
+{
+  \recip{15}
+  \mat{rrr}
+  {
+  -8 &  \phantom{-}20 & -16\\
+  12 & 0 & 24
+  }
+}
+
+%% decomposition
+\newcommand{ \essb }[0] 
+{
+    \recip{4}
+    \mat{ cc }
+      {
+        \sqrt{15} & 0 \\
+         0 & \sqrt{3}
+       }
+}
+
+\newcommand{ \sigmab }[0] 
+{
+    \recip{4}
+    \mat{ cc }
+      {
+        \sqrt{15} & 0 \\
+         0 & \sqrt{3} \\\hline
+         0 & 0
+      }
+}
+
+\newcommand{ \sigmabt }[0] 
+{
+    \recip{4}
+    \matt{ cc|c }
+      {
+        \sqrt{15} & 0 & 0 \\
+         0 & \sqrt{3} & 0
+      }
+}
+
+\newcommand{ \sigmabnude }[0] 
+{
+    \recip{4}
+    \mat{ cc }
+      {
+        \frac{1}{\sqrt{15}} & 0 \\
+        0 & \frac{1}{\sqrt{3}} \\\hline
+        0 & 0
+      }
+}
+
+\newcommand{ \sigmabinv }[0] 
+{
+    \matt{ cc|c }
+      {
+        \frac{4}{\sqrt{15}} & 0 & 0 \\
+         0 & \frac{4}{\sqrt{3}} & 0
+      }
+}
+
+\newcommand{ \Sb }[0] 
+{
+    \recip{4}
+    \mat{ cc }
+      {
+        \sqrt{15} & 0 \\
+         0 & \sqrt{3}
+      }
+}
+
+\newcommand{ \Sbinv }[0] 
+{
+    \mat{ cc }
+      {
+        \frac{4}{\sqrt{15}} & 0 \\
+         0 & \frac{4}{\sqrt{3}}
+      }
+}
+
+\newcommand{ \matrixbY}[0] 
+{
+    \mat{ rrr }
+      {
+        {\bl{ \rsthirty }}             & {\bl{ \rssix }}  & {\rd{-\rstfive }} \\
+        {\bl{ \rsfthirty }}            & {\bl{-\rssix }}  & \rzero\phantom{,} \\
+        \phantom{-}{\bl{ \rstthirty }} & {\bl{ \rstsix }} & {\rd{ \rsfive }} \\
+      }
+}
+
+\newcommand{ \matrixbYt }[0]
+{
+    \mat{ rrr }
+      {
+        {\bl{ \rsthirty }} & {\bl{ \rsfthirty }} & {\bl{ \rsfthirty }} \\
+        {\bl{ \rssix }}    & {\bl{ -\rssix }}    & {\bl{ \rssix }} \\
+        {\rd{-\rstfive }}  & \rzero              & \phantom{-}{\rd{ \rsfive }} \\
+      }
+}
+
+
+\newcommand{ \matrixbYg}[0] 
+{
+    \mat{ rrr }
+      {
+        {\bl{ \frac{e^{i\phi}} {\sqrt{30}}}} &
+        {\bl{ \frac{e^{i\theta}}   {\sqrt{6}}}}  & 
+        {\rd{ \frac{2} {5}}} \\
+        %
+        {\bl{ \frac{5 e^{i\phi}} {\sqrt{30}}}} &
+        {\bl{ \frac{-e^{i\theta}}   {\sqrt{6}}}}  & 
+        {\rd{ 0 }} \\
+        %
+        {\bl{ \frac{2 e^{i\phi}} {\sqrt{30}}}} &
+        {\bl{ \frac{2e^{i\theta}}   {\sqrt{6}}}}  & 
+        {\rd{-\frac{1} {5}}} 
+      }
+}
+
+\newcommand{ \matrixbYgi}[0] 
+{
+    \mat{ rrr }
+      {
+        {\bl{  \frac{1} {\sqrt{30}} i}} &
+        {\bl{ -\frac{1}{\sqrt{6}} i}}  & 
+        {\rd{  \frac{2} {5}}} \\
+        %
+        {\bl{ \frac{5} {\sqrt{30}} i}} &
+        {\bl{ \frac{1} {\sqrt{6}}  i}}  & 
+        {\rd{ 0 }} \\
+        %
+        {\bl{ \frac{2} {\sqrt{30}} i}} &
+        {\bl{-\frac{2} {\sqrt{6}}  i}}  & 
+        {\rd{-\frac{1} {5}}} 
+      }
+}
+
+\newcommand{ \matrixbX}[0]
+{
+    \rstwo
+    {\bl{ \mat{ rr }
+      {
+       \phantom{-}1 &  -1\\
+       1 &  1
+      }
+     }}
+}
+
+\newcommand{ \matrixbXgt}[0]
+{
+    \rstwo
+    {\bl{ \mat{ rr }
+      {
+        e^{-i\phi} &  \phantom{-}e^{-i\phi}\\
+       -e^{-i\theta} &  e^{-i\theta}
+      }
+     }}
+}
+
+\newcommand{ \matrixbXt}[0]
+{   
+    {\bl{ \rstwo \mat{ rr }
+      {
+        1 &  \phantom{-}1\\
+       -1 &  1
+      }
+     }}
+}
+%% subspace decomposition
+%% codomain
+\newcommand{ \rngbo }[0]
+{
+   {\bl{  
+    \mat{ c }
+      {
+       \recip{\sqrt{30}} \\
+       \frac{5}{\sqrt{30}} \\
+       \frac{5}{\sqrt{30}}
+      }
+    }}
+}
+
+\newcommand{ \nllbso }[0]
+{
+   {\rd{  
+    \mat{ c }
+      {
+       \recip{\sqrt{6}} \\
+       \frac{-1}{\sqrt{6}} \\
+       \frac{2}{\sqrt{6}}
+      }
+    }}
+}
+
+\newcommand{ \nllbst }[0]
+{
+   {\rd{  
+    \mat{ c }
+      {
+       \frac{-2}{\sqrt{5}} \\
+       0 \\
+       \recip{\sqrt{5}}
+      }
+    }}
+}
+
+%% domain
+\newcommand{ \rngbso }[0]
+{
+   {\bl{  
+    \mat{ c }
+      {
+       \recip{\sqrt{2}} \\
+       \frac{-1}{\sqrt{2}}
+      }
+    }}
+}
+
+\newcommand{ \rngbst }[0]
+{
+   {\bl{  
+    \mat{ c }
+      {
+       \recip{\sqrt{2}} \\
+       \recip{\sqrt{2}} 
+      }
+    }}
+}
+
+%% decomposition
+\newcommand{ \ssinv }[0] 
+{
+    \mat{ cc|c }
+      {
+         1 & 0 & 0 \\
+         0 & 1 & 0 \\\hline
+         0 & 0 & 0
+      }
+}
+
+\newcommand{ \sinvs }[0] 
+{
+    \idtwo
+}
+
+% qr decomposition
+\newcommand{ \matrixbQ}[0] 
+{
+    \rsfive
+    \mat{ cc|r }
+      {
+        \bzero & \bone  & \rtwo \\
+        \bone  & \bzero & \rzero \\
+        \bzero & \btwo  & \rminus\rone \\
+      }
+}
+
+\newcommand{ \matrixbR}[0] 
+{
+    \recip{4}
+    \mat{ cc }
+      {
+        3 & 2 \\
+        0 & \sqrt{5} \\ \hline
+        0 & 0 \\
+      }
+}
+
+\newcommand{ \matrixbQt}[0] 
+{
+    \rsfive
+    \mat{ ccc }
+      {
+        \bzero & \bone  & \bzero \\
+        \bone  & \bzero & \btwo
+      }
+}
+\newcommand{ \matrixbRinv}[0] 
+{
+    \mat{ cc }
+      {
+        \frac{4}{3} & 0 \\
+        \half & \frac{4} {\sqrt{5}}
+      }
+}
+
+%% projectors
+\newcommand{ \prab }[0]
+{
+  \recip{5}
+  \mat{rrr}
+  {
+   1 & 0 & 2 \\
+   0 & 5 & 0 \\
+   \ps2 & \ps0 & \ps4 \\
+  }
+}
+
+\newcommand{ \pnasb }[0]
+{
+  \recip{5}
+  \mat{rrr}
+  {
+   4 & 0 & -2 \\
+   0 & 0 &  0 \\
+  -2 & \ps0 &  1 \\
+  }
+}
+
+\newcommand{ \prasb }[0]
+{
+  \idtwo
+}
+
+\newcommand{ \pnab }[0]
+{
+  \gztwo
+}
+
+\newcommand{ \prabs }[0]  {\prasb}
+\newcommand{ \pnasbs }[0] {\pnab}
+\newcommand{ \prasbs }[0] {\prab}
+\newcommand{ \pnabs }[0]  {\pnasb}
+
+
+% vectors
+\newcommand{ \prabeta }[0]
+{\bl{ \recip{5}
+   \mat{c}{   \eta_{1} + 2\eta_{3} \\ 
+             5\eta_{2}             \\
+             2\eta_{1} + 4\eta_{3} } }
+}
+             
+\newcommand{ \prasbxi }[0]
+{\bl{ \mat{c}{ \xi_{1} \\ 
+               \xi_{2} } }
+}
+
+\newcommand{ \pnabxi }[0]
+{
+  \gztwo
+}
+
+\newcommand{ \pnasbeta }[0]
+{\rd{ \recip{5}
+   \mat{c}{ 4\eta_{1} - 2\eta_{3} \\ 
+            0                     \\
+           -2\eta_{1} +  \eta_{3} } }
+}
+
+\newcommand{ \pnasbetat }[0]
+{\rd{ \recip{5}
+   \mat{ccc}{ 4\eta_{1} - 2\eta_{3} & 
+               0                    &
+             -2\eta_{1} +  \eta_{3} } }
+}
+
+
+% colorized
+
+\newcommand{ \matrixbXtclr}[0]
+{
+    \mat{ rrr }
+      {
+        {\bl{\frac{1}{\sqrt{30}}}} &  {\bl{\frac{5}{\sqrt{30}}}} & {\bl{\frac{2}{\sqrt{30}}}} \\
+        {\bl{\frac{1}{\sqrt{6}}}}  & {\bl{-\frac{1}{\sqrt{6}}}}  & {\bl{\frac{2}{\sqrt{6}}}} \\
+        {\rd{\frac{2}{\sqrt{5}}}}  & {\rd{0}}                    & {\rd{-\frac{1}{\sqrt{5}}}}
+      }
+}
+
+\newcommand{ \matrixbYclr}[0] 
+{
+    \rstwo
+    \mat{ rr }
+      {
+       \bone &  \bminus \bone \\
+      \phantom{-}\bone &  \bone
+      }
+}
+
+\newcommand{ \matrixbUclri}[0]
+{
+    \mat{ rrr }
+      {
+        {\bl{\frac{1}{\sqrt{30}}}} &  {\bl{\frac{5}{\sqrt{30}}}} & {\bl{\frac{2}{\sqrt{30}}}} \\
+        {\bl{\frac{1}{\sqrt{6}}}}  & {\bl{-\frac{1}{\sqrt{6}}}}  & {\bl{\frac{2}{\sqrt{6}}}} \\
+        {\rd{\frac{2}{\sqrt{5}}}}  & {\rd{0}}                    & {\rd{-\frac{1}{\sqrt{5}}}}
+      }
+}
+
+%% SVD
+\newcommand{ \svdecompb }[0]     { \matrixbY \, \sigmab \, \matrixbXt} 
+\newcommand{ \aesvdecompb }[0]   { \A{} = \svdecompb } 
+\newcommand{ \svdecompbg }[0]    { \matrixbYg \, \sigmab \, \matrixbXgt} 
+%\newcommand{ \svdecompbg }[0]    { \matrixbY \, \sigmab \, \matrixbXgt} 
+
+\newcommand{ \svdecompbclr }[0]  { \matrixbYclr \, \sigmab \, \matrixbXtclr} 
+\newcommand{ \aesvdecompbclr }[0]{ \A{} = \svdecompb } 
+
+%% spaces
+\newcommand{ \examplebrngdo }[0] { \lst{ {\color{blue}{\rsthirty \threevecj}}, {\color{blue}{\rsfive \threeveck }}} }
+\newcommand{ \examplebnlldo }[0] { \lst{ {\color{red}{\rsfive \threevecm}} } }
+
+\newcommand{ \examplebrngco }[0] { \lst{ {\color{blue}{\rstwo \twovecb}},  {\color{blue}{\rstwo \twoveci}} } }
+\newcommand{ \examplebnllco }[0] { \lst{ {\color{red}{\zerotwo}} } }
+
+% partitions
+\newcommand{ \matrixbp }
+{
+    \recip{4}
+    \mat{ c|c }
+      {
+       0 & 1 \\
+       3 & 2 \\
+       0 & 2
+      }
+}
+
+\newcommand{ \matrixbtp }
+{
+    \recip{4}
+    \mat{ c|c|c }
+      {
+       0 & 3 & 0 \\
+       1 & 2 & 2
+      }
+}
+
+%% data vector b
+\newcommand{ \datab }[0]
+{
+    \mat{ c }
+      {
+       2 \\
+       1 \\
+       0
+      }
+}
+
+\newcommand{ \databt }[0]
+{
+    \mat{ ccc }
+      {
+       2 & 1 & 0
+      }
+}
+
+%% x_{LS}
+\newcommand{ \xlsb }[0]
+{
+   {\bl{  
+    \recip{15}
+    \mat{ c }
+      {
+        4 \\
+       24
+      }
+    }}
+}
+
+%% Ax_{LS}
+\newcommand{ \databAxls }[0]
+{
+   {\bl{ 
+    \recip{3}
+    \mat{ r }
+      {
+       1 \\
+      -1 \\
+       1
+      }
+    }}
+}
+
+%% r
+\newcommand{ \databr }[0]
+{
+    {\rd{ \recip{3}
+    \mat{ r }
+      {
+       -5 \\
+       -4 \\
+        1
+      }
+     }}
+}
+
+\newcommand{ \nllb }[0]
+{
+   {\rd{  
+    \mat{ r }
+      {
+        1 \\
+        1
+      }
+    }}
+}
+
+%% ||r||
+\newcommand{ \normbr }[0]
+{
+    \sqrt{\frac{14} {3}}
+}
+
+%% ||r||^{2}
+\newcommand{ \normbrs }[0]
+{
+    \frac{14} {3}
+}
+
+%% vectors
+\newcommand{ \vecbxa }  { {\bl{ \rstwo \mat{c}{  1\\ 1 } }} }
+\newcommand{ \vecbxb }  { {\bl{ \rstwo \mat{r}{ -1\\ 1 } }} }
+
+\newcommand{ \vecbyra }  { {\bl{ \mat{c}{ \frac{1}{} \\ 1 } }} }
+\newcommand{ \vecbyrb }  { \mat{r}{ \bminus\bone\\\bone\\\bminus\bone } }
+\newcommand{ \vecbyna }  { {\rd{ \rsfive \mat{r}{ -2 \\ 0 \\ 1 } }} }
+\newcommand{ \vecbynat } { {\rd{ \rsfive \mat{rcc}{ -2 & 0 & 1 } }} }
+
+%% 3 vectors
+\newcommand{ \vecba }      { \mat{r}{ 0\\ 3\\ 0 } }
+\newcommand{ \vecbb }      { \mat{r}{ 1\\ 2\\ 2 } }
+\newcommand{ \vecbc }      { \mat{r}{-2\\ 0\\ 1 } }
+\newcommand{ \vecbm }      { \mat{r}{ 1\\ 5\\ 2 } }
+\newcommand{ \vecbn }      { \mat{r}{ 1\\-1\\ 2 } }
+\newcommand{ \vecbo }      { \mat{r}{-2\\ 0\\ 1 } }
+
+\newcommand{ \bvecba }     { \frac{1}{4} {\bl{ \vecba }} }
+\newcommand{ \bvecbb }     { \frac{1}{4} {\bl{ \vecbb }} }
+\newcommand{ \bvecbm }     { {\bl{ \vecbm }} }
+\newcommand{ \bvecbn }     { {\bl{ \vecbn }} }
+\newcommand{ \rvecbo }     { {\rd{ \vecbo }} }
+\newcommand{ \rvecbc }     { {\rd{ \vecbc }} }
+
+\newcommand{ \obvecba }    { {\bl{ \rsthree  \vecba } } }
+\newcommand{ \obvecbb }    { {\bl{ \rsfive   \vecbb } } }
+\newcommand{ \obvecbm }    { {\bl{ \rsthirty \vecbm } } }
+\newcommand{ \obvecbn }    { {\bl{ \rssix    \vecbn } } }
+\newcommand{ \orvecbo }    { {\rd{ \rsfive   \vecbo } } }
+\newcommand{ \orvecbc }    { {\rd{ \rsfive   \vecbc } } }
+
+%% 2 vectors
+\newcommand{ \vecbd }      { \mat{c}{ 1 \\ 1} }
+\newcommand{ \vecbe }      { \mat{r}{-1 \\ 1} }
+
+\newcommand{ \bvecbd }     { \frac{1}{4} {\bl{ \mat{c}{ 0 \\ 1} }} }
+\newcommand{ \bvecbe }     { \frac{1}{4} {\bl{ \mat{c}{ 3 \\ 2} }} }
+
+\newcommand{ \obvecbd }    { \bl{ \rstwo \vecbd } }
+\newcommand{ \obvecbe }    { \bl{ \rstwo \vecbe } }
+
+\newcommand{ \obvecbdt }   { \bl{ \rstwo \mat{cc}{ 1 & 1} } }
+\newcommand{ \obvecbet }   { \bl{ \rstwo \mat{cc}{-1 & 1} } }
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+%%%%%%%%%%%
+\newcommand{ \bveca }      { \mat{r}{ 1\\ 5\\ 2 } }
+\newcommand{ \bvecb }      { \mat{r}{ 1\\-1\\ 2 } }
+\newcommand{ \bvecc }      { \mat{r}{ 2\\ 0\\-1 } }
+
+\newcommand{ \bvecat }     { \mat{ccc}{ 1 &  5 &  2 } }
+\newcommand{ \bvecbt }     { \mat{rrr}{ 1 & -1 &  2 } }
+\newcommand{ \bvecct }     { \mat{rrr}{ 2 &  0 & -1 } }
+
+\newcommand{ \obbuo }      { \bl{ \rsthirty \bveca } }
+\newcommand{ \obbut }      { \bl{ \rssix    \bvecb } }
+\newcommand{ \orbuo }      { \rd{ \rsfive   \bvecc } }
+
+\newcommand{ \obbuot }     { \bl{ \rsthirty \bvecat } }
+\newcommand{ \obbutt }     { \bl{ \rssix    \bvecbt } }
+\newcommand{ \orbuot }     { \rd{ \rsfive   \bvecct } }
+
+%%%%%%%%%%%
+%%%%%%%%%%%
+\newcommand{ \bvecd }      { \mat{c} { 1\\ 1 } }
+\newcommand{ \bvece }      { \mat{r} {-1\\ 1 } }
+
+\newcommand{ \bvecdt }     { \mat{cc}{ 1 & 1 } }
+\newcommand{ \bvecet }     { \mat{cc}{-1 & 1 } }
+
+\newcommand{ \obbvo }      { \bl{ \rstwo \bvecd } }
+\newcommand{ \obbvt }      { \bl{ \rstwo \bvece } }
+\newcommand{ \obbvot }     { \bl{ \rstwo \bvecdt } }
+\newcommand{ \obbvtt }     { \bl{ \rstwo \bvecet } }
+
+
+
+\endinput

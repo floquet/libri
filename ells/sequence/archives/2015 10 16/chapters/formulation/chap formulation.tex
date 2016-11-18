@@ -1,0 +1,176 @@
+\chapter{The linear least squares problem}
+
+\section*{Problem statement}
+Find the amplitudes.
+Trial function. Consider the case where the function $y\colon\real{}\mapsto\real{}$ and the variable $x\in\real{}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y\paren{x} = \alpha_{0} f_{0}(x) + \alpha_{1} f_{1}(x) + \cdots + \alpha_{d} f_{d}\paren{x}
+    %\end{split}
+    \label{eqn:generic trial function}
+  \end{equation}
+% = =
+For example, in the familiar problem of linear regression $d=1$ and the fitting functions are 
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      f_{0}(x) &= 1, \\
+      f_{1}(x) &= x.
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The trial function is then
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y\paren{x} = \alpha_{0} + \alpha_{1} x.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Colloquially we might say the goal of linear least squares is ``to find the alphas.''
+
+\section{Definition}  %  S  S  S  S  S  S  S  S  S  S  S
+Let us begin straightaway with a definition for the linear least squares problem. The linear system of interest is cast as
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{}\, \alpha = b
+    \label{eqn:ax=b}
+  \end{equation}
+  % = =
+which has three elements:
+\begin{enumerate}
+\item A \emph{system matrix} $\aicmn$ which encodes measurement locations or times,
+\item A \emph{data vector} $b \icm$ which encodes the measurements, 
+\item A \emph{solution vector} $\alpha\in\cmplx{n}$, the desired solution.
+\end{enumerate}
+
+If the data vector $b$ is in the range space of the matrix $\A{}$, that is if
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \bl{b} \in \brnga{}
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+then there is a direct solution and no need to use the method of least squares. In the general case we must consider a data vector which projects into the null space:
+  % = =  e q u a t i o n
+  \begin{equation*}
+    b \in \brnga{} \oplus \rnlla{*} .
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+There is no direct solution to \eqref{eqn:ax=b}. We generalize the equation and instead of demanding the equality be satisfied, we instead ask for the nearest solution, depicted in figure \eqref{fig:projection onto range}. This is the orthogonal projection onto the range space $\brnga{}$.
+
+A more precise definition for the least squares solution $\xls$ is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = \lsmin .
+    \label{eqn:definition}
+  \end{equation}
+  % = =
+Hence the eponym ``least squares'' describes minimizing the square of the errors. This solution may be a point or hyperplane.
+
+\input{\pathchapter formulation/"fig The least squares solution is"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+%\input{chapters/XXX/"sec YYY"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+
+\section[The \ft]{The \ftola}  %  S  S  S  S  S  S  S  S  S  S  S
+There are many ways to state the \ftola, the bedrock of linear algebra theory. Start with the canonical $\aicmn$
+  % = =  e q u a t i o n
+  \begin{equation}
+  \begin{split}
+    \cmplx{m} &=\brnga{}\oplus\rnlla{*} \qquad \text{column space} \\
+    \cmplx{n} &=\brnga{*}\oplus\rnlla{} \qquad \text{row space} \\
+    \label{eqn:ftola}
+  \end{split}
+  \end{equation}
+  % = =
+\input{\pathtables "tab subspace decomposition"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathtables "tab ftola"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{}  &\colon \cmplxn \mapsto \cmplxm \\
+      \A{*} &\colon \cmplxm \mapsto \cmplxn 
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+\section[General solution]{General solution to the least squares problem}  %  S  S  S  S  S  S  S  S  S  S  S
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    x_{LS} = \solnls{b}{y}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+where the arbitrary vector $y\in\cmplxn$
+
+\section[Is the best fit a good fit?]{Is the best fit a good fit?}  %  S  S  S  S  S  S  S  S  S  S  S
+We have chosen the linear model. But what does Nature choose?
+
+\input{\pathchapter "formulation"/"sec svd"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+
+\section{Normal equations}  %  S  S  S  S  S  S  S  S  S  S  S
+The normal equations offer additional insight into the least squares problem.
+  % = =  e q u a t i o n
+  \begin{equation*}
+    b \in \brnga{} \oplus \rnlla{*}
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \axeb \quad \Rightarrow \quad \wx{*}x = \A{*}b
+    %\label{eqn:}
+  \end{equation}
+  % = = 
+Certainly the vector $\bl{\A{*}b}$ is in the range space of $\A{*}$.
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \bl{\A{*}b} \in \bl{\rng{\A{*}}}
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+
+But keep in mind that we are solving a different formulation and we pay a penalty.
+
+The normal equations provide useful identities regarding the weighted sums of the residuals. The trial function in \eqref{eqn:generic trial function} generates the merit function
+  % = =  e q u a t i o n
+  \begin{equation}
+  \begin{split}
+    \chi^{2}\paren{\alpha} = \sum_{k=1}^{m}r_{k}^{2} 
+      & = \sum_{k=1}^{m}\paren{y\paren{x_{k}} - y_{k}}^{2} \\
+      & = \sum_{k=1}^{m}\paren{\sum_{j=0}^{d}\alpha_{j}f_{j}(x_{k}) - y_{k}}^{2}
+    %\label{eqn:}
+  \end{split}
+  \end{equation}
+  % = =
+The derivatives of the merit function must simultaneously be 0 and this property generates the summation rules
+  % = =  e q u a t i o n
+  \begin{equation}
+    \partial_{j}\chi^{2}=0 \quad \Rightarrow \quad \sum_{k=1}^{m}r_{k} f_{j}\paren{x_{k}} = 0, \qquad j=0,1,\dots d
+    %\label{eqn:}
+  \end{equation}
+  % = =
+For example when one of the basis functions is a constant function we know that the sum of the residuals must be 0:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sum_{k=1}^{m}r_{k} = 0
+    %\label{eqn:}
+  \end{equation}
+  % = =
+This provides a check on the least squares solution and will lead to an important regularization method in zonal reconstruction.
+
+We can often exploit average values to make simple checks on the parameters $\alpha$
+  % = =  e q u a t i o n
+  \begin{equation}
+    \overline{y} = \alpha_{0} \overline{f_{0}(x)} + \alpha_{1} \overline{f_{1}(x)} + \cdots + \alpha_{d} \overline{f_{d}\paren{x}}
+    \label{eqn:average}
+  \end{equation}
+  % = =
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

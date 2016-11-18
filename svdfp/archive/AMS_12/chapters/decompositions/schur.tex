@@ -1,0 +1,145 @@
+\section{Schur decomposition}
+
+%%
+\subsection{Theory}
+The Schur decomposition deals only with square matrices. So given 
+\begin{equation}
+  \A{}\in\cmplx{\by{m}{m}}_{\rho}
+\end{equation}
+the Schur theorem states that there is a unitary matrix $\U{}$ that satisfies the similarity transformation
+\begin{equation}
+  \U{*}\A{}\,\U{} = \T{}
+\end{equation}
+with the matrix $\T{}$ being upper triangular.
+
+In conversational mathematics
+\begin{quote}
+  Every square matrix is unitarily similar to an upper-triangular matrix.
+\end{quote}
+
+%%
+\subsection{Example}
+You can check that
+\begin{equation}
+  \begin{array}{ccccc}
+    \A{}&=&\U{}&\T{}&\U{*}\\
+    \frac{1}{2}\mat{cc}{2-i & -1 \\ i & 2 + i}&=&
+    \frac{1}{\sqrt{2}}\mat{rr}{-i&1\\i&1}&
+                      \mat{cc}{1&1\\0&1}&
+    \frac{1}{\sqrt{2}}\mat{rr}{i&-i\\1&1}.
+  \end{array}
+  \label{eq:decomp:schur}
+\end{equation}
+
+%%
+\subsection{Application}
+Solve a simple linear system using the Schur decomposition above in equation \eqref{eq:decomp:schur}. The linear system is the following
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x&=&b\\
+    \frac{1}{2}\mat{cc}{2-i & -1 \\ i & 2 + i}&\mat{r}{x_{1}\\x_{2}}&
+    =&\mat{r}{1\\1}
+  \end{array}
+  \label{eq:schur:app}
+\end{equation}
+
+The inverse of the target matrix is quickly assembled from the Schur decomposition:
+\begin{equation}
+  \A{-1}=\paren{\U{}\,\T{}\,\U{*}}^{-1}=\paren{\U{*}}^{-1}\paren{\T{}}^{-1}\paren{\U{}}^{-1}=\U{}\,\T{-1}\U{*}.
+\end{equation}
+
+The solution to equation \eqref{eq:schur:app} follows after the inversion of the matrix $\T{}$. Specifically we see that
+\begin{equation}
+  \begin{split}
+    x &= \A{-1}b\\
+      &= \U{}\,\T{-1}\U{*} b\\
+      &= \frac{1}{\sqrt{2}}\mat{rr}{-i&1\\i&1}
+                      \mat{rr}{1&-1\\0&1}
+    \frac{1}{\sqrt{2}}\mat{rr}{i&-i\\1&1}\mat{c}{1\\1}\\
+    & = \mat{c}{1+i\\1-i}.
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Connection to the SVD}
+Go back to equation \eqref{eq:A}. If we have the \svdl \ then we can assemble the Schur decomposition of the product matrices. These matrices are
+\begin{equation*}
+  \begin{split}
+    \W{x} &= \A{T}\A{} = \Atexample\Aexample = \mat{rrr}
+    {
+  3 & -3  \\
+ -3 &  3},\\
+    \W{y} &= \A{}\A{T} = \Aexample\Atexample = \mat{rrr}
+    {
+  2 & -2 &  2 \\
+ -2 &  2 & -2 \\
+  2 & -2 &  2}.
+  \end{split}
+\end{equation*}
+
+To refresh, the \svdl \ for the target matrix is
+\begin{equation}
+  \begin{split}
+    \svda{T} \\
+    \Aexample &= \Yshade\Sigmaexampleb\Xshade.
+  \end{split}
+\end{equation}
+
+In terms of the \svdl \ the first product matrix takes the form
+\begin{equation}
+  \W{x} = \A{T}\A{} = \paren{\svdt{T}}\paren{\svd{T}} = \Y{}\,\sig{T}\sig{}\,\Y{T}.
+\end{equation}
+This is the Schur decomposition with the unitary matrix played by the codomain matrix and the upper triangular matrix given as
+\begin{equation}
+  \T{} = \sig{T}\,\sig{}.
+\end{equation}
+In the most general case with complex domain matrices the relationship between the SVD and Schur decomposition is
+\begin{equation}
+  \begin{split}
+    \W{x} &= \U{}\,\T{}\,\U{*}\\
+      &= \Y{}\,\sig{}\,\sig{T}\,\Y{T}.
+  \end{split}
+\end{equation}
+As you might imagine the other product matrix is breaks down as follows
+\begin{equation}
+  \begin{split}
+    \W{y} &= \U{}\,\T{}\,\U{*}\\
+      &= \X{}\,\sig{T}\sig{}\,\X{*}.
+  \end{split}
+\end{equation}
+The triangular matrices of interest are these
+\begin{equation}
+  \begin{split}
+    \sig{T}\sig{} &= \mat{c|c}{6&0\\\hline0&0}, \\
+    \sig{}\sig{T} &= \mat{c|cc}{6&0&0\\\hline0&0&0\\0&0&0}. \\
+  \end{split}
+\end{equation}
+
+Given the SVD you can assemble the Schur decomposition for either product matrix. However, both Schur decompositions are needed to gather an SVD.
+
+The Schur decomposition is not unique. You can verify that this version also provides the correct product:
+\begin{equation}
+  \W{x} = \U{}\,\T{}\,\U{*} = 
+  \mat{>{\columncolor{ltgray}}rr>{\columncolor{ltgray}}r}
+  {
+  -\frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & 0 \\
+  -\frac{1}{\sqrt{6}} &  \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} \\
+   \frac{1}{\sqrt{6}} & -\frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}}
+  }
+  \mat{ccc}
+  {
+  0 & 0 & 0 \\
+  0 & 6 & 0 \\
+  0 & 0 & 0
+  }
+  \mat{rrr}
+  {
+  \rowcolor{ltgray}
+  -\frac{2}{\sqrt{6}} & -\frac{1}{\sqrt{6}} &  \frac{1}{\sqrt{6}} \\      
+  -\frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{3}} \\
+  \rowcolor{ltgray}
+   0 &                   \frac{1}{\sqrt{2}} &  \frac{1}{\sqrt{2}}
+  }.
+\end{equation}
+
+\endinput

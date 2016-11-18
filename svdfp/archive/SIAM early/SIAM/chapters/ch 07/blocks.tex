@@ -1,0 +1,107 @@
+\clearpage
+\break
+
+\section{Block structures}
+It's important to understand the block structures of matrices and Jordan's photo offers a new perspective because we will be able to recognize the image in the various submatrices. While the concept seems trivial it is all too often a stumbling block. 
+
+In the following table we will use white squares to represent a block on information. It may be any on of the matrices $\A{}$, $\Y{}$, $\sig{}$, or $\X{}$. The black squares represent a matrix of zeros of the proper dimension. Square brackets wrapping a matrix indicate that in has a block structure built upon the referenced data matrix. We will look at the following block forms:
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccccc}
+  $\brac{\A{}}$ &=& $\brac{\Y{}}$ & $\brac{\sig{}}$ & $\brac{\X{T}}$\\
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks diag"} &&
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks diag"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks diag"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks diag"} \\
+  %%%
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks all"} &&
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks col 1"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks diag"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks row 1"} \\
+  %%%
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks row 2"} &&
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks lrhc"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks lrhc"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks row 2"} \\
+  %%%
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks col 2"} &&
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks col 2"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks lrhc"} &
+  \includegraphics[ width = 1in ]{pdf/"ch 06"/blocks/"blocks lrhc"} \\
+  %%%
+\end{tabular}
+\end{center}
+\label{tab:jordan:blocks:basic}
+\caption[The block forms we will examine]{The block forms we will examine.}
+\end{table}%
+
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c}
+$
+\mat{cc}{\A{} & \zero \\ \zero & \A{}} =
+\mat{cc}{\Y{} & \zero \\ \zero & \Y{}}
+\mat{cc}{\sig{} & \zero \\ \zero & \sig{}}
+\mat{cc}{\X{} & \zero \\ \zero & \X{}}^{\TT}
+$ \\[20pt]
+\includegraphics[ width = 4in ]{pdf/"ch 06"/blocks/"blocks diagonal".png}
+%%
+\end{tabular}
+\end{center}
+\caption[Block diagonal structure]{Block diagonal structure.}
+\label{tab:Jordan:diagonal}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c}
+$
+\mat{cc}{\A{} & \A{} \\ \A{} & \A{}} =
+\mat{cc}{\Y{} & \zero \\ \Y{} & \zero}
+\mat{cc}{\sig{} & \zero \\ \zero & \sig{}}
+\mat{cc}{\X{} & \zero \\ \X{} & \zero}^{\TT}
+$ \\[20pt]
+\includegraphics[ width = 4in ]{pdf/"ch 06"/blocks/"blocks full"}
+%%
+\end{tabular}
+\end{center}
+\caption[Full block structure]{Full block structure.}
+\label{tab:Jordan:full}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c}
+$
+\mat{cc}{\zero & \zero \\ \A{} & \A{}} =
+\mat{cc}{\zero & \zero \\ \zero & \Y{}}
+\mat{cc}{\zero & \zero \\ \zero & \sig{}}
+\mat{cc}{\zero & \X{} \\ \zero & \X{}}^{\TT}
+$ \\[20pt]
+\includegraphics[ width = 4in ]{pdf/"ch 06"/blocks/"blocks row".png}
+%%
+\end{tabular}
+\end{center}
+\caption[Block row structure]{Block row structure.}
+\label{tab:Jordan:row}
+\end{table}%
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{c}
+$
+\mat{cc}{\zero & \A{} \\ \zero & \A{}} =
+\mat{cc}{\zero & \Y{} \\ \zero & \Y{}}
+\mat{cc}{\zero & \zero \\ \zero & \sig{}}
+\mat{cc}{\zero & \zero \\ \zero & \X{}}^{\TT}
+$ \\[20pt]
+\includegraphics[ width = 4in ]{pdf/"ch 06"/blocks/"blocks col".png}
+%%
+\end{tabular}
+\end{center}
+\caption[Block column structure]{Block column structure.}
+\label{tab:Jordan:row}
+\end{table}%
+
+\endinput

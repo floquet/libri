@@ -1,0 +1,44 @@
+\section{Back to vectors}
+Back in section \eqref{sec:vectors} we constructed decompositions for vectors. This leads to speculation about the pseudoinverse for vectors. Does the pseudoinverse exist? What does the pseudoinverse look like? What is the action of the pseudoinverse on the target vector?
+
+Start with the decomposition in \eqref{eq:cases:2vdecomp}:
+\begin{equation*}
+  \begin{split}
+    \svda{T}\\
+    \mat{c}{1\\\frac{1}{2}} &= \paren{\frac{1}{\sqrt{5}}\mat{rr}{2&-1\\1&2}}\mat{c}{\frac{\sqrt{5}}{2}\\0}\mat{c}{1}.
+  \end{split}
+\end{equation*}
+
+The candidate pseudoinverse is this:
+\begin{equation}
+  \begin{split}
+    \mpgia{T}\\
+    \mat{cc}{1&\frac{1}{2}} &=\mat{c}{1}\mat{cc}{\frac{\sqrt{5}}{2}&0}\frac{1}{\sqrt{5}}\mat{rr}{2&1\\-1&2}.
+  \end{split}
+\end{equation}
+
+The actions of this ``inverse'' are the outer and inner products:
+\begin{equation}
+  \begin{split}
+    \rightinv&=v\,v^{\mathrm{T}}=\mat{c}{1\\\frac{1}{2}}\mat{cc}{1&\frac{1}{2}}=\mat{cc}{1&\frac{1}{2}\\\frac{1}{2}&\frac{1}{4}},\\
+    \A{+}\A{}&=v^{\mathrm{T}}\,v=\mat{cc}{1&\frac{1}{2}}\mat{c}{1\\\frac{1}{2}} = \frac{5}{4}.
+  \end{split}
+  \label{eq:mpp:products}
+\end{equation}
+
+Do this construction satisfy the Penrose conditions? Start with the first condition:
+\begin{equation}
+  \begin{split}
+    \A{}\paren{\A{+}\A{}}&=\A{}\\
+    \mat{c}{1\\\frac{1}{2}}\frac{5}{4}
+    &\ne\mat{cc}{1\\\rtwo}\\
+  \end{split}
+\end{equation}
+Clearly then the transpose is not a pseudoinverse due to failure to satisfy all four \index{pseudoinverse!Penrose conditions}Penrose conditions.
+
+We can quickly see from equations \eqref{eq:mpp:products} that the third and fourth conditions are satisfied. However, all four conditions must be satisfied. The vector transpose is \textit{not} a pseudoinverse.
+
+
+
+
+\endinput

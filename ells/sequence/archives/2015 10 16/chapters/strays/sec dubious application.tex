@@ -1,0 +1,83 @@
+\section{\label{sec:dubious}Dubious applications}
+Let's explore the application of linear methods to nonlinear problems.
+Laboratory constrains mathematics. You inherit a spreadsheet and are asked to do basic analysis.
+
+% SUBSECTION
+\subsection{First analysis}
+\input{\pathtables "tab dubious data and soln"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+Thin lens equation
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x\paren{r+e} = -f^{2}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Trial function
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \phi + e x = -x r
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Physical fact
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \abs{\phi} = f^{2}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Linear system
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} z &= b\\
+      \mat{cc}{1 & x_{1} \\ \vdots & \vdots \\ 1 & x_{m}}
+      \mat{c}{\phi \\ e} &= 
+     -\mat{c}{x_{1}R_{1} \\ \vdots \\ x_{m}R_{m}}
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The expected focal length is $f=1$ m.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      f_{measured} = 0.963 \pm 0.062 \text{ m}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+\input{\pathtables "tab problem statement dubious"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathtables "tab results dubious"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious fit"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious residuals"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious merit"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious random"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+\clearpage
+% SUBSECTION
+\subsection{Second analysis}
+\input{\pathtables "tab dubious II data and soln"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathtables "tab results dubious II"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious II fit"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious II residuals"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious II merit"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig dubious II random"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      f_{measured} = 1.0023 \pm 0.0042 \text{ m}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Precision improves by an order of magnitude when the point at the origin is excluded. The exclusion criteria is based on the statistics of the data set, not difficulty in the measurement.
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

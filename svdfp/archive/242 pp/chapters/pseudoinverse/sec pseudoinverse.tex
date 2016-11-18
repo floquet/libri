@@ -1,0 +1,35 @@
+\section{The pseudoinverse}
+
+In the chapter on least squares we see that linear systems which do not have an inverse can still yield a solution if we relax the solution criteria. Instead of asking for the vector $x$ which produces
+\begin{equation*}
+  \axeb
+\end{equation*}
+we ask for the vector $x$ which minimizes
+\begin{equation}
+  \minimum
+\end{equation}
+As we generalize the concept of solution we can also generalize the concept of a matrix inverse. In fact in \S \eqref{sec:ls:SVD} we see how a generalized solution produces a generalized inverse. We call such a quantity a pseudoinverse.
+
+%%%%%%%%
+\section{Constructing the pseudoinverse}
+The pseudoinverse has a natural definition in terms of the SVD. Given the decomposition
+\begin{equation*}
+  \aesvd{*},
+\end{equation*}
+the pseudoinverse is defined as
+\begin{equation}
+  \apempp{*}.
+\end{equation}
+Notice this form is more general than that in equation \eqref{eq:mpptsvd} where the \ns \ contributions are ignored. The two forms are equivalent in that they produce the exact same matrix $\Ap$.
+
+Table \eqref{tab:mpp exemplars} shows the four different formats for the \ns \ components of the pseudoinverse. Just as in the case for the \asvd, the zero \emph{columns} of the $\sig{}$ matrix silence the \ns \ contribution of $\rnlla{}$. The zero \emph{rows} of the $\sig{}$ matrix silence the \ns \ contribution of $\rnlla{*}$. We can use the example matrices to construct each type.
+
+%%
+\input{chapters/pseudoinverse/"tab exemplars of the pseudoinverse"}
+\input{chapters/pseudoinverse/"tab constructing the pseudoinverse from the svd"}
+
+
+
+
+
+\endinput

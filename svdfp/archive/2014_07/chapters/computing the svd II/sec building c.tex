@@ -1,0 +1,68 @@
+\section{Example: matrix (c)}
+\label{sec:svd:c}
+The target matrix $\dimsc$:
+\begin{equation}
+  \A{} = \matrixc.
+\end{equation}
+This matrix has full row and full column rank, therefore the corresponding \ns s are trivial
+\begin{equation}
+  \begin{split}
+    \rnlla{*} &= \trivial, \\
+    \rnlla{ } &= \trivial,
+  \end{split}
+\end{equation}
+and the \asvd \ takes the form
+\begin{equation}
+  \A{} = \svdblockbf{*}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 1: singular values}
+The Hermitian conjugate and the product matrix are
+\begin{equation}
+  \A{*} = \matrixct, \quad \wv = \wx{*} = \wxc.
+\end{equation}
+The general prescription for the \asvd \ dictates that we diagonalize the matrix $\wx{*}$. However, we see that the complimentary product matrix is already in a diagonal form:
+\begin{equation}
+  \wu = \wy{*} = \wyc.
+\end{equation}
+In such cases the eigenvalues are the diagonal entries.
+As we will see in chapter ???, the product matrices share the same nonzero eigenvalues. This means that we may use either matrix to find the singular values. Of course, we should choose the matrix which offers the quickest solution, here $\wu$.
+\begin{equation}
+  \sigma = \sqrt{\lambda\paren{\wu}} = \sqrt{\lst{8,2}} = \sqrt{2}\lst{2, 1}.
+\end{equation}
+Since there are \ns s the $\sig{}$ matrix is identical to the $\ess{}$ matrix:
+\begin{equation}
+  \sig{} = \ess{} = \sigmac.
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 2: $\brnga{*}$}
+Find the eigenvectors corresponding to the eigenvalues $\lambda$.
+\begin{equation*}
+  \paren{\wv - \lambda_{k}} {\bl{ u_{k} }} = \zerotwo, \quad k=1,2.
+\end{equation*}
+%
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 3: $\brnga{}$}
+
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 4: $\rnlla{*}$, $\rnlla{}$}
+Since the matrix has full column rank the \ns \ $\rnlla{}$ is trivial. Since the matrix has full row rank the \ns \ $\rnlla{*}$ is trivial.
+
+\begin{equation}
+  \aesvdecompc
+\end{equation}
+
+
+\endinput

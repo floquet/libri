@@ -1,0 +1,178 @@
+\documentclass[10pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\geometry{landscape}
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\input{declarations}
+
+\title{Measuring the gradient}
+\author{Examples}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{$n=2$}
+\begin{equation}
+    \A{}=
+\left(
+\begin{array}{rrr}
+ -1 & 1 & 0 \\
+ 0 & -1 & 1
+\end{array}
+\right), \qquad
+    \A{\dagger}=\frac{1}{2}
+\left(
+\begin{array}{rr}
+ -2 & -1 \\
+ 1 & -1 \\
+ 1 & 2
+\end{array}
+\right)
+\end{equation}
+\begin{equation}
+  \A{}=\Y{}\,\Sigma\,\X{T} =
+\frac{1}{\sqrt{2}}
+\left(
+\begin{array}{rr}
+ -1 & 1 \\
+ 1 & 1
+\end{array}
+\right)\left(
+\begin{array}{rrr}
+ \sqrt{3} & 0 & 0 \\
+ 0 & 1 & 0
+\end{array}
+\right)
+\left(
+\begin{array}{l}
+ \frac{1}{\sqrt{6}} \mat{ccc}{1&-2&1} \\
+ \frac{1}{\sqrt{2}} \mat{ccc}{-1&0&1} \\
+ \frac{1}{\sqrt{3}} \mat{ccc}{1&1&1}
+\end{array}
+\right)
+\end{equation}
+\begin{equation}
+  \Phi=\A{\dagger}\Y{}=
+\mat{c}{-2 y_1-y_2\\y_1-y_2\\y_1+2 y_2}
+\end{equation}
+
+%%%%
+\section{$n=3$}
+\begin{equation}
+    \A{}=
+\left(
+\begin{array}{rrrr}
+ -1 & 1 & 0 & 0 \\
+ 0 & -1 & 1 & 0 \\
+ 0 & 0 & -1 & 1
+\end{array}
+\right), \qquad
+    \A{\dagger}=\frac{1}{12}
+\left(
+\begin{array}{rrr}
+ -9 & -6 & -3 \\
+ 3 & -6 & -3 \\
+ 3 & 6 & -3 \\
+ 3 & 6 & 9
+\end{array}
+\right)
+\end{equation}
+\begin{equation}
+  \A{}=\Y{}\,\Sigma\,\X{T} =
+\left(
+\begin{array}{ccc}
+ \frac{1}{2} & -\frac{1}{\sqrt{2}} & \frac{1}{2} \\
+ -\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+ \frac{1}{2} & \frac{1}{\sqrt{2}} & \frac{1}{2}
+\end{array}
+\right)
+\left(
+\begin{array}{cccc}
+ \sqrt{2+\sqrt{2}} & 0 & 0 & 0 \\
+ 0 & \sqrt{2} & 0 & 0 \\
+ 0 & 0 & \sqrt{2-\sqrt{2}} & 0
+\end{array}
+\right)
+\left(
+\begin{array}{cccc}
+ -\frac{1}{2 \sqrt{2+\sqrt{2}}} & \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{2}}} & -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{2}}} & \frac{1}{2 \sqrt{2+\sqrt{2}}} \\
+ \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\
+ -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{2}}} & -\frac{1}{2} \sqrt{1-\frac{1}{\sqrt{2}}} & \frac{1}{2} \sqrt{1-\frac{1}{\sqrt{2}}} & \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{2}}} \\
+ \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2}
+\end{array}
+\right)
+\end{equation}
+\begin{equation}
+  \Phi=\A{\dagger}\Y{}=\frac{1}{12}
+\mat{c}{-9 y_1-6 y_2-3 y_3\\3 y_1-6 y_2-3 y_3\\3 y_1+6 y_2-3 y_3\\3 y_1+6 y_2+9 y_3}
+\end{equation}
+
+%%%%
+\section{$n=4$}
+\begin{equation}
+    \A{}=
+\left(
+\begin{array}{rrrrr}
+ -1 & 1 & 0 & 0 & 0 \\
+ 0 & -1 & 1 & 0 & 0 \\
+ 0 & 0 & -1 & 1 & 0 \\
+ 0 & 0 & 0 & -1 & 1
+\end{array}
+\right), \qquad
+    \A{\dagger}=\frac{1}{15}
+\left(
+\begin{array}{rrrr}
+ -12 & -9 & -6 & -3 \\
+ 3 & -9 & -6 & -3 \\
+ 3 & 6 & -6 & -3 \\
+ 3 & 6 & 9 & -3 \\
+ 3 & 6 & 9 & 12
+\end{array}
+\right)
+\end{equation}
+\begin{equation}
+\begin{split}
+  \A{}&=\Y{}\,\Sigma\,\X{T} \\
+\Y{}&=
+\left(
+\begin{array}{cccc}
+ -\frac{1}{\sqrt{5+\sqrt{5}}} & \frac{1}{\sqrt{5-\sqrt{5}}} & -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & \frac{1}{\sqrt{5+\sqrt{5}}} \\
+ \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & -\frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & -\frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} \\
+ -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & -\frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & \frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} \\
+ \frac{1}{\sqrt{5+\sqrt{5}}} & \frac{1}{\sqrt{5-\sqrt{5}}} & \frac{1}{\sqrt{5-\sqrt{5}}} & \frac{1}{\sqrt{5+\sqrt{5}}}
+\end{array}
+\right)\\
+\Sigma&=
+\left(
+\begin{array}{ccccc}
+ \sqrt{\frac{1}{2} \left(5+\sqrt{5}\right)} & 0 & 0 & 0 & 0 \\
+ 0 & \frac{1}{2} \left(1+\sqrt{5}\right) & 0 & 0 & 0 \\
+ 0 & 0 & \sqrt{\frac{1}{2} \left(5-\sqrt{5}\right)} & 0 & 0 \\
+ 0 & 0 & 0 & \frac{1}{2} \left(-1+\sqrt{5}\right) & 0
+\end{array}
+\right)\\
+\X{T}&=
+\left(
+\begin{array}{ccccc}
+ \frac{1}{\sqrt{5 \left(3+\sqrt{5}\right)}} & -\frac{1}{2} \sqrt{\frac{3}{5}+\frac{1}{\sqrt{5}}} & \sqrt{\frac{2}{5}} & -\frac{1}{2} \sqrt{\frac{3}{5}+\frac{1}{\sqrt{5}}} & \frac{1}{\sqrt{5 \left(3+\sqrt{5}\right)}} \\
+ -\frac{1}{\sqrt{5+\sqrt{5}}} & \frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & 0 & -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & \frac{1}{\sqrt{5+\sqrt{5}}} \\
+ \frac{1}{\sqrt{15-5 \sqrt{5}}} & -\frac{1}{2} \sqrt{\frac{1}{5} \left(3-\sqrt{5}\right)} & -\sqrt{\frac{2}{5}} & -\frac{1}{2} \sqrt{\frac{1}{5} \left(3-\sqrt{5}\right)} & \frac{1}{\sqrt{15-5 \sqrt{5}}} \\
+ -\frac{1}{2} \sqrt{1+\frac{1}{\sqrt{5}}} & -\frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & 0 & \frac{1}{2} \sqrt{1-\frac{1}{\sqrt{5}}} & \frac{1}{\sqrt{5-\sqrt{5}}} \\
+ \frac{1}{\sqrt{5}} & \frac{1}{\sqrt{5}} & \frac{1}{\sqrt{5}} & \frac{1}{\sqrt{5}} & \frac{1}{\sqrt{5}}
+\end{array}
+\right)
+\end{split}
+\end{equation}
+\begin{equation}
+  \Phi=\A{\dagger}\Y{}=\frac{1}{60}
+\mat{c}{-48 y_1-36 y_2-24 y_3-12 y_4\\12 y_1-36 y_2-24 y_3-12 y_4\\12 y_1+24 y_2-24 y_3-12 y_4\\12 y_1+24 y_2+36 y_3-12 y_4\\12 y_1+24 y_2+36 y_3+48 y_4
+}
+\end{equation}
+
+\end{document}  

@@ -1,0 +1,33 @@
+\section{Basis vectors}
+The column vectors of the domain matrices $\X{}$ and $\Y{}$ are an orthonormal span of a space such as $\cmplx{2}, \ \cmplx{3}$, etc. This is a bit abstract and helps to perpetuate a myth that one mustbe a hierophant to interpret these matrices. On the contrary, these orthogonal matrices have elementary interpretations. 
+
+Start with a \vv \ and look at the action the generic domain matrix $\X{}$ has upon this test vector. We will interpret these matrices as being
+\begin{enumerate}
+\item reflections,
+\item rotation,
+\item permutations, or
+\item compositions of these actions.
+\end{enumerate} 
+A \emph{rotation} of the vector through an angle $\theta$ looks like this:
+\begin{equation}
+  \rot \xi = \mat{cr}{\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta}
+  \mat{c}{\xi_{1} \\ \xi_{2}} =
+  \mat{r}{\xi_{1}\cos \theta  - \xi_{2} \sin \theta \\ \xi_{1}\sin \theta + \xi_{2}\cos \theta}.
+\end{equation}
+An arbitrary reflection goes through a line. Taking the complex conjugate of a number $z$ reflects the point through the real axis. A \emph{reflection} of the vector through a line is:
+\begin{equation}
+  \mat{cr}{1 & 0 \\ 0 & -1}
+  \mat{c}{\xi_{1} \\ \xi_{2}} =
+  \mat{r}{\xi_{1} \\ -\xi_{2}}.
+\end{equation}
+A permutation remaps the indices of the components. For example
+\begin{equation}
+  \ktwo \xi = \mat{c}{\xi_{2} \\ \xi_{1}},
+\end{equation}
+where the component indices went from $\lst{1,2} \to  \lst{2,1}$.
+
+One point to keep firmly in grasp is that the column vectors will all lie upon a circle. In higher dimensions they will lie upon an $n-$sphere. Also, there will alway be a right angle between these vectors. When we measure the angle by going from vector 1 to vector 2 we realize that this orientation can be clockwise or counter-clockwise. What does this mean?
+
+
+
+\endinput

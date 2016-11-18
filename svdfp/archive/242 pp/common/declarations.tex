@@ -1,0 +1,83 @@
+\newtheorem{myDefinition}{Definition}
+\newtheorem{myTheorem}{Theorem}
+\newtheorem{myLemma}{Lemma}
+
+% other definitions
+\input{\fullpath/A}
+\input{\fullpath/abbreviations}
+\input{\pathname/"bold letters"}
+\input{\fullpath/colors}
+\input{\fullpath/"convolution kernels"}
+\input{\fullpath/delimiters}
+\input{\fullpath/"dirac definitions"}
+\input{\pathname/"example a matrices"}
+\input{\pathname/"example b matrices"}
+\input{\pathname/"example c matrices"}
+\input{\pathname/ftola}
+\input{\fullpath/"gellmann definitions"}
+\input{\fullpath/"jordan forms"}
+\input{\fullpath/hilbert}
+\input{\fullpath/norms}
+\input{\fullpath/numbers}
+\input{\pathname/reciprocals}
+\input{\pathname/spaces}
+\input{\pathname/"least squares"}
+\input{\pathname/"matrix basics"}
+\input{\pathname/"matrix decompositions"}
+\input{\pathname/"sigma matrices"}
+\input{\pathname/"svd forms"}
+\input{\pathname/vectors}
+
+% stray commands
+\newcommand{\bevrotp}[0] { \sqrt{ \half + \frac{23}{\sqrt{2341} } } }
+\newcommand{\bevrotm}[0] { \sqrt{ \half - \frac{23}{\sqrt{2341} } } }
+
+\newcommand{\oto}[0]     { \mathbf{1}^{\mathrm{T}} \mathbf{1} }
+\newcommand{\xto}[0]     {          x^{\mathrm{T}} \mathbf{1} }
+\newcommand{\otx}[0]     { \mathbf{1}^{\mathrm{T}} x }
+\newcommand{\xtx}[0]     {          x^{\mathrm{T}} x }
+ 
+\newcommand{\cost}[0]    { \cos \theta }
+\newcommand{\sint}[0]    { \sin \theta }
+\newcommand{\costs}[0]   { \cos^{2} \theta }
+\newcommand{\sints}[0]   { \sin^{2} \theta }
+\newcommand{\cst}[0]     { \cos \theta \sin \theta }
+\newcommand{\thatmat}[0] { \mat{cc}{ \oto & \otx \\ \xto & \xtx } }
+
+%\newcommand{\udenp}[2]   { \sqrt{#1 + \frac{#2} {\sqrt{2341}}} }
+%\newcommand{\udenm}[2]   { \sqrt{#1 - \frac{#2} {\sqrt{2341}}} }
+\newcommand{\udenp}[2]   { \sqrt{#1 + #2 / \sqrt{2341}} }
+\newcommand{\udenm}[2]   { \sqrt{#1 - #2 / \sqrt{2341}} }
+\newcommand{\urowmmp}[2] { \udenm{#1}{#2} & -\udenp{#1}{#2} }
+\newcommand{\urowpmm}[2] { \udenp{#1}{#2} & -\udenm{#1}{#2} }
+\newcommand{\urowppm}[2] { \udenp{#1}{#2} &  \udenm{#1}{#2} }
+
+
+% bound angle
+\newcommand{\bangle}[1]  { 0 \le #1 < 2\pi }
+
+% order
+\newcommand{\order}[1]   { \mathcal{o}\paren{#1} }
+\newcommand{\Order}[1]   { \mathcal{O}\paren{#1} }
+
+\newcommand{\mx}[2]      { \max\limits_{#1 \in \cmplx{ #2 }} }
+\newcommand{\mn}[2]      { \min\limits_{#1 \in \cmplx{ #2 }} }
+
+\newcommand{\mxxn}[0]    { \mx{x}{n} }
+\newcommand{\mnxn}[0]    { \mn{x}{n} }
+
+\newcommand{\mxball}[0]  { \max\limits_{\normt{x} = 1} }
+
+% is equal?
+\newcommand{\iseq}[0]    { \overset{?}{=} }
+
+% map A
+\newcommand{\mapa}[1]    { \overset{\A{#1}}{\mapsto} }
+
+% header
+\newcommand{\head}[1]    { $\A{}$ & $=$ & $\U{}$ & $\sig{}$ & $\V{*}$ }
+
+% spacings and such
+\newcommand{\wfour}[0]   {1.05in}
+
+\endinput

@@ -1,0 +1,68 @@
+%% identity operations
+\newcommand{ \kidthree }[0]
+{
+    \mat{ ccc }
+      {
+       0 & 0 & 0 \\
+       0 & 1 & 0 \\
+       0 & 0 & 0
+      }
+}
+
+% edge filters
+\newcommand{ \ksobol }[0]
+{
+    \mat{ rcc }
+      {
+      -1 & 0 & 1 \\
+      -2 & 0 & 2 \\
+      -1 & 0 & 1
+      }
+}
+%
+\newcommand{ \ksobolt }[0]
+{
+    \mat{ rrr }
+      {
+      -1 & -2 & -1 \\
+       0 &  0 &  0 \\
+       1 &  2 &  1
+      }
+}
+
+% other kernels
+\newcommand{ \kcross }[0]
+{
+    \recip{5}
+    \mat{ ccc }
+      {
+       1 & 0 & 1 \\
+       0 & 1 & 0 \\
+       1 & 0 & 1
+      }
+}
+%
+\newcommand{ \kplus }[0]
+{
+    \recip{5}
+    \mat{ ccc }
+      {
+       0 & 1 & 0 \\
+       1 & 1 & 1 \\
+       0 & 1 & 0
+      }
+}
+%
+\newcommand{ \kbox }[0]
+{
+    \recip{9}
+    \mat{ ccc }
+      {
+       1 & 1 & 1 \\
+       1 & 1 & 1 \\
+       1 & 1 & 1
+      }
+}
+
+
+\endinput

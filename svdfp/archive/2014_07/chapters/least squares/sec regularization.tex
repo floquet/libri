@@ -1,0 +1,238 @@
+\section{Regularization}
+The toy problems established a path from a singular system to nonsingular system. Converting a singular linear system into a nonsingular linear system is call regularization\index{regularization!definition}. This section discusses two different forms of regularization, one by projection and the other by forming the normal equations.
+
+%%%%%%%%%%%
+\subsection{Projection}
+In the previous section we saw that whenever $\datarange\ne0$ it is possible to regularize inconsistent linear systems and formulate a linear system such that $x=\xmp$. Formally linear systems of the form
+\begin{equation*}
+  \axeb
+\end{equation*}
+can be pacified and rendered consistent by recasting them as
+\begin{equation*}
+  \A{}\, \xbl = \datarange.
+\end{equation*}
+The solution to both equations is the same vector. The advantage is going from a least squares method to a Gaussian elimination method. 
+
+
+To do so we exploit the information in the \asvd, specifically domain matrix $\U{}$. We demonstrate this technique using the example matrices (a) and (b) and sample decompositions are given in table \eqref{tab:svden:compare svds}. In these examples the least squares solutions will appear spontaneously. A later section will detail finding these solutions. 
+
+The first method\index{regularization!range space projection} involve projecting the data vector onto the range space vectors. Using the first $\rho$ column vectors of $\U{}$, the expression of the data vector is this
+\begin{equation}
+  b = c_{1} \buo + \dots c_{\rho} {\bl{ u_{\rho} }}.
+\end{equation}
+To compute $\datarange$ find the amplitude of the projection of the data vector onto the range space vectors.
+\begin{equation}
+  \begin{split}
+    c_{1} &= b \cdot {\rd{ u_{\rho+1} }} \\
+          &\ \, \vdots \\
+    c_{m-\rho} &= b \cdot {\rd{ u_{m} }}
+  \end{split}
+\end{equation}
+
+The basis of the second method is to isolate the \ns\ component $\datanull$. Subtracting this from the data vector leaves $\datarange$, the \emph{objet du d\'esir}
+\begin{equation}
+  \datarange = b - \datanull.
+\end{equation}
+To compute $\datanull$ find the amplitude of the projection of the data vector onto the \ns\ vectors.
+\begin{equation}
+  \begin{split}
+    c_{1} &= b \cdot {\rd{ u_{\rho+1} }} \\
+          &\ \, \vdots \\
+    c_{m-\rho} &= b \cdot {\rd{ u_{m} }}
+  \end{split}
+\end{equation}
+This method is preferred in situations where the \ns \ vectors are readily available. The following three examples demonstrate this method of \ns\ subtraction.\index{regularization!\ns \ subtraction}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Example matrix (a)}
+The linear system of interest is
+%
+\begin{equation}
+  \begin{split}
+    \Ax &= b \\
+    \matrixa \xthree &= \dataa.
+  \end{split}
+  \label{eq:ls:a}
+\end{equation}
+%
+There is no exact solution for this system. To regularize this system we turn to the domain matrices which are
+\begin{equation}
+  \U{} = \matrixaY, \quad \V{} = \matrixaX .
+\end{equation}
+%
+One way to write the full least squares solution\index{least squares!solutions!example (a)} is
+%
+\begin{equation}
+  x_{LS} = \xthree = \underbrace{\xlsa}_{\brnga{*}} + \underbrace{\alpha_{1} \nllaou  + \alpha_{2} \nllatu}_{\rnlla{}}, \quad \alpha\ic.
+\end{equation}
+%
+The \ns\ vectors are taken directly from the codomain matrix $\V{}$. The range space component of this solution matches the first column of the matrix $\V{}$.  
+
+The pseudoinverse or point solution is form of $\xls$ which has the least norm. This occurs when $\alpha_{1} = \alpha_{2} = 0$.
+%
+\begin{equation}
+  \xmp = \xlsa
+  \label{eq:solnmp:a}
+\end{equation}
+%
+The residual error for the least squares solution is
+%
+\begin{equation}
+  {\rd{ r }} = \A{}\,\bxls - b = \dataar \quad \forall \alpha\ic.
+\end{equation}
+%
+We will see that the error represents the \ns\ component of the data vector $b$. That is,
+%
+\begin{equation}
+  \datanull = {\rd{ r }}.
+\end{equation}
+
+%
+The point is to find the orthogonal resolution of the data vector. You may compute $\datarange$ directly, or you may compute $\datanull$ and subtract that from $b$. For reinforcement, we compute both range and \ns\ components directly. Start with the amplitudes of the projections along the basis vectors identified in $\V{}$. 
+\begin{equation}
+  \begin{split}
+    c_{1} = b \cdot \buo &= \recip{\sqrt{2}} , \\
+    c_{2} = b \cdot \rut &= \frac{3}{\sqrt{2}} .
+  \end{split}
+\end{equation}
+%
+The separated form of the data vector is now
+%
+\begin{equation}
+  \begin{split}
+     b &= \datarange + \datanull, \\
+       &= c_{1} \buo + c_{2} \rut, \\
+       &= c_{1}\obvecam + c_{2}\orvecan, \\
+     \dataa &= {\bl{ \half \mat{r}{ 1 \\ -1 } }} + {\rd{ \frac{3}{2}\mat{c}{1\\1} }}.
+  \end{split}
+  \label{eq:regularize:a}
+\end{equation}
+%
+The linear system in equation \eqref{eq:ls:a} is pacified by removing the \ns\ component of the data vector. The resulting consistent linear system is
+\begin{equation}
+  \begin{split}
+    \A{}\, \xbl &= \datarange, \\
+    \matrixa \xlsa &= {\bl{ \half \mat{r}{ 1 \\ -1 } }} .
+  \end{split}
+\end{equation}
+The system surrenders an answer using Gaussian elimination,
+%
+\begin{equation}
+  \xbl = \xlsa,
+\end{equation}
+and reveals the same solution as in equation \eqref{eq:solnmp:a}.
+
+%%%%%%%%%%%%%%
+\subsubsection{Example matrix (b)}
+Here the linear system of interest is
+%
+\begin{equation}
+  \begin{split}
+    \Ax &= b \\
+    \matrixb \xtwo &= \datab.
+  \end{split}
+  \label{eq:ls:b}
+\end{equation}
+%
+Again there is no exact solution for this system.
+%
+The domain matrices are
+\begin{equation}
+  \U{} = \matrixbY, \quad \V{} = \matrixbX .
+\end{equation}
+%
+The full least squares solution\index{least squares!solutions!example (b)} is the point
+%
+\begin{equation}
+  \bxls = {\bl{ \xtwo }} = \xlsb.
+\end{equation}
+%
+
+Because the \ns\ $\rnlla{*}$ is trivial the pseudoinverse solution and the least squares solution coincide.
+%
+\begin{equation}
+  \xmp = \bxls = \xlsb
+  \label{eq:solnmp:b}
+\end{equation}
+%
+The residual error is
+%
+\begin{equation}
+  {\rd{ r }} = \A{}\,\bxls - b = \databr.
+\end{equation}
+%
+Computational detail of computing the projection amplitudes follow the same pattern as in the last section.
+%
+\begin{equation}
+  \begin{split}
+     b &= \datarange + \datanull, \\
+       &= \frac{7}{\sqrt{30}} \paren{\obvecbm}  + \recip{\sqrt{6}} \paren{\obvecbn}  - \frac{4}{\sqrt{5}} \paren{\orvecbo} , \\
+     \datab &= {\bl{ \recip{5} \mat{c}{2\\5\\4}}} + {\rd{ \recip{5} \mat{r}{8\\0\\-4}}}
+  \end{split}
+  \label{eq:regularize:b}
+\end{equation}
+%
+The linear system in equation \eqref{eq:ls:b} is pacified by removing the \ns\ component of the data vector. The resulting consistent linear system is
+\begin{equation}
+  \begin{split}
+    \A{}\, \xbl &= \datarange, \\
+    \matrixb \xlsb &= {\bl{ \recip{5} \mat{c}{2\\5\\4}}} .
+  \end{split}
+\end{equation}
+Now we can find the least squares solution using Gaussian elimination,
+%
+\begin{equation}
+  \xbl = \xlsb,
+\end{equation}
+in agreement with equation \eqref{eq:solnmp:b}.
+
+%%%%%%%%%%%%%%
+\subsubsection{Example matrix (c)}
+The final linear system is
+\begin{equation}
+  \begin{split}
+    \Ax &= b \\
+    \matrixc \xtwo &= \datac
+  \end{split}
+\end{equation}
+%
+This system does not require regularization. The range space is the complete space
+%
+\begin{equation}
+  \begin{split}
+    {\bl{ x }} &\in \brnga{*} \subseteq \cmplx{2}, \\
+    {\bl{ b }} &\in \brnga{} \subseteq \cmplx{2}.
+  \end{split}
+\end{equation}
+Therefore the data vector must be in the range space.
+
+%%%%%%%%%%%%%%
+\subsubsection{Conclusion}
+In the previous sections we saw how the Method of Least Squares is a form of regularization. We saw examples where singular problems we converted to nonsingular systems. The point is that the least squares solution is finding the best solution for the singular systems.
+
+We exploited the SVD to regularize the problem, in essence finding the projection of the data vector into the range space. The SVD solution comes at a significant computational price.
+
+%%%%%%%%%%%
+\subsection{Normal equations}
+The canonical technique for regularization\index{regularization!normal equations} in least squares problems to form the normal equations by premultiplication on both sides of the equation by the Hermitian conjugate matrix:
+\begin{equation}
+  \wx{*} x = \A{*} b.
+  \label{eq:lsq:singular}
+\end{equation}
+Defining the new variables
+\begin{equation}
+  \begin{split}
+    \mathsf{x} &= \A{*} x , \\
+    \mathsf{b} &= \A{*} b ,
+  \end{split}
+\end{equation}
+The regularization is now manifest
+\begin{equation}
+  \A{*} \mathsf{x} = \mathsf{b}.
+  \label{eq:lsq:nonsingular}
+\end{equation}
+By this construction the new data vector $\mathsf{b}$ is in the range of the matrix $\A{*}$. So while equation \eqref{eq:lsq:singular} may be singular, equation \eqref{eq:lsq:nonsingular} is always nonsingular (provided that the data vector has a nonzero range space component). As we will learn, the normal equations are easy to form, but they come with a stiff penalty on the precision of the solution.
+
+
+\endinput

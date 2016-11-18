@@ -1,0 +1,127 @@
+%    As set up here, all theorem-class objects will be numbered with
+%    the same counter, starting with 1 at every new chapter; numbers
+%    will have the form <chapter>.<theorem>.  This may be changed if
+%    the author prefers.
+%\newtheorem{myDefinition}{Definition}
+%\newtheorem{myTheorem}{Theorem}
+%\newtheorem{myLemma}{Lemma}
+%\newtheorem{theorem}{Theorem}[chapter]
+%\newtheorem{lemma}[theorem]{Lemma}
+%
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{xca}[theorem]{Exercise}
+%\newtheorem{myTheorem}{Theorem}
+
+%\theoremstyle{remark}
+%\newtheorem{remark}[theorem]{Remark}
+
+% hierarchal numbering
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}
+\numberwithin{table}{chapter}
+\numberwithin{figure}{chapter}
+
+% other definitions
+\input{\fullpath A}
+\input{\fullpath abbreviations}
+\input{\fullpath colors}
+\input{\fullpath delimiters}
+\input{\fullpath derivatives}
+\input{\fullpath "example a matrices"}
+\input{\fullpath "example b matrices"}
+\input{\fullpath "example c matrices"}
+\input{\fullpath exemplars}
+\input{\pathname "bold letters"}
+\input{\fullpath ftola}
+\input{\pathname "least squares"}
+\input{\fullpath norms}
+\input{\pathname spaces}
+\input{\pathname "matrix basics"}
+%\input{\pathname "matrix decompositions"}
+\input{\pathname "sigma matrices"}
+\input{\pathname "svd forms"}
+\input{\pathname "tikz constants.tex"}
+\input{\pathname vectors}
+
+% leftovers
+\newcommand{\recip}[1]   {\frac{1}{#1}}
+\newcommand{\half}[0]    {\recip{2}}
+\newcommand{\sq}[1]      {\paren{#1}^{2}}
+\newcommand{\org}[0]     {O}
+\newcommand{\merit}[1]   {\chi^{2}\paren{#1}}
+\newcommand{\rtr}[1]     {r^{\mathrm{#1}}r}
+\newcommand{\kto}[1]     { k = 1\! :\! {#1}}
+\newcommand{\ktoo}[2]    {#1 = 1\! :\! {#2}}
+
+% Hilbert spaces
+\newcommand{\ltwo}       {\mbox{$l^{2}$}}
+\newcommand{\Ltwo}       {\mbox{$L^{2}$}}
+
+% stray commands
+\newcommand{\oto}[0]     { \mathbf{1}^{\mathrm{T}} \mathbf{1} }
+\newcommand{\xto}[0]     {          x^{\mathrm{T}} \mathbf{1} }
+\newcommand{\otx}[0]     { \mathbf{1}^{\mathrm{T}} x }
+\newcommand{\xtx}[0]     {          x^{\mathrm{T}} x }
+\newcommand{\oty}[0]     { \mathbf{1}^{\mathrm{T}} y }
+\newcommand{\xty}[0]     {          x^{\mathrm{T}} y }
+\newcommand{\ott}[0]     { \mathbf{1}^{\mathrm{T}} T }
+\newcommand{\xtt}[0]     {          x^{\mathrm{T}} T }
+
+\newcommand{\poto}[0]    { \paren{\mathbf{1}^{\mathrm{T}} \mathbf{1}} }
+\newcommand{\pxto}[0]    {          \paren{x^{\mathrm{T}} \mathbf{1}} }
+\newcommand{\potx}[0]    { \paren{\mathbf{1}^{\mathrm{T}} x} }
+\newcommand{\pxtx}[0]    {          \paren{x^{\mathrm{T}} x} }
+\newcommand{\poty}[0]    { \paren{\mathbf{1}^{\mathrm{T}} y} }
+\newcommand{\pxty}[0]    {          \paren{x^{\mathrm{T}} y} }
+\newcommand{\pott}[0]    { \paren{\mathbf{1}^{\mathrm{T}} T} }
+\newcommand{\pxtt}[0]    {          \paren{x^{\mathrm{T}} T} }
+
+\newcommand{\cost}[0]    { \cos \theta }
+\newcommand{\sint}[0]    { \sin \theta }
+\newcommand{\costs}[0]   { \cos^{2} \theta }
+\newcommand{\sints}[0]   { \sin^{2} \theta }
+\newcommand{\cst}[0]     { \cos \theta \sin \theta }
+\newcommand{\thatmat}[0] { \mat{cc}{ \oto & \otx \\ \xto & \xtx } }
+
+%\newcommand{\udenp}[2]   { \sqrt{#1 + \frac{#2} {\sqrt{2341}}} }
+%\newcommand{\udenm}[2]   { \sqrt{#1 - \frac{#2} {\sqrt{2341}}} }
+\newcommand{\udenp}[2]   { \sqrt{#1 + #2 / \sqrt{2341}} }
+\newcommand{\udenm}[2]   { \sqrt{#1 - #2 / \sqrt{2341}} }
+\newcommand{\urowmmp}[2] { \udenm{#1}{#2} & -\udenp{#1}{#2} }
+\newcommand{\urowpmm}[2] { \udenp{#1}{#2} & -\udenm{#1}{#2} }
+\newcommand{\urowppm}[2] { \udenp{#1}{#2} &  \udenm{#1}{#2} }
+
+% bevington solution
+\newcommand{\bsoln}[0]   {\frac{1}{360} \mat{c}{1733\\3387}}
+\newcommand{\bsolna}[0]  {\mat{c}{4.81389\\9.40833}}
+
+% bound angle
+\newcommand{\bangle}[1]  { 0 \le #1 < 2\pi }
+
+% order
+\newcommand{\order}[1]   { \mathcal{o}\paren{#1} }
+\newcommand{\Order}[1]   { \mathcal{O}\paren{#1} }
+
+\newcommand{\mx}[2]      { \max\limits_{#1 \in \cmplx{ #2 }} }
+\newcommand{\mn}[2]      { \min\limits_{#1 \in \cmplx{ #2 }} }
+
+\newcommand{\mxxn}[0]    { \mx{x}{n} }
+\newcommand{\mnxn}[0]    { \mn{x}{n} }
+
+\newcommand{\mxball}[0]  { \max\limits_{\normt{x} = 1} }
+
+% is equal?
+\newcommand{\iseq}[0]    { \overset{?}{=} }
+
+% map A
+\newcommand{\mapa}[1]    { \overset{\A{#1}}{\mapsto} }
+
+% header
+\newcommand{\head}[1]    { $\A{}$ & $=$ & $\U{}$ & $\sig{}$ & $\V{*}$ }
+
+% spacings and such
+\newcommand{\wfour}[0]   {1.05in}
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

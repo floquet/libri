@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{$\bigstar$ n = 3}
+This is the simplest nontrivial Jordan block for $n=3$.
+\begin{equation}
+  \J{3} = \mat{ccc}{1&1&0 \\ 0&1&1 \\ 0&0&1}
+\end{equation}
+Finding the singular values involves finding the roots of a cubic equation. The product matrix is
+%
+\begin{equation}
+  \W{u} = \J{3}^{*}\,\J{3}^{\phantom{*}} = \mat{ccc}{1&1&0 \\ 1&2&1 \\ 0&1&2},
+\end{equation}
+%
+and the intermediate quantities are
+%
+\begin{equation}
+  \begin{split}
+    \trace \paren{\W{u}}     &= 5, \\
+    \trace \paren{\W{u}^{2}} &= 13, \\
+    \det \paren{\W{u}}       &= 1.
+  \end{split}
+\end{equation}
+%
+This lead to the characteristic equation
+%
+\begin{equation}
+  p\paren{\lambda} = -\lambda^{3} + 5 \lambda^{2} - 6 \lambda + 1
+\end{equation}
+%
+The singular values are the square roots of the zeros of this characteristic polynomial. We solve this problem using \emph{Mathematica}. Defining the parameter
+%
+\begin{equation}
+  \beta = \frac{\pi} {6} + \recip{3} \arctan{3 \sqrt{3}},
+\end{equation}
+%
+the singular values are expressed as
+%
+\begin{equation}
+  \sigma = \recip{3}
+  \lst{ 1 + 2 \sqrt{7} \sin \paren{\beta} ,
+       -1 + 2 \sqrt{7} \cos \paren{\beta} ,
+        1 +  \sqrt{21} \cos \paren{\beta} - \sqrt{7} \sin \paren{\beta} }
+\end{equation}
+%
+The domain matrices have a simple form revealed after suitable substitutions:
+%
+\begin{equation}
+  \begin{split}
+    a &= -1 + 2 \cos \paren{\alpha} ,  \\
+    b &= -1 -   \cos \paren{\alpha} + \sqrt{3} \cos \paren{\alpha} , \\
+    c &= -1 -   \cos \paren{\alpha} - \sqrt{3} \cos \paren{\alpha} ;
+  \end{split}
+\end{equation}
+%
+the domain matrices are now
+%
+\begin{equation}
+  \begin{split}
+%
+    \bur{} = {\bl{ \recip{3} \mat{rrr}{
+			      b & -c &  a \\
+			      c &  a & -b \\
+			  \ps a &  b &  c } }} , \qquad
+%
+    \bvr{} = {\bl{ \recip{3} \mat{rrr}{
+					  a & -b &  c \\
+					  c & -a & -b \\
+			  \ps b &  c &  a } }}
+%
+  \end{split}
+\end{equation}
+
+\endinput

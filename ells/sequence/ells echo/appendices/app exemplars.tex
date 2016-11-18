@@ -1,0 +1,467 @@
+\chapter[Least squares with exemplars]{Least squares with exemplar matrices}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+A broad brush paints the primal elements in a portrait of the linear algebra pertinent to the practice of least squares.
+
+\section{Linear systems}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+Begin with the canonical linear system described by the matrix--vector equation
+  % = =  e q u a t i o n
+  \begin{equation}
+    \Axeb .
+    \label{eq:canon}
+  \end{equation}
+  % = =
+The matrix $\A{}$ has $m$ rows and $n$ columns of complex numbers. (Recall the real number line $\real{}$ is part of the complex plane $\cmplx{}$.) The matrix rank is $\rho\le\min\paren{m,n}$. In shorthand, the three components are
+    \begin{enumerate}
+    	\item $\aicmnr$: the system matrix, an input;
+    	\item $b\in\cmplxm$: the data vector, an input;
+    	\item $x\in\cmplxn$: the solution vector, the output.
+    \end{enumerate}
+Given the matrix $\A{}$ and the data vector $b$, find the vector $x$ which provides the best solution, in the least squares sense, to \eqref{eq:canon}. This best solution minimizes the  residual error given by
+  % = =  e q u a t i o n
+  \begin{equation}
+    r = \Axmb .
+    %\label{eqn:}
+  \end{equation}
+  % = =
+In all instances, ignore the trivial cases where $b = 0$ which corresponds to the data vector lying within the null space $\rnlla{*}$.
+
+The general solution for \eqref{eq:canon} has the form
+  \begin{equation}   %  =   =   =   =   =
+      \xgen ,
+  \label{eq:xgen}
+  \end{equation}
+a set of $n-$vectors where the blue component inhabits $\brnga{*}$ and the red $\rnlla{}$.
+While it is true that 
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+    \A{} \xmp = \A{} \left( \xboth \right),
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+the \emph{solutions} $\xmp$ and $\xboth$ are equivalent, it is also true that 
+  \begin{equation}   %  =   =   =   =   =
+   %\begin{split}
+      \normt{\xmp} \ge \normt{\xboth},
+   %\end{split}
+ \label{eq:error norm}
+  \end{equation}
+the \emph{norms} are different. The \emph{solution of minimum norm} is $\xmp$. Hence a subtlety: equation \eqref{eq:xgen} describes all leasts squares solutions (which have a common residual error vector). Amongst these solutions, there is one of minimum norm. As seen in \eqref{eq:error norm}, this is the pseudoinverse solution $\xmp$. While $x_{LS}$ represents, in general, a set of solutions, $\xmp$ represents a special solution, a point in $\brnga{*}$, the solution of least error norm.
+
+Exemplar matrices have immediate \asvd s providing an $x-$ray image of the fundamental subspaces. The decompositions connect to the foundational concepts of solutions: existence and uniqueness. The exemplar set takes an identity matrix which is then extended to study null spaces.
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Exemplar matrices and their block forms.}
+    \begin{center}
+      \begin{tabular}{cc}
+        %
+        exemplar & block form \\\hline
+        \ \\
+        %
+        $\idtwo$ & $\mat{c}{\I{2}}$ \\[15pt]
+        %
+        $\exemplartall$ & $\mat{c}{\I{2}\\\hline\zero}$ \\[20pt]
+        %
+        $\exemplarwide$ & $\mat{c|c}{\I{2}&\zero}$ \\[15pt]
+        %
+        $\exemplarboth$ & $\mat{c|c}{\I{2}&\zero\\\hline\zero & 0}$
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:}
+  \end{table}%
+
+\section{Exemplars}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+Essential concepts of least squares and the fundamental subspaces spring to life using exemplar matrices. Exemplar systems can be solved by inspection which invites introspection into the invariant subspaces. 
+
+\clearpage  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+
+\subsection{Full rank: $\rho = m = n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+The simplest linear system is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{array}{cccc}
+      \A{} & x & = & b \\
+      \idtwo & \xtwo & = & \bvtwo,
+    \label{eqn:ideal}
+    \end{array}
+  \end{equation}
+which has least squares solution
+  \begin{equation*}   %  =   =   =   =   =
+      \bl{x_{LS}} = \xmp = \bl{\bvtwo},
+  \end{equation*}
+which is an exact solution
+  \begin{equation*}   %  =   =   =   =   =
+      \rtr{T} = 0.
+  \end{equation*}
+  
+    \begin{table}[h!]
+    	\caption[Subspace decomposition for \eqref{eqn:ideal}]{Subspace decomposition for the $\A{}$ matrix in equation \eqref{eqn:ideal}.}
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain:   & $\cmplx{2}$ & = & $\brnga{*}$ & $\mg{\oplus}$ & $\mr{\nlla{}}$ \\
+		               && = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[18pt]
+    		  %
+    		  codomain: & $\cmplx{2}$ & = & $\brnga{}$ & $\mg{\oplus}$ & $\mr{\nlla{*}}$ \\
+		               && = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[10pt] 
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    \end{table}
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Rank and invariant subspaces in equation \eqref{eqn:ideal}.}
+    \begin{center}
+        \begin{tabular}{lllcllcl}
+            %
+            space & rank & \multicolumn{3}{c}{range space} & \multicolumn{3}{c}{null space} \\\hline
+            %
+            domain   & $\rho = n = 2$ & $\brnga{*}$ & = & $\spn{e_{k}^{n}}_{k=1,n}$ & $\rnlla{}$  & = & $\trivial$ \\
+            %
+            codomain & $\rho = m = 2$ & $\brnga{}$  & = & $\spn{e_{k}^{m}}_{k=1,m}$ & $\rnlla{*}$ & = & $\trivial$ \\
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+    \begin{table}[t]
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:ideal}.}
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & $\mat{c}{b_{1} \\ b_{2}} \ne \zero$ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $\mat{c}{b_{1} \\ b_{2}} = \zero$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+\clearpage  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+
+\subsection{Full column rank: $\rho = n < m$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Adding a row of zeros to the identity matrix induces a null space:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{array}{cccc}
+      \A{} & x & = & b \\
+      \exemplartall & \xtwo & = & \bvthree.
+    \label{eqn:fcr}
+    \end{array}
+  \end{equation}
+  % = =
+The least squares solution is
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      x_{LS} = \xmp = \bl{\bvtwo}
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+which has error
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \rtr{T} = \abs{b_{3}} .
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+
+    \begin{table}[h!]
+    	\caption[Subspace decomposition for \eqref{eqn:fcr}]{Subspace decomposition for the $\A{}$ matrix in \eqref{eqn:fcr}.}
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+					%
+					%& \multicolumn{9}{l}{\ftola} \\
+    		  %
+    		  domain:   & $\cmplx{2}$ & = & $\brnga{*}$ & $\mg{\oplus}$ & $\mr{\nlla{}}$ \\
+		                             && = & $\spn{\bl{\xx},\bl{\yy}}$   & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[18pt]
+    		  %
+    		  codomain: & $\cmplx{3}$ & = & $\brnga{}$ & $\oplus$ & $\rnlla{*}$ \\
+		                             && = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$      & $\spn{\rd{\zzz}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Rank and invariant subspaces in equation \eqref{eqn:ideal}.}
+    \begin{center}
+        \begin{tabular}{lllcllcl}
+            %
+            space & rank & \multicolumn{3}{c}{range space} & \multicolumn{3}{c}{null space} \\\hline
+            %
+            domain   & $\rho = n = 2$ & $\brnga{*}$ & = & $\spn{e_{k}^{n}}_{k=1,n}$    & $\rnlla{}$  & = & $\trivial$ \\
+            %
+            codomain & $\rho < m = 3$ & $\brnga{}$  & = & $\spn{e_{k}^{m}}_{k=1,\rho}$ & $\rnlla{*}$ & = & $\spn{e_{k}^{m}}_{k=\rho+1,m}$ \\
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+Conditions for existence and uniqueness are clear once the data vector is decomposed:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \underbrace{\bl{\mat{c}{b_{1} \\ b_{2} \\ 0}}}_{\in\brnga{}} + \underbrace{\rd{\mat{c}{0\\0\\b_{3}}}}_{\in\rnlla{*}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+    \begin{table}[t]
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:fcr}.}
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} = 0 $ \\[3pt]
+    		  existence  & $b\in\brnga{} \oplus \rnlla{*} $ &  ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} \ne 0 $ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $b_{1} = b_{2} = 0$, $b_{3}\in\cmplx{}$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+
+
+\clearpage  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+
+\subsection{Full row rank: $\rho = m < n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Adding a column of zeros to the identity matrix induces a different null space:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{array}{cccc}
+      \A{} & x & = & b \\
+      \exemplarwide & \xthree & = & \bvtwo.
+    \label{eqn:frr}
+    \end{array}
+  \end{equation}
+  % = =
+The least squares solution is
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \xls = \xmp = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} + \alpha \rd{\zzz}, \quad \alpha \ic.
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+The residual error is
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \rtr{T} = 0 .
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+
+    \begin{table}[h!]
+    	\caption[Subspace decomposition for \eqref{eqn:frr}]{Subspace decomposition for the $\A{}$ matrix in \eqref{eqn:frr}.}
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain: & $\cmplx{3}$ & = & $\brnga{*}$ & $\oplus$ & $\rnlla{}$ \\ 
+		                           && = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$ \\[19pt]
+    		  %
+    		  codomain: & $\cmplx{2}$ & = & $\brnga{}$ & $\mg{\oplus}$ & $\mr{\nlla{*}}$ \\
+		                             && = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the solution vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \underbrace{\bl{\mat{c}{x_{1} \\ x_{2} \\ 0}}}_{\in\brnga{*}} + \underbrace{\rd{\mat{c}{0\\0\\x_{3}}}}_{\in\rnlla{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{Existence and uniqueness:}}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+    \begin{table}[t]
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:frr}.}
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence    & $b\in\brnga{}$  & $b\ne\zero$ \\
+    		  no existence & $b\in\rnlla{*}$ & $be\zero$ \\
+		  	  uniqueness   & no uniqueness because $\rnga{}$ is non trivial
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+\clearpage  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+
+\subsection{Row and column rank deficit: $\rho < m, \rho < n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Partitioning
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplarboth \xthree &= \mat{c}{\bl{b_{1}} \\ \bl{b_{2}} \\ \rd{b_{3}} }.
+    \label{eqn:rank defect}
+    \end{split}
+  \end{equation}
+The least squares solution is
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      x_{LS} = \xmp + \xnl = \bvtwo + \alpha \rd{\zzz}
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+which has error
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \rtr{T} = \abs{b_{3}} .
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+  \\
+{\textbf{\bsvd}}
+% = =  e q u a t i o n
+    \begin{equation}
+      %\begin{split}
+        \exemplarboth = \svd{*} = 
+        \mat{ccc}{ \bone & \bzero & \rzero \\ \bzero & \bone & \rzero \\ \bzero & \bzero & \rzero } \ 
+        \exemplartall \ 
+        \mat{cc}{ \bone & \bzero \\  \bzero & \bone }
+        %\label{eq:}
+      %\end{split}
+    \end{equation}
+% = =
+
+{\bf{Subspace decomposition:}}
+
+    \begin{table}[h!]
+    	\caption[Subspace decomposition for \eqref{eqn:rank defect}]{Subspace decomposition for the $\A{}$ matrix in \eqref{eqn:rank defect}.}
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain:   & $\cmplx{3}$ & = & $\brnga{*}$ & $\oplus$ & $\rnlla{}$ \\
+		                             && = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$ \\[19pt]
+    		  %
+    		  codomain: & $\cmplx{3}$ & = & $\brnga{}$ & $\oplus$ & $\rnlla{*}$ \\
+		                             && = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the solution vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \underbrace{\bl{\mat{c}{x_{1} \\ x_{2} \\ 0}}}_{\in\brnga{*}} + \underbrace{\rd{\mat{c}{0\\0\\x_{3}}}}_{\in\rnlla{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{Existence and uniqueness:}}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with residual error $\tra{r}r = 0$. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{No existence}}
+When the data vector inhabits the null space
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \rd{b} \in \rnlla{},
+   %\end{split}
+ %\label{eq:}
+  \end{equation*}
+there is no least squares solution. 
+
+{\bf{Existence, no uniqueness:}}
+
+    \begin{table}[t]
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:fcr}.}
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} = 0 $ \\[3pt]
+    		  existence  & $b\in\brnga{} \oplus \rnlla{*} $ &  ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} \ne 0 $ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $b_{1} = b_{2} = 0$, $b_{3}\in\cmplx{}$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:ftola spaces}
+    \end{table}%
+\endinput

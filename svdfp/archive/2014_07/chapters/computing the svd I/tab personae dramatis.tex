@@ -1,0 +1,39 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+
+%%
+\begin{table}[p]
+\caption[Personae dramatis de resolutus valorem singularis]{Personae dramatis de resolutus valorem singularis. This is a directory detailing the inputs, outputs and intermediary quantities used to compute an SVD.}
+\begin{center}
+\begin{tabular}{lclcll}
+ & space & type & census & description & use \\\hline
+ %
+ $\A{}$  & $\brnga{}$, $\brnga{*}$ & $\cmplx{\by{m}{n}}_{\rho}$ & 1 & target matrix  & input matrix \\
+ $\A{*}$ & $\brnga{}$, $\brnga{*}$ & $\cmplx{\by{n}{m}}_{\rho}$ & 1 & Hermitian conjugate of $\A{}$ & intermediate matrix\\ 
+ $\wv$ & $\brnga{*}$ & $\cmplx{\by{n}{n}}_{\rho}$ & 1 & product matrix $\A{*}\A{}$ & intermediate matrix\\
+ \ &&& \\
+ %
+ $\lambda_{k}$ && $\real{}$ & $\rho$ & ordered nonzero eigenvalues of $\wv$ &intermediate product \\
+ $\sigma_{k}$  && $\real{}$ & $\rho$ & singular values, $\sqrt{\lambda_{k}}$ & diagonal elements of $\ess{}$\\
+ \ &&& \\
+ %
+ ${\bl{ v_{k} }}$ & $\brnga{*}$  & $\cmplxn$ & $\rho$ & eigenvectors of $\wv$ & first $\rho$ columns of $\V{}$ \\
+ ${\rd{ v_{k} }}$ & $\rnlla{}$   & $\cmplxn$ & $n-\rho$ & null space vector, domain & remaining $n-\rho$ columns of $\V{}$ \\
+ ${\bl{ u_{k} }}$ & $\brnga{}$   & $\cmplxm$ & $\rho$ & $\paren{\sigma_{k}}^{-1} \Avk$ & first $\rho$ columns of $\U{}$ \\
+ ${\rd{ u_{k} }}$ & $\rnlla{*}$  & $\cmplxm$ & $m-\rho$ & null space vector, codomain & remaining $m-\rho$ columns of $\U{}$ \\
+ \ &&& \\
+ %
+  $\ess{}$ && $\real{\by{\rho}{\rho}}_{\rho}$ & 1 & diagonal matrix of singular values & intermediate matrix \\
+  $\sig{}$ && $\real{\by{m}{n}}_{\rho}$ & 1 & $\sig{}$ matrix (sabot) & output matrix \\
+  $\U{}$ & $\usubs{*}$ & $\cmplx{\by{m}{m}}_{m}$ & 1 & unitary codomain matrix & output matrix \\
+  $\V{}$ & $\vsubs{*}$ & $\cmplx{\by{n}{n}}_{n}$ & 1 & unitary domain matrix & output matrix \\
+\end{tabular}
+\end{center}
+\label{tab:personae dramatis}
+\end{table}
+
+\end{landscape}
+
+
+\endinput

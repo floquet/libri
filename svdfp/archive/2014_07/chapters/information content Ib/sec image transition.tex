@@ -1,0 +1,35 @@
+\section{A transition between two images}
+In the previous section, the image contrast was reduced until the image was completely destroyed. We see that the SVD is very good at finding a weak signal in the image. Now the task is to blend between two images and see how the singular values change.
+%
+\begin{equation}
+  \C{} = (1-j)\A{} + j\B{}, \quad j \in \brac{0,1}
+  \label{eq:transition}
+\end{equation}
+%
+%%%%%%
+\begin{table}[htdp]
+\caption{A transition between two images. After suitable cropping, we have two images of Camille Jordan, the elderly and the younger. The two images are blended according to the prescription in eqref{eq:transition}. The change in the singular value spectra is shown in table \eqref{fig:contrast:blended singular values}.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+ $\A{}$ && $\C{}$ && $\B{}$ \\
+%
+   \raisebox{-0.5\height}{\includegraphics[ width = 1.25in ]{images/"information content I"/transition/"camille old"}} & $\Rightarrow$  &
+   \raisebox{-0.5\height}{\includegraphics[ width = 1.25in ]{images/"information content I"/transition/"camille blend"}} & $\Rightarrow$  &
+   \raisebox{-0.5\height}{\includegraphics[ width = 1.25in ]{images/"information content I"/transition/"camille young"}} \\[5pt]
+%
+   ${\rd{ j = 0 }}$ && $j=\frac{1}{2}$ && ${\bl{ j = 1 }}$
+%
+\end{tabular}
+\end{center}
+\label{tab:contrast:youth rediscovered}
+\end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/transition/"dorian sigma"} 
+   \caption[The singular value spectra for blended images]{The singular value spectra for blended images. The red line represents the spectrum for the elderly Camille $(j=0)$, the blue line for the younger Camille $(j=1)$. Spectra for the 14 intermediate states are shown in gray.}
+   \label{fig:contrast:blended singular values}
+\end{figure}
+
+\endinput

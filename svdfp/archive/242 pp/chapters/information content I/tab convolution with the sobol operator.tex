@@ -1,0 +1,37 @@
+\begin{table}[htdp]
+\caption[Convolution with the Sobol operator]{Convolution with the Sobol operator to enhance edges. The original image is convolved three times each with three different kernels. The results are shown below. The error image represents the difference from the identity convolution and is displayed next to the convolutions image.}
+\begin{center}
+\begin{tabular}{rccc}
+%%
+ kernel \phantom{mm} & convolved image & error \\\hline
+%%
+  $\mathrm{I} = \kidthree$ &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"image sobol identity"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"error sobol identity"}} \\
+%%
+  $\Leftrightarrow  = \ksobol$ & 
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"image sobol horizontal"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"error sobol horizontal"}} \\
+%%
+  $\Updownarrow = \ksobolt$ & 
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"image sobol vertical"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"error sobol vertical"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:iterated convolutions}
+\end{table}
+%%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/convolution/"sigma sobol convolutions"} 
+   \caption[Plots of the singular values for the Sobol convolutions]{Plots of the singular values for the Sobol convolutions. This plot shows the change in the singular value spectrum when the edges are softened.}
+   \label{fig:iterated convolution singular values}
+\end{figure}
+
+
+\endinput

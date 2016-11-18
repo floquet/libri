@@ -1,0 +1,12 @@
+% http://stackoverflow.com/questions/1211888/is-there-any-way-i-can-define-a-variable-in-latex
+% http://tex.stackexchange.com/questions/175413/define-numeric-variables
+\newcommand\xorg{0.809017}
+\newcommand\yorg{0.587785}
+\newcommand\scale{10}
+\newcommand\bx{0.25}
+% http://tex.stackexchange.com/questions/30081/how-can-i-sum-two-values-and-store-the-result-in-other-variable
+\FPeval{xresult}{\xorg * \scale}
+\FPeval{yresult}{\yorg * \scale}
+
+\newcommand\myscale{0.70}
+\endinput

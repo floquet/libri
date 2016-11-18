@@ -1,0 +1,105 @@
+%\break
+%\clearpage
+\section{SVD vs. FTOLA}
+The \ft \ tells us about the spaces $\cmplxm$ and $\cmplxn$ and their structure in terms of range and null spaces. The the SVD domain matrices $\U{}$ and $\V{}$ which contain minimal orthonormal spanning sets may not seem to add much. We will see how the SVD couples these matrices and see what this coupling means.
+
+The shape arbitration matrix $\sig{}$ is new. Perhaps one may feel that the \ft \ explains the existence of the spaces $\cmplxm$ and $\cmplxn$ and that we may choose them arbitrarily, relying upon $\sig{}$ to insure conformability. But this is not the case.
+
+The goal of this section is to understand what information is contained in $\sig{}$ and what is so special about the domain matrices.
+
+
+%%%%%%%%%%%
+\subsection{Extending the \ft}
+The first order of business is to present the \asvd s in table \eqref{tab:compare svds}. The decomposition takes the form
+%%
+The domain matrices $\U{}$ and $\V{}$ are unitary and they serve to align the row and column spaces. The $\sig{}$ matrix contains the factors which describe the relative scale of the row and column spaces. We can think of the domain matrices in terms of column vectors
+\begin{equation}
+  \begin{split}
+    \U{} &= \ucols \\
+    \V{} &= \vcols
+  \end{split}
+  \label{eq:ex nihilo:domains}
+\end{equation}
+where of course the $u$ vectors are \mv s and the $v$ vectors are \nv s.
+The connection to the \ftola \ is direct. For the \emph{column} space we have
+\begin{equation}
+  \begin{split}
+    \brnga{}  &= \spn{\buo, \bdots, \burho} , \\
+    \rnlla{*} &= \spn{\rurpo, \rdots, \rum} .
+  \end{split}
+  \label{eq:ex nihilo:codomain}
+\end{equation}
+The rank of the matrix $\A{}$ is $\rho$ and the dimension of the nullity of $\A{}$ is $m-\rho$. For the \emph{row} space we have
+\begin{equation}
+  \begin{split}
+    \brnga{*} &= \spn{\bvo, \bdots, \bvrho} , \\
+    \rnlla{}  &= \spn{\rvrpo, \rdots, \rvnn} .
+  \end{split}
+  \label{eq:ex nihilo:domain}
+\end{equation}
+The rank of the matrix $\A{*}$ is $\rho$ and the dimension of the nullity of $\A{*}$ is $n-\rho$.
+
+We now have new information beyond the \ftola \ with the alignment and scale factors. The \ft \ dictates that
+%%%
+\begin{enumerate}
+%
+  \item Every vector in $\brnga{}$ is orthogonal to every vector in $\rnlla{*}$.
+%
+  \item Every vector in $\brnga{*}$ is orthogonal to every vector in $\rnlla{}$.
+%
+\end{enumerate}
+%%%
+But now we have an orthonormal basis for the row and column spaces. In addition to the above two properties we gain the following
+%%%
+\begin{enumerate}
+%
+  \item For $\brnga{}$, $\bl{u_{j}} \cdot \bl{u_{k}} = \delta_{jk}$, \quad $j,k\in{1, \dots, \rho}$
+%
+  \item For $\rnlla{*}$, $\rd{u_{j}} \cdot \rd{u_{k}} = \delta_{jk}$, \quad $j,k\in{\rho+1, \dots, m}$
+%
+  \item For $\brnga{*}$, $\bl{v_{j}} \cdot \bl{v_{k}} = \delta_{jk}$, \quad $j,k\in{1, \dots, \rho}$
+%
+  \item For $\rnlla{}$, $\rd{v_{j}} \cdot \rd{v_{k}} = \delta_{jk}$, \quad $j,k\in{\rho+1, \dots, n}$
+%
+\end{enumerate}
+%%%
+Of course these relations are unified as
+\begin{equation}
+  \begin{split}
+    u_{j} \cdot u_{k} = \delta_{jk}, \quad j,k\in{1, m}, \\
+    v_{j} \cdot v_{k} = \delta_{jk}, \quad j,k\in{1, n}.
+  \end{split}
+\end{equation}
+The resolution of the subspaces into orthonormal bases makes the SVD a very powerful numerical tool.
+
+Taken together, tables \eqref{tab:examples} and \eqref{tab:compare svds} show the singular value decomposition and spans for the four fundamental subspaces in terms of the column vectors of the domain matrices.
+\begin{landscape}
+%
+\input{chapters/"svd ex nihilo"/"tab dimension, rank and subspace decomposition.tex"}
+\input{chapters/"svd ex nihilo"/"tab column vectors form an orthonormal span.tex"}
+%
+\end{landscape}
+
+\clearpage
+%%%%%%%%%%%
+\subsection{Exemplars in block form}
+Explicitly separating the range and \ns \ components in the decomposition products will prove helpful time and again. 
+%
+\input{chapters/"svd ex nihilo"/"tab exemplars"}
+
+Equations \eqref{eq:ex nihilo:domains}, \eqref{eq:ex nihilo:codomain}, \eqref{eq:ex nihilo:domain} are precise mathematical statements which delineate the relationship between the column vectors of the domain matrices and the four fundamental subspaces. We summarize with an impressionistic view of the SVD. While in the guise of a mathematical equality it must be read a simple device reminding us of subspace representation of the vectors in the decomposition matrices:
+\begin{equation}
+  \svd{*} \qquad \Longrightarrow \qquad 
+    \usubs{*}
+    \sbe{}
+    \mat{c}{\tra{\brnga{*}} \\\hline \tra{\rnlla{}}}
+\end{equation}
+The column vectors $\zero_{2}$ and $\zero_{3}$ mask the vectors which span $\rnlla{*}$; the row vectors in $\zero_{1}$ and $\zero_{3}$ mask the vectors which span $\rnlla{}$. In this manner the \ns \ vectors are silenced. But we will hear from them in the chapter on least squares.
+%
+Improve the resolution of equation \eqref{eq:svden:conform}.
+
+%%%%%%
+\input{chapters/"svd ex nihilo"/"tab dimensions of the subcomponents"}  % table
+
+
+\endinput

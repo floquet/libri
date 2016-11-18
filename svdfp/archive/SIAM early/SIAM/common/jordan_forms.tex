@@ -1,0 +1,106 @@
+%% jtwo, jthree, jfour, jfive
+
+%% jonejtwo, \kjonejtwo, \kjtwojone, jtwojone, jtwojtwo, kjtwojtwo
+
+\newcommand{ \jtwo }
+{
+    \mat{ cc }
+      {
+       1     & 1 \\
+       \cero & 1 \\
+      }
+}
+
+\newcommand{ \jthree }
+{
+    \mat{ ccc }
+      {
+       1     & 1     & \cero \\
+       \cero & 1     & 1 \\
+       \cero & \cero & 1
+      }
+}
+
+\newcommand{ \jfour }
+{
+    \mat{ cccc }
+      {
+       1     & 1     & \cero & \cero \\
+       \cero & 1     & 1     & \cero \\
+       \cero & \cero & 1     & 1 \\
+       \cero & \cero & \cero & 1 \\
+      }
+}
+
+\newcommand{ \jfive }
+{
+    \mat{ ccccc }
+      {
+       1 & 1 & 0 & 0 & 0 \\
+       0 & 1 & 1 & 0 & 0 \\
+       0 & 0 & 1 & 1 & 0 \\
+       0 & 0 & 0 & 1 & 1 \\
+       0 & 0 & 0 & 0 & 1 \\
+      }
+}
+
+\newcommand{ \jonejtwo }
+{
+    \mat{ c|cc }
+      {
+       1 & 0 & 0 \\
+       0 & 1 & 1 \\\hline
+       0 & 0 & 1
+      }
+}
+
+\newcommand{ \jtwojone }
+{
+    \mat{ cc|c }
+      {
+       1 & 1 & 0 \\
+       0 & 1 & 0 \\\hline
+       0 & 0 & 1
+      }
+}
+
+\newcommand{ \kjonejtwo }
+{
+    \mat{ cc|c }
+      {
+       0 & 0 & 1 \\\hline
+       1 & 1 & 0 \\
+       0 & 1 & 0
+      }
+}
+
+\newcommand{ \kjtwojone }
+{
+    \mat{ c|cc }
+      {
+       0 & 1 & 1 \\
+       0 & 0 & 1 \\\hline
+       1 & 0 & 0
+      }
+}
+\newcommand{ \jtwojtwo }
+{
+    \mat{ cc|cc }
+      {
+       1 & 1 & 0 & 0 \\
+       0 & 1 & 0 & 0 \\\hline
+       0 & 0 & 1 & 1 \\
+       0 & 0 & 0 & 1 \\
+      }
+}
+
+\newcommand{ \kjtwojtwo }
+{
+    \mat{ cc|cc }
+      {
+       0 & 0 & 1 & 1 \\
+       0 & 0 & 0 & 1 \\\hline
+       1 & 1 & 0 & 0 \\
+       0 & 1 & 0 & 0 \\
+      }
+}

@@ -1,0 +1,95 @@
+\section{0, 1, $\infty$}
+Consider the generic linear system
+\begin{equation*}
+  \ls
+\end{equation*}
+where
+\begin{equation}
+  \Accmn, \quad x\in\cmplx{n}, \quad b\in\cmplx{m}.
+\end{equation}
+
+Let us consider these systems without recourse to least squares of the SVD.
+A foundation tenet of linear algebra classifies linear systems as having three possible solutions:
+\begin{enumerate}
+\item No solution: there is no vector $x$ which satisfies the linear system.
+\item A unique solution: there is a unique vector $x$ which satisfies the linear system.
+\item An infinitude of solutions: there is an infinite number of vectors $x$ which satisfies the linear system.
+\end{enumerate}
+
+%%%
+\subsection{A unique solution}
+There are three general cases where we expect a unique solution. We start with the obvious case where the system matrix $\A{}$ is nonsingular. Then we explore two cases where there is some form of rank deficiency.
+
+%%%
+\subsubsection{Nonsingular system matrix}
+All nonsingular matrices offer a direct solution of the form
+\begin{equation}
+  x = \A{-1}b
+\end{equation}
+where the vector $x$ is unique. These are the first cases we studied in linear algebra. How can we see that the solution is unique? One way is to employ proof by contradiction. Assume that there are two solutions, $x_{1}$ and $x_{2}$. By proposition
+\begin{equation}
+  \begin{split}
+    \A{}x_{1} & = b \quad \Rightarrow \quad x_{1} = \A{-1}b, \\
+    \A{}x_{2} & = b \quad \Rightarrow \quad x_{2} = \A{-1}b.
+  \end{split}
+\end{equation}
+Subtract the two equations to find
+\begin{equation}
+  \A{}\paren{x_{1} - x_{2}} = \zero \qquad  \Rightarrow\Leftarrow,
+\end{equation}
+The contradiction comes because the last equation implies that.
+
+%%%
+\subsubsection{System matrix with full column rank}
+The domain space $\cmplx{n\times n}$ is spanned by two $\nv$s. The null space for the domain is trivial.
+This implies that there are no null vectors in the domain matrix $\X{}$:
+\begin{equation}
+  \A{} = \mat{rr}{1&1\\-1&1\\1&1}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \svda{T} \\
+    \mat{rr}{1&1\\-1&1\\1&1} & = 
+\mat{cc>{\columncolor{ltgray}}c}{\stwo & 0 & \nstwo \\ 0 & 1 & 0 \\ \stwo & 0 & \nstwo}
+\mat{cc}{2 & 0 \\ 0 & \sqrt{2} \\\hline 0 & 0 }
+\mat{cc}{\stwo & \stwo \\ \nstwo & \stwo}
+  \end{split}
+\end{equation}
+
+The least squares solution is then
+\begin{equation}
+\begin{split}
+  \Ap b & = x,\\
+  \rtwo \mat{crc}{1 & -2 & 1 \\ 1 & 2 & 1} \phivector &= \mat{c}{0\\1}
+\end{split}
+\end{equation}
+There is no null space for the matrix $\A{}$. Hence there are no sull space vectors to add to the solution: the solution is unique. 
+
+Notice the action when the pseudoinverse is the left inverse as in this case:
+\begin{equation}
+  \begin{split}
+    \A{}x & = b, \\
+    \Ap\A{}x & = \Ap b, \\
+    \I{n} x & = \Ap b, \\
+    \therefore x & = \Ap b, \\
+  \end{split}
+\end{equation}
+
+
+%%%
+\subsubsection{Rank deficient system matrix}
+Consider the following linear system. The target matrix $\A{}$ has one unique column, therefore the matrix rank $\rho = 2$ and the matrix inverse $\A{-1}$ does not exist.
+\begin{equation}
+  \mat{cc}{\alpha & \alpha \\ \beta & \beta} \mat{c}{x_{1}\\x_{2}} = \mat{c}{b_{1}\\b_{2}}
+\end{equation}
+where $\alpha$ and $\beta$ are arbitrary complex numbers.
+However, if the data vector lines on the range of the target matrix $\rng{\A{}}$ there will be a solution and the solution will be of the form
+\begin{equation}
+  \gamma \mat{c}{\alpha \\ \beta} = \mat{c}{b_{1}\\b_{2}}.
+\end{equation}
+Notice that this when $\alpha = \beta$ we must have $b_{1} = b_{2}$.
+
+
+
+
+\endinput

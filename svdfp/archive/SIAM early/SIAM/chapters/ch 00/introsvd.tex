@@ -1,0 +1,160 @@
+\section{A first encounter with the SVD}
+A matrix $\A{}$ induces two vector spaces, a domain and a codomain. A natural extension or improvement is to look for a process which would orthonormalize these two vector spaces and arbitrate between them. The arbitration is takes the shape of resolving a difference in orientation of the bases and the scale differences between them. This process is the \svdl.
+
+Hence an intuitive way to think of the \svdl \ is to consider it as a process which first orthonormalizes both the domain and codomain. Just as the target matrix is comprised of both row and column vectors, the SVD is comprised of both coordinate systems as well as a set of factors which adjust the scale between the two coordinate systems. These scale factors\index{scale factors} are called \index{singular values}\textit{singular values}.
+
+At this point we are asking the \svdl \ to resolve the two induced vector spaces of  the target matrix. This demands that the orientation between the basis vectors be fixed. Because each vector space has an intrinsic length scale\index{vector space!intrinsic length scale} it also requires scaling factors to connect the spaces.
+
+The SVD ingredients\index{SVD!ingredients} are simple: a matrix for 
+\begin{enumerate}
+\item an $\by{m}{m}$ orthonormal basis for the \textit{column} space;
+\item an $\by{n}{n}$ orthonormal basis for the \textit{row} space;
+\item an $\by{m}{n}$ diagonal matrix of scale factors to connect the two bases.
+\end{enumerate}
+
+Once again we turn to our matrix
+\begin{equation*}
+  \A{} = \Aexample
+\end{equation*}
+to provide a concrete example.
+
+%%
+\subsection{The domains: ideal cases}
+The matrix $\A{}$ has $m=3$ rows and $n=2$ columns of real numbers and is of rank $\rho=1$. We can write that
+\begin{equation}
+  \A{} \in \real{\by{3}{2}}_{1}.
+\end{equation}
+The ideal basis for the domain is the minimal spanning set of $2-$vectors:
+\begin{equation}
+  \X{} = \spn \lst{e_{1},e_{2}} = \spn \lst{\xhatt,\yhatt}.
+\end{equation}
+The matrix of basis vectors is then
+\begin{equation}
+  \B{}_{\real{2}} = \mat{c|c}{e_{1}& e_{2}} = \mat{c|c}
+  {
+  1 & 0\\
+  0 & 1
+  }.
+\end{equation}
+
+Similarly, for the codomain the minimal spanning set of vectors leads to this:
+\begin{equation}
+  \Y{} = \spn \lst{e_{1},e_{2},e_{3}} = \spn \lst{\xhattt,\yhattt,\zhattt}.
+\end{equation}
+The matrix of basis vectors is then
+\begin{equation}
+  \B{}_{\real{3}} = \mat{c|c|c}{e_{1} & e_{2} & e_{3}} = \mat{c|c|c}
+  {
+  1 & 0 & 0\\
+  0 & 1 & 0\\
+  0 & 0 & 1\\
+  }.
+\end{equation}
+
+The vectors are orthonormal and the resultant matrices are orthogonal, for example
+\begin{equation}
+  \X{-1} = \X{T}.
+\end{equation}
+
+But rarely are matrices so cooperative as in the case of \eqref{eq:A}.
+
+%%
+\subsection{The domains: actual cases}
+The \textit{row vector structure} of $\A{}$ is this:
+\begin{equation}
+  \A{}=\mat{c}{r_{1}\\\hline r_{2}\\\hline r_{3}}
+\end{equation}
+where the row vectors are given by the following $2-$vectors:
+\begin{equation}
+  r_{1}=\mat{r}{1\\-1}, \qquad r_{2}=\mat{r}{-1\\1}, \qquad r_{3}=\mat{r}{1\\-1}.
+\end{equation}
+The immediate observation is that there is a single independent vector and the matrix can be written as
+\begin{equation}
+  \A{}=\mat{r}{r_{1}\\\hline-r_{1}\\\hline r_{1}}.
+\end{equation}
+This means that while the vector lives in $\real{2}$, we are missing another vector to complete  $\real{2}$. With the sole vector $r_{1}$ we can only locate points on the line 
+\begin{equation}
+x_{1}-x_{2}=0.
+\end{equation}
+For example, there is no way to describe the canonical unit vectors in terms of the row vector $r_{1}$:
+\begin{equation}
+  \xhatt \ne \alpha r_{1}, \qquad \yhatt \ne \beta r_{1}.
+\end{equation}
+Again $\alpha$ and $\beta$ are arbitrary scalars.
+
+The \textit{column vector structure} of $\A{}$ is this:
+\begin{equation}
+  \A{}=\mat{c|c}{c_{1} & c_{2}}
+\end{equation}
+with the column vectors being the following $3-$vectors:
+\begin{equation}
+  c_{1}=\mat{r}{1\\-1\\1}, \qquad c_{2}=\mat{r}{-1\\1\\-1}.
+\end{equation}
+Again there is a single independent vector and the matrix can be written as
+\begin{equation}
+  \A{}=\mat{c|c}{c_{1}&-c_{1}}.
+\end{equation}
+This means that while the vector lives in $\real{3}$, we need to find two other $3-$vectors to complete  $\real{3}$. With the lone vector $c_{1}$ we can only locate points on the line 
+\begin{equation}
+x_{1}-x_{2}+x_{3}=0.
+\end{equation}
+For example, there is no way to describe the canonical unit vectors in terms of the column vector $c_{1}$:
+\begin{equation}
+  \xhattt \ne \alpha c_{1}, \qquad \yhattt \ne \beta c_{1}, \qquad \zhattt \ne \gamma c_{1}.
+\end{equation}
+Here $\alpha$, $\beta$, and $\gamma$ are arbitrary scalars.
+
+%%
+\subsection{The domains: SVD}
+For the SVD we want our basis to be orthogonal, therefore we need vectors from the orthogonal complements. For the row space the vector inhabits the null space and is labelled $u_{1}$. The domain then is resolved into a vector in the image and a vector from the orthogonal complement:
+\begin{equation}
+  \begin{split}
+    \real{2}&=r_{1}\oplus r_{1}^{\perp},\\
+      & =r_{1}\oplus u_{1}.
+  \end{split}
+\end{equation}
+For the codomain we have this:
+\begin{equation}
+  \begin{split}
+    \real{3}&=c_{1}\oplus c_{1}^{\perp},\\
+      & =c_{1}\oplus v_{1} \oplus v_{2}.
+  \end{split}
+\end{equation}
+
+In this carefully chosen example the decompositions follow. For the domain the decomposition is this
+\begin{equation}
+    \real{2}=\mat{r}{1\\-1}\oplus u_{1}.
+\end{equation}
+The orthogonality condition is this
+\begin{equation}
+  \mat{r}{1\\-1}\cdot u_{1}=0.
+\end{equation}
+The codomain is decomposed into an image vector and two null space vectors:
+\begin{equation}
+  \real{3}=\mat{r}{1\\-1\\1}\oplus v_{1}\oplus v_{2}.
+\end{equation}
+The orthogonality conditions are these
+\begin{equation}
+    \mat{r}{1\\-1\\1}\cdot v_{1}=0,\qquad \mat{r}{1\\-1\\1}\cdot v_{2}=0.
+\end{equation}
+Since all the basis vectors must be orthogonal we also write an additional condition as this
+\begin{equation}
+  v_{1}\cdot v_{2} = 0.
+\end{equation}
+
+%%
+\subsection{The structure of the decomposition}
+The structure of the SVD is not completely specified. If we accept that the primary mission of the SVD is to resolve the domain and codomain we get an $\by{n}{n}$ matrix $\X{}$ for basis for the domain and an $\by{m}{m}$ matrix $\Y{}$ for the codomain. There are two loose threads. The first is that we need scale factors to connect the two coordinate systems each with intrinsic scales. The second is that the product using the domain matrices must have the same shape as the target matrix. By convention the order is this
+\begin{equation}
+  \svdax{*}
+\end{equation}
+where the matrix of scale factors $\sig{}$ has the same shape and rank of the target matrix. For the example problem we have
+\begin{equation}
+  \A{\by{3}{2}}_{1}=\Y{\by{3}{3}}_{3}\,\sig{\by{3}{2}}_{1}\,\paren{\X{\by{2}{2}}_{2}}^{\mathrm{T}}.
+\end{equation}
+A rank one matrix was resolved into the product of a rank three matrix, a rank one matrix and a rank two matrix.
+
+Starting with the desire to resolve the row and column spaces and using these rather simplistic arguments about shape and subspaces, we have arrived at the form of the \svdl.
+
+
+\endinput

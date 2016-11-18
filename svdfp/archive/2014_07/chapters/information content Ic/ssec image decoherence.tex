@@ -1,0 +1,58 @@
+\section{Image decoherence}
+What happens if we randomly interchange pairs of pixels in the image? How will this decoherence affect the \asvd? How will it affect the energy partition? What is the maximal disorder? How many iterations are required to this state? How can we use the SVD to diagnose this problem?
+
+It should be clear that the act of interchanging pixels exactly preserves the energy partition yet erodes the image information.
+
+We will look at two different decoherence techniques, one local the other global. The global method operates on the entire image and randomly selects two pixels to interchange. This operation is repeated billions of times and snapshots are taken at every decadal power: 10, $10^{2}$, $10^{3}$, dots. The entire image is gradually eroded.
+
+In the local method we take a sequence of sub-blocks of the image, for example $\byy{32}$, $\byy{64}$, \dots. Leaving the remainder of the image alone, sweep through every pixel in the block and move it to a random location within the same block.
+
+%%%%%%%%%%%
+\subsection{Global decoherence}
+Gradually degrade the entire image.
+%
+\input{chapters/"information content I"/"tab snapshots of global decoherence"}
+
+%%%%%%%%%%%
+\subsection{Local decoherence}
+Completely erode sub blocks of the image.
+%
+\input{chapters/"information content I"/"tab snapshots of local decoherence"}
+
+
+%%%%%%%%%%%
+\subsection{Comparing spectra from local and global decoherence}
+Those these pictures were degraded in very different ways, the singular value spectra look similar.
+%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{images/"information content I"/decoherence/global/"global decoherence singular values envelope"} 
+   \caption[The singular value spectra under global decoherence]{The singular value spectra under global decoherence. The red line represents the input image, the blue line the final result. Each black line represents the decades shown in figure \eqref{tab:decoherence:global:mug shots}}
+   \label{fig:decoherence:global:spectra}
+\end{figure}
+%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{images/"information content I"/decoherence/local/"local decoherence singular values envelope"} 
+   \caption[The singular value spectra under local decoherence]{The singular value spectra under local decoherence. The red line represents the input image, the blue line the final result. Each black line represents the different block sizes shown in figure \eqref{tab:decoherence:local:mug shots}}
+   \label{fig:decoherence:local:spectra}
+\end{figure}
+%%
+%%
+\clearpage
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/decoherence/global/"global decoherence singular values envelope zoom"} 
+   \caption[The crossover point in singular value spectra under global decoherence]{The crossover point in singular value spectra under global decoherence.}
+   \label{fig:decoherence:global:spectra:zoom}
+\end{figure}
+%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/decoherence/local/"local decoherence singular values envelope zoom"} 
+   \caption[The crossover point in the singular value spectra under local decoherence]{The crossover point in the singular value spectra under local decoherence. The red line represents the input image, the blue line the final result. Each black line represents the decades shown in figure \eqref{tab:decoherence:local:mug shots}.}
+   \label{fig:decoherence:local:spectra:zoom}
+\end{figure}
+
+
+\endinput

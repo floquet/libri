@@ -1,0 +1,87 @@
+\section{The SVD in a nutshell}
+
+In a nutshell, the \asvd \ demands {\bf{resolving the eigensystem for the product matrix}} $\wxe{*}$. 
+
+Keep this simple sentence in mind as you read. Pages of mathematics are flowing before you; don't let this be a distraction.
+
+\emph{Resolving the eigensystem} means finding both the eigenvalues and the eigenvectors for the matrix. This simple statement can represent problems of arbitrary complexity. Before we descend into the depths of intricacy, let's first form a simple image in our minds. To do this, consider the image of the product matrix upon the unit sphere.
+
+%%%%%%%%%%%
+\subsection{Seeing the eigenvectors}
+The eigensystem problem varies in complexity from trivial to tedious to overwhelming. A good part of this work shows how to avoid the eigenproblem altogether. But first, we can see the problem geometrically by looking at the image of the product matrix as shown in tables \eqref{tab:computing I:star (a)}-{tab:computing I:star (c)}. The extremal vectors\index{singular vectors!right!extremal vectors} are form an orthogonal set, and when normalized become the right singular vectors. Their lengths determine the singular values\index{singular vectors!length of extremal vectors}. The following figures are discrete versions of the maps shown in figures \eqref{tab:ftola:maps:(a)}-\eqref{tab:ftola:maps:(c)}. 
+
+When we compute the first product matrix, it is clear that all the vectors must fall on the line through the origin and the point $\paren{1,-1,1}^{T}$. However, to demonstrate the method, we continue. The first figure corresponds to matrix (a) and shows the angles $\theta$ and $\phi$ sampled in intervals of $\pi / 4$.	The 64 pairs are represented below.
+%
+\begin{equation}
+\paren{\theta, \phi} \in 
+  \matp{cccc}{
+  \paren{\frac{\pi}{4}, \frac{\pi}{4}} & \paren{\frac{\pi}{2}, \frac{\pi}{4}} & \dots & \paren{2\pi, \frac{\pi}{4}} \\
+  \paren{\frac{\pi}{4}, \frac{\pi}{2}} & \paren{\frac{\pi}{2}, \frac{\pi}{2}} & \dots & \paren{2\pi, \frac{\pi}{2}} \\
+  \vdots & \vdots & & \vdots \\
+  \paren{\frac{\pi}{4}, 2\pi} & \paren{\frac{\pi}{2}, 2\pi} & \dots & \paren{2\pi, 2\pi} }
+\end{equation}
+%
+These angles represent points on the unit sphere $\stp$ in equation \eqref{eq:ftola:sphere}.
+%
+
+All of the image vectors fall on the same line given in equation \eqref{ftola:image:(a)}. From visual inspection, the eigenvector is
+\begin{equation}
+  \bvo = \pm \bvecaa \in \brnga{*}.
+\end{equation}
+(This sign ambiguity will be discussed in \S \eqref{sec:computing III:uniqueness}.) The largest vector has length $\sqrt{6}$. Therefore the singular value is
+\begin{equation}
+  \sigma_{1} = \sqrt{6}.
+\end{equation}
+%%%%%%
+\input{chapters/"svd ex nihilo"/"tab image (a)"}  % table
+
+The results from matrices (b) and (c) follow. Here the lone parameter $\theta$ is sampled at intervals of $\pi / 12$, and the coloring scheme is the same as in table \eqref{tab:ftola:maps:(c)}. From inspection of table \eqref{tab:ftola:maps:(b)}, the eigenvectors are
+\begin{equation}
+  \bvo = \pm {\bl{ \mat{r}{1\\-1}} }, \qquad \bvt = \pm {\bl{ \mat{c}{1\\1}} }.
+\end{equation}
+The lengths of these extremal vectors is $\sqrt{15}/4$ and $\sqrt{3}/4$. 
+%%%%%%
+\input{chapters/"svd ex nihilo"/"tab image (b)"}  % table
+
+From table \eqref{tab:ftola:maps:(c)}, we see the eigenvectors are
+\begin{equation}
+  \bvo = \pm {\bl{ \mat{r}{1\\-1}} }, \qquad \bvt = \pm {\bl{ \mat{c}{1\\1}} }.
+\end{equation}
+This time the lengths of the extremal vectors is $2\sqrt{2}$ and $\sqrt{2}$.
+%%%%%%
+\input{chapters/"svd ex nihilo"/"tab image (c)"}  % table
+
+Using basic visualization tools we are able to find the eigenvectors and eigenvalues. The length of the eigenvectors defines the singular values. The eigenvectors, after normalization, become the right singular vectors ${\bl{ v_{k} }}, k=1:\rho$.
+
+%%%%%%%%%%%
+\subsection{Properties of the product matrix}
+These product matrix $\wxe{*}$ is docile and characterized by three traits. They are
+\begin{enumerate}
+\item Hermitian: \quad  $\wv = \wv^{*}$, 
+\item Normal: \quad $\brac{\wv,\wv^{*}} = 0$, 
+\item semi-positive definite: \quad $x^{*} \wv x \ge 0 \quad \forall x\icn$ .
+\end{enumerate}
+The first two properties are immediate. The product matrix is Hermitian because
+\begin{equation}
+  \wv = \paren{\wx{*}}^{*} = \A{*} \paren{\A{*}}^{*} = \wx{*} = \wv^{*}.
+\end{equation}
+This also insures that the product matrix is normal:
+\begin{equation}
+  \brac{\wv,\wv^{*}} = \wv \wv^{*} - \wv^{*} \wv = \zero.
+\end{equation}
+A normal matrix can be diagonalized by a unitary matrix
+For the third property, write the quadratic form as
+\begin{equation}
+  x^{*} \wx{*} x = \paren{\Ax}^{*} \Ax = \normts{\Ax}.
+\end{equation}
+this is true for any vector $x\icn$. The norm is greater than or equal to 0, therefore 
+\begin{equation}
+  x^{*} \wv x \ge 0
+\end{equation}
+which establishes that the eigenvalues of $\wv$ are zero or positive. Therefore the singular values are positive.
+
+As a consequence, the eigenvalue problem at the heart of the \asvd \ is simplified. There is no need to worry about Jordan blocks. Numerically, we are restricted to real and positive numbers. 
+
+These properties also extend to the product matrix $\wye{*}$
+
+\endinput

@@ -1,0 +1,263 @@
+\section{The \svdl}
+\label{sec:svd}
+
+We have accepted the problem in equation \eqref{eq:simple:problem}
+\begin{equation*}
+\begin{array}{cccc}
+    \A{} & \xi & = & \phi\\
+    \Aexample &
+    \mat{c}{\xi\\ \eta}
+    & = &
+    \phivector.
+\end{array}
+\end{equation*}
+and are going to use the SVD to find the solution.
+
+For the \svdl, we need to find orthonormal decompositions for both the domain and the codomain. This entails finding orthogonal decompositions for $\real{2}$ and $\real{3}$. For this special case of the SVD we will start with the row and column vectors and orthonormalize them. Since we are rank deficient in both row and columns we will have to construct the perpendicular spaces which will span the null spaces for both domain and codomain.
+
+The simple version of the \svdl \ involves three basic procedures, each demonstrated in the ensuing subsections. In the previous chapter we motivated a form for the SVD:
+\begin{equation}
+  \svdax{T}
+  \label{eq:simple:canon}
+\end{equation}
+The matrix $\X{}$ is a $\bys{2}$ orthonormal basis matrix for the domain, here $\real{2}$. The matrix $\Y{}$ is a $\bys{3}$ orthonormal basis matrix for the domain, here $\real{3}$. The $\by{3}{2}$ matrix in-between, $\sig{}$ has two roles. It is a shape arbitrator connecting the $\bys{3}$ matrix to the $\bys{2}$ matrix. It also contains scale factors to connect the different length scales in the domain and codomain.
+
+To compute this type of decomposition follow these steps
+\begin{enumerate}
+\item construct $\X{}$: orthonormalize the domain $\real{2}$;
+\item construct $\Y{}$: orthonormalize the codomain $\real{3}$;
+\item compute $\sig{}$ using $\A{}x_{k} = \sigma_{k} y_{k}$.
+\end{enumerate}
+
+%%
+\subsection{Decomposition of the domain}\label{domain}
+We start with the domain which is the space of $2-$vectors. The row vectors act on the domain vectors. Look at the target matrix as a collection of row vectors as show here: 
+\begin{equation}
+  \A{} = \mat{c}
+  {
+  r_{1}^{\mathrm{T}}\\\hline
+  r_{2}^{\mathrm{T}}\\\hline
+  r_{3}^{\mathrm{T}}
+  } 
+  =
+  \mat{rr}
+  {
+   1 & -1 \\ \hline
+  -1 &  1 \\ \hline
+   1 & -1 \\ 
+  }.
+\end{equation}
+The three row vectors comprising $\A{}$ are these:
+\begin{equation}
+  \begin{split}
+    r_{1} &= \mat{r}{1\\-1},\\
+    r_{2} &= \mat{r}{-1\\1} = -r_{1},\\
+    r_{3} &= \mat{r}{1\\-1} =  r_{1}.\\
+  \end{split}
+\end{equation}
+This shows that there is but one independent row vector $r_{1}$; the other two vectors are multiples of $r_{1}$. Therefore the range of the transpose is all multiples of $r_{1}$:
+\begin{equation}
+  \rng{\A{}} = \alpha r_{1} = \alpha \mat{r}{1\\-1}
+\end{equation}
+where $\alpha$ plays the usual role of an arbitrary scalar.
+
+One independent row implies the matrix rank $\rho = 1$. Because we need two $2-$vectors to span the domain $\real{2}$, we need another vector. This will be a null space vector. One vector which is orthogonal to $r_{1}$ is the vector
+
+\begin{equation}
+ u_{1} = \mat{r}{1\\1}.
+\end{equation}
+in agreement with the vector for the homogenous solution in equation \eqref{eq:2:xih}. 
+
+The normalization for both vectors $r_{1}$ and $u_{1}$ is the same. For example,
+\begin{equation}
+  \normt{r_{1}} = \sqrt{1^{2}+1^{2}} = \sqrt{2}.
+\end{equation}
+
+The components of $\X{}$ are completed and the pieces are assembled accordingly:
+\begin{equation}
+  \X{} = \stwo
+\left(
+\begin{array}{c|c}
+  r_{1} & u_{1}   
+\end{array}
+\right)
+= \stwo
+\left(
+\begin{array}{ r >{\columncolor{ltgray}}r }
+  1 & 1 \\
+ -1 & 1
+\end{array}
+\right).
+\end{equation}
+The shading tags the null space vector.
+
+%%
+\subsection{Decomposition of the codomain}\label{codomain}
+Now we turn our attention to the codomain which is the space of $3-$vectors. The column vectors determine the range, $\rng{\A{}}$. In this context, it is natural to view the target matrix as a collection of column vectors:
+\begin{equation}
+  \A{} = \mat{c|c}{c_{1}&c_{2}} = \mat{r|r}{1&-1\\-1&1\\1&-1}.
+\end{equation}
+The two column vectors comprising $\A{}$ are these:
+\begin{equation}
+  \begin{split}
+    c_{1} &= \mat{r}{1\\-1\\1},\\
+    c_{2} &= \mat{r}{-1\\1\\-1} = -c_{1}.
+  \end{split}
+\end{equation}
+The range of $\A{}$ is then the set of all possible scalings for the column vector $c_{1}$:
+\begin{equation}
+  \rng{\A{}} = \beta c_{1} = \beta \mat{r}{1\\-1\\1}.
+\end{equation}
+Here the arbitrary scalar factor is $\beta$.
+
+One independent column implies the matrix rank $\rho = 1$. A single independent column also implies that the null space is spanned by two vectors, $v_{1}$ and $v_{2}$. The structure of the codomain will look like this
+\begin{equation}
+  \real{3}=sp\left\{ \begin{array}{c|c|c}c_{1}&v_{1}&v_{2}\end{array}\right\}.
+\end{equation}
+These vectors are mutually orthogonal:
+\begin{equation}
+  \begin{split}
+    c_{1} &\perp v_{k}, \quad  k = 1,2;\\
+    v_{1} &\perp v_{2}.
+  \end{split}
+\end{equation}
+
+Recalling the general principles of augmented reduction (EAR\footnote{See appendix.}) we would like to see an identity matrix in the lower right-hand block
+\begin{equation}
+\Y{} \propto \mat{r|cc}{1&\mathsf{a}&\mathsf{b}\\\hline-1&1&0\\1&0&1}. 
+\end{equation}
+However, this does not work. So try\footnote{This is an exercise in intuition looking to see if there is a quick way to bypass the formal solution.} a rotation of $\frac{\pi}{4}$ for the the vectors of the lower right-hand block: 
+\begin{equation}
+  \itwo \quad \to \quad \mat{cr}{1&-1\\1&1}
+\end{equation}
+That leads to the expression:
+\begin{equation}
+\Y{} \propto \mat{r|rr}{1&\mathsf{a}&\mathsf{b}\\\hline-1&1&-1\\1&1&1}. 
+\end{equation}
+Can we solve for $\mathsf{a}$ and $\mathsf{b}$ separately? The first condition leads to this:
+\begin{equation}
+  c_{1}\perp v_{1} \quad \Rightarrow \quad \mat{r}{1\\-1\\1} \cdot \mat{r}{\mathsf{a}\\1\\1} = 0 \quad \Rightarrow \quad \mathsf{a}=0.
+\end{equation}
+The second condition leads to this:
+\begin{equation}
+  c_{1}\perp v_{2} \quad \Rightarrow \quad \mat{r}{1\\-1\\1} \cdot \mat{r}{\mathsf{b}\\-1\\1} = 0 \quad \Rightarrow \quad \mathsf{b}=-2.
+\end{equation}
+Now verify that these vectors are mutually perpendicular:
+\begin{equation}
+  v_{1}\cdot v_{2} = \mat{r}{0\\1\\1} \cdot \mat{r}{-2\\1\\-1} = 0.
+\end{equation}
+	
+The first vector in $\Y{}$ is the normalized column vector:
+\begin{equation}
+  \begin{array}{lcccr}
+    \Y{}_{*,1} &=& \frac{c_{1}}{\normt{c_{1}}} &=& \sthree\mat{r}{1\\-1\\1}.
+  \end{array}
+\end{equation}
+The last two vectors are the normalized forms of $v_{1}$ and $v_{2}$:
+\begin{equation}
+  \begin{array}{lcccr}
+    \Y{}_{*,2} &=& \hat{v}_{1} &=& \stwo\mat{r}{0\\1\\1},\\
+    \Y{}_{*,3} &=& \hat{v}_{2} &=& \ssix\mat{r}{-2\\1\\-1}.
+  \end{array}
+\end{equation}
+
+The assembled form is a bit crowded:
+\begin{equation}
+  \Y{}=\Yshade.
+\end{equation}
+
+%%
+\subsection{Joining the domains via the $\sig{}$ matrix}
+\label{scale}
+The third and final task is to build the $\sig{}$ matrix which will arbitrate the differing shapes of the domain matrices and the differing scale factors. Experience shows that this is the most confusing element of the decomposition. Think of the $\sig{}$ as having two components, a shape arbitrating sabot\index{sabot} and a list of scale factors\index{scale factors}. These components are
+\begin{enumerate}
+\item a matrix of zeros matching the shape of the target matrix, and
+\item a full rank-rank diagonal matrix $\ess{}$ with the ordered singular values along the diagonal.
+\end{enumerate}
+Because the scale factors represent lengths they are positive definite. For a target matrix of rank $\rho$, the singular values will be ordered according to
+\begin{equation}
+  \sigma_{1}\ge\sigma_{2}\ge\dots\ge\sigma_{\rho}>0.
+\end{equation}
+The singular values matrix $\ess{}$ will be the $\bys{\rho}$ diagonal matrix given by
+\begin{equation}
+  \ess{}=\mat{ccccc}{\sigma_{1}\\&\sigma_{2}\\&&\ddots\\&&&\sigma_{\rho}}
+\end{equation}
+This matrix is embedded into a sabot matrix, a matrix of zeros which matches the shape of the target matrix. 
+
+For the current problem, the target matrix has rank $\rho=1$, therefore the matrix of singular values is a $\bys{1}$ matrix. Since the target matrix has size $\by{3}{2}$, the sabot matrix is a $\by{3}{2}$ matrix of zeros. The singular values are embedded in the sabot
+\begin{equation}
+  \ess{}=\mat{c}{\sigma_{1}} \quad \Rightarrow \quad \mat{cc}{0&0\\0&0\\0&0}
+\end{equation}
+to produce the $\sig{}$ matrix
+\begin{equation}
+  \sig{}=\mat{c|c}{\ess{}&0\\\hline\zero&\zero} = \mat{c|c}{\sigma_{1}&0\\\hline0&0\\0&0}.
+  \label{eq:simple:sigma}
+\end{equation}
+The horizontal and vertical partitions are deliberately included to delineate the singular values and the sabot. This is shown schematically in figure \eqref{fig:2:svd_shape}.
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/simple/svd_03_02_01.pdf} 
+   \caption{A look at the SVD in tableau form. This sequence shows the current decomposition $\A{}\Rightarrow\Y{}\sig{}\X{T}$. The gray shading indicates null space vectors; the solid black square represents the lone scale factor. From looking at the right-hand side we can determine that the target matrix $\A{}\in\real{\by{3}{2}}_{1}$.}
+   \label{fig:2:svd_shape}
+\end{figure}
+
+Later on we will return to look at the singular values much more closely. For now, we note that the assumption of forms in \eqref{eq:simple:canon} combined with the assumption of structure in \eqref{eq:simple:sigma} lead to the relationship
+\begin{equation}
+  \A{}x_{k} = \sigma_{k} y_{k}, \quad k=\lst{1,\rho}.
+\end{equation}
+Simplistic deduction leads to a definition for the singular values which will work in special cases.
+
+Now to find the value for $\sigma_{1}$.
+\begin{equation}
+  \begin{split}
+    \A{}x_{1} &= \sigma_{1} y_{1},\\
+    \Aexample \stwo\mat{r}{1\\-1} &= \sigma_{1}\sthree\mat{r}{1\\-1\\1},\\
+    \stwo\mat{r}{2\\-2\\2} &= \sigma_{1}\sthree\mat{r}{1\\-1\\1}.
+  \end{split}
+\end{equation}
+The solution is $\sigma_{1}=\sqrt{6}$. Therefore the $\sig{}$ matrix has one nonzero element:
+\begin{equation}
+  \sig{} = \Sigmaexampleb.
+\end{equation}
+The horizontal and vertical lines emphasize the stencil action of this matrix. Only the image vectors survive multiplication in the decomposition. The null space vectors are silenced by the rows and columns of zeros in this matrix.
+
+%%
+\subsection{Assembling the decomposition}
+With the three component matrices in hand, we are now able to assemble and complete the decomposition. The full form of the SVD is this
+\begin{equation}
+  \boxed{
+\begin{split}
+    \svda{T}\\
+    \archetypez.
+  \label{eq:simple:svd}
+\end{split}
+  }
+\end{equation}
+
+The shaded regions represent null space regions. The $\sig{}$ matrix of singular values has only one non-zero entry. The remaining zeros blank the null space vectors.  
+
+%%
+\subsection{Verify the decomposition}
+Many times defeat has been wrested from the jaws of victory because of a simple error left unchecked. Often these decompositions can be checked by direct multiplication with pencil and paper. In this case
+\begin{equation}
+  \begin{split}
+    \A{} &= \paren{\Y{}\sig{}}\X{T}, \\
+      &= \sqrt{2}\mat{r >{\columncolor{ltgray}}r}{1&0\\-1&0\\1&0}\Xtshade,\\
+      &= \Aexample.
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Recap}
+The domain matrix $\X{}$ is an orthonormal basis for the the vector space induced by the \textit{row} vectors of $\A{}$. The codomain matrix $\Y{}$ is an orthonormal basis for the the vector space induced by the \textit{column vectors} of $\A{}$. The $\sig{}$ matrix in between them warrants a second look. The critical properties of this matrix are these:
+\begin{itemize}
+\item this matrix is real;
+\item this matrix is unique;
+\item this matrix has the same shape as the target matrix;
+\item the singular values are ordered;
+\item the singular values are positive;
+\item the singular values populate the diagonal.
+\end{itemize}
+
+\endinput

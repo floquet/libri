@@ -1,0 +1,39 @@
+\section{Pixelation}
+Destroy the image in a controlled way.
+
+\begin{table}[htdp]
+\caption[How pixelation affects the singular value spectrum]{How pixelation affects the singular value spectrum.  The pixels are grouped and averaged at each step. At the final step the single pixel has a value equal to the mean value of the input image.}
+\begin{center}
+\begin{tabular}{ccc}
+%
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 00"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 01"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 02"} \\
+%
+  $\byy{256}$ &  $\byy{128}$ &  $\byy{64}$  \\[20pt]
+%
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 03"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 04"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 05"} \\
+%
+  $\byy{32}$ &  $\byy{16}$ &  $\byy{8}$  \\[20pt]
+%
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 06"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 07"} &
+ \includegraphics[ width = 1.5in ]{images/"information content I"/pixelation/"pixelation 08"} \\
+%
+  $\byy{4}$ &  $\byy{2}$ &  $\byy{1}$
+%
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{images/"information content I"/pixelation/"pixelation spectra"} 
+   \caption{Singular value spectra under pixelation}
+   \label{fig:example}
+\end{figure}
+
+\endinput

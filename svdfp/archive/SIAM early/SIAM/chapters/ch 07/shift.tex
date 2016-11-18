@@ -1,0 +1,212 @@
+\clearpage
+\break
+
+\section{Reordering columns and rows}
+Can we use the SVD components to construct a mirror image? Can we shift the image to the left? What operations can we execute on the component matrices which still preserve an image?
+
+This section explores how changes in the structure of the SVD components affect the image. Basically, we can only manipulate the domain matrices. There are two operations which preserve the image:
+\begin{enumerate}
+\item \emph{arbitrary} rotating of the \emph{columns},
+\item \emph{complete} reversal of the \emph{rows}.
+\end{enumerate}
+
+%%%
+\subsection{Shifting columns and rows}
+For example, shifting the columns means rotating the column vectors as in this example where we rotate through the first $s$ column vectors. The original domain matrix looks like this:
+\begin{equation}
+  \begin{split}
+    \X{} & = \mat{cccc|cccc}{x_{1} & x_{2} & \dots & x_{s} & x_{s+1} & x_{s+2} & \dots & x_{n}} .
+  \end{split}
+\end{equation}
+The shifted domain matrix then becomes this:
+\begin{equation}
+  \begin{split}
+    \X{}_{s} & = \mat{cccc|cccc}{x_{s+1} & x_{s+2} & \dots & x_{n} & x_{1} & x_{2} & \dots & x_{s}} .  
+  \end{split}
+\end{equation}
+In the discussion that follows, we apply all operations (shift, reverse) to the $\X{}$ matrix before forming the transpose. Then we will see that the reconstructed image $\A{} = \Y{} \, \sig{} \, \X{T}_{s}$ has the form
+\begin{equation}
+  \A{}_{s} = \mat{cccc|cccc}{a_{s+1} & a_{s+2} & \dots & a_{n} & a_{1} & a_{2} & \dots & a_{s}}.
+\end{equation}
+Think of these shifts as the result of a shift operator, here a shifted identity matrix. Consider the example of $\I{3,1}$:
+\begin{equation}
+  \I{3,1} = \mat{ccc}{
+  0 & 0 & 1 \\\hline
+  1 & 0 & 0 \\
+  0 & 1 & 1}
+\end{equation}
+In the example above we can now state that shifting the columns vectors $s$ spaces to the right is expressed as this:
+\begin{equation}
+  \X{}_{s} = \X{}\,\I{n,s}.
+\end{equation}
+The operation $\I{n,s}\X{}$ shifts the row vectors down $s$ spaces.
+
+What happens when we shift $\Y{}$? What happens when we shift $\X{}$ and $\Y{}$? What happens when we shift the rows in $\X{}$ and $\Y{}$?
+
+
+%%%
+\subsection{Reversing column and row order}
+We can also reverse the order of the rows and columns using a permutation matrix $\K{n}$. These entries $k_{rc}$ in these matrices are defined in the following manner:
+\begin{equation}
+  k_{rc} = 
+  \begin{cases}
+  1 & r + c = n + 1\\
+  0 & \text{otherwise}
+  \end{cases}
+\end{equation}
+A simple example is this:
+\begin{equation}
+  \K{3} = \kthree.
+\end{equation}
+Premultiplication by $\K{j}$ reverses the row ordering, postmultiplication reverses the column ordering. Let $\B{}\in\Accmn$. Then we would have the following:
+\begin{equation}
+  \begin{split}
+    \K{m}\,\B{} & = \K{m} 
+    \mat{c}{r_{1} \\ \vdots \\ r_{m}} = 
+    \mat{c}{r_{m} \\ \vdots \\ r_{1}}, \\
+    \B{}\,\K{n} & =  
+    \mat{ccc}{c_{1} & \dots & c_{n}}\K{n} = 
+    \mat{ccc}{c_{n} & \dots & c_{1}}.
+  \end{split}
+\end{equation}
+Some may prefer the arrow notation:
+\begin{equation}
+  \begin{split}
+    \K{m}\,\B{} & = \ \Updownarrow \B{}, \\
+    \B{}\,\K{n} & = \ \Leftrightarrow \B{}.
+  \end{split}
+\end{equation}
+
+
+\clearpage
+\break
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift col horiz"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift col vert"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift col both"} \\
+$\X{} \qlraq \paren{ \X{}\,\I{n,200}}^{T}$ &
+$\Y{} \qlraq \Y{}\,\I{m,100}$ &
+$\X{} \qlraq \paren{ \X{}\,\I{n,200}}^{T}$ \\ &&
+$\Y{} \qlraq \Y{}\,\I{m,100}$ \\
+$\dots$ &
+$\dots$ &
+$\dots$ \\
+shift $\X{}$ to left by 200 columns &
+shift $\Y{}$ to left by 100 columns &
+shift columns in $\X{}$ and $\Y{}$\\[5pt]
+shift image left by 200 pixels &
+shift image down by 100 pixels &
+shift image left and down\\[5pt]
+\end{tabular}
+\end{center}
+\label{tab:Jordan:shift}
+\caption[Partial column shifts are valid operations]{Partial column shifts are valid operations. Rotating the columns shifts the image down and to the left.}
+\end{table}%
+\end{landscape}
+
+
+\clearpage
+\break
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"flip rl"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"flip bt"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"flip both"} \\
+$\X{} \qlraq \K{n}\X{}$ &
+$\Y{} \qlraq \K{m}\Y{}$ &
+$\X{} \qlraq \K{n}\X{}$ \\ &&
+$\Y{} \qlraq \K{m}\Y{}$ \\
+$\dots$ &
+$\dots$ &
+$\dots$ \\
+reverse rows in $\X{}$ &
+reverse rows in $\Y{}$ &
+reverse rows in $\X{}$ and $\Y{}$\\[5pt]
+right-left flip in $\A{}$ $\Longleftrightarrow$ &
+up-down flip in $\A{}$ $\Updownarrow$ &
+right-left, up-down flip \ $\Updownarrow \negthickspace \negthickspace  \negmedspace  \negmedspace \negmedspace  \Longleftrightarrow$\\[5pt]
+\end{tabular}
+\end{center}
+\label{tab:Jordan:reverse}
+\caption{Complete row reversals are valid operations.}
+\end{table}%
+\end{landscape}
+
+\clearpage
+\break
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{ccc}
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift fail a"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift fail b"} &
+\includegraphics[ width = 2.75in ]{pdf/"ch 06"/shift/"shift fail both"} \\
+$\Y{} \qlraq \Y{}\,\K{m}$ &
+$\Y{} \qlraq \I{m,100}\Y{}$ &
+$\Y{} \qlraq \K{m}\,\X{}\,\I{m,100}$\\[5pt]
+\end{tabular}
+\end{center}
+\label{tab:Jordan:shift:fail}
+\caption[Transformations which destroy the image]{Transformations which destroy the image.}
+\end{table}%
+\end{landscape}
+
+%%%%
+\section{Shifting singular values}
+Shifting the singular values has dire consequences. A 
+sv shift spectrum001
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[ width = 1in ]{pdf/"ch 06"/shift/"sv shift 001"} &
+\includegraphics[ width = 1.85in ]{pdf/"ch 06"/shift/"sv shift spectrum001"} \\
+%%%
+\includegraphics[ width = 1in ]{pdf/"ch 06"/shift/"sv shift 002"} &
+\includegraphics[ width = 1.85in ]{pdf/"ch 06"/shift/"sv shift spectrum002"} \\
+%%%
+\includegraphics[ width = 1in ]{pdf/"ch 06"/shift/"sv shift 005"} &
+\includegraphics[ width = 1.85in ]{pdf/"ch 06"/shift/"sv shift spectrum005"} \\
+%%%
+\includegraphics[ width = 1in ]{pdf/"ch 06"/shift/"sv shift 010"} &
+\includegraphics[ width = 1.85in ]{pdf/"ch 06"/shift/"sv shift spectrum010"} \\
+%%%
+\includegraphics[ width = 1in ]{pdf/"ch 06"/shift/"sv shift 050"} &
+\includegraphics[ width = 1.85in ]{pdf/"ch 06"/shift/"sv shift spectrum050"} \\
+\end{tabular}
+\end{center}
+\label{tab:jordan:svshift}
+\caption{default}
+\end{table}%
+
+
+\clearpage
+%%%%
+\subsection{Summary}
+The only reo
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{l|cc}
+ operation & preserves image & destroys image \\\hline
+ reversal  & $\K{m}\X{}$    & $\X{} \, \K{m}$ \\
+ shift     & $\I{m,s}\X{}$  & $\X{} \, \I{m,s}$
+\end{tabular}
+\end{center}
+\label{tab:Jordan:shift:summary}
+\caption[Image preserving operations on the domain matrices]{Image preserving operations on the rows and columns of the domain matrices.}
+\end{table}%
+
+
+\endinput

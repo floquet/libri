@@ -1,0 +1,163 @@
+\documentclass[10pt]{newsiambook}
+
+\usepackage{amsmath,amssymb}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{graphicx}
+%\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{crop}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{pstricks}
+\setlength\minrowclearance{4pt}
+\usepackage{sidecap}
+%\usepackage{cancel}
+ 
+\crop	
+\newcommand{\pathname}{common/}
+\newcommand{\fullpath}{\pathname}
+
+\input{\pathname declarations.tex}
+	
+\makeindex
+
+\begin{document}
+
+\frontmatter
+%
+\tableofcontents
+%
+\listoffigures
+%%
+\listoftables
+%
+%\input{chapters/frontmatter/preface}
+%\input{chapters/frontmatter/literature}
+
+\mainmatter
+%%%%%%%
+\part{Introducing the SVD}
+\input{chapters/ftola/"head ftola"}
+\input{chapters/"svd ex nihilo"/"head svd ex nihilo"}
+\input{chapters/"computing the svd I"/"head computing the svd I"}
+\input{chapters/"computing the svd II"/"head computing the svd II"}
+
+%%%%%%%
+\part{A closer look at the SVD}
+\input{chapters/"computing the svd III"/"head computing the svd III"}
+\input{chapters/proofs/"head proofs"}
+%
+%%%%%%%%
+\part{Applications}
+\input{chapters/"least squares"/"head least squares"}
+\input{chapters/"least squares"/"head least squares II"}
+\input{chapters/"pseudoinverse"/"head pseudoinverse"}
+\input{chapters/projectors/"head projectors"}
+%
+%%%%%%%%%
+\part{Seeing the SVD}
+\input{chapters/bases/"head bases"}
+%\input{chapters/"information content I"/"head information content I"}
+%\input{chapters/"information content Ia"/"head information content Ia"}
+%\input{chapters/"information content Ib"/"head information content Ib"}
+%\input{chapters/"information content Ic"/"head information content Ic"}
+%\input{chapters/"information content II"/"head information content II"}
+%\input{chapters/"information content III"/"head information content III"}
+%
+%%%%%%%%%
+\part{Explorations}
+%%%\input{chapters/diagonalization/"head diagonalization"}
+%\input{chapters/pantheon/"head pantheon"}
+\input{chapters/examples/"head examples"}
+%%%\input{chapters/topics/"head topics"}
+%
+%%%%%%%%%
+\part{Machinations}
+%%\input{chapters/proofs/"head proofs"}
+%\input{chapters/"matrix analysis"/"head matrix analysis"}
+%
+%
+%%%%%%%%%
+%\part{Peroration}
+%%\input{chapters/proofs/"head proofs"}
+%
+%%%%%%%%
+\part{Appendices}
+\appendix
+%%\input{chapters/appendices/summaries/"head summaries"}
+\input{chapters/appendices/history/"head history"}
+\input{chapters/appendices/precis/"head precis"}
+\input{chapters/appendices/"building blocks"/"head building blocks"}
+\input{chapters/appendices/"decomposition summaries"/"head decomposition summaries"}
+\input{chapters/appendices/"gram schmidt"/"head gram schmidt"}
+\input{chapters/appendices/jargon/"head jargon"}
+\input{chapters/appendices/complex/"head complex"}
+\input{chapters/appendices/definitions/"head definitions"}
+
+%%%%%%
+\part{\ \ Backmatter}
+\backmatter
+%\input{backmatter/acronyms}
+\input{chapters/backmatter/notation/"head notation"}
+%%\input{backmatter/glossary}
+%\bibliography{chapters/backmatter/bibliography/svdfp}
+%\input{chapters/backmatter/bibliography/svdfp.bib}
+
+\begin{thebibliography}{100}
+
+\bibitem{Bellman1997} Richard Bellman, \emph{Introduction to matrix analysis},
+SIAM, Society for Industrial and Applied Mathematics; $2^{nd}$ edition (1997).
+
+\bibitem{Bevington} Philip R. Bevington, \emph{Data Reduction and Error Analysis in the Physical Sciences},
+McGraw-Hill (1969).
+
+\bibitem{Chan2007} Raymond H. Chan, and Chen Greif, and Diane P. O'Leary,
+\emph{Milestones in matrix computation: Selected works of Gene H. Golub, with commentaries}, Oxford University Press (2007).
+
+\bibitem{Demmel1997}  James W. Demmel, 
+\emph{Applied numerical linear algebra},
+SIAM, Society for Industrial and Applied Mathematics (1997).
+
+\bibitem{Golub1996} Gene H. Golub, and Charles Van Loan,
+\emph{Matrix Computations}, $3^{rd}$ Edition.
+Johns Hopkins University Press (1996).
+
+\bibitem{Higham2008} Nicholas J. Higham,
+\emph{Functions of Matrices: Theory and Computation}, SIAM, Society for Industrial and Applied Mathematics (2008).
+
+\bibitem{Horn1990}  Roger A. Horn, and Charles R. Johnson, 
+\emph{Matrix analysis},
+Cambridge University Press (1990).
+
+\bibitem{Horn1991} Roger A. Horn, and Charles R. Johnson,
+\emph{Topics in Matrix analysis}, $3^{rd}$ Edition.
+Cambridge University Press (1991).
+
+\bibitem{Mercer} Idris C. Mercer
+\emph{Finding “nonobvious” nilpotent matrices}, (2005) \\
+\texttt{http://www.idmercer.com/nilpotent.pdf}
+
+\bibitem{Laub2005} Alan J. Laub,
+\emph{Matrix analysis for scientists and engineers}, SIAM, Society for Industrial and Applied Mathematics (2005).
+
+\bibitem{Meyer2000} Carl D. Meyer, 
+\emph{Matrix analysis and applied linear algebra},
+SIAM, Society for Industrial and Applied Mathematics (2000).
+
+\bibitem{Strang2005} Gilbert Strang,
+\emph{Linear Algebra and Its Applications}, SIAM, Society for Industrial and Applied Mathematics (2005).
+
+\bibitem{Trefethen2000} Lloyd N. Trefethen, and David Bau,
+\emph{Numerical linear algebra}, SIAM, Society for Industrial and Applied Mathematics (2000).
+
+\bibitem{Eric} Eric W. Weisstein, "Characteristic Polynomial", from MathWorld--A Wolfram Web Resource.\\ \texttt{http://mathworld.wolfram.com/CharacteristicPolynomial.html}
+
+\end{thebibliography}
+
+\printindex
+
+\end{document}

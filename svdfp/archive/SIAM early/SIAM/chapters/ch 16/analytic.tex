@@ -1,0 +1,42 @@
+\section{An analytic decomposition}
+
+Given positive real variables $a, b, c,$ and $d$ form the matrix
+\begin{equation}
+  \A{} = \mat{cc}{a&b\\c&d}
+\end{equation}
+which has determinant
+\begin{equation}
+  \Delta = ad - bc,
+\end{equation}
+
+find the \svdl.
+
+\begin{equation}
+  \begin{split}
+    \Y{}  &= \mat{cc}
+    {
+    \frac{\epsilon_{-}}{\sqrt{\epsilon_{-}^{2}\,+\,\zeta_{-}^{2}}} & \frac{\epsilon_{+}}{\sqrt{\epsilon_{+}^{2}\,+\,\zeta_{+}^{2}}} \\
+    \frac{\zeta_{-}}{\sqrt{\epsilon_{-}^{2}\,+\,\zeta_{-}^{2}}} & \frac{\zeta_{+}}{\sqrt{\epsilon_{+}^{2}\,+\,\zeta_{+}^{2}}} \\
+    }\\
+    \sig{}&=\frac{1}{\sqrt{2}}\mat{cc}{\sqrt{\alpha-\beta}&0\\0&\sqrt{\alpha+\beta}}\\
+    \X{}  &=
+    \left(
+\begin{array}{cc}
+ \frac{-\beta +\eta }{\sqrt{4\gamma ^2+(\beta -\eta )^2}} & \frac{\beta +\eta }{\sqrt{4\gamma ^2+(\beta +\eta )^2}} \\
+ \frac{2}{\sqrt{4+\frac{(\beta -\eta )^2}{\gamma ^2}}} & \frac{2}{\sqrt{4+\frac{(\beta +\eta )^2}{\gamma ^2}}}
+\end{array}
+\right)
+  \end{split}
+\end{equation}
+The intermediate variables are these
+\begin{equation}
+  \begin{split}
+    \alpha&=a^{2}+b^{2}+c^{2}+d^{2}\\
+    \beta&=\sqrt{\alpha^{2}-4\Delta^{2}}\\
+    \gamma&=ab-cd\\
+    \eta&=a^{2}-b^{2}+c^{2}-d^{2}
+  \end{split}
+\end{equation}
+
+
+\endinput

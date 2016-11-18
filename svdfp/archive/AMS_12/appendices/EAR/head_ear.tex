@@ -1,0 +1,323 @@
+\chapter{Augmented reduction: EARA}
+
+Augmented reduction is a great tool to develop the four fundamental spaces.
+Because this process is so important and because it is often overlooked we want to use a detailed appendix to insure the reader understands the process completely. The outputs of the reduction process are essential to understand the SVD and the role of the SVD in linear algebra.
+\begin{equation}
+  \E{\A{}} = \R{}\A{}.
+\end{equation}
+\begin{equation}
+  \R{}\mat{c|c}{\A{} & \I{m}}
+\end{equation}
+
+Meyer 2.5.1, p 67
+
+
+\begin{equation}
+\begin{split}
+  \E{\A{}} &= \R{}\A{}\\
+\mat{ccccc}
+{
+ 1 & 1 & 2 & 2 & 1 \\
+ 0 & 1 & 1 & 0 & 1 \\
+ 0 & 0 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & 0 & 0
+}
+& =
+\mat{rrrr}
+{
+ 1 & 0 & 0 & 0 \\
+ -\frac{3}{2} & 0 & 0 & \frac{1}{2} \\
+ -2 & 1 & 0 & 0 \\
+ -2 & 0 & 1 & 0
+}
+\mat{ccccc}
+{
+ 1 & 1 & 2 & 2 & 1 \\
+ 2 & 2 & 4 & 4 & 3 \\
+ 2 & 2 & 4 & 4 & 2 \\
+ 3 & 5 & 8 & 6 & 5
+}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\mat{rrrr}
+{
+ 1 & 0 & 0 & 0 \\
+ -\frac{3}{2} & 0 & 0 & \frac{1}{2} \\
+ -2 & 1 & 0 & 0 \\
+ -2 & 0 & 1 & 0
+}
+\mat{ccccccccc}
+{
+ 1 & 1 & 2 & 2 & 1 & 1 & 0 & 0 & 0 \\
+ 2 & 2 & 4 & 4 & 3 & 0 & 1 & 0 & 0 \\
+ 2 & 2 & 4 & 4 & 2 & 0 & 0 & 1 & 0 \\
+ 3 & 5 & 8 & 6 & 5 & 0 & 0 & 0 & 1 
+} 
+\end{equation}
+
+
+%%
+\section{Overview of matrix reduction}
+Given a target matrix such as this
+\begin{equation}
+\A{} = 
+\mat{rrr}
+{
+  1 & 0 & -1 \\
+  1 & 1 & 1 \\
+ -2 & 3 & 9 \\
+  1 & 1 & 1 \\
+  1 & 0 & -2
+},
+\end{equation}
+the goal is to find the \index{reduced row echelon form}reduced row echelon form $\rref \A{}$ using via Gaussian elimination
+\begin{equation}
+\rref \A{} =
+\left[
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1 \\
+ 0 & 0 & 0 \\
+ 0 & 0 & 0
+\end{array}
+\right].
+\end{equation}
+
+Gaussian elimination is a series of \index{elementary matrix operations}elementary matrix operations. These operations are linear processes applied to the row or column vectors in matrix and are encoded by a matrix $\E{}$. We will expedite the process by combining these operations into one matrix for each pivot element. For this target matrix we have three pivots and the matrix notation for the reduction is
+\begin{equation}
+\rref \A{} =
+\left[
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1 \\
+ 0 & 0 & 0 \\
+ 0 & 0 & 0
+\end{array}
+\right] = 
+\E{3} \, \E{2} \, \E{1}
+\mat{rrr}
+{
+  1 & 0 & -1 \\
+  1 & 1 &  1 \\
+ -2 & 3 &  9 \\
+  1 & 1 &  1 \\
+  1 & 0 & -2
+}.
+\end{equation}
+
+The product of the reduction matrices is a very special matrix - the \index{reduction matrix}\textit{reduction matrix}
+\begin{equation}
+  \R{} = \E{3} \, \E{2} \, \E{1}
+\end{equation}
+for this is the matrix that converts the target matrix into the reduced row echelon form
+\begin{equation}
+  \rref \A{} = \R{}\A{}.
+\end{equation}
+
+The fruit of this process appears as the null vectors.
+
+
+%%
+\section{The reduction process}
+We will look for pivot elements $\A{}_{\paren{k,k,}}$ one column at a time, starting with the first column. The first column has a pivot in $\A{}_{\paren{1,1}}$ and we need to zero out the elements beneath it. The prescription is simple:
+\begin{itemize}
+\item Row 2: subtract row 1.
+\item Row 3: add 2 $\times $ row 1.
+\item Row 4: subtract row 1.
+\item Row 5: subtract row 1.
+\end{itemize}
+We can encode all of \textcolor{red}{these operations} with elementary matrices. Premultiply $\A{}$ by the matrix
+\begin{equation}
+\E{1} = 
+\left[
+\begin{array}{ rrrrr }
+  1 & 0 & 0 & 0 & 0 \\
+ -1 & 1 & 0 & 0 & 0 \\
+  2 & 0 & 1 & 0 & 0 \\
+ -1 & 0 & 0 & 1 & 0 \\
+ -1 & 0 & 0 & 0 & 1
+\end{array}
+\right]
+\end{equation}
+For we see that
+\begin{equation}
+ \E{1} \A{} = 
+\left[
+\begin{array}{ rrr }
+ \pivot & 0 & -1 \\
+ 0 & 1 & 2 \\
+ 0 & 3 & 7 \\
+ 0 & 1 & 2 \\
+ 0 & 0 & -1
+\end{array}
+\right]
+\end{equation}
+and the first pivot column is complete.
+
+What we really are after is the product of all of the elementary matrices $-$ the reduction matrix:
+\begin{equation}
+  \E{3} \, \E{2} \, \E{1} = \textbf{R}.
+\end{equation}
+The reduction matrix $\textbf{R}$ is a goldmine of information about the target matrix $\A{}$ and it will take a few chapters to fully appreciate this. However the benefits in terms of computing a \svdl \ will be presented in this chapter.
+
+One way to build the reduction matrix begins with the realization
+\begin{equation}
+  \E{3} \, \E{2} \, \E{1} \I{5} = \textbf{R}.
+\end{equation}
+Start with the identity matrix and successively multiply the elementary matrices. And one way to do this is to augment the target matrix with the identity matrix and apply the elementary matrices to both simultaneously.
+
+This first step shown above takes the form
+\begin{equation}
+  \E{1}\mat{c|c}{\A{}&\I{5}} = \mat{c|c}{\A{}_{1}&\R{}_{1}}
+\end{equation}
+\begin{multline}%%
+\mat{ rrrrr }{
+  1 & 0 & 0 & 0 & 0 \\
+ -1 & 1 & 0 & 0 & 0 \\
+  2 & 0 & 1 & 0 & 0 \\
+ -1 & 0 & 0 & 1 & 0 \\
+ -1 & 0 & 0 & 0 & 1
+}
+\left[
+\begin{array}{ rrr|rrrrr }
+  1 & 0 & -1 & 1 & 0 & 0 & 0 & 0 \\
+  1 & 1 &  1 & 0 & 1 & 0 & 0 & 0 \\
+ -2 & 3 &  9 & 0 & 0 & 1 & 0 & 0 \\
+  1 & 1 &  1 & 0 & 0 & 0 & 1 & 0 \\
+  1 & 0 & -2 & 0 & 0 & 0 & 0 & 1
+\end{array}
+\right]\\
+=
+\mat{rrr|rrrrr}{
+ \boxed{1} & 0 & -1 &  1 & 0 & 0 & 0 & 0 \\
+         0 & 1 &  2 & -1 & 1 & 0 & 0 & 0 \\
+         0 & 3 &  7 &  2 & 0 & 1 & 0 & 0 \\
+         0 & 1 &  2 & -1 & 0 & 0 & 1 & 0 \\
+         0 & 0 & -1 & -1 & 0 & 0 & 0 & 1
+}
+\end{multline}%%
+The indices on the right-hand side of the equation keep track of the reduction step. The general scheme for the $k$th pivot is the following
+\begin{equation}
+  \E{k}\mat{c|c}{\A{}_{k-1}&\R{}_{k-1}} = \mat{c|c}{\A{}_{k}&\R{}_{k}}
+\end{equation}
+with the recursion anchored by
+\begin{equation}
+  \begin{split}
+    \A{}_{0} & \doteq \A{},\\
+    \R{}_{0} & \doteq \I{m}. 
+  \end{split}
+\end{equation}
+
+To isolate the second pivot we again have a set of basic instructions:
+\begin{itemize}
+\item Row 3: subtract 2 $\times $ row 2.
+\item Row 4: subtract row 2.
+\end{itemize}
+These instructions are encoded in the elementary matrix multiplication which clears the second pivot:
+\begin{equation}
+  \E{2}\mat{c|c}{\A{}_{1}&\R{}_{1}} = \mat{c|c}{\A{}_{2}&\R{}_{2}}
+\end{equation}
+%%
+\begin{multline}
+\mat{ rrrrr }{
+ 1 &  0 & 0 & 0 & 0 \\
+ 0 &  1 & 0 & 0 & 0 \\
+ 0 & -3 & 1 & 0 & 0 \\
+ 0 & -1 & 0 & 1 & 0 \\
+ 0 &  0 & 0 & 0 & 1
+} 
+\left[
+\begin{array}{ rrr|rrrrr }
+ 1 & 0 & -1 &  1 & 0 & 0 & 0 & 0 \\
+ 0 & 1 &  2 & -1 & 1 & 0 & 0 & 0 \\
+ 0 & 3 &  7 &  2 & 0 & 1 & 0 & 0 \\
+ 0 & 1 &  2 & -1 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & -1 & -1 & 0 & 0 & 0 & 1
+\end{array}
+\right]\\
+ =
+\mat{rrr|rrrrr}{
+ 1 & 0 & -1 &  1 &  0 & 0 & 0 & 0 \\
+ 0 & \boxed{1} &  2 & -1 & 1 & 0 & 0 & 0 \\
+ 0 & 0 &  1 &  5 & -3 & 1 & 0 & 0 \\
+ 0 & 0 &  0 &  0 & -1 & 0 & 1 & 0 \\
+ 0 & 0 & -1 & -1 &  0 & 0 & 0 & 1
+}   
+\end{multline} 
+This isolates the second pivot in $\A{}_{\paren{2,2}}$. Only the third pivot remains.
+\begin{itemize}
+\item Row 1: add row 3.
+\item Row 2: subtract 2 $\times$ row 3.
+\item Row 5: add row 3.
+\end{itemize}
+This step will leave $\A{}$ in row echelon form.
+\begin{equation}
+  \E{3} \mat{c|c}{\A{}_{2}&\R{}_{2}} = \mat{c|c}{\A{}_{3}&\R{}_{3}}
+\end{equation}
+%%
+\begin{multline}
+\mat{ rrrrr }{
+ 1 & 0 &  1 & 0 & 0 \\
+ 0 & 1 & -2 & 0 & 0 \\
+ 0 & 0 &  1 & 0 & 0 \\ 
+ 0 & 0 &  0 & 1 & 0 \\
+ 0 & 0 &  1 & 0 & 1
+} 
+\left[
+\begin{array}{ rrr|rrrrr }
+ 1 & 0 & -1 &  1 &  0 & 0 & 0 & 0 \\
+ 0 & 1 &  2 & -1 &  1 & 0 & 0 & 0 \\
+ 0 & 0 &  1 &  5 & -3 & 1 & 0 & 0 \\
+ 0 & 0 &  0 &  0 & -1 & 0 & 1 & 0 \\
+ 0 & 0 & -1 & -1 &  0 & 0 & 0 & 1
+\end{array}
+\right]\\
+=
+\mat{rrr|rrrrr}{
+ 1 & 0 & 0 &   6 & -3 &  1 & 0 & 0 \\
+ 0 & 1 & 0 & -11 &  7 & -2 & 0 & 0 \\
+ 0 & 0 & \pivot &   5 & -3 &  1 & 0 & 0 \\ \hline
+ 0 & 0 & 0 &   0 & -1 &  0 & 1 & 0 \\
+ 0 & 0 & 0 &   4 & -3 &  1 & 0 & 1
+}    
+\end{multline}
+
+%%
+\section{The reduction results}
+The pearl in this oyster is the final reduction matrix. Although it is indexed as $\textbf{R}_3$ we'll label it $\textbf{R}$ since it is the final form.
+\begin{equation}
+\begin{split}
+\textbf{R} & = 
+\mat{rrr|rrrrr}{
+ 1 & 0 & 0 &   \textcolor{ltgray}{6}   & \textcolor{ltgray}{-3} &  \textcolor{ltgray}{1} & \textcolor{ltgray}{0} & \textcolor{ltgray}{0} \\
+ 0 & 1 & 0 &   \textcolor{ltgray}{-11} & \textcolor{ltgray}{7}  & \textcolor{ltgray}{-2} & \textcolor{ltgray}{0} & \textcolor{ltgray}{0} \\
+ 0 & 0 & 1 &   \textcolor{ltgray}{5}   & \textcolor{ltgray}{-3} &  \textcolor{ltgray}{1} & \textcolor{ltgray}{0} & \textcolor{ltgray}{0} \\ \hline
+ \textcolor{ltgray}{0} & \textcolor{ltgray}{0} & \textcolor{ltgray}{0} &   0 & -1 &  0 & 1 & 0 \\
+ \textcolor{ltgray}{0} & \textcolor{ltgray}{0} & \textcolor{ltgray}{0} &   4 & -3 &  1 & 0 & 1
+} \\[5pt] 
+ & =
+\mat{ c|c }{
+\rref A{} & \star \\ \hline \hline
+\textbf{0} & \text{null vectors}
+}.
+\end{split}
+\end{equation}
+
+The reduction matrix\index{reduction matrix} contains valuable information about the target matrix. basic variables are marked by the reduced row-eschelon form\index{reduced row-eschelon form} of the matrix $\A{},\ \rref \A{}$ in the upper left-hand block. The lower right-hand block marks the free variables. We also acquire vectors spanning the null space. 
+\begin{equation*}
+\begin{split}
+  \text{basic variables} &: x_{1},\ x_{2},\ x_{3} \\
+  \text{free variables} &: x_{4},\ x_{5}
+\end{split}
+\end{equation*}
+Note however that seldom are these null vectors orthogonal. An interesting use for these spanning null vectors arises in consideration of the Fredholm alternative.
+
+This procedure would be most helpful for tackling larger matrices with a rank deficiency of one.
+
+The symbol EAR that reminds us of the matrices used in reducing the augmented target matrix. 
+
+\endinput

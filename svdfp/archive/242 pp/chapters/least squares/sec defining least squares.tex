@@ -1,0 +1,17 @@
+\section{Defining the least squares solution}
+
+A crisp definition of the solution using the Method of Least Squares is indispensable. Later on we will define different ways of finding the least squares solution. The emphasis here is on what constitutes a least squares solution,
+
+
+Next consider a rectangular system matrix with rank deficit: $\aicmnr$, $x\icn$ where $m\ne n$, $\rho < m$, and $\rho < n$. Now there is no inverse matrix and equation \eqref{eqn:axeb} has no direct solution. There is no combination of the columns of $\A{}$ which produce the data vector $b$. The germ of the method of least squares\index{least squares!germ} is to seek the combination of columns of $\A{}$ which comes closest to the data vector $b$. By relaxing the solution criterion we open a door to a fascinating and powerful method. 
+
+This formal mathematical statement is compact. Finding the least squares solution $\xls$ implies finding the vector which minimizes\index{Method of Least Squares!definition}
+\begin{equation}
+  \boxed{ r^{2} = \min_{x\icn} \normts{\Ax-b} }\, .
+  \label{eq:least squares:criterion}
+\end{equation}
+The quantity $r^{2}$ is the sums of the squares of the residual errors.
+
+
+
+\endinput

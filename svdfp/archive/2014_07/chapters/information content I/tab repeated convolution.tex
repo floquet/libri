@@ -1,0 +1,37 @@
+\begin{table}[htdp]
+\caption[Repeated convolution]{Repeated convolution. The original image is convolved three times each with three different kernels. The results are shown below. The error image represents the difference from the identity convolution and is displayed next to the convolutions image.}
+\begin{center}
+\begin{tabular}{rccc}
+%%
+ kernel \phantom{mm} & image & error \\\hline
+%%
+  $\mathrm{I} = \kidthree$ &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"camille identity convolution"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"iterated convolutions baseline diff image"}} \\
+%%
+  $\times = \kcross$ & 
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"camille cross convolution"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"difference cross"}} \\
+%%
+  $\blacksquare = \kbox$ & 
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"camille box convolution"}} &
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.70in ]{images/"information content I"/convolution/"difference box"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:iterated convolutions}
+\end{table}
+%%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/"information content I"/convolution/"tres spectra"} 
+   \caption[Plots of the singular values for the image convolutions]{Plots of the singular values for repeated convolutions. This plot shows the change in the singular value spectrum when the edges are softened.While it is difficult for humans to distinguish the images in table \eqref{tab:iterated convolutions}, the singular value decompositions are readily distinct.}
+   \label{fig:iterated convolution singular values}
+\end{figure}
+
+
+\endinput

@@ -1,0 +1,23 @@
+\begin{table}[htdp]
+\caption[Exemplars of the pseudoinverse]{Exemplars of the pseudoinverse of a matrix $\aicmnr$. These four block structures describe every possible decomposition. Of course the \ns \ components in red do not contribute to the pseudoinverse matrix. They are shown here to enable the reader to visualize more abstract manipulations of the pseudinverse.}
+\begin{center}
+\begin{tabular}{lcccccc}
+%
+ rank and \\
+ dimension &&& $\V{}$ & $\sig{}$ & $\U{*}$ \\\hline
+%
+  $\rho \ne m,\ \rho \ne n$ \qquad \qquad & $\Ap$ & $=$ & $\cvblockf$ & $\sbb{-1}$ & $\cublockfs{*}$  \\[15pt]
+%
+  $\rho = m < n$   & $\Ap$ & $=$ & $\bvr{}$      & $\sbr{-1}$ & $\cublockfs{*}$  \\[15pt]
+%
+  $\rho = n < m$   & $\Ap$ & $=$ & $\cvblockf$   & $\sbc{-1}$ & $\bur{*}$  \\[15pt]
+%
+  $\rho = n  =  m$ & $\Ap$ & $=$ & $\bvr{}$      & $\ess{-1}$ & $\bur{*}$  \\
+%
+\end{tabular}
+\end{center}
+\label{tab:mpp exemplars}
+\end{table}
+%%
+
+\endinput

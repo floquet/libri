@@ -1,0 +1,168 @@
+\section[The SVD and the FTOLA]{The singular value decomposition resolves the \\Four Fundamental Subspaces}
+The \svdl \ is intimately related to the \ftola. To understand one, you must understand the other. Perhaps one reason people struggle with the SVD is that they look at it as a computational tool. This perspective is of course valid. But it allows one to bypass the foundation provided by the \ft. When we considered different ways to approach the material, we felt a viable option was to present a guided path that many students and coworkers have pursued. It is a application-driven perspective of ``how does this work.''
+
+Hence the opening focusing on basic examples, with an eye towards the \ft. The believe is that once the \ft \ becomes a living being, then the SVD is an immediate and natural consequence.
+
+If there is one equation that embodies the quintessence of the SVD, it is this one:
+\begin{equation}
+\boxed{
+\boxed{
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{*} \\
+    & = & \yrn{}
+        & \essmatrix{} 
+        & \xtrn{*}  \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}c}{\rnga{} & \nlla{*}} 
+        & \essmatrix{} 
+        & \mat{c}{\rnga{*} \\ \rowcolor{ltgray}\nlla{}}
+  \end{array}  
+  }}
+  \label{eq:11:tattoo}
+\end{equation}
+This is the only equation in the entire book to merit a double box and it directly connects the range and null space components of the domain matrices to the fundamental spaces. Some care must be given to the interpretation of the equality. For example $\yrng{}$ is set of vectors and $\rnga{}$ is a vector space. The vectors do belong to the vector space and do form a span of that vector space. But the vector space is a larger collection of vectors.
+
+To elaborate on this point, we will present a summary table. 
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lcc}
+  the vectors & comprise the & and form an orthonormal basis \\
+  in columns  & matrix component & for the fundamental subspace \\\hline
+  $1, \dots, \rho$     & $\yrng{}$ & $\rng{\A{}}$ \\
+  \rowcolor{ltgray}
+  $\rho + 1, \dots, m$ & $\ynll{}$ & $\nll{\A{*}}$ \\
+  $1, \dots, \rho$     & $\xrng{}$ & $\rng{\A{*}}$ \\
+  \rowcolor{ltgray}
+  $\rho + 1, \dots, n$ & $\xnll{}$ & $\nll{\A{}}$ \\
+\end{tabular}
+\end{center}
+\label{default}
+\caption[Connecting domain matrices to the fundamental subspaces]{Connecting domain matrices to the fundamental subspaces.}
+\end{table}%
+A more terse encapsulation follows. Given a matrix $\Amnr$, the singular values matrix $\sig{}\in\realmn_{\rho}$, and the domain matrices will have the following specifications:
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{l|cc}
+   & range space & null space \\\hline
+  codomain & $\yrng{}\in\cmplx{\by{m}{\rho}}_{\rho}$ & $\ynll{}\in\cmplx{\by{m}{(m-\rho)}}_{m-\rho}$, \\
+  domain   & $\xrng{}\in\cmplx{\by{n}{\rho}}_{\rho}$ & $\xnll{}\in\cmplx{\by{n}{(n-\rho)}}_{n-\rho}$.
+\end{tabular}
+\end{center}
+\label{tab:svd:spaces}
+\caption[The range and null space components for domain and codomain.]{The range and null space components for domain and codomain.}
+\end{table}%
+
+
+\begin{enumerate}
+\item The domain matrix $\X{}$ resolves $\cmplxn$ into a range space and null space
+\begin{equation}
+  \text{DOMAIN} = \cmplxn = \rng{\A{*}} \oplus \nll{\A{}}.
+\end{equation}
+\item The codomain matrix $\Y{}$ resolves $\cmplxn$ into a range space and null space
+\begin{equation}
+  \text{CODOMAIN} = \cmplxm = \rng{\A{}} \oplus \nll{\A{*}}.
+\end{equation}
+\end{enumerate}
+
+%%%%
+\subsection{Example}
+ $\Arrr{3}{2}{1}$: a matrix with $m=3$ rows, $n=2$ columns and matrix rank $\rho=1$. The codomain is $\real{3}$, the domain is $\real{2}$.
+
+\begin{equation*}
+  \A{} = \Aexample, \qquad \A{T} = \Atexample
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{CODOMAIN} &=\real{m} \\
+      &= \rng{\A{}} \oplus \nll{\A{T}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1\\1}} \oplus \text{span}\lst{\mat{r}{0\\1\\1},\mat{r}{-2\\1\\-1}}\\
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{DOMAIN} &=\real{n} \\
+      &= \rng{\A{T}} \oplus \nll{\A{}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1}} \oplus \text{span}\lst{\mat{c}{1\\1}}\\
+  \end{split}
+\end{equation*}
+
+The basis matrix $\Y{}$ is an orthogonal decomposition of the \textit{codomain}.
+
+The basis matrix $\X{}$ is an orthogonal decomposition of the \textit{domain}.
+
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{} \\
+    & = & \mat{c>{\columncolor{ltgray}}c}{\rng{\A{}} & \nll{\A{T}}} 
+        & \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} 
+        & \mat{c}{\rng{\A{T}} \\ \rowcolor{ltgray}\nll{\A{}}} \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}c}{\yrng{} & \ynll{}} 
+        & \mat{c|c}{\ess{} & \zero \\\hline \zero & \zero} 
+        & \mat{c}{\xrng{T} \\ \rowcolor{ltgray}\xnll{T}} \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}cc}{\sthree \mat{r}{1\\-1\\1} & \stwo \mat{r}{0\\1\\1}\sthree \mat{r}{-2\\1\\-1}}
+        & \Sigmaexampleb
+        & \mat{c}{\stwo \mat{rr}{1&-1} \\ \stwo \mat{rr}{1 & \phantom{-}1}}\\[15pt]
+    & = & \Yshade
+        & \Sigmaexampleb
+        & \Xtshade
+  \end{array}  
+\end{equation*}
+
+
+%%%%
+\subsection{SVD variants}
+To fully unleash the power of the SVD we will need to understand two different forms: the adjoint and the pseudoinverse. The formula for the adjoint is this:
+\begin{equation}
+\boxed{
+  \begin{array}{ccccc}
+  \A{*} & = & \X{} & \sig{T} & \Y{*} \\
+    & = & \xrn{}
+        & \essmatrix{} 
+        & \ytrn{*}  \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}c}{\rng{\A{*}} & \nll{\A{}}} 
+        & \essmatrix{} 
+        & \mat{c}{\rng{\A{}} \\ \rowcolor{ltgray}\nll{\A{*}}}
+  \end{array}  
+  } \ .
+  \label{eq:11:adjoint}
+\end{equation}
+Observe this is just equation \eqref{eq:11:tattoo} with the following interchanges:
+\begin{equation}
+  \begin{split}
+     \A{} \quad   &\longleftrightarrow \quad \A{*},\\
+     \X{} \quad   &\longleftrightarrow \quad \Y{},\\
+     \sig{} \quad &\longleftrightarrow \quad \sig{T}
+  \end{split}
+\end{equation}
+This is special too:
+\begin{equation}
+\boxed{
+  \begin{array}{ccccc}
+  \Ap & = & \X{} & \sig{\pssymbol} & \Y{*} \\
+    & = & \xrn{}
+        & \essmatrix{} 
+        & \ytrn{*}  \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}c}{\rnga{*} & \nlla{}} 
+        & \essmatrix{\pssymbol} 
+        & \mat{c}{\rnga{} \\ \rowcolor{ltgray}\nlla{*}}
+  \end{array}  
+  } \ .
+  \label{eq:11:adjoint}
+\end{equation}
+Observe this is just equation \eqref{eq:11:tattoo} with the following interchanges:
+\begin{equation}
+  \begin{split}
+     \A{} \quad   &\longleftrightarrow \quad \A{*},\\
+     \X{} \quad   &\longleftrightarrow \quad \Y{},\\
+     \sig{} \quad &\longleftrightarrow \quad \sig{\pssymbol}
+  \end{split}
+\end{equation}
+Also this is just equation \eqref{eq:11:adjoint} with the following interchange:
+\begin{equation}
+  \begin{split}
+     \sig{T} \quad &\longleftrightarrow \quad \sig{\pssymbol}
+  \end{split}
+\end{equation}
+
+\endinput

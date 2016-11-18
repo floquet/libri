@@ -1,0 +1,63 @@
+\section{The least squares solution}
+
+What solution do we get from the method of least squares? The decomposition of the system matrix is this
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{rrr}{-1&1&0\\0&-1&1}&=
+    \stwo\mat{rr}{-1&1\\1&1}
+    \mat{cc|c}{\sqrt{3}&0&0\\0&1&0}
+    \mat{rrr}{
+    \ssix&-\frac{2}{\sqrt{6}}&\ssix\\
+   -\stwo&0&\stwo\\
+    \rowcolor{ltgray}
+     \sthree&\sthree&\sthree
+    }.
+  \end{split}
+\end{equation}
+The pseudoinverse is constructed as this:
+\begin{equation}
+  \begin{split}
+    \mpgia{T}\\
+    \frac{1}{3}
+    \mat{rr}{-2&-1\\1&-1\\1&2} &=
+\left[
+\begin{array}{rr>{\columncolor{ltgray}}r}
+  \ssix & -\stwo & \sthree \\
+ -\frac{2}{\sqrt{6}} & 0 & \sthree \\
+  \ssix & \stwo & \sthree
+\end{array}
+\right]
+    \mat{cc}{\sthree &0\\0&1\\\hline0&0}    
+    \stwo\mat{rr}{-1&1\\1&1}
+  \end{split}
+\end{equation}
+The shaded column represents the lone null space vector
+\begin{equation}
+  \mathcal{N} = \sthree \mat{c}{1\\1\\1}.
+\end{equation}
+
+The full least squares solution is the particular solution plus the homogenous solution:
+\begin{equation}
+\boxed{
+  \begin{split}
+    \Phi&=\A{\dagger}\Z{}+\beta\mathcal{N}\\
+    \mat{c}{\phi_{0}\\\phi_{1}\\\phi_{2}}&=\frac{1}{3}
+    \mat{rr}{-2&-1\\1&-1\\1&2}
+    \mat{c}{z_{1}\\z_{2}}+\beta \mat{c}{1\\1\\1}, \quad \beta\in\cmplx{}.
+  \end{split}
+}
+\end{equation}
+
+Notice that the particular solution satisfies the zero sum condition:
+\begin{equation}
+  \begin{array}{cccrcrcccccc}
+     &\phi_{0}&=&-2z_{1}&-&z_{3}\\
+    +&\phi_{1}&=&z_{1}&-&z_{3}\\
+    +&\phi_{2}&=&z_{1}&+&2z_{3}\\\hline
+     &\phi_{0}+\phi_{1}+\phi_{2}&=&0
+  \end{array}
+\end{equation}
+
+
+\endinput

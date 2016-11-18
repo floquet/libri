@@ -1,0 +1,59 @@
+% linear systems
+\newcommand{ \axmb }[0]     { \Ax - b }
+\newcommand{ \axeb }[0]     { \Ax = b }
+\newcommand{ \axaeb }[0]    { \Ax &= b }
+
+\newcommand{ \reaxmb }[0]   { r  = \Ax - b }
+\newcommand{ \reaaxmb }[0]  { r &= \Ax - b }
+
+\newcommand{ \minimum }[0]  { \normts{ \axmb } }
+\newcommand{ \lsmin }[0]    { \min\limits_{x \in \cmplxn} \minimum }
+
+% linear systems with y
+\newcommand{ \aymb }[0]     { \A{}y - b }
+\newcommand{ \ayeb }[0]     { \A{}y = b }
+\newcommand{ \ayaeb }[0]    { \A{}y &= b }
+
+\newcommand{ \reaymb }[0]   { r  = \A{}y - b }
+\newcommand{ \reaaymb }[0]  { r &= \A{}y - b }
+
+\newcommand{ \minimumy }[0] { \normts{ \aymb } }
+\newcommand{ \lsminy }[0]   { \min\limits_{y \in \cmplxn} \minimumy }
+
+% general solution
+\newcommand{ \solnls }[2]   { \Ap #1 + \paren{\II{n} - \ApA}#2 } 
+\newcommand{ \solnlsby }[0] { \solnls{b}{y} } 
+
+% toy problems
+\newcommand{ \toymatrix}[0] { \mat{cc} { 1 & 0 \\ 0 & 1 \\ 0 & 0 } }
+\newcommand{ \toymatrixa}[0]{ \mat{ccc}{ 1 & 0 & 0 \\ 0 & 1 & 0 } }
+\newcommand{ \dataveca}[0]  {\bl{ { \mat{c}  { b_{1} \\ b_{2} } } }}
+\newcommand{ \datavecb}[0]  { \mat{c}  { b_{1} \\ b_{2} \\ b_{3} } }
+\newcommand{ \datavecc}[0]  {\bl{ { \mat{c}  { b_{1} \\ b_{2} \\ 0 } } }}
+
+% SVD
+\newcommand{ \toytu}[0]         { \mat{ccc}{ \bone  & \bzero & \rzero \\ 
+                                             \bzero & \bone  & \rzero \\  
+                                             \bzero & \bzero & \rone } }
+\newcommand{ \toytvt}[0]        { \mat{ccc}{ \bone  & \bzero & \bzero \\ 
+                                             \bzero & \bone  & \bzero \\  
+                                             \rzero & \rzero & \rone } }
+\newcommand{ \toyws}[0]         { \mat{cc|c} { 1 & 0 & 0 \\ 0 & 1 & 0 } }
+\newcommand{ \toyts}[0]         { \mat{cc} { 1 & 0 \\ 0 & 1 \\\hline 0 & 0 } }
+\newcommand{ \toymatrixsvdt}[0] { \toytu \toyts {\bl{ \idtwo }} }
+\newcommand{ \toymatrixsvdw}[0] { {\bl{ \idtwo }} \toyws \toytvt }
+
+% solutions
+\newcommand{ \xls }[0]  { x_{LS} }
+\newcommand{ \bxls }[0] { {\bl{ \xls }} }
+\newcommand{ \rxls }[0] {\bl{ \paren{\xls}_{\rnga{*}} }}
+\newcommand{ \xlsr }[0] {\rd{ \paren{\xls}_{\nlla{}} }}
+\newcommand{ \xmp }[0]  { {\bl{ x^{\sym} }} }
+\newcommand{ \xbl }[0]  { {\bl{ x }} }
+
+% data vector
+\newcommand{ \datarange }[0]  { \bl{ b_{\brnga{}} } }
+\newcommand{ \datanull }[0]   { \rd{ b_{\nlla{*}} } }
+
+
+\endinput

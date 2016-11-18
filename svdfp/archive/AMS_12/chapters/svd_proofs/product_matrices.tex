@@ -1,0 +1,298 @@
+\section{The product matrices and orthogonal expansions}
+
+The product matrices $\W{x}$ and $\W{y}$ offer important insights to the SVD.
+
+%%
+\subsection{Theory}
+The outer products express the orthogonality of the expansion. For example
+\begin{equation}
+  \begin{split}
+    \W{x} = \prdm{*} = \paren{\sum_{k=1}^{\rho}{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}}^{*}\sum_{j=1}^{\rho}{\sigma_{j}\, \X{}_{j}\, \Y{*}_{j}}.
+  \end{split}
+\end{equation}
+The orthogonality condition flows naturally from the unitary nature of the domain matrices:
+\begin{equation}
+  \X{*}_{k}\,\X{}_{j} = \Y{*}_{k}\,\Y{}_{j} =
+  \begin{cases}
+    1 & k = j\\
+    0 & k \ne j
+  \end{cases}.
+\end{equation}
+
+The cross terms with $k\ne j$ vanish:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{j}\, \Y{}_{j}\, \X{*}_{j}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}} &= \paren{\sigma_{j}\X{}_{j}\, \Y{*}_{j}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}}, \\
+    &= \sigma_{k}\sigma_{j}\X{}_{k}\underbrace{\paren{\Y{*}_{k}\,\Y{}_{j}}}_{0}\X{*}_{j}\\
+    & = \zero,
+  \end{split}
+\end{equation}
+an $m\times m$ matrix of zeros.
+
+The cross terms with $k=j$ are the survivors:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}&= \paren{\sigma_{k}\X{}_{k}\, \Y{*}_{k}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}} \\
+    &= \sigma_{k}^{2}\,\X{}_{k}\paren{\Y{*}_{k}\,\Y{}_{k}}\X{*}_{k}\\
+    &= \sigma_{k}^{2}\,\prodx{*}{k}.
+  \end{split}
+\end{equation}
+
+The final result is this
+\begin{equation}
+  \W{x} = \prdm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\prodx{*}{k}}.
+\end{equation}
+By similar machinations we find the complementary product matrix
+\begin{equation}
+  \W{y} = \prdmm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\prody{*}{k}}.
+\end{equation}
+Notice the similarity of this formulation to the expression using the full matrices.
+
+In terms of the \svdl \ the product matrices are these
+\begin{equation}
+  \begin{array}{rccccccl}
+    \W{x} &=& \prdm{*}  &=& \paren{\svd{*}}^{*}&\svd{*} &=& \wx{*},\\
+    \W{y} &=& \prdmm{*} &=& \svd{*}&\paren{\svd{*}}^{*} &=& \wy{*}.
+  \end{array}
+\end{equation}
+
+Compare the equivalent formulations to see the stenciling and shape arbitration effects of the $\sig{}$ matrix. The matrix formulation shows the stenciling action of the $\sig{}$ matrix. The second expression is a sum of outer products scaled by the squares of the singular values:
+\begin{equation}
+  \begin{array}{rcccc}
+    \W{x} &=& \wx{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\prodx{*}{k}},\\[10pt]
+    \W{y} &=& \wy{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\prody{*}{k}}.
+  \end{array}
+\end{equation}
+The Fourier-Bessel expansion represents the thin SVD\index{thin SVD}; the null space vectors are never encountered.
+
+%%
+\subsection{Examples}
+Let's go back through some earlier examples and show the details explicitly. 
+
+%%
+\subsubsection{Canonical example: $\by{3}{2}$, rank $\rho=1$}
+Begin with equation \eqref{eq:simple:svd}:
+
+\begin{equation*}
+\begin{split}
+    \svda{T}\\
+    \archetypez.
+\end{split}
+\end{equation*}
+
+The product matrices are these:
+\begin{equation}
+  \begin{array}{lccc}
+     \W{x} = \prdm{T}  =& \Atexample  \Aexample   &=& 3 \mat{rr}{1&-1\\-1&1},\\
+     \W{y} = \prdmm{T} =& \Aexample   \Atexample  &=& 2 \mat{rrr}{1&-1&1\\-1&1&-1\\1&-1&1}.\\
+  \end{array}
+\end{equation}
+
+In terms of an outer product expansion the product matrices are assembled in this fashion:
+\begin{equation}
+  \begin{array}{lcc}
+     \W{x} = \sigma^{2}\, \prodx{T}{1} = 6\, \stwo   \mat{r}{1\\-1}   \stwo \mat{rr}{1&-1}     =& 3 \mat{rr}{1&-1\\-1&1},\\[5pt]
+     \W{y} = \sigma^{2}\, \prody{T}{1} = 6\, \sthree \mat{r}{1\\-1\\1}\sthree\mat{rrr}{1&-1&1} =& 2 \mat{rrr}{1&-1&1\\-1&1&-1\\1&-1&1}.
+  \end{array}
+\end{equation}
+
+%%%
+%%%
+\subsubsection{Increase the matrix rank: $\by{2}{3}$, rank $\rho=2$}
+Begin with equation \eqref{eq:general:ysxt}:
+\begin{equation*}
+  \begin{array}{ccccc}
+    \A{} &=& \Y{} & \sig{} & \X{T}\\
+  \mat{ccc}
+  {
+  0 & 3 & 0 \\
+  1 & 2 & 2
+  } 
+  &=&
+  \frac{1}{\sqrt{2}}
+  \mat{rr}{1 & -1\\1 & 1}
+  &
+  \mat{cc|c}
+  {
+  \sqrt{15} & 0 & 0 \\
+  0 & \sqrt{3}  & 0
+  }
+  &
+  \mat{ crr }
+ {\frac{1}{\sqrt{30}} & \frac{5}{\sqrt{30}} & \frac{2}{\sqrt{30}}\\
+  \rsix               & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\
+  \rowcolor{ltgray}
+  \frac{-2}{\sqrt{5}} & 0                   & \frac{1}{\sqrt{5}}}\\[25pt]
+  \end{array}.
+\end{equation*}
+
+The product matrices are these:
+\begin{equation}
+  \begin{array}{lccc}
+     \W{x} = \prdm{T}  =& 
+  \mat{ccc}
+  { 0 & 1 \\
+    3 & 2 \\
+    0 & 2
+  }  
+  \mat{ccc}
+  {
+  0 & 3 & 0 \\
+  1 & 2 & 2
+  } 
+     &=& 
+  \mat{ccc}
+  {
+  1 &  2 & 2 \\
+  2 & 13 & 4 \\
+  2 &  4 & 4 
+  },\\
+     \W{y} = \prdmm{T} =& 
+  \mat{ccc}
+  {
+  0 & 3 & 0 \\
+  1 & 2 & 2
+  }
+  \mat{ccc}
+  { 0 & 1 \\
+    3 & 2 \\
+    0 & 2
+  }  
+   &=& 3 \mat{cc}{3&2\\2&3}.\\
+  \end{array}
+\end{equation}
+
+The first outer product is given by this:
+\begin{equation}
+  \begin{array}{rll}
+     \W{x} &= \sigma_{1}^{2}\, \prodx{T}{1} &+ \sigma_{2}^{2}\, \prodx{T}{2},\\
+      &= 15\,\frac{1}{\sqrt{30}}\mat{c}{1\\5\\2}\frac{1}{\sqrt{30}}\mat{ccc}{1&5&2}
+      &+ 3\,\ssix\mat{r}{1\\-1\\2}\ssix\mat{ccc}{1&-1&2},\\
+      &= \rtwo\,\mat{ccc}{1&5&2 \\5&25&10\\2&10&4}
+      &+ \rtwo\,\mat{rrr}{1&-1&2\\-1&1&-2\\2&-2&4},\\
+      &=        \mat{ccc}{1&2&2 \\2&13&4 \\2&4&4}.
+  \end{array}
+\end{equation}
+
+Notice the orthogonality of the outer product matrices from the domain basis:
+\begin{equation}
+  \begin{split}
+     \paren{\prodx{T}{1}} \paren{\prodx{T}{2}} &=
+     \frac{1}{30}\mat{ccc}{1&5&2\\5&25&10\\2&10&4}
+     \frac{1}{30}\mat{rrr}{1&-1&2\\-1&1&-2\\2&-2&4} \\
+     & = \mat{ccc}{0&0&0\\0&0&0\\0&0&0}.
+  \end{split}
+\end{equation}
+
+The second outer product develops in a similar fashion:
+\begin{equation}
+  \begin{array}{rll}
+     \W{y} &= \sigma_{1}^{2}\, \prody{T}{1} &+ \sigma_{2}^{2}\, \prody{T}{2},\\
+      &= 15\, \stwo\mat{c}{ 1\\1} \stwo\mat{cc}{1&1}
+      &+  3\, \stwo\mat{r}{-1\\1} \stwo\mat{cc}{-1&1},\\
+      &=   \frac{15}{2} \mat{cc}{1&1\\1&1} &+ \frac{3}{2} \mat{rr}{1&-1\\-1&1},\\
+      &= 3 \mat{cc}{3&2\\2&3}.
+  \end{array}
+\end{equation}
+
+Here too we see orthogonality of the outer product matrices from the codomain basis:
+\begin{equation}
+  \begin{split}
+     \paren{\prody{T}{1}} \paren{\prody{T}{2}} &=
+     \rtwo\mat{cc}{1& 1\\ 1&1}
+     \rtwo\mat{rr}{1&-1\\-1&1} \\
+     & = \mat{cc}{0&0\\0&0}.
+  \end{split}
+\end{equation}
+
+%%%
+%%%
+\subsubsection{A complex Gell-Mann matrix: $\by{3}{3}$, rank $\rho=2$}
+Start with the a decomposition for the Gell-Mann matrix $\lambda_{5}$:
+\begin{equation*}
+  \begin{array}{ccccc}
+    \lambda_{5}{} &=& \Y{} & \sig{} & \X{T}\\
+    \gme &=&
+\mat{rc>{\columncolor{ltgray}}c}
+{-i & 0 & 0 \\
+  0 & 0 & 1 \\
+  0 & i & 0}
+  &
+\mat{cc|c}
+{ 1 & 0 & 0 \\
+  0 & 1 & 0 \\\hline
+  0 & 0 & 0}
+  &
+\mat{ccr}
+{ 0 & 0 & 1 \\
+  1 & 0 & 0 \\
+\rowcolor{ltgray}
+  0 & 1 & 0}
+  \end{array}
+\end{equation*}
+
+Start with the observation that
+\begin{equation}
+  \lambda_{5}^{*} = \overline{\lambda_{5}^{\mathrm{T}}} = \overline{\mat{rcc}
+{ 0 & 0 & i \\
+  0 & 0 & 0 \\
+ -i & 0 & 0}
+} = \gme = \lambda_{5}{}.
+\end{equation}
+This matrix is Hermitian\index{matrix!Hermitian!example}; all the Gell-Mann matrices were constructed to be Hermitian.
+
+Both product matrices are identical:
+\begin{equation}
+  \W{x} = \lambda_{5}^{*}\lambda_{5} = \lambda_{5}\lambda_{5}^{*} = \W{y} = \lambda_{5}^{2}
+\end{equation}
+with a value of
+\begin{equation}
+  \lambda_{5}^{2} = \mat{ccc}{1&0&0\\0&0&0\\0&0&1}.
+\end{equation}
+
+While the product matrices have the same value, their decompositions are different. The first one is this:
+%%
+\begin{equation}
+  \begin{array}{lll}
+     \W{x} &= \sigma_{1}^{2}\, \prodx{T}{1} &+ \sigma_{2}^{2}\, \prodx{T}{2},\\
+      &= \mat{c}{0\\0\\1}\mat{ccc}{0&0&1} &+
+         \mat{c}{1\\0\\0}\mat{ccc}{1&0&0},\\
+      &= \mat{ccc}{0&0&0\\0&0&0\\0&0&1} &+
+         \mat{ccc}{1&0&0\\0&0&0\\0&0&0},\\
+      &= \mat{ccc}{1&0&0\\0&0&0\\0&0&1}
+  \end{array}
+\end{equation}
+
+The orthogonality of the outer product matrices from the domain basis is immediate:
+\begin{equation}
+  \begin{split}
+     \paren{\prodx{T}{1}} \paren{\prodx{T}{2}} &=
+     \mat{ccc}{0&0&0\\0&0&0\\0&0&1}
+     \mat{ccc}{1&0&0\\0&0&0\\0&0&0} \\
+     & = \mat{ccc}{0&0&0\\0&0&0\\0&0&0} = \zero.
+  \end{split}
+\end{equation}
+
+The second outer product is a elementary as the first:
+\begin{equation}
+  \begin{array}{lll}
+     \W{y} &= \sigma_{1}^{2}\, \prody{*}{1} &+ \sigma_{2}^{2}\, \prody{*}{2},\\
+      &= \mat{c}{-i\\0\\0}\mat{ccc}{i&0&0} &+
+         \mat{c}{0\\0\\i}\mat{ccc}{1&0&-i},\\
+      &= \mat{ccc}{1&0&0\\0&0&0\\0&0&0} &+
+         \mat{ccc}{0&0&0\\0&0&0\\0&0&1},\\
+      &= \mat{ccc}{1&0&0\\0&0&0\\0&0&1}.
+  \end{array}
+\end{equation}
+
+Again we see the orthogonality of the outer product matrices from the codomain basis:
+\begin{equation}
+  \begin{split}
+     \paren{\prody{*}{1}} \paren{\prody{*}{2}} &=
+     \mat{ccc}{1&0&0\\0&0&0\\0&0&0}
+     \mat{ccc}{0&0&0\\0&0&0\\0&0&1} \\
+     & = \mat{ccc}{0&0&0\\0&0&0\\0&0&0} = \zero.
+  \end{split}
+\end{equation}
+
+\endinput

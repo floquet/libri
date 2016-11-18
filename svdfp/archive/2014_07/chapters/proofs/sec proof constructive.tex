@@ -1,0 +1,61 @@
+\section{A constructive proof by Meyer}
+
+Meyer\index{singular value decomposition!proofs!Meyer} presents a constructive proof \cite[\S 5.12]{Meyer2000} which frames the SVD as the ultimate tool for diagonalization. 
+The beauty of a constructive proof is that we ultimately end up with a method to construct the SVD.  
+
+Meyer+ the acme of diagonlization
+\begin{equation}
+  \A{} = \U{} \R{} \V{*}
+\end{equation}
+This decomposition is very similar to the \asvd. It shares the same shapes:
+%
+\begin{enumerate}
+\item $\U{}\in\cmplxmm$: square, unitary. Size determined by the number of \emph{rows} of $\A{}$.
+\item $\V{}\in\cmplxnn$: square, unitary. Size determined by the number of \emph{columns} of $\A{}$.
+\item $\R{}\in\realmn$: matrix has the same shape as $\A{}$.
+\end{enumerate}
+%
+\begin{equation}
+  \begin{split}
+    \U{} & = \mat{ccc|ccc}{ {\bl{ u_{1} }} & {\bl{ \dots }} & {\bl{ u_{\rho} }} & {\rd{ u_{\rho+1} }} & {\rd{ \dots }} & {\rd{ u_{m} }} } \\
+    \V{} & = \mat{ccc|ccc}{ {\bl{ v_{1} }} & {\bl{ \dots }} & {\bl{ v_{\rho} }} & {\rd{ v_{\rho+1} }} & {\rd{ \dots }} & {\rd{ v_{n} }} }
+  \end{split}
+\end{equation}
+%%
+\begin{table}[htdp]
+\caption{default}
+\begin{center}
+\begin{tabular}{cc}
+%
+ the vectors \dots & form an orthonormal span of \dots \\
+%
+ ${\bl{ \lst{u_{1},\dots,u_{\rho}} }}$ & $\brnga{}$ \\
+%
+ ${\red{ \lst{u_{\rho+1},\dots,u_{m}} }}$ & $\rnlla{*}$ \\
+%
+ ${\bl{ \lst{v_{1},\dots,v_{\rho}} }}$ & $\brnga{*}$ \\
+%
+ ${\red{ \lst{v_{\rho+1},\dots,v_{n}} }}$ & $\rnlla{}$ \\
+%
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
+
+
+where the matrix $\R{}$ consists of an $\byy{\rho}$ upper triangular matrix in a sabot matrix
+\begin{equation}
+  \R{} = \mat{ccc}{\C{} & \zero \\ \zero & \zero}
+\end{equation}
+with
+\begin{equation}
+  \C{} = \mat{cccc}
+        {\num   & \num & \dots & \num \\
+          0     & \num & \dots & \num \\
+         \vdots && \ddots & \vdots    \\
+         0 & 0 & \dots & \num}
+\end{equation}
+
+
+
+\endinput

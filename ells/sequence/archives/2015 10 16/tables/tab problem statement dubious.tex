@@ -1,0 +1,28 @@
+%    Figure insertion; default placement is top; if the figure occupies
+%    more than 75% of a page, the [p] option should be specified.
+\begin{table}[t]
+	\begin{center}
+		\begin{tabular}{ll}
+		  %
+		  \bf{measurements} & $x_{k}$, $k=1:m$ \\
+		               & $R_{k}$, $k=1:m$ \\[5pt]
+		  %
+		  \bf{fit parameters} & $\phi\pm\eps_{\phi}$ \\
+		                 & $e\pm\eps_{e}$ \\[5pt]
+		  %
+		  \bf{trial function} & $\phi + e x = - x R$ \\[5pt]
+		  %
+		  \bf{merit function} & $\sum_{k=1}^{m} \paren{\phi + e x_{k} + x_{k} R_{k}}^{2}$ \\[5pt]
+		  %
+		  \bf{linear system} & $\mat{cc}{1 & x_{1} \\ \vdots & \vdots \\ 1 & x_{m}} \mat{c}{\phi \\ e} = -\mat{c}{x_{1}R_{1} \\ \vdots \\ x_{m}R_{m}}$ \\[5pt]
+		  %
+		  %
+		\end{tabular}
+	\end{center}
+	\label{tab:statement dubious}
+	\caption{Problem statement: determine focal length $f$}
+\end{table}%
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathtables "tab XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

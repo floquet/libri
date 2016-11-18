@@ -1,0 +1,264 @@
+\section[Matrix analysis]{The unitary transformation in matrix analysis}
+
+In a nutshell, the importance of the unitary transformation in analysis stems from the fact that it is invariant under the $2-$norm and the Frobenius norm. This allows us to transform difficult problems to simpler ones. Two important examples will follow.
+
+Given a target matrix $\A{}$ and any two unitary matrix $\Q{}$ and $\Z{}$ with the following conformality,
+\begin{equation*}
+   \Accmn,  \quad \Q{}\in\cmplx{\byy{m}},  \quad \Z{}\in\cmplx{\byy{n}},
+\end{equation*}
+the following identities are valid:
+\begin{equation}
+  \begin{array}{ccccccc}
+     \normt{\Q{}\A{}\Z{}} &=& \normt{\Q{}\A{}} &=& \normt{\A{}\Z{}} &=& \normt{\A{}},\\
+       \by{m}{n} && \byy{m} && \byy{n} && \by{m}{n}
+  \end{array}
+\end{equation}
+Note the different shapes of the matrices in this chain of norm equalities.
+
+This is easy to prove by direct computation. Given a unitary matrix $\Q{}$, we know that
+\begin{equation}
+\Q{*}\Q{} = \I{}.  
+\end{equation} 
+Using the definition of the $2-$norm:
+\begin{equation}
+  \normt{\Q{}\A{}} = \sqrt{\paren{\Q{}\A{}}^{*}\paren{\Q{}\A{}}} = \sqrt{\A{*}\Q{*}\Q{}\A{}} = \sqrt{\A{*}\A{}} = \normt{\A{}}.
+\end{equation}
+
+The archetypical problem involving the $2-$norm is the problem of least squares. We can derive the solutions using this unitary invariance.
+
+The least squares solution to the linear system
+\begin{equation}
+  \ls
+\end{equation}
+is formally defined as the minimization problem in the $2-$norm as finding the vector $x$ which solves
+\begin{equation}
+  \min\limits_{x\in\real{n}} \normt{\A{}x-b}.
+\end{equation}
+
+%%%
+\subsection{The $\QR$ solution for least squares}
+Here we consider a tall matrix, $\Accc{m}{n}{\rho}$, where $m\ge n$. The $\QR$ decomposition resolves the matrix into the product of a unitary matrix $\Q{}$ and and upper triangular matrix $\R{}$:
+\begin{equation}
+  \A{} = \QR, \quad \Q{}\in\cmplx{\byy{m}}, \quad \R{}\in\cmplx{\by{m}{n}}.
+\end{equation}
+Since the $\Q{}$ matrix is unitary, we can write the useful identity
+\begin{equation}
+  \Q{*}\A{} = \R{}.
+  \label{eq:unitary:qar}
+\end{equation}
+
+The matrix $\Q{}$ is a decomposition of the codomain space very much like the domain matrices $\X{}$ and $\Y{}$ in the \svdl. We can think of the $\Q{}$ matrix as a familiar partitioning of the codomain like so
+\begin{equation}
+  \Q{} = \mat{c|>{\columncolor{ltgray}}c}{\rng{\A{}} & \nll{\A{*}}}.
+\end{equation}
+The first $n$ columns span the range $\rng{\A{}}$ and the last $(m-n)$ columns span the orthogonal complement, $\rng{\A{}}^{\perp} = \nll{\A{*}}$.
+\begin{equation}
+  \Q{} = \mat{c|>{\columncolor{ltgray}}c}{\Q{}_{\mathcal{R}} & \Q{}_{\mathcal{N}}}.
+\end{equation}
+Pay close attention to the conformability of each component: $\Q{}_{\mathcal{R}}\in\cmplx{\by{m}{n}}$ and $\Q{}_{\mathcal{N}}\in\cmplx{\by{m}{(m-n)}}$
+
+Just as in the SVD, these null space vectors are ``silent''; they don't contribute to the matrix product. In the SVD, the silence was enforced by zeros in the $\sig{}$ matrix. Here to zeros enforce the silence and they in the $\R{}$ matrix:
+\begin{equation}
+  \R{} = \mat{c}{\R{}_{\mathcal{R}}\\[2pt]\hline\rowcolor{ltgray}\zero}.
+\end{equation}
+The size here are $\R{}_{\mathcal{R}}\in\cmplx{\by{m}{n}}$ and $\Q{}_{\mathcal{N}}\in\cmplx{\by{m}{(m-n)}}$
+
+Using this range-null space decomposition, the $\QR$ decomposition takes the form
+\begin{equation}
+  \A{} = \QR = \mat{c|>{\columncolor{ltgray}}c}{\Q{}_{\mathcal{R}} & \Q{}_{\mathcal{N}}}\mat{c}{\R{}_{\mathcal{R}}\\[2pt]\hline\rowcolor{ltgray}\zero}
+\end{equation}
+
+We being to change the stated problem into a malleable version using unitary transformation
+\begin{equation}
+  \normt{\A{}x-b}^{2} = \normt{\Q{*}\paren{ \A{}x-b }}^{2} = \normt{\Q{*}\A{}x-\Q{*}b}^{2}.
+\end{equation}
+Using equation \eqref{eq:unitary:qar} we can write
+\begin{equation}
+  \normt{\Q{*}\A{}x-\Q{*}b}^{2} = \normt{\R{}x-\Q{*}b}^{2}.
+\end{equation}
+Now we specify the range and null space contributions inside the norm
+\begin{equation}
+\begin{split}
+  \normt{\R{}x-\Q{*}b}^{2} &= \normt{\mat{c}{\R{}_{\mathcal{R}}\,x\\[2pt]\hline\rowcolor{ltgray}\zero}-\mat{c}{\Q{*}_{\mathcal{R}}\,b \\[2pt]\hline\rowcolor{ltgray} \Q{*}_{\mathcal{N}}\,b}}^{2},\\
+  & = \normt{\R{}_{\mathcal{R}}\,x - \Q{*}_{\mathcal{R}}\,b}^{2} + \normt{\Q{*}_{\mathcal{N}}\,b}^{2}
+\end{split}
+\end{equation}
+This derivation establishes the equivalence of the minimization problems
+\begin{equation}
+  \min\limits_{x\in\real{n}} \normt{\A{}x-b}^{2} = \min\limits_{x\in\real{n}} \paren{ \normt{\R{}_{\mathcal{R}}\,x - \Q{*}_{\mathcal{R}}\,b}^{2} + \normt{\Q{*}_{\mathcal{N}}\,b}^{2} }.
+\end{equation}
+In this form, two facts are evident:
+\begin{enumerate}
+\item The minimizer $x_{LS}$ is given by
+\begin{equation}
+  \R{}_{\mathcal{R}}\,x_{LS} = \Q{*}_{\mathcal{R}}\,b.
+\end{equation}
+\item The residual error $r$ is determined by the ``silent'' components of the codomain matrix
+\begin{equation}
+  r^{2} = \paren{\Q{*}_{\mathcal{N}}\,b}^{2}.
+\end{equation}
+\end{enumerate}
+
+By minimizing the $2-$norm of the error using $\QR$ expansion we have shown that the $\QR$ solution for the full column rank least squares problem is this
+\begin{equation}
+  x_{LS} = \R{-1}_{\mathcal{R}}\Q{*}_{\mathcal{R}}\,b,
+\end{equation}
+and that the error is given by this
+\begin{equation}
+  \A{}x_{LS} - b = \Q{*}_{\mathcal{R}}\,b.
+\end{equation}
+
+For a similar derivation see Golub, \cite[p. 239]{Golub}.
+
+\textbf{Example 1: full column rank, row rank deficiency} For this example, we want a tall matrix. While none of our example matrices fit this descriptions, a transpose of an example matrix is $\Arrr{3}{2}{2}$. The matrix and $\QR$ decomposition are given by this:
+\begin{equation}
+  \begin{array}{cccc}
+    \A{} & = & \mat{c|>{\columncolor{ltgray}}c}{\Q{}_{\mathcal{R}} & \Q{}_{\mathcal{N}}}
+             & \mat{c}{\R{}_{\mathcal{R}}\\[2pt]\hline\rowcolor{ltgray}\zero}, \\
+    \matrixbravot & = &
+    \mat{cc|>{\columncolor{ltgray}}c}{0 & \sfive & \frac{-2}{\sqrt{5}} \\ 1 & 0 & 0 \\ 0 & \frac{2}{\sqrt{5}} & \sfive} &
+    \mat{cc}{3 & 2 \\ 0 & \sqrt{5} \\\hline 0 & 0}.
+  \end{array}
+  \label{eq:unitary:ex1}
+\end{equation}
+The data vector is
+\begin{equation}
+  b = \phivector.
+\end{equation}
+
+The least squares solution is then
+\begin{equation}
+  \begin{split}
+    x_{LS} & = \R{-1}_{\mathcal{R}}\Q{*}_{\mathcal{R}}\,b,\\
+     &= \mat{rr}{\rthree & -\frac{2}{3\sqrt{5}} \\ 0 & \sfive}
+        \mat{ccc}{0&1&0 \\ \sfive & 0 & \frac{2}{\sqrt{5}}}
+        \phivector,\\
+     &= \frac{1}{15}\mat{c}{1\\6}.
+  \end{split}
+  \label{eq:transform:systems:qr:answer}
+\end{equation}
+
+We can see that this matrix has two columns and has rank $\rho = 2$ and therefore the null space of the domain is trivial and there is no homogenous solution. Therefore this solution is unique.
+
+We can check the residual error vector directly via
+\begin{equation}
+  r = \A{}x_{LS} - b = \rfive \mat{r}{-8\\0\\4}
+\end{equation}
+which implies
+\begin{equation}
+  r^{T}r = r^{2} = \frac{16}{5}.
+  \label{eq:transform:systems:qr:r2}
+\end{equation}
+
+We can also use
+\begin{equation}
+  r^{2} = \paren{ \Q{*}_{\mathcal{N}}\,b}^{2} = \paren{\sfive \mat{rrr}{-2 & 0 & 1} \phivector}^{2}= \frac{16}{5}.
+\end{equation}
+
+
+%%%%%%%%%%%%%
+\subsection{The SVD solution for least squares}
+Here we mimic the development in the previous section and start with a matrix of full column rank: $\Accmn_{n}$. Therefore there is no null space component in the domain matrix. Because we have full column rank the null space for the domain is trivial and the general decomposition simplifies accordingly:
+\begin{equation}
+  \X{} = \mat{cc}{ \xrng{} & \xnll{} } \Rightarrow \mat{c}{ \xrng{} }
+\end{equation}
+
+The goal is to convert the problem statement into a more tractable form exploiting unitary transformation. The minimization problem which defines the least squares solution is defined this way:
+\begin{equation}
+  \normt{\A{}x-b}^{2} = \normt{\Y{*}\paren{ \A{}x-b }}^{2} = \normt{\Y{*}\A{}x-\Y{*}b}^{2}.
+\end{equation}
+To simplify this and remove the $\A{}$ matrix we need to rewrite the \svdl:
+\begin{equation}
+  \svdax{*} \qquad \Rightarrow \qquad \Y{*}\A{} = \sig{}\X{*}.
+\end{equation}
+Using this relationship we can transform the norm as follows:
+\begin{equation}
+  \normt{\Y{*}\A{}x-\Y{*}b}^{2} = \normt{\sig{}\X{*}x-\Y{*}b}^{2}.
+\end{equation}
+%
+Expand then isolate range and null space contributions inside the norm
+\begin{equation}
+\begin{split}
+  \normt{\sig{}\X{*}x-\Y{*}b}^{2} 
+    &= \normt{\essmatrix{}\mat{c}{\xrng{*}\\\xnll{*}}x-\mat{c}{\yrng{*}\\\ynll{*}}b}^{2} \\
+    &= \normt{\mat{c}{\ess{}\xrng{*}x\\\zero}-\mat{c}{\yrng{*}b\\\ynll{*}b}}^{2}.
+\end{split}
+\end{equation}
+%
+This result and the theorem of Pythagoras establishes the equivalence of the minimization problems
+\begin{equation}
+  \min\limits_{x\in\real{n}} \normt{\A{}x-b}^{2} = \min\limits_{x\in\real{n}} \paren{\ \normt{\ess{}\xrng{*}x - \yrng{*}b}^{2}\ +\ \normt{\ynll{*}b}^{2}\ }.
+\end{equation}
+The classic definition of the least squares problem on the left has been reduced to an equivalent problem on the right which uses the fundamental subspace components on the left. This is a beautiful and powerful result which tells us two facts:
+\begin{enumerate}
+\item The minimizer $x_{LS}$ solves
+\begin{equation}
+  \ess{}\xrng{*}x_{LS} = \yrng{*}b.
+\end{equation}
+\item The residual error $r$ is again determined by the ``silent'' components of the codomain matrix
+\begin{equation}
+  r^{2} = \normts{\ynll{*}b} .
+\end{equation}
+\end{enumerate}
+
+By minimizing the $2-$norm of the error using the SVD expansion we have shown that the SVD solution for the least squares problem is given by the pseudoinverse:
+\begin{equation}
+\boxed{
+  x_{LS} = \xrng{}\ess{-1}\yrng{*}b = \Ap b.
+  }
+  \label{eq:13:bingo}
+\end{equation}
+This is a remarkable result, for by simply using the \svdl \ we have recovered the pseudoinverse solution! This is a natural consequence of the unitary transformation of the least squares problem. This is a main reason why the SVD and the pseudoinverse are considered to be intimately related subjects.
+
+The norm of the error here is also given by the ``silent'' null space contribution
+\begin{equation}
+  \normt{\A{}x_{LS} - b}^{2} =  r^{2} = \normt{\ynll{*}b}^{2}.
+\end{equation}
+
+For a similar perspective see Golub, \cite[p. 257]{Golub}.
+
+\textbf{Example:} Once more we use the transpose of the example matrix $\Arrr{3}{2}{2}$. The matrix and an \svdl \  are given by this:
+\begin{equation}
+  \begin{array}{ccccc}
+    \A{} & = & \mat{c|>{\columncolor{ltgray}}c}{\yrng{} & \ynll{}}
+             & \essmatrix{}
+             & \mat{c}{\xrng{T}}, \\
+    \matrixbravot & = &
+    \matrixbravoX & \matrixbravosigmat & \matrixbravoYt.
+  \end{array}
+\end{equation}
+The data vector is
+\begin{equation}
+  b = \phivector.
+\end{equation}
+
+The least squares solution is then
+\begin{equation}
+  \begin{split}
+    x_{LS} & = \xrng{}\ess{-1}\yrng{T}\,b,\\
+     &= \matrixbravoYt
+        \mat{cc}{\recip{\sqrt{15}} & 0 \\ 0 & \sthree }
+        \mat{crc}{
+     \frac{1}{\sqrt{30}} & \frac{5}{\sqrt{30}} & \frac{2}{\sqrt{30}} \\
+     \frac{1}{\sqrt{6}}  & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\
+     }
+        \phivector,\\
+     &= \frac{1}{15}\mat{c}{1\\6}.
+  \end{split}
+\end{equation}
+This is the same answer as in equation \eqref{eq:transform:systems:qr:answer}.
+
+The magnitude of the residual error vector is computed in this way:
+\begin{equation}
+  r^{2} = \paren{ \Q{*}_{\mathcal{N}}\,b}^{2} = \frac{16}{5}.
+\end{equation}
+\begin{equation}
+  \begin{split}
+     r^{2} &= \normts{ \ynll{T}\,b}, \\
+     &= \normts{ \mat{ccc}{\frac{2}{\sqrt{5}} & 0 & \frac{1}{\sqrt{5}}} \phivector}, \\
+     &= \frac{16}{5}.
+  \end{split}
+\end{equation}
+This is in agreement with equation \eqref{eq:transform:systems:qr:r2}.
+
+\endinput

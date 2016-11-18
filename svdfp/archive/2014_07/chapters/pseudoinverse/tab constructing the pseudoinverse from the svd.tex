@@ -1,0 +1,28 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+%%
+\begin{table}[htdp]
+\caption[Constructing the pseudoinverse from the \asvd]{Constructing the pseudoinverse from the \asvd. This table shows the relationship between the SVD and pseudoinverse for each of the three example matrices. The $\sig{}$ matrix uses black brackets, $\sig{\ssym}$ uses gray.}
+\begin{center}
+\begin{tabular}{lccccccccc}
+%%
+  $\rho \ne m, \rho \ne n$ \qquad \qquad & $\A{}$ & $=$ & $\matrixa$ & $=$ & $\matrixaY$ & $\sigmaa$ & $\matrixaXt$  \\[5pt]
+%
+                                   & $\Ap$ & $=$ & $\Aplusa$ & $=$ & $\matrixaX$ & $\sigmaainv$ & $\matrixaYt$  \\[25pt]\hline
+%%
+  $\rho = n < m$     \qquad \qquad & $\A{}$ & $=$ & $\matrixb$ & $=$ & $\matrixbY$ & $\sigmab$ & $\matrixbXt$  \\[5pt]
+%
+                                   & $\Ap$ & $=$ & $\Aplusb$ & $=$ & $\matrixbX$ & $\sigmabinv$ & $\matrixbYt$  \\[25pt]\hline
+%%
+  $\rho = m = n$     \qquad \qquad & $\A{}$ & $=$ & \, \, $\matrixc$ & $=$ & $\phantom{\recip{\sqrt{2}}}\matrixcY$ & $\sigmac$ & $\matrixcXt$  \\[5pt]
+%
+                                   & $\Ap$ & $=$ & $\Aplusc$ & $=$ & $\matrixcX$ & $\sigmacinv$ & $\phantom{\recip{\sqrt{2}}}\matrixcYt$  %
+\end{tabular}
+\end{center}
+\label{tab:mpp constructions}
+\end{table}
+%%
+\end{landscape}
+
+\endinput

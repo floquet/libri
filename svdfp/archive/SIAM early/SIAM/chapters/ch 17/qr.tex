@@ -1,0 +1,56 @@
+\section[$\A{}=\Q{}\R{}$]{$\Q{}\R{}$ decomposition}
+
+The \qr \ is faster and can be optimized to be robust.
+\begin{equation}
+  \A{}=\Q{}\R{}
+\end{equation}
+
+%%%
+\subsection{Theory}
+\begin{quote}
+ Any matrix of full column rank (the column vectors are linearly independent and complete) can be expressed as the product of a unitary matrix $\Q{}$ and an upper diagonal matrix $\R{}$.
+\end{quote}
+
+%%%
+\subsection{Examples}
+Full row rank and full column rank:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Ab & =
+    \stwo   \mat{rr}{1&1\\-1&1}
+    \sqrt{2}\mat{cc}{2 & 0 \\ 0 & 1}
+  \end{split}
+\end{equation}
+
+Full row rank with column rank deficiency:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Aa & =
+    \ktwo
+    \mat{ccc}{1 & 2 & 2 \\ 0 & 3 & 0}
+  \end{split}
+\end{equation}
+The $\Q{}$ matrix is the exact same matrix $\Y{}$ in the example.
+
+
+Row and column rank deficiency:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Aexample & =
+    \Yshade
+    \mat{rr}{\sqrt{3}&-\sqrt{3}\\0&0\\0&0}
+  \end{split}
+\end{equation}
+The $\Q{}$ matrix is the exact same matrix $\Y{}$ in the example.
+
+
+%%%
+\subsection{Application}
+
+%%%
+\subsection{Comparison to the SVD}
+
+\endinput

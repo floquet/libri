@@ -1,0 +1,210 @@
+\section{Examples of projectors}
+We can demonstrate the mappings of the fundamental projectors by direct calculation with vectors from the domain and the codomain and comparing the results to the \asvd. As usual, pay attention to how a nontrivial \ns \ alters the projection matrices.
+
+%%%%%%%%%%%
+\subsection{Matrix (a)}
+Both the domain and the codomain have \ns s which are nontrivial. This means that the projection matrices for the \ns s are not zero matrices.
+The sample matrix and the pseudoinverse are
+\begin{equation*}
+  \begin{split}
+    \aaesvd{*} \\
+    \matrixa &= \svdecompa.   
+  \end{split}
+\end{equation*}
+We will harvest vectors from the domain matrices to define the spans of the fundamental subspaces. The fundamental projectors are presented in table \eqref{tab:projectors:(a)} below. 
+%%%%%%
+\input{chapters/"projectors"/"tab example (a)"}  % table
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix (a) projections onto the codomain}
+For the projection onto the range
+\begin{equation}
+  \pra \,  \eta = {\bl{ \half
+   \mat{r}{  \eta_{1} - \eta_{2} \\ 
+            -\eta_{1} + \eta_{2} } }}
+\end{equation}
+We need to demonstrate that this vector is in fact in the range of $\A{}$ for all values of $\eta$. Define the intermediate variable.
+\begin{equation}
+  a = \eta_{1} - \eta_{2} \quad \ic.
+\end{equation}
+The projection equation is perspicuously in the span of the range
+\begin{equation}
+  \pra \,  \eta = {\bl{ \frac{a}{2}
+   \mat{r}{  1 \\ -1 } }} \in \spn{ \obvecam }
+\end{equation}
+For the projection onto the \ns \ the equation is
+\begin{equation}
+  \pnas \,  \eta = {\rd{ \half
+  \mat{c}{  \eta_{1} + \eta_{2} \\ 
+            \eta_{1} + \eta_{2} } }}
+\end{equation}
+Define the intermediate variable
+\begin{equation}
+  b = \eta_{1} + \eta_{2} \quad \ic.
+\end{equation}
+The projection equation becomes
+\begin{equation}
+  \pnas \,  \eta = {\rd{ \frac{b}{2}
+  \mat{r}{  1 \\ 1 } }} \in \spn{ \orvecan }
+\end{equation}
+The projections onto the subspaces of the domain require a bit more attention.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix (a) projections onto the domain}
+The matrix-vector product in this instance is
+\begin{equation}
+  \pras \,  \xi= \bl{ \recip{3}
+   \mat{r}{  \phantom{2}\xi_{1} - \phantom{2}\xi_{2} + \phantom{2}\xi_{3} \\ 
+            -\xi_{1} + \phantom{2}\xi_{2} - \phantom{2}\xi_{3} \\ 
+             \phantom{2}\xi_{1} - \phantom{2}\xi_{2} + \phantom{2}\xi_{3} } }.
+\end{equation}
+Define the intermediate variable.
+\begin{equation}
+  a = \xi_{1} - \xi_{2} + \xi_{3} \quad \ic.
+\end{equation}
+The projection equation is now
+\begin{equation}
+  \pra \,  \eta = {\bl{ \frac{a}{3}
+   \mat{r}{  1 \\ -1 \\ 1} }} \in \spn{ \obvecaa }.
+\end{equation}
+The \ns \ projection takes a little more work:
+\begin{equation}
+  \pna \,   \xi = {\rd{ \recip{3}
+   \mat{r}{ 2\xi_{1} + \phantom{2}\xi_{2} - \phantom{2}\xi_{3} \\ 
+            \phantom{2} \xi_{1} + 2\xi_{2} + \phantom{2}\xi_{3} \\ 
+            -\xi_{1} + \phantom{2}\xi_{2} + 2\xi_{3} } }} .
+            \label{eq:projectors:a:pna}
+\end{equation}
+Of course one way to show that this vector is in the \ns \ would be to show that it is orthogonal to a vector in the span of the range. This will be the method of choice for the next example. Instead we will show that this vector is equivalent to an arbitrary sum of the vectors which span the \ns.
+\begin{equation}
+  \alpha_{1} \rvecae + \alpha_{2} \rvecaf = 
+  {\rd{ \mat{c}{2\alpha_{2} \\ \alpha_{1} + \alpha_{2} \\ \alpha_{1} - \alpha_{2}} }}, \quad \alpha\ic .
+\label{eq:projectors:a:substitute}
+\end{equation}
+By equating the vectors in equations \eqref{eq:projectors:a:pna} and \eqref{eq:projectors:a:substitute} we learn how an arbitrary vector $\xi$ equates to a combination of vectors which span the \ns:
+\begin{equation}
+  \mat{c}{\alpha_{1} \\ \alpha_{2}} = \half
+  \mat{c}{ 3\xi_{2} + 3\xi_{3} \\ 2\xi_{1} + \xi_{2} - \xi_{3}} .
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix (a) orthogonal resolution}
+As mentioned earlier, the projectors can be expressed as a series of rank one updates. Start with the codomain. The projectors are
+\begin{equation}
+  \begin{split}
+    \pra  &= \sum_{k=1}^{\rho}   {\bl{ u_{k}u_{k}^{\bs} }}, \\
+    \pnas &= \sum_{k=\rho+1}^{m} {\rd{ u_{k}u_{k}^{\bs} }}.
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \pra  = \bur{} \bur{*}, \quad 
+  \pnas = \run{} \run{*}.
+\end{equation}
+%
+\begin{equation}
+  \pra  = \sum_{k=1}^{\rho}   {\bl{ u_{k}u_{k}^{\bs} }}, \quad 
+  \pnas = \sum_{k=\rho+1}^{m} {\rd{ u_{k}u_{k}^{\bs} }}.
+\end{equation}
+%
+For the domain the rank one decomposition is this
+\begin{equation}
+  \begin{split}
+    \pras &= \sum_{k=1}^{\rho}   {\bl{ v_{k} v_{k}^{\bs} }}, \\
+    \pna  &= \sum_{k=\rho+1}^{m} {\rd{ v_{k} v_{k}^{\bs} }}.
+  \end{split}
+\end{equation}
+
+%%%%%%
+\input{chapters/"projectors"/"tab (a) rank one codomain"} % table
+\input{chapters/"projectors"/"tab (a) rank one domain"}   % table
+
+
+%%%%%%%%%%%
+\subsection{Matrix (b)}
+This matrix is simpler to analyze that the last case because we now have full column rank. This implies that the \ns \ $\rnlla{}$ is trivial. We will see that this also implies that the associated projector $\pnas$ is a zero matrix. Also, when there is no null space the complementary projector $\pras$ will be an identity matrix.
+The sample matrix and the pseudoinverse are
+\begin{equation*}
+  \begin{split}
+    \aaesvd{*} \\
+    \matrixb &= \svdecompb.   
+  \end{split}
+\end{equation*}
+The fundamental projectors are shown in table \eqref{tab:projectors:(b)}. 
+%%%%%%
+\input{chapters/"projectors"/"tab example (b)"} % table
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix (b) projections onto the codomain}
+For the projection onto the range
+\begin{equation}
+  \pra \,  \eta = \prabeta
+\end{equation}
+This vector is in the range of $\A{}$ for all values of $\eta$. As in the last example, consider an arbitrary combination of the range space vectors and equate that to the previous result:
+\begin{equation}
+  \begin{split}
+    \alpha_{1} {\bl{ \vecbm }} + \alpha_{2} {\bl{ \vecbn }} 
+      &= {\bl{ \phantom{\recip{5}}\mat{c}{ \alpha_{1} + \alpha_{2} \\ 5\alpha_{1} - \alpha_{2} \\ 2\alpha_{1} + 2\alpha_{2} } }} \\
+      &= \prabeta
+  \end{split}
+\end{equation}
+The solution is this
+\begin{equation}
+  \mat{c}{ \alpha_{1} \\ \alpha_{2} } = \recip{6}
+  \mat{c}{ \eta_{1} + 5\eta_{2} + 2\eta_{3} \\ 5\eta_{1} - 5\eta_{2} + 10\eta_{3} } .
+\end{equation}
+This result establishes the fact that the projection of any vector $\xi\in\cmplxm$ is in the the range $\brnga{}$.
+
+The projection of an arbitrary vector on the \ns \ is
+\begin{equation}
+  \pnas \,  \eta = \pnasbeta
+\end{equation}
+We can quickly see how this vector must be in the \ns. Since the \ns \ is spanned by a single vector there is one free parameter to account for:
+\begin{equation}
+  \begin{split}
+    \alpha \rvecbo  
+      &= {\rd{ \phantom{\recip{5}}\mat{r}{ 2\alpha \\ 0\phantom{i} \\ -\alpha } }} \\
+      &= {\rd{ \recip{5} \mat{r}{ 
+          4\eta_{1} - 2\eta_{3} \\ 
+         -2\eta_{1} +  \eta_{3} }} }.
+  \end{split}
+\end{equation}
+Given an arbitrary vector $\eta\in\cmplxm$, the constant $\alpha$ is
+\begin{equation}
+  \alpha = 2\eta_{1} - \eta_{3}.
+\end{equation}
+Thus the projection of any arbitrary vector is in the \ns \ $\rnlla{}$.
+
+An alternative method is to show that the \ns \ projection is orthogonal to the range projection.
+
+The projections onto the subspaces of the domain are elementary.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Matrix (b) projections onto the domain}
+The matrix-vector product in this instance is
+\begin{equation}
+  \pras \,  \xi= \prasbxi.
+\end{equation}
+This result demonstrates that the range is the entire subspace $\cmplxn = \brnga{*}$. Therefore the projection of any vector is in the range of $\A{*}$. This implies that there is no \ns \ $\nlla{}$ and that there cannot be a nontrivial projector for this \ns.
+\begin{equation}
+  \pna \,   \xi = \gzerotwo
+\end{equation}
+
+%%%%%%
+\input{chapters/projectors/"tab fundamental projectors for the example matrices"} % table
+
+%%%%%%%%%%%
+\subsection{Summary}
+
+%%%%%%
+\input{chapters/projectors/"tab projectors for matrix (a)"} % table
+\input{chapters/projectors/"tab projectors for matrix (b)"} % table
+\input{chapters/projectors/"tab projectors for matrix (c)"} % table
+
+
+\endinput

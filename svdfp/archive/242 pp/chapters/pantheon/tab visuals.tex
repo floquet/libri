@@ -1,0 +1,136 @@
+\clearpage
+\section{Tables}
+Let's apply the valid decompositions\cite{latexGuide} to the cropped picture of Camille.
+
+%% A = B C
+\begin{table}[htdp]
+\caption[The polar decomposition]{The polar decomposition $\A{}=\polar$.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\W{}$ & $\pee{}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille polar w"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille polar p"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:polar}
+\end{table}
+%%
+
+%% A = B C
+\begin{table}[htdp]
+\caption[The full rank factorization]{The full rank factorization $\A{}=\BC$. The full rank factorization is trivial here because the image has full rank. Therefore $\B{}= \A{}$ and $\C{}=\I{64}$.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\B{}$ & $\C{}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille bc b"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille bc c"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:bc}
+\end{table}
+%%
+
+%% A = Q R
+\begin{table}[htdp]
+\caption[The $\QR$ decomposition]{The $\QR$ decomposition. The matrix $\Q{}$ is unitary while the matrix $\R{}$ is upper triangular.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\Q{}$ & $\R{}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille qr q"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille qr r"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:qr}
+\end{table}
+%%
+
+
+%% P A = L U
+\begin{table}[htdp]
+\caption[The $\LU$ decomposition]{The $\LU$ decomposition. More precisely, the $\PA=\LU$ decomposition. The permutation matrix $\pee{}$ reorders the rows of the target matrix $\A{}$. The matrix $\LL{}$ is unit lower diagonal, that is, the diagonal entries are one and the entries above the diagonal are zero. The matrix $\U{}$ is upper triangular.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\pee{}$ & $\A{}$ & = & $\LL{}$ & $\U{}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille lu p"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille lu l"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille lu u"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:palu}
+\end{table}
+%%
+
+%% Schur
+\begin{table}[htdp]
+\caption[The Schur decomposition]{The Schur decomposition. The matrix $\Q{}$ is unitary and the matrix $\T{}$ is upper triangular.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\Q{}$ & $\T{}$ & $\Q{*}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille schur q"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille schur t"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille schur q star"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:schur}
+\end{table}
+%%
+
+%% Jordan
+\begin{table}[htdp]
+\caption[The Jordan decomposition]{The Jordan decomposition. The matrix $\Q{}$ is unitary and the matrix $\J{}$ is a Jordan normal form. In this $\J{} = \I{64}$.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\ess{}$ & $\J{}$ & $\ess{-1}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille jordan s"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille jordan j"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille jordan s inv"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:jordan}
+\end{table}
+%%
+
+%% Hessenberg
+\begin{table}[htdp]
+\caption[The Hessenberg decomposition]{The Hessenberg decomposition. The matrix $\pee{}$ is unitary and the matrix $\HH{}$ is upper triangular.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+  $\A{}$ & = & $\pee{}$ & $\HH{}$ & $\pee{*}$ \\\hline
+%
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille 064"}} & = &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille hessenberg p"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille hessenberg h"}} &
+  \raisebox{-0.5\height}{\includegraphics[ width = 1.05in ]{images/pantheon/camille/"camille hessenberg p star"}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:pantheon:camille:hessenberg}
+\end{table}
+%%
+
+\endinput

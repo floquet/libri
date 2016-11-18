@@ -1,0 +1,89 @@
+\subsection{Matrix (b)}
+This matrix has a row rank deficiency and full column rank. The \ns \ $\rnlla{*}$ is nontrivial.
+
+%%%%%%%%%%%
+\subsubsection{Column space}
+ThThe first step in the reduction is to alter the order of the rows by interchanging the first and second rows:
+\begin{equation}
+  \pee{} \A{} = 
+  \mat{ccc}{
+  0 & 1 & 0 \\
+  1 & 0 & 0 \\
+  0 & 0 & 1
+  }
+  \matrixb = 
+  \recip{4}
+  \mat{cc}{
+  3 & 2 \\
+  0 & 1 \\
+  0 & 2
+  }
+\end{equation}
+The reduction is now immediate. By inspection we see that it is equivalent to a reduced form
+\begin{equation}
+  \begin{split}
+\arrayrulecolor{black}
+    \R{} \mat{c|c}{\pee{}\A{} & \pee{}\I{3}} &= \mat{c|c}{\E{} & \R{}} \\
+    \recip{4}
+    \mat{rrr}{1 & 0 & 0 \\ 0 & 1 & 0 \\ \phantom{-}0 & -2 & \phantom{-}1 }
+    \mat{cc|ccc}{3 & 2 & 0 & 1 & 0 \\ 0 & 1 & 1 & 0 & 0 \\ 0 & 2 & 0 & 0 & 1} &=\recip{4}
+\arrayrulecolor{medgray}
+    \mat{cc!{\color{black}\vline}rrr}{\boxed{3} & 2 & 1 & 0 & 0 \\  0 & \boxed{1} & \phantom{-}0 & 1 & \phantom{-}0 \\\hline 0 &  0 & \rminus\rtwo & \rzero & \rone}
+  \end{split}
+\end{equation}
+\arrayrulecolor{black}
+
+The codomain is resolved as
+\begin{equation}
+  \begin{split}
+    \cmplx{3} 
+      &= \qquad \qquad \ \ \brnga{} \qquad \quad \, \  \oplus \ \qquad \, \rnlla{*} \\
+      &= \spn{ \bvecba, \bvecbb }\  \oplus \ \spn{ \rvecbc }.
+  \end{split}
+  \label{eq:ftola:b:codomain}
+\end{equation}
+Of course the span of the range space could also be written as
+%
+\begin{equation}
+  \brnga{} = \spn{ {\bl{ \vecba }}, {\bl{ \vecbb }} } .
+\end{equation}
+%
+For this chapter we deliberately include the fractions inside the spans to emphasize the origin within the target matrix.
+
+Here too we see this set of spanning vectors in not orthogonal:
+\begin{equation}
+  {\bl{ \vecba }} \cdot {\bl{ \vecbb }} = 6 \ne 0.
+\end{equation}
+The spanning set from \asvd \ will not only be orthogonal, they will also be normalized.
+
+%%%%%%%%%%%
+\subsubsection{Row space}
+
+Onto the row space. Again we resolve the column space of the Hermitian conjugate matrix. More specifically, the equivalent form in equation \eqref{eq:ftola:b}:
+\begin{equation}
+  \matrixbt \sim \recip{4}\mat{ccc}{\boxed{1} & 2 & 2 \\ 0 & \boxed{3} & 0}.
+  \label{eq:ftola:b}
+\end{equation}
+There are two nonzero pivots and therefore the first two columns of the matrix $\A{*}$ are basic. These columns define the span of the range of $\A{*}$:
+\begin{equation}
+  \brnga{} = \spn{ \bvecbd, \bvecbe }.
+  \label{eq:ftola:b domain}
+\end{equation}
+Using the rank plus nullity theorem, we see that the \ns \ must be trivial. That is
+\begin{equation}
+  \rnlla{*} = \lst{ \gzerotwo } = \trivial.
+\end{equation}
+The space $\cmplx{2}$ will be spanned by two linearly independent \vv s and the span of the $\brnga{*}$ has two linearly independent vectors. 
+\begin{equation}
+  \begin{split}
+    \cmplx{2} 
+      &= \qquad \qquad \ \ \brnga{} \qquad \quad \,  {\mg{\  \oplus \ }} \qquad \, \gnlla{*} \\
+      &= \spn{ \bvecbd, \bvecbe } .
+  \end{split}
+  \label{eq:ftola:b:domain}
+\end{equation}
+
+%
+All four fundamental spaces are resolved and we see that $\A{}\in\cmplxall{2}{3}{2}$.
+
+\endinput

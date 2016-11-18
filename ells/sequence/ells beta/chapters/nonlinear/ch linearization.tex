@@ -1,0 +1,47 @@
+\chapter{Linearization}
+
+\section{Linear Transformation}  %    S    S    S    S    S    S    S    S    S
+
+A linear transformation $T$ satisfies the requirement
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    T(x + \alpha y) = T(x) + \alpha T(y).
+    \label{eq:defn lt}
+  %\end{split}
+  \end{equation*}
+An immediate consequence is
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    T(\underbrace{x - x}_{0}) = \underbrace{T(x) - T(x)}_{0} = 0,
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+therefore, because $x-x=0$, we must have $T(0) = 0$.
+
+Is the transformation $T(x) = a_{0} + a_{1} x$ a linear transformation? No, because $T(0) = b$. This is, however, an example of an affine transformation.
+
+\section{Mythology}  %    S    S    S    S    S    S    S    S    S
+
+An enduring misadventure in least squares is to hope that an exponential function like
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    y(x) = a_{0} e^{a_{1}x}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+can be linearized with a logarithmic transformation:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \tilde{y}(x) = \ln \paren{y(x)} = \ln a_{0} + a_{1} x.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+Is the logarithm a linear transformation? Of course not:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \ln \paren{x + \alpha y} \ne \ln x + \alpha \ln y.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+\endinput

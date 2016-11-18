@@ -1,0 +1,165 @@
+\chapter{Population Growth}
+
+In this section we take a nonlinear model for population growth and separate the linear and nonlinear terms.
+
+\section{Model}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y(\tau) = \alpha_{1} + \alpha_{2} \tau + \alpha_{3} e^{\beta \tau}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \A{}\paren{\beta + \gamma} \ne \A{}\paren{\beta} + \A{}\paren{\gamma}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+% https://tex.stackexchange.com/questions/278929/alignment-within-the-equation-environment
+  \begin{equation*}   %  =   =   =   =   =
+  \begin{array}{cccc}\arraycolsep = -0.5pt
+  %
+  %
+  \A{}(\beta) & \alpha & = & y \\
+  %
+    \mat{ccc}{
+    1 & \tau_{1} & e^{\beta \tau_{1}} \\
+    1 & \tau_{2} & e^{\beta \tau_{2}} \\
+    1 & \tau_{3} & e^{\beta \tau_{3}} \\
+    1 & \tau_{4} & e^{\beta \tau_{4}} \\
+    1 & \tau_{5} & e^{\beta \tau_{5}} \\
+    1 & \tau_{6} & e^{\beta \tau_{6}} \\
+    1 & \tau_{7} & e^{\beta \tau_{7}} \\
+    1 & \tau_{8} & e^{\beta \tau_{8}}
+    } &
+    \mat{c}{\alpha_{0} \\ \alpha_{1} \\ \alpha_{3}} & = &
+    \mat{c}{y_{0} \\ y_{1} \\ y_{3} \\ y_{4} \\ y_{5} \\ y_{6} \\ y_{7} \\ y_{8}}
+    %\label{eq:}
+  \end{array}
+  \end{equation*}
+
+% http://tex.stackexchange.com/questions/254650/aligning-multiple-things-under-a-limit
+  \begin{equation} % = =  e q u a t i o n
+    %\begin{split}
+      \min_{\substack{\alpha\in\real{3}\\\beta\in\real{}\phantom{^{3}}}} \normts{\A{}(\beta)\mat{c}{\alpha_{1}\\\alpha_{2}\\\alpha_{3}}-y}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+\section{Problem Statement}  %    S    S    S    S    S    S    S    S    S    S    S    S
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Problem statement for population model with linear and exponential growth.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $y(\tau) = \alpha_{0} + \alpha_{1} \tau + \alpha_{2} e^{\beta \tau}$ & $\alpha\in\real{3}$ \\
+        && $\beta\in\real{}$ \\
+        \bf{merit function} & $M(\alpha,d) = \sum\limits_{k=1}^{m}\paren{y_{k} - \alpha_{1} + \alpha_{2} \tau + \alpha_{3} e^{\beta \tau_{k}}}^{2}$ \\
+        \bf{\# measurements}& $m = 8$ \\
+        \bf{\# parameters}  & $n = 4$ \\
+        \bf{rank defect}    & $\rho = n$ & overdetermined \\
+        \bf{input data}     & $\paren{\tau_{k}, y_{k}}$, $k=1\colon 8$ & table \ref{tab:census results}\\
+        \bf{results}        & $\alpha_{0}$ & constant\\
+                            & $\alpha_{1}$ & linear\\
+                            & $\alpha_{2}$ & exponential\\
+                            & $\beta$      & power term\\
+        \bf{residual error} & $r = \bl{\Ap b} - \Delta$ \\
+        \bf{linear system}  & $\A{}(\beta)\mat{c}{\alpha_{1}\\\alpha_{2}\\\alpha_{3}} = y$ \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:census problem statement}
+  \end{table}%
+
+\section{Data} %    S    S    S    S    S    S    S    S    S    S    S    S
+
+\section{Example}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+year $= 1900 + 10 (\tau - 1)$
+
+    \begin{table}[t]
+    	\caption{Data v. prediction.}
+    	\begin{center}
+    		\begin{tabular}{rrrrr}
+    		%
+		          &&&& \multicolumn{1}{c}{rel.}\\
+    		 year & census & fit & \multicolumn{1}{c}{$r$} & error \\\hline
+    		%
+    		 1900 & 76.00  & 77.51  & 1.51  & 2.0\% \\
+    		 1910 & 91.97  & 90.98  & $-0.99$ & $-1.1$\% \\
+    		 1920 & 105.71 & 104.87 & $-0.84$ & $-0.8$\% \\
+    		 1930 & 122.78 & 119.48 & $-3.29$ & $-2.7$\% \\
+    		 1940 & 131.67 & 135.36 & 3.69  & 2.8\% \\
+    		 1950 & 150.70 & 153.46 & 2.76  & 1.8\% \\
+    		 1960 & 179.32 & 175.45 & $-3.87$ & $-2.2$\% \\
+    		 1970 & 203.24 & 204.26 & 1.029 & 0.5\% \\
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:census results}
+    \end{table}%
+
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"error wide"} \\[20pt]
+    	\includegraphics{\pathgraphics census/"error zoom"}
+    	%\includegraphics{\patheps census/"error zoom"}
+    	%\includegraphics{../eps/census/"error zoom"}
+    	\caption{The shaded region in this plot is shown below.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"data v fit"}
+    	\caption{Solution plotted against data.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"residuals"}
+    	\caption{Residual errors.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+      \includegraphics[ width = 4in ]{\pathgraphics census/"census merit"}
+      %\includegraphics[ width = 4in ]{\patheps census/"census merit.eps"}
+      \caption[The merit function showing least squares solution]{The merit function with $\alpha_{1}$ and $\alpha_{2}$ fixed at best values showing least squares solution (center) and null cline (dashed, yellow).}
+    	%\label{fig:}
+    \end{figure}
+
+%    \begin{figure}[t]
+%    	\includegraphics[ width = 4in ]{\pathgraphics census/"census 3d"}
+%    	\caption{The merit function in three dimensions.}
+%    	%\label{fig:}
+%    \end{figure}
+
+    \begin{table}[t]
+    	\caption{Results: census}
+    	\begin{center}
+    		\begin{tabular}{ll}
+    		  %
+    		  \bf{fit parameters} & $c = \mat{r@{.}l}{0 & 010 \\ 0 & 0170 \\ 0 & 0096} \pm 
+    		                             \mat{r@{.}l}{0 & 031 \\ 0 & 0014 \\ 0 & 0020}$ \\[18pt]
+    		                      & $d = 0.056136\,\pm\,?.?$ \\[5pt]
+    		  %
+    		  $\rtr{T}$ & $0.009025$\\[5pt]
+    		  %
+    		  $\alpha$ & $\mat{r@{.}lr@{.}lr@{.}l}
+    		    {0 & 5397 & -0 & 0188 &  0 & 0165 \\
+    		    -0 & 0188 &  0 & 0011 & -0 & 0014 \\
+    		     0 & 0165 & -0 & 0014 &  0 & 0022 }$\\[15pt]
+    		  %
+    		  \bf{plots} & data vs fit \eqref{fig:census fit} \\
+    		             & residuals \eqref{fig:census fit} \\
+    		             & merit function in $\brnga{*}$ \eqref{fig:census merit} \\[5pt]
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:results census}
+    \end{table}%
+
+\section{Polynomials} %    S    S    S    S    S    S    S    S    S    S    S    S
+There is the model we choose and the model which nature chooses. Are they the same?
+
+    
+\endinput

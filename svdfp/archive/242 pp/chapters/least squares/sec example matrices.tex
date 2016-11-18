@@ -1,0 +1,123 @@
+\section{Example matrices}
+
+%%%%%%%%%%%
+\subsection{Example matrix (a)}
+%
+\begin{equation}
+  \begin{split}
+    \A{} x &= b \\
+    \matrixa \xthree &= \dataa
+  \end{split}
+\end{equation}
+%
+The full least squares solution\index{least squares!solutions!example (a)} is
+%
+\begin{equation}
+  x_{LS} = \xthree = \xlsa + \alpha_{1} \nllao  + \alpha_{2} \nllat, \quad \alpha\ic.
+\end{equation}
+%
+The pseudoinverse or point solution is
+%
+\begin{equation}
+  \xmp = \xlsa
+\end{equation}
+%
+\begin{equation}
+  \A{}x_{LS} - b = \dataar
+\end{equation}
+%
+Orthogonal resolution of the data vector
+%
+\begin{equation}
+  \begin{split}
+     b &= \datarange + \datanull \\
+     \dataa &= {\bl{ \half \mat{r}{ 1 \\ -1 } }} + {\rd{ \frac{3}{2}\mat{c}{1\\1} }}
+  \end{split}
+\end{equation}
+%
+Consistent linear system
+\begin{equation}
+  \begin{split}
+    \A{}\, \xbl &= \datarange, \\
+    \matrixa \xlsa &= {\bl{ \half \mat{r}{ 1 \\ -1 } }} .
+  \end{split}
+\end{equation}
+
+
+
+%%%%%%%%%%%
+\subsection{Example matrix (b)}
+\begin{equation}
+  \begin{split}
+    \A{} x &= b \\
+    \matrixb \xtwo &= \datab
+  \end{split}
+\end{equation}
+%
+The least squares solution is
+%
+\begin{equation}
+  x_{LS} = \xtwo = \xlsb + \alpha \nllb, \quad \alpha\ic
+\end{equation}
+%
+The pseudoinverse or point solution is
+%
+\begin{equation}
+  \xmp = \xlsb
+\end{equation}
+%
+\begin{equation}
+  \A{}x_{LS} - b = \databr
+\end{equation}
+%
+Orthogonal resolution of the data vector
+%
+\begin{equation}
+  \begin{split}
+     b &= \datarange + \datanull \\
+     \datab &= {\bl{ \recip{5} \mat{c}{ 2 \\ 5 \\ 4 } }} + {\rd{ \recip{5} \mat{r}{ 8 \\ 0 \\ -4 } }}
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \U{} = \matrixbY
+\end{equation}
+
+%
+\begin{equation}
+  \databt \cdot \obbuo = \frac{7}{\sqrt{30}}, \quad \databt \cdot \obbut = \recip{\sqrt{6}}
+\end{equation}
+%
+\begin{equation}
+  \frac{7}{\sqrt{30}} \obbuo + \recip{\sqrt{6}} \obbut = {\bl{ \recip{5} \mat{c}{ 2 \\ 5 \\ 4 } }}
+\end{equation}
+
+
+%
+Consistent linear system
+\begin{equation}
+  \begin{split}
+    \A{}\, \xbl &= \datarange, \\
+    \matrixb \xlsb &= {\bl{ \recip{5} \mat{c}{ 2 \\ 5 \\ 4 } }} .
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{Example matrix (c)}
+\begin{equation}
+  \begin{split}
+    \A{} x &= b \\
+    \matrixc \xtwo &= \datac
+  \end{split}
+\end{equation}
+	
+\begin{equation}
+  x_{LS} = \xtwo = \xlsc
+\end{equation}
+
+\begin{equation}
+  \A{}x_{LS} - b = \datacr
+\end{equation}
+
+
+\endinput

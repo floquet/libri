@@ -1,0 +1,355 @@
+\section{The SVD and the Fourier-Bessel expansion}
+
+We can express a matrix as a sum of rank one matrices weighted by the singular values. In the notation here the subscript denotes a column vector:
+\begin{equation}
+  \begin{split}
+  \A{} &= \sigma_{1}\, \Y{}_{1}\, \X{*}_{1} + \sigma_{2}\, \Y{}_{2}\, \X{*}_{2} + \dots + \sigma_{\rho}\, \Y{}_{\rho}\, \X{*}_{\rho}\\
+    &=\sum_{k=1}^{\rho}{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}.
+  \end{split}
+\end{equation}
+Here the subscript $k$ refers to a column vector. For instance $\Y{}_{1}$, an $m-$vector, is the column of the matrix codomain matrix $\Y{}$. The $n-$vector $\X{*}_{2}$ is the complex conjugate of second column vector of the domain matrix $\X{}$ expressed as a \textit{row vector}. The following examples are shown explicitly and should address any lingering questions.
+
+%%
+\subsection{Rank one example}
+Consider the familiar example of the matrix
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \Aexample &=\Yshade \Sigmaexampleb \Xtshade.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{rcccc}
+    \A{}&=&\sigma_{1} & \Y{}_{1} & \X{T}_{1}\\
+      &=& \sqrt{6} & \frac{1}{\sqrt{3}}\mat{r}{1\\-1\\1} & \frac{1}{\sqrt{2}}\mat{cc}{1&-1}\\
+      &=&& \Aexample
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Rank two examples}
+\begin{equation}
+ \A{} = \sigma_{1}\, \Y{}_{1}\, \X{T}_{1} + \sigma_{2}\, \Y{}_{2}\, \X{T}_{2}
+\end{equation}
+
+%%
+\subsubsection{Full rank}
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{rr}{1&2\\-1&2}&=\frac{1}{\sqrt{2}}\mat{rr}{1&1\\1&-1}\,\sqrt{2}\mat{cc}{2&0\\0&1}\mat{cc}{0&1\\1&0}    
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\[5pt]
+     &=& 2\sqrt{2} & \frac{1}{\sqrt{2}}\mat{r}{1\\1} & \mat{rr}{0&1} &+& \sqrt{2} & \frac{1}{\sqrt{2}}\mat{r}{1\\-1} & \mat{rr}{1&0}\\[10pt]
+     &=&& \mat{cc}{0&2\\0&2} &&+&& \mat{rr}{1&0\\-1&0}\\[5pt]
+     &=&& \mat{rr}{1&2\\-1&2}
+  \end{array}
+\end{equation}
+
+%%
+\subsubsection{Rank deficient}
+The Gell-Mann matrix 2:
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \gmb&=\left(
+\begin{array}{rr>{\columncolor{ltgray}}r}
+ -i & 0 & 0 \\
+ 0 & i & 0 \\
+ 0 & 0 & 1
+\end{array}
+\right)\left(
+\begin{array}{rr|r}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\\hline
+ 0 & 0 & 0
+\end{array}
+\right)\left(
+\begin{array}{rrr}
+ 0 & 1 & 0 \\
+ 1 & 0 & 0 \\
+\rowcolor{ltgray}
+ 0 & 0 & 1
+\end{array}
+\right)    
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2}, \\
+     &=& 1 & \mat{r}{-i\\0\\0} & \mat{rrr}{0&1&0} &+& 1 & \mat{c}{0\\i\\0} & \mat{rrr}{1&0&0}.
+  \end{array}
+\end{equation}
+%%
+This leads to the matrix sum
+\begin{equation}
+     \A{} = \mat{rrr}{0&-i&0\\0&0&0\\0&0&0} + \mat{ccc}{0&0&0\\i&0&0\\0&0&0}= \mat{crr}{0&-i&0\\i&0&0\\0&0&0}.
+\end{equation}
+%%
+\subsubsection{Full rank}
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{ccc}{0&3&0 \\ 1&2&2} &=\frac{1}{\sqrt{2}}\mat{rr}{1&-1\\1&1}\,\mat{cc|c}{\sqrt{15}&0&0 \\ 0&\sqrt{3}&0}\, \mat{rrr}{\frac{1}{\sqrt{30}}&\frac{5}{\sqrt{30}}&\frac{2}{\sqrt{30}} \\ \frac{1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\ \rowcolor{ltgray}
+\frac{-2}{\sqrt{5}} & 0 & \frac{1}{\sqrt{5}}}.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \A{} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} &+& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\
+     &=& \sqrt{15} & \stwo \mat{r}{1\\1} & \mat{rrr}{\frac{1}{\sqrt{30}}&\frac{5}{\sqrt{30}}&\frac{2}{\sqrt{30}}} &+& \sqrt{3} & \stwo \mat{r}{-1\\1} & \mat{rrr}{\frac{1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}}}
+  \end{array}
+\end{equation}
+The two rank one component matrices combine like so:
+\begin{equation}
+    \A{} = \rtwo \mat{ccc}{1&5&2\\1&5&2} + \rtwo \mat{rrr}{-1&1&-2\\1&-1&2} = \mat{rrr}{0&3&0 \\ 1&2&4}
+\end{equation}
+
+%%
+\subsection{Rank three examples}
+The Gell-Mann matrix 8, the only matrix with a nonzero trace and full rank:
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \gmh&=\left(
+\begin{array}{rrr}
+ 0 & 0 & 1 \\
+ 0 & 1 & 0 \\
+ -1 & 0 & 0
+\end{array}
+\right)
+\frac{1}{\sqrt{3}}\left(
+\begin{array}{ccc}
+ 2 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+ 0 & 0 & 1 \\
+ 0 & 1 & 0 \\
+ 1 & 0 & 0
+\end{array}
+\right)
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{1} &=& \sigma_{1} & \Y{}_{1} & \X{T}_{1} \\
+    &=& \frac{2}{\sqrt{3}} & \mat{r}{0\\0\\-1}&\mat{rrr}{0&0&1}
+  \end{array}
+\end{equation}
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{2} &=& \sigma_{2} & \Y{}_{2} & \X{T}_{2} \\
+    &=& \sthree& \mat{r}{0\\1\\0}&\mat{rrr}{0&1&0}
+  \end{array}
+\end{equation}
+\begin{equation}
+  \begin{array}{ccccccccccccc}
+    \A{}_{3} &=& \sigma_{3} & \Y{}_{3} & \X{T}_{3} \\
+    &=& \sthree & \mat{r}{1\\0\\0}&\mat{rrr}{1&0&0}
+  \end{array}
+\end{equation}
+The three rank one component matrices sum to the original matrix
+\begin{equation}
+  \begin{split}
+    \A{} &= \frac{2}{\sqrt{3}}  \mat{rrr}{0&0&0 \\ 0&0&0 \\ 0&0&-1} + \frac{1}{\sqrt{3}}  \mat{rrr}{0&0&0 \\ 0&1&0 \\ 0&0&0} + \frac{1}{\sqrt{3}}  \mat{rrr}{1&0&0 \\ 0&0&0 \\ 0&0&0}\\
+    &=\frac{1}{\sqrt{3}} \mat{rrr}{1&0&0 \\ 0&1&0 \\ 0&0&-2}
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Orthogonality}
+In analogy to a Fourier-Bessel expansion, the singular values are the weights (or amplitudes) and the product matrices are the unitary basis functions. We can see readily that the product of unitary matrices is another unitary matrix.
+
+Take two unitary matrices, $\U{}, \V{} \in \cmplx{\bys{n}}$. By proposition
+\begin{equation}
+  \U{*} = \U{-1}, \quad \V{*} = \V{-1}.
+\end{equation}
+The product of these matrices
+\begin{equation}
+  \W{}=\U{}\V{*} \in \cmplx{\bys{n}}
+\end{equation}
+is also unitary.
+The adjoint of is this
+\begin{equation}
+  \W{}^{*} = \paren{\U{}\V{*}}^{*} = \paren{\V{*}}^{*}\U{*} = \V{}\U{*}.
+\end{equation}
+ The inverse matrix is given by
+\begin{equation}
+  \W{}^{-1}=\paren{\U{}\V{*}}^{-1} = \paren{\V{*}}^{-1}\U{-1} = \V{}\U{*}.
+\end{equation}
+Therefore
+\begin{equation}
+  \W{}^{*} = \W{}^{-1}.
+\end{equation}
+This proves that the product of two unitary matrices is another unitary matrices. By simple extension we see that the product of an arbitrary number of unitary matrices is another unitary matrices.
+
+This finding may resonate with your concept of a unitary matrix viewed in the two norm. There we learn that the eigenvalues of a unitary matrix all have unit magnitude. This implies that the map does not dilate vectors, it is content to just rotate them. As vectors are acted upon by successive unitary matrices, the target vectors are not changing in length, they only change orientation.
+
+The matrix products express the orthogonality of the expansion. For example
+\begin{equation}
+  \begin{split}
+    \W{x} = \prdm{*} = \paren{\sum_{k=1}^{\rho}{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}}^{*}\sum_{j=1}^{\rho}{\sigma_{j}\, \X{}_{j}\, \Y{*}_{j}}.
+  \end{split}
+\end{equation}
+The orthogonality condition flows naturally from the unitary nature of the domain matrices:
+\begin{equation}
+  \X{*}_{k}\,\X{}_{j} = \Y{*}_{k}\,\Y{}_{j} =
+  \begin{cases}
+    1 & k = j\\
+    0 & k \ne j
+  \end{cases}.
+\end{equation}
+
+The cross terms with $k\ne j$ vanish:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{j}\, \Y{}_{j}\, \X{*}_{j}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}} &= \paren{\sigma_{j}\X{}_{j}\, \Y{*}_{j}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}}, \\
+    &= \sigma_{k}\sigma_{j}\X{}_{k}\underbrace{\paren{\Y{*}_{k}\,\Y{}_{j}}}_{0}\X{*}_{j}\\
+    & = \zero,
+  \end{split}
+\end{equation}
+an $m\times m$ matrix of zeros.
+
+The cross terms with $k=j$ are the survivors:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}&= \paren{\sigma_{k}\X{}_{k}\, \Y{*}_{k}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}} \\
+    &= \sigma_{k}^{2}\,\X{}_{k}\paren{\Y{*}_{k}\,\Y{}_{k}}\X{*}_{k}\\
+    &= \sigma_{k}^{2}\,\X{}_{k}\X{*}_{k}.
+  \end{split}
+\end{equation}
+
+The final result is this
+\begin{equation}
+  \W{x} = \prdm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\X{}_{k}\X{*}_{k}}.
+\end{equation}
+By similar machinations we find the complementary product matrix
+\begin{equation}
+  \W{y} = \prdmm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\Y{}_{k}\Y{*}_{k}}.
+\end{equation}
+Notice the similarity of this formulation to the expression using the full matrices.
+
+In terms of the \svdl \ the product matrices are these
+\begin{equation}
+  \begin{array}{rccccccl}
+    \W{x} &=& \prdm{*}  &=& \paren{\svd{*}}^{*}&\svd{*} &=& \wx{*},\\
+    \W{y} &=& \prdmm{*} &=& \svd{*}&\paren{\svd{*}}^{*} &=& \wy{*}.
+  \end{array}
+\end{equation}
+
+Compare the equivalent formulations to see the stenciling and shape arbitration effects of the $\sig{}$ matrix. The matrix formulation shows the stenciling action of the $\sig{}$ matrix. The second expression is a sum of outer products scaled by the squares of the singular values:
+\begin{equation}
+  \begin{array}{rcccc}
+    \W{x} &=& \wx{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\X{}_{k}\X{*}_{k}},\\[10pt]
+    \W{y} &=& \wy{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\Y{}_{k}\Y{*}_{k}}.
+  \end{array}
+\end{equation}
+The Fourier-Bessel expansion represents the thin SVD\index{thin SVD}; the null space vectors are never encountered.
+
+%%
+\subsubsection{Rank one example}
+Some explicit examples are included.
+\begin{equation}
+  \A{}=\Aexample
+\end{equation}
+The $\X{}$ domain product is given by:
+\begin{equation}
+  \W{x} = \prdm{T} = \mat{rr}{3&-3\\-3&3}.
+\end{equation}
+The Fourier-Bessel product is then
+\begin{equation}
+  \begin{split}
+    \W{x} &= \sigma_{1}^{2} \X{}_{1}\X{T}_{1}\\
+      &= \paren{\sqrt{6}}^{2} \stwo \mat{r}{1\\-1}\stwo \mat{rr}{1&-1}\\
+      &= \mat{rr}{3&-3\\-3&3}.
+  \end{split}
+\end{equation}
+
+The complementary $\Y{}$ domain product is given by:
+\begin{equation}
+  \W{y} = \prdmm{T} = \mat{rrr}{3&-3&3\\-3&3&-3\\3&-3&3}.
+\end{equation}
+The Fourier-Bessel product is then
+\begin{equation}
+  \begin{split}
+    \W{y} &= \sigma_{1}^{2} \Y{}_{1}\Y{T}_{1}\\
+      &= \paren{\sqrt{6}}^{2} \sthree \mat{r}{1\\-1\\1} \sthree \mat{rrr}{1&-1&1}\\
+      &= \mat{rrr}{2&-2&2\\-2&2&-2\\2&-2&2}.
+  \end{split}
+\end{equation}
+
+%%
+\subsubsection{Rank two example}
+Start with the full rank matrix
+\begin{equation}
+  \A{} = \mat{ccc}{0 & 3 & 2 \\ 1 & 2 & 2}
+\end{equation}
+which has the matrix products
+\begin{equation}
+  \begin{split}
+    \W{x} &= \prdm{T}  = \mat{cc}{9 & 6 \\6 & 9},\\
+    \W{y} &= \prdmm{T} = \mat{ccc}{1 & 2 & 2 \\ 2 & 13 & 4 \\ 2 & 4 & 4}.
+  \end{split}
+\end{equation}
+
+The Fourier-Bessel products for $\W{x}$ are then
+\begin{equation}
+  \begin{split}
+    \W{x} &= \sigma_{1}^{2}\; \X{}_{1}\X{T}_{1} + \sigma_{2}^{2}\; \X{}_{2}\X{T}_{2}\\
+    &= \paren{\sqrt{15}}^{2}\stwo \mat{r}{1\\1}\stwo \mat{rr}{1&1} +  \paren{\sqrt{6}}^{2}\stwo \mat{r}{1\\-1}\stwo \mat{rr}{1&-1}\\
+    &= \mat{cc}{9 & 6 \\6 & 9}.
+  \end{split}
+\end{equation}
+
+The Fourier-Bessel products for the complementary product matrix $\W{y}$ are given by this
+\begin{equation}
+  \begin{split}
+    \W{y} &= \sigma_{1}^{2}\; \Y{}_{1}\Y{T}_{1} + \sigma_{2}^{2}\; \Y{}_{2}\Y{T}_{2}\\
+    &= \paren{\sqrt{15}}^{2}\frac{1}{\sqrt{30}} \mat{c}{1\\5\\2}\frac{1}{\sqrt{30}} \mat{ccc}{1&5&2} +  \paren{\sqrt{3}}^{2}\ssix \mat{r}{1\\-1\\2}\ssix \mat{crc}{1&-1&2}\\
+    &= \mat{ccc}{1 & 2 & 2 \\ 2 & 13 & 4 \\ 2 & 4 & 4}.
+  \end{split}
+\end{equation}
+
+Next is the Gell-Mann matrix $\lambda_{2}$
+\begin{equation}
+  \A{} = \gmb.
+\end{equation}
+The row of zeros and the column of zeros belies a rank deficiency. The independent rows reveals the matrix rank is two. The $\X{}$ domain product is given by:
+\begin{equation}
+  \W{x} = \prdm{T} = \mat{rrc}{-1&0&0\\0&-1&0\\0&0&0}.
+\end{equation}
+The Fourier-Bessel product is then
+\begin{equation}
+  \begin{split}
+    \W{x} &= \sigma_{1}^{2} \X{}_{1}\X{T}_{1} + \sigma_{1}^{2} \X{}_{2}\X{T}_{2}\\
+      &= \paren{1}^{2} \mat{c}{0\\1\\0} \mat{ccc}{0&1&0} + \paren{1}^{2} \mat{c}{1\\0\\0} \mat{ccc}{1&0&0}\\
+      &= \mat{rrc}{-1&0&0\\0&-1&0\\0&0&0}.
+  \end{split}
+\end{equation}
+
+The complementary $\Y{}$ domain product is given by:
+\begin{equation}
+  \W{y} = \prdmm{T} = \mat{rrc}{-1&0&0\\0&-1&0\\0&0&0} = \W{x}.
+\end{equation}
+The Fourier-Bessel product is then
+\begin{equation}
+  \begin{split}
+    \W{y} &= \sigma_{1}^{2} \Y{}_{1}\Y{T}_{1} + \sigma_{1}^{2} \Y{}_{2}\Y{T}_{2}\\
+      &= \paren{1}^{2} \mat{r}{-i\\0\\0} \mat{ccc}{-i&0&0} + \paren{1}^{2} \mat{c}{0\\i\\0} \mat{ccc}{0&i&0}\\
+      &= \mat{rrc}{-1&0&0\\0&-1&0\\0&0&0},
+  \end{split}
+\end{equation}
+the same as the previous result.
+
+\endinput

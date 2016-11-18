@@ -1,0 +1,74 @@
+\section[$\A{}=\U{}\R{}\V{*}$]{$\U{}\R{}\V{*}$ decomposition}
+
+The complete orthogonal transformation. Given $\Amnr$
+\begin{equation}
+  \A{}=\U{}\R{}\V{*} = \U{}\ceematrix{}\V{*}
+\end{equation}
+Just like the SVD, the column vectors of the unitary matrices $\U{}$ and $\V{}$ provide an orthonormal basis for the codomain and domain. The shape arbitrator matrix $\R{}\Accmn$ contains the full rank matrix $\C{}\in\Accc{\rho}{\rho}{\rho}$.
+
+This decomposition is very much like the SVD. It provides an orthonormal decomposition of the four fundamental subspaces:
+\begin{equation}
+  \A{} = \U{}\R{}\V{*} = \yft{} \ceematrix{} \xtft{*}.
+\end{equation}
+The columns are organized as follows.
+\begin{enumerate}
+\item First $\rho$ columns of $\U{}$ span $\rnga{}$.
+\item First $\rho$ columns of $\V{}$ span $\rnga{*}$.
+\item Last  $m - \rho$ columns of $\U{}$ span $\nlla{*}$.
+\item Last  $n - \rho$ columns of $\V{}$ span $\nlla{}$.
+\end{enumerate}
+One could argue that this matrix is a natural development on the way to the SVD. In fact, in Meyer's book\cite{p. 407}[Meyer] this factorization leads directly to his discussion of the SVD.
+
+However, there are some profound differences.
+
+%%%
+\subsection{Theory}
+\begin{quote}
+\end{quote}
+
+%%%
+\subsection{Examples}
+Full row rank and full column rank:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Ab & =
+    \stwo   \mat{rr}{1&1\\-1&1}
+    \sqrt{2}\mat{cc}{2 & 0 \\ 0 & 1}
+  \end{split}
+\end{equation}
+
+Full row rank with column rank deficiency:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Aa & =
+    \ktwo
+    \mat{ccc}{1 & 2 & 2 \\ 0 & 3 & 0}
+  \end{split}
+\end{equation}
+The $\Q{}$ matrix is the exact same matrix $\Y{}$ in the example.
+
+
+Row and column rank deficiency:
+\begin{equation}
+  \begin{split}
+    \A{} & = \Q{}\,\R{},\\
+    \Aexample & =
+    \Yshade
+    \mat{rr}{\sqrt{3}&-\sqrt{3}\\0&0\\0&0}
+  \end{split}
+\end{equation}
+The $\Q{}$ matrix is the exact same matrix $\Y{}$ in the example.
+
+
+%%%
+\subsection{Application}
+
+%%%
+\subsection{Comparison to the SVD}
+This matrix factorization most closely resembles the SVD. In fact, SVD is a special case where the the upper-triangular matrix $\T{}$ is instead the diagonal matrix $\sig{}$.
+
+Show how to convert the URV to SVD.
+
+\endinput

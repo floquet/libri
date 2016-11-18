@@ -1,0 +1,68 @@
+\chapter{Error Propagation}
+
+\section{Arithmetic Cases}  %    S    S    S    S    S    S    S    S    S
+
+  \begin{equation}   %  =   =   =   =   =
+   \begin{split}
+     y &= a_{1} x_{1} \pm a_{2} x_{2} \\
+     \eps_{y}^{2} &=  a_{1}^{2} \eps_{1}^{2} + a_{2}^{2} \eps_{2}^{2}
+   \end{split}
+   %\label{eq:}
+  \end{equation}
+
+  \begin{equation}   %  =   =   =   =   =
+   \begin{split}
+     y &= a x_{1} x_{2} \\
+     \eps_{y}^{2} &=  a^{2} \paren{ x_{1}^{2} \eps_{2}^{2} + x_{2}^{2} \eps_{1}^{2} }
+   \end{split}
+   %\label{eq:}
+  \end{equation}
+
+  \begin{equation}   %  =   =   =   =   =
+   \begin{split}
+     y &= a \frac{x_{1}} {x_{2}} \\
+     \eps_{y}^{2} &=  a^{2} \paren{ \frac{\eps_{1}^{2}} {x_{2}^{2}} + \frac{\eps_{2}^{2}} {x_{1}^{2}} }
+   \end{split}
+   %\label{eq:}
+  \end{equation}
+
+\section{Powers and Exponential Cases}  %    S    S    S    S    S    S    S    S    S
+
+  \begin{equation}   %  =   =   =   =   =
+    \begin{split}
+      y        &= a x^{\pm b} \\
+      \eps_{y} &= a b x^{\pm b - 1} \eps_{x}
+    \end{split}
+   %\label{eq:}
+  \end{equation}
+
+
+\section{Example I: Polynomials}  %    S    S    S    S    S    S    S    S    S
+
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      y(x)         &= a_{0} + a_{1} x + a_{2} x^{2} + a_{3} x^{3} + \dots \\
+      \eps_{y}^{2} &= a_{1}^{2} \eps_{1}^{2} +  a_{1}^{2} \eps_{1}^{2}
+    \end{split}
+   %\label{eq:}
+  \end{equation*}
+
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      y(x)     &= a_{0} + \sum_{k=1}^{d} a_{k} x^{k} \\
+      \eps_{y} &= 1
+    \end{split}
+   %\label{eq:}
+  \end{equation*}
+
+\section{Example II: Quadratic Formula}  %    S    S    S    S    S    S    S    S    S
+
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      y(x) = a_{0} + a_{1} x + a_{2} x^{2}
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+
+
+\endinput

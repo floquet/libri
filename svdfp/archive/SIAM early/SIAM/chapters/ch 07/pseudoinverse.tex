@@ -1,0 +1,93 @@
+\clearpage
+\break
+
+\section{Images of the pseudoinverse}
+We can learn a valuable lesson about the pseudoinverse from this image. While the image matrix is highly correlated, the inverse matrix is not correlated. This is shown in 
+figure \eqref{fig:jordan:pseudoinverse:pairs}. This is a lesson we will see over and over. When we look at sparse matrices like tridiagonal matrices from finite difference equations we will see that the pseudoinverse is not sparse; in fact it will be very dense.
+
+%%%%
+\subsection{Left inverse}
+Because the image matrix has full column rank, that is, $\rho = n$, the pseudoinverse is a left inverse
+\begin{equation}
+  \Ap = \AinvL
+\end{equation}
+and therefore
+\begin{equation}
+  \leftinv = \I{n}.
+\end{equation}
+Below, we look at the leading submatrix to get an idea of the two matrix products. Both matrices are diagonally dominant and look similar in figure \eqref{fig:jordan:pseudoinverse:lr} below.
+
+\begin{equation}
+  \begin{split}
+     \paren{\leftinv}_{1:4,1:4}  &= \ifour,\\
+     \paren{\rightinv}_{1:4,1:4} &= 
+     \mat{rrrr}{
+ 0.877728 & 0.141599 & -0.0380709 & 0.00583182 \\
+ \star    & 0.725206 & 0.178478   & -0.0395183 \\
+ \star    & \star    & 0.716689   & 0.14253 \\
+ \star    & \star    & \star      & 0.716547
+     }.
+  \end{split}
+  \label{eq:jordan:pseudoinverse:lr}
+\end{equation}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 2.66in ]{pdf/"ch 06"/pseudoinverse/"Jordan mplot"} \\[20pt]
+   \includegraphics[ width = 3.26in ]{pdf/"ch 06"/pseudoinverse/"Jordan pseudoinverse"} 
+   \caption[The original image and the pseudoinverse]{The original image and the pseudoinverse. The original image is highly correlated, the pseudoinverse is very random. However, if we look at the image pseudoinverse carefully we can see horizontal and vertical bands.}
+   \label{fig:jordan:pseudoinverse:pairs}
+\end{figure}
+
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   $\leftinv$ \\
+   \includegraphics[ width = 2.66in ]{pdf/"ch 06"/pseudoinverse/"pseudoinverse AinvA"} \\[20pt]
+   $\rightinv$ \\
+   \includegraphics[ width = 3.26in ]{pdf/"ch 06"/pseudoinverse/"pseudoinverse AAinv"} 
+   \caption[The matrix products $\leftinv$ and $\rightinv$]{The matrix products $\leftinv$ and $\rightinv$. Both matrices are diagonally dominant as seen in the matrix plots. Because the image matrix $\A{}$ has full column rank $\Ap = \AinvL$ and therefore $\leftinv = \I{266}$. This is seen in equations \eqref{eq:jordan:pseudoinverse:lr}. Notice that this figure does not distinguish between the identity matrix and the diagonally dominant matrix.}
+   \label{fig:jordan:pseudoinverse:lr}
+\end{figure}
+
+%%%%
+\subsection{Ghost image}
+We have seen that the singular value spectrum embodies details of the image. Now instead of examining the spectrum, let's create one. The simplest spectrum would be make all singular values equal to one. Take the existing singular values in $\ess{}$ and replace them the identity matrix:
+\begin{equation}
+  \ess{} \qlraq \I{266}.
+\end{equation}
+The $\sig{}$ matrix then transforms as this
+\begin{equation}
+  \begin{split}
+     \sig{} = \mat{c}{\ess{} \\\hline \zero} \qlraq  \hat{\Sigma} = \mat{c}{\I{266} \\\hline \zero}.
+  \end{split}
+\end{equation}
+The new image is composed according to the following:
+\begin{equation}
+  \hat{\A{}} = \Y{} \, \hat{\Sigma} \, \X{T}.
+\end{equation}
+Because we are using an identity matrix for the singular values we know that
+\begin{equation}
+  \begin{split}
+    \ess{} & = \ess{-1}, \\
+    \hat{\Sigma}^{\pssymbol} &= \sig{T}
+  \end{split}
+\end{equation}
+As a consequence, the pseudoinverse matrix is the transpose matrix: 
+\begin{equation}
+  \hat{\A{}}^{\psymbol} = \hat{\A{}}^{\TT}.
+\end{equation}
+What does a matrix with this property look like? Will it more closely resemble the image or the transpose?
+You can see the result in figure \eqref{fig:jordan:pseudoinverse:ghost}.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   $\hat{\A{}} = \Y{}\,\hat{\Sigma}\,\X{T}$ \\[10pt]
+   \includegraphics[ width = 2.66in ]{pdf/"ch 06"/pseudoinverse/"Jordan ghost"} \\[20pt]
+   $\hat{\A{}}^{\psymbol} = \hat{\A{}}^{\TT}= \X{}\,\hat{\Sigma}\,\Y{T}$ \\[10pt]
+   \includegraphics[ width = 3.26in ]{pdf/"ch 06"/pseudoinverse/"Jordan ghost inv"} 
+   \caption[Equality for the singular values]{Equality for the singular values. We can replace $\ess{}$, the matrix of singular values with an identity matrix to see how this alters the image.}
+   \label{fig:jordan:pseudoinverse:ghost}
+\end{figure}
+
+\endinput

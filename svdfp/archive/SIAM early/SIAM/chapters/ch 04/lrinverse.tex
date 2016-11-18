@@ -1,0 +1,140 @@
+\section[Left and right inverses]{Left and right inverses: a first look}
+\label{lrfirst}
+
+This section whets the appetite for a topic which will be developed later in the the section on the Moore-Penrose pseudoinverse, \S\eqref{sec:chiral}. For now, we present a basic observation. One may suspect that when we generalize the matrix inverse, we will also generalize the properties of the matrix inverse. The careworn requirement is that a square nonsingular matrix $\A{}$ must satisfy
+\begin{equation}
+  \A{-1}\A{} = \A{}\,\A{-1} = \I{m}.
+\end{equation}
+However for the pseudoinverse, the sizes of the resultant matrices don't even match. For the prototypical $\Acc{m}{n}$:
+\begin{equation}
+  \begin{array}{rcl}
+    \leftinv &\in&\cmplx{\by{n}{n}},\\
+    \rightinv &\in&\cmplx{\by{m}{m}}.
+  \end{array}
+\end{equation}
+
+Is it possible only one of the matrix products $\leftinv $ or $\rightinv$ might be an identity matrix?
+
+
+The first step is to assemble the pseudoinverse matrix for $\A{}\in\cmplx{\by{3}{2}}_{2}$:
+\begin{equation}
+  \begin{split}
+    \mpgia{T} \\
+      &=
+      \left[
+\begin{array}{ cr >{\columncolor{ltgray}}r }
+  \frac{1}{\sqrt{30}} & \frac{ 1}{\sqrt{6}} & \frac{-2}{\sqrt{5}}\\
+  \frac{5}{\sqrt{30}} & \frac{-1}{\sqrt{6}} & 0 \\
+  \frac{2}{\sqrt{30}} & \frac{ 2}{\sqrt{6}} & \frac{ 1}{\sqrt{5}}\\
+\end{array}
+\right]  
+  \mat{cc}
+  {
+  \frac{1}{\sqrt{15}} & 0\\
+  0 & \frac{1}{\sqrt{3}}\\\hline
+  0 & 0
+  }
+  \frac{1}{\sqrt{2}}
+  \mat{rr}{1 & 1\\-1 & 1}\\
+  &=\frac{1}{15}
+  \mat{rr}
+  {
+ -2 & 3 \\
+  5 & 0 \\
+ -4 & 6
+  }.
+  \end{split}
+\end{equation}
+
+What is the action of the pseudoinverse matrix when it pre- and post-multiplies the target matrix?
+%%
+\begin{equation}
+  \begin{array}{rcccc}
+    \leftinv&=&
+    \frac{1}{15}
+  \mat{rr}
+  {
+ -2 & 3 \\
+  5 & 0 \\
+ -4 & 6
+  }
+  \mat{ccc}
+  {
+  0 & 3 & 0 \\
+  1 & 2 & 2
+  } &=&
+  \frac{1}{5}
+  \mat{ccc}
+  {
+ 1 & 0 & 2 \\
+ 0 & 5 & 0 \\
+ 2 & 0 & 4
+  },\\
+    \rightinv&=&
+  \mat{ccc}
+  {
+  0 & 3 & 0 \\
+  1 & 2 & 2
+  } 
+    \frac{1}{15}
+    \mat{rr}
+  {
+ -2 & 3 \\
+  5 & 0 \\
+ -4 & 6
+  }
+&=& \itwo.
+  \end{array}
+  \label{eq:gen:lr}
+\end{equation}
+
+In this case with full row rank the pseudoinverse is also a \index{right inverse}right inverse. In the chapter on the pseudoinverse we will uncover a geometric interpretation for the product of a matrix and its pseudoinverse. For now we simply note the following behaviors:
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lll}
+rank condition   & \ parameters \ & \ inverse condition\\\hline
+full row rank    & \ $\rho = m $  & \ $\A{+} = \AinvL$ $\phantom{A^{-1^{-1^{-1}}}}$ \\[3pt]
+full column rank & \ $\rho = n $  & \ $\A{+} = \AinvR$ \\[3pt]
+full row and column rank \ & \ $\rho = m = n $ \ & \ $\A{+} = \AinvL = \AinvR = \A{-1}$ \\[13pt]
+\end{tabular}
+\end{center}
+\label{tab:pmii:rank}
+\caption[When the pseudoinverse will behave like a standard inverse]{Full rank is the criterion which indicates when the pseudoinverse will behave like a standard inverse. For matrices with full \textit{row} rank, the pseudoinverse is a \textit{right} inverse. For matrices with full \textit{column} rank, the pseudoinverse is a \textit{left} inverse. Of course if the matrix is square and of full rank then the pseudoinverse is the standard inverse.}
+\end{table}%
+\\
+%%%
+The formulaically minded may prefer this more mathematical presentation:
+\begin{equation}
+  \begin{array}{rclcrclcrcl}
+     \A{}&\in&\cmplx{\by{m}{\textbf{n}}}_{\textbf{n}} & \Longrightarrow & \A{+} &=& \AinvL & \Longrightarrow & \leftinv &=& \I{n},\\
+     \A{}&\in&\cmplx{\by{\textbf{m}}{n}}_{\textbf{m}} & \Longrightarrow & \A{+} &=& \AinvR & \Longrightarrow & \rightinv &=& \I{m},\\
+     \A{}&\in&\cmplx{\by{m}{\textbf{m}}}_{\textbf{m}} & \Longrightarrow & \A{+} &=& \A{-1} & \Longrightarrow & \leftinv = \rightinv &=& \I{m},.\\
+  \end{array}
+\end{equation}
+
+\section{Proximity to the identity}
+\label{piproximity}
+
+A quick note before closing. What about the first result in equation \eqref{eq:gen:lr}? Clearly $\leftinv$ is not a left inverse because the product is not an identity matrix. But how ``close'' is this matrix to the identity matrix? We can use the concept of the matrix norm to measure the distance between two matrices. 
+\begin{equation}
+\normt{\leftinv-\I{m}} = 
+\normt{\frac{1}{5}
+  \mat{ccc}
+  {
+ 1 & 0 & 2 \\
+ 0 & 5 & 0 \\
+ 2 & 0 & 4
+  }
+  -
+  \ithree} = 1.
+\end{equation}
+We will see this last result a few more times.
+
+The point is that while we did not reach the target matrix 
+\begin{equation}
+  \I{3} = \ithree
+\end{equation}
+we can measure how close we came. In fact this line of reasoning opens up a vital property of the SVD: it enables us to quantify how close a target matrix is to the nearest matrix of lower rank.
+
+
+\endinput

@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Pauli matrices}
+The Pauli spin matrices $\sigma_{k}$ are a set of three $2 \times 2$ matrices which arise in quantum mechanics in the treatment of spin.
+
+The singular value decompositions are shown in table \eqref{tab:pauli:decomposition}.
+%%
+\begin{table}[htdp]
+\caption[Simple decompositions of the Pauli matrices]{Simple decompositions of the Pauli matrices.}
+\begin{center}
+\begin{tabular}{ccccccc}
+%
+ && $\A{}$ & = & $\U{}$ & $\sig{}$& $\V{*}$ \\\hline
+%
+ $\sigma_{1}$ & = & $\mat{cc}{ 0 & 1 \\ 1 & 0 }$  & = & $\I{2}$ &  $\I{2}$ &  $\K{2}$ \\
+%
+ $\sigma_{2}$ & = & $\mat{cr}{ 0 & -i \\ i & 0 }$ & = & $\mat{cr}{ \aut & \auo }$ & $\I{2}$& $\K{2}$ \\
+%
+ $\sigma_{3}$ & = & $\mat{cr}{ 1 & 0 \\ 0 & -1 }$ & = & $\mat{rr}{ \aut & \auo }$ & $\I{2}$ & $\K{2}$
+%
+\end{tabular}
+\end{center}
+\label{tab:pauli:decomposition}
+\end{table}
+%%
+%
+The permutation matrices $\PP{}$ are versions of the identity matrix with column vectors reordered. For examples,
+\begin{equation}
+  \PP{1,2} = \I{2}, \quad \PP{2,1} = \mat{cc}{ 0 & 1 \\ 1 & 0 }.
+\end{equation}
+Notice the incidental equality
+\begin{equation}
+   \PP{2,1} = \sigma_{1}.
+\end{equation}
+
+
+{\it{Observations:}} The singular values are always one, therefore these matrices are unitary.
+The matrices are involutary
+\begin{equation}
+  \sigma_{k}^{2} = \I{2}, \quad k = 1,2,3.
+\end{equation}
+They satisfy the anticommutation relationship
+\begin{equation}
+  \lst{\sigma_{j}, \sigma_{k}} = \sigma_{j} \sigma_{k} + \sigma_{k} \sigma_{j} = 2 \delta_{j,k} \I{2}, \quad j,k = 1,2,3.
+\end{equation}
+Mystery equation
+\begin{equation}
+   \sigma_{j} \sigma_{k} = \delta_{j,k} \I{2} + \eps_{jkl} \sigma_{l} .
+\end{equation}
+These matrices, along with the identity, form a basis for $\cmplx{\byy{2}}$
+\begin{equation}
+  A = \alpha_{0} \I{2} + \sum_{k=1}^{3} \alpha_{k} \sigma_{k}.
+\end{equation}
+For example,
+\begin{equation}
+  \mat{rr}{ 1+i & -1+i \\ -1-i & -1+i } = i \I{2} - \sigma_{1} - \sigma_{2} + \sigma_{3}
+\end{equation}
+
+\endinput

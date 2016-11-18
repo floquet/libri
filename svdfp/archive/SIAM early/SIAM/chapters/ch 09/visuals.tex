@@ -1,0 +1,113 @@
+\section{Visualization I}
+Let's pick a few simple matrices and look at a representation of their \svdl s.
+
+The angle moves from the black arrow to the blue arrow. If this is counterclockwise, the the quarter circle is shaded with green. If if is clockwise, the shading is red. 
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lll}
+ coordinate system & right-handed & left-handed \\
+ chirality & right & left \\
+ angle increases & counterclockwise & clockwise \\
+ shading & green & red \\
+ viewpoint & above $x-y$ plane & below $x-y$ plane
+\end{tabular}
+\end{center}
+\caption[Chirality can be stated in different ways]{Chirality can be stated in different ways.}
+\label{default}
+\end{table}%
+
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccc}
+  $\A{}$ & $\Y{}$ & $\X{}$ & $\sig{}$ \\ \hline\hline
+  $\mat{rc}{1&2\\-1&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 01"} \\
+  $\mat{cr}{1&-1\\2&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 01"} \\
+\end{tabular}
+\end{center}
+\caption{default}
+\label{tab:pmII:visualsa}
+\end{table}%
+\end{landscape}
+%%%%
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccc}
+  $\A{}$ & $\Y{}$ & $\X{}$ & $\sig{}$ \\ \hline\hline
+  $\mat{rr}{1 & \frac{1}{2} \\-1 & \frac{1}{3}}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 02"} \\
+  $\mat{rr}{1 & -1 \\ \frac{1}{2} & \frac{1}{3}}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 02"} \\
+\end{tabular}
+\end{center}
+\caption{default}
+\label{tab:pmII:visualsb}
+\end{table}%
+\end{landscape}
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccc}
+  $\A{}$ & $\Y{}$ & $\X{}$ & $\sig{}$\\ \hline\hline
+  $\mat{rr}{1&0\\-1&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 03"} \\
+  $\mat{rr}{1&-1\\0&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 03"} \\
+\end{tabular}
+\end{center}
+\caption{default}
+\label{tab:pmII:visualsc}
+\end{table}%
+\end{landscape}
+
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccc}
+  $\A{}$ & $\Y{}$ & $\X{}$ & $\sig{}$\\ \hline\hline
+  $\mat{rr}{1&2\\0&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 04"} \\
+  $\mat{rr}{1&0\\2&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 04"} \\
+\end{tabular}
+\end{center}
+\caption{default}
+\label{tab:pmII:visualsd}
+\end{table}%
+\end{landscape}
+
+\endinput

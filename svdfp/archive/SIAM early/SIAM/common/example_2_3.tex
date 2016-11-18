@@ -1,0 +1,117 @@
+%% 3 x 2 x 2 example matrix
+
+\newcommand{ \matrixbravo }
+{
+    \mat{ ccc }
+      {
+       0 & 3 & 0 \\
+       1 & 2 & 2
+      }
+}
+
+\newcommand{ \matrixbravot }
+{
+    \mat{ cc }
+      {
+       0 & 1 \\
+       3 & 2 \\
+       0 & 2 
+      }
+}
+
+\newcommand{ \matrixbravopi }
+{
+    \frac{1}{15}
+    \mat{ rc }
+      {
+      -2 & 3 \\
+       5 & 0 \\
+      -4 & 6 
+      }
+}
+
+\newcommand{ \matrixbravoY }
+{
+    \stwo
+    \mat{ cr }
+      {
+       1 & -1 \\
+       1 &  1
+      }
+}
+
+\newcommand{ \matrixbravoYt }
+{
+    \stwo
+    \mat{ rc }
+      {
+       1 & 1 \\
+      -1 & 1
+      }
+}
+
+\newcommand{ \matrixbravoX }
+{
+    \mat{ cc>{\columncolor{ltgray}}c }
+      {
+       \frac{1}{\sqrt{30}} & \frac{1} {\sqrt{6}} & \frac{-2}{\sqrt{5}} \\
+       \frac{5}{\sqrt{30}} & \frac{-1}{\sqrt{6}} & 0 \\
+       \frac{2}{\sqrt{30}} & \frac{2} {\sqrt{6}} & \frac{1}{\sqrt{5}} \\
+      }
+}
+
+\newcommand{ \matrixbravoXt }
+{
+    \mat{ ccc }
+      {
+       \frac{1}{\sqrt{30}} & \frac{5}{\sqrt{30}} & \frac{2}{\sqrt{30}} \\
+       \frac{1}{\sqrt{6}}  & \frac{-1}{\sqrt{6}} & \frac{2}{\sqrt{6}} \\
+       \rowcolor{ltgray}
+       \frac{-2}{\sqrt{5}} & 0                   & \frac{1}{\sqrt{5}} \\
+      }
+}
+
+\newcommand{ \matrixbravosigma }
+{
+    \mat{ cc|c }
+      {
+       \sqrt{15} & 0 & 0 \\
+       0         & \sqrt{3} & 0
+      }
+}
+
+\newcommand{ \matrixbravosigmat }
+{
+    \mat{ cc }
+      {
+       \sqrt{15} & 0 \\
+       0         & \sqrt{3} \\ \hline
+       0         & 0 
+      }
+}
+
+\newcommand{ \matrixbravosigmapi }
+{
+    \mat{ cc }
+      {
+       \frac{1}{\sqrt{15}} & 0 \\
+       0         & \frac{1}{\sqrt{3}} \\[5pt] \hline
+       0         & 0 
+      }
+}
+
+\newcommand{ \matrixbravoApA }
+{
+    \rfive
+    \mat{ ccc }
+      {
+       1 & 0 & 2 \\
+       0 & 5 & 0 \\
+       2 & 0 & 4
+      }
+}
+
+\newcommand{ \matrixbravoAAp }
+{
+    \itwo
+}

@@ -1,0 +1,68 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+
+%%
+%\arrayrulecolor{blue}
+\begin{table}[htdp]
+\caption[Flow diagram for example matrix (b)]{Flow diagram for example matrix (b). While this matrix has full column rank (and therefore $\rnlla{*} = \trivial$), the \ns \ $\rnlla{}$ is nontrivial.}
+\begin{center}
+\begin{tabular}{ccccccc|cccc}
+%
+  $\A{}$   & $\xrightarrow[]{ \phantom{1} 1 \phantom{1} }$ 
+& $\wx{*}$ & $\xrightarrow[]{ \phantom{1} 2 \phantom{1} }$ 
+& $\sigma = \sqrt{ \lambda \paren{\wx{*}} } $ & $\xrightarrow[]{ \phantom{1} 3 \phantom{1} }$
+& $\ess{} = \eesd{}$ & ${\mg{\xrightarrow[]{ \phantom{1} 9 \phantom{1}}}}$ & $\sig{} = \sbb{}$ \\
+%
+  {\tiny{$\matrixb$}} && {\tiny{ $\wyb$ }} && {\tiny{ $\sigma\paren{\wx{*}}  = \recip{16}\lst{15,3}$ }} && {\tiny{ $\ess{} = \essb$ }} && {\tiny{$\sig{} = \sigmab{}$ }}\\
+%{
+&&&&&&&&&&  \\
+%
+&&&& {\scriptsize{4}}\ $\downarrow$ &&&&&& \\
+%
+&&&&&&&&&&  \\
+%
+&&&& $\wx{*}\, \bvk = \sigma_{k} \bvk$ & $\xrightarrow[]{ \phantom{1} 5 \phantom{1} }$ 
+& $\bvr{} = \mat{cc}{ \bvo & \bvt } $
+& ${\mg{\xrightarrow[]{ \phantom{1} 10 \phantom{1}}}}$ & $\V{} = \mat{cc}{\bvo & \bvt }$ \\
+%
+&&&& {\tiny{ $\wyb\, \bvk = \sigma_{k} \bvk$ }} & 
+&   {\tiny{ $\bvr{} = \mat{cc}{ \obvecbd & \obvecbe } $ }}
+& & {\tiny{ $\V{}   = \mat{cc}{ \obvecbd & \obvecbe}$ }} \\
+%
+&&&&&&&&&&  \\
+%
+&&&& {\scriptsize{6}}\ $\downarrow$ &&&&&& \\
+%
+&&&&&&&&&&  \\
+%
+&&&& $\buk = \sigma_{k}^{-1}\A{}\, \bvk$ & $\xrightarrow[]{ \phantom{1} 7 \phantom{1} }$ 
+& $\bur{} = \mat{cc}{ \buo & \but } $ 
+& ${\mg{\xrightarrow[]{ \phantom{1} 11 \phantom{1}}}}$ & $\U{} = \mat{cc|c}{\buo & \but & {\rd{ u_{3} }}}$ \\
+%
+&&&& {\tiny{ $\buk = \sigma_{k}^{-1}\matrixa \, \bvk$ }} &  
+& {\tiny{ $\bur{} = \mat{cc}{ \obvecbm & \obvecbn } $ }} 
+& & {\tiny{ $\U{} = \mat{cc|c}{ \obvecbm & \obvecbn & \orvecbc }$ }} \\
+%
+&&&&&&&&&&  \\
+%
+&&&&&& {\small{8}}\ $\downarrow$ &&  ${\mg{\small{12}}\ \downarrow}$ \\
+%
+&&&&&&&&&&  \\
+%
+&&&&&& $\aetsvd{*}$ 
+&& $\aesvd{*}$ \\[20pt]
+%
+&&&&&& {\small{TSVD}}
+&& {\small{SVD}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:flow:b}
+\end{table}
+%\arrayrulecolor{black}
+
+\end{landscape}
+
+
+\endinput

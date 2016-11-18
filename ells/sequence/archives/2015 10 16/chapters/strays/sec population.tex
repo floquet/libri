@@ -1,0 +1,36 @@
+\break
+\clearpage
+\section{\label{sec:population}Population growth}
+
+In this section we take a nonlinear model for population growth and separate the linear and nonlinear terms.
+
+% SUBSECTION
+\subsection{Population growth}
+\input{\pathtables "tab dubious data and soln"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y(t) = c_{1} + c_{2} \paren{t-1900} + c_{3} e^{d\paren{t-1900}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \min_{c\in\real{3}} \normts{\A{}(d)\mat{c}{c_{1}\\c_{2}\\c_{3}}-y}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+\input{\pathtables "tab census"}                   %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig population error plots"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig census data v fit"}       %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig census residuals"}        %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures census/"fig merit"}            %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures census/"fig merit 3d"}         %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathtables census/"tab results"}           %  <  <  <  <  <  <  <  <  <  <  <  <
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

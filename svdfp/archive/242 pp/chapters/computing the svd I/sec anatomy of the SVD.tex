@@ -1,0 +1,222 @@
+\section{Anatomy of the SVD}{\asvd!anatomy of}
+
+This chapter details the most general procedure for computing an SVD. While computational details may be cumbersome, the process is basic. Conceptually, there are three requisite elements and one optional.
+
+%%%
+\begin{enumerate}
+%
+  \item Singular values $\sigma$, nonzero eigenvalues of $\wx{*}$.
+%
+  \item $\brnga{*}$: Right singular vectors $\bvk$, eigenvectors of $\wx{*}$.
+%
+  \item $\brnga{}$: Left singular vectors $\buk$.
+%
+  \item $\rnlla{},\ \rnlla{*}$: Null vectors. (Not used in truncated SVD.)
+%
+\end{enumerate}
+%%%
+The machinations of computation are easier to understand when we understand these basic components. We start with the most general form of the \asvd:
+\begin{equation}
+  \A{} = \svd{*} = \csvdblockb{*}
+  \label{eq:SVD:block}
+\end{equation}
+
+Starting with $\aicmnr$, we resolve the eigensystem of the product matrix
+\begin{equation}
+  \wv = \wx{*}.
+\end{equation}
+which is the foundation of the decomposition. This provides the singular values $\sigma$ and the range vectors ${\bl{ u }}$. Given these vectors we can compute the range vectors ${\bl{ v }}$. The \ns s ${\rd{ u }}$ and ${\rd{ v }}$ can be found by applying the Gram-Schmidt process to the range vectors.
+
+%%%%%%%%%%%
+\subsection{The singular values}
+The singular values are the square roots of the ordered, nonzero eigenvalues of the product matrix $\wv$. This ensures that
+\begin{equation}
+  \sigma_{1} \ge \sigma_{2} \ge \cdots \ge \sigma_{\rho} > 0.
+\end{equation}
+
+Because the product matrix is positive semidefinite the eigenvalues are nonnegative.
+The spectrum can be represented as:
+\begin{equation}
+  \tilde{\lambda} \paren{\wv} = \lst{\tilde{\lambda}_{1},\dots, \tilde{\lambda}_{m}}.
+\end{equation}
+The ordered, nonzero eigenvalues are
+\begin{equation}
+  \lambda \paren{\wv} = \lst{ \lambda_{1},\dots, \lambda_{\rho}}
+\end{equation}
+where we have forced the ordering to be descending
+\begin{equation}
+  \lambda_{1} \ge \lambda_{2} \ge \cdots \ge \lambda_{\rho} > 0.
+\end{equation}
+Now the singular values have the elementary representation
+\begin{equation}
+  \sigma = \sqrt{\lambda}
+\end{equation}
+
+Consider a case where
+\begin{equation*}
+  \tilde{\lambda} \paren{\wv} = \lst{1, 2, 0, 0, 2, \sqrt{5}}.
+\end{equation*}
+The ordered and truncated spectrum is
+\begin{equation}
+  \lambda\paren{ \wv }  =  \lst{ \sqrt{5}, 2, 2, 1}.
+\end{equation}
+The singular values are then
+\begin{equation}
+  \sigma = \sqrt{ \lambda } = \lst{ \sqrt[4]{5}, \sqrt{2}, \sqrt{2}, 1 }.
+\end{equation}
+The matrix of singular values is
+\begin{equation}
+  \ess{} = \mat{cccc}{ 
+  \sqrt[4]{5} & 0 & 0 & 0 \\
+   0 & \sqrt{2} & 0 & 0 \\
+   0 & 0 & \sqrt{2} & 0 \\
+   0 & 0 & 0 & 1 \\
+  }
+\end{equation}
+
+%%%%%%%%%%%
+\subsection{The sabot matrix}
+The matrix of singular values $\ess{}$ is, in general not conformable with the domain matrices. Using conformability, we see that the matrix between the codomain matrix $\U{}$ and the domain matrix $\V{}$ must have the same dimensions as the target matrix $\A{}$. This leads to a sabot matrix of zeros which provides the proper shape. This padding of zeros annihilates contributions from the \ns \ vectors. 
+
+First examine postmultiplication\index{$\Sigma{}$ matrix!pre- and postmultiplication} in the matrix product $\U{}\, \sig{}$. The shaded row vectors at the bottom of the $\sig{}$ matrix annihilate the shaded column vectors which span the \ns \ $\rnlla{*}$.
+%%
+\begin{equation}
+  \begin{split}
+%
+    \U{}\, \sig{} &=
+%
+  \mat{ccc|>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{
+  {\bl{ u_{1,1} }} & {\bl{ \dots }} & {\bl{ u_{1,\rho} }} & {\rd{ u_{1,\rho+1} }} & {\rd{ \dots }} & {\rd{ u_{1,m} }} \\
+  {\bl{ \vdots }}  & & {\bl{ \vdots }} & {\rd{ \vdots }} & & {\rd{ \vdots }} \\
+  {\bl{ u_{m,1} }} & {\bl{ \dots }} & {\bl{ u_{m,\rho} }} & {\rd{ u_{m,\rho+1} }} & {\rd{ \dots }} & {\rd{ u_{m,m} }} 
+  } 
+%
+  \mat{cccccc}{
+  \sigma_{1}  &  &  & 0 & \dots & 0 \\
+   & \ddots &  & \vdots & & \vdots \\
+   &  & \sigma_{\rho} & 0 & \dots & 0 \\[2pt]\hline
+  \rowcolor{ltgray}
+  0 & \dots & 0 & 0 & \dots & 0 \\
+  \rowcolor{ltgray}
+  \vdots &  & \vdots & \vdots &  & \vdots \\
+  \rowcolor{ltgray}
+   0 & \dots & 0 & 0 & \dots & 0 } \\
+%
+      &= \mat{c|>{\columncolor{ltgray}}c}{\bur{} & \run{}}
+         \mat{cc}{\ess{} & \zero \\\hline \rowcolor{ltgray} \zero & \zero} \\[5pt]
+%
+      &= \bbur{} \sbr{} 
+%
+  \end{split}
+\end{equation}
+%%
+Next is premultiplication in the matrix product $\sig{}\,\V{*}$. The shaded column vectors in the far right of the $\sig{}$ matrix annihilate the shaded row vectors which span the \ns \ $\rnlla{}$. The following show the annihilation by the $\sig{}$ matrix under both pre- and postmultiplication.
+%%
+\begin{equation}
+\begin{split}
+  \sig{}\,\V{*} &=
+%
+  \mat{ccc|>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{
+  \sigma_{1}  &  &  & 0 & \dots & 0 \\
+   & \ddots &  & \vdots & & \vdots \\
+   &  & \sigma_{\rho} & 0 & \dots & 0 \\
+  0 & \dots & 0 & 0 & \dots & 0 \\
+  \vdots &  & \vdots & \vdots &  & \vdots \\
+   0 & \dots & 0 & 0 & \dots & 0 }
+%
+  \mat{cccccc}{
+  {\bl{ \overline{v}_{1,1} }} & {\bl{ \dots }} & {\bl{ \overline{v}_{1,n} }} \\
+    \vdots & & \vdots \\
+  {\bl{ \overline{v}_{\rho,1} }} & {\bl{ \dots }} & {\bl{ \overline{v}_{\rho,n} }} \\[2pt]\hline
+  \rowcolor{ltgray}
+  {\rd{ \overline{v}_{\rho+1,1} }} & {\rd{ \dots }} & {\rd{ \overline{v}_{\rho+1,n} }} \\
+  \rowcolor{ltgray}
+    \vdots & & \vdots \\
+  \rowcolor{ltgray}
+  {\rd{ \overline{v}_{n,1} }} & {\rd{ \dots }} & {\rd{ \overline{v}_{n,n} }}
+  } \\[5pt]
+%
+   & = \mat{c|>{\columncolor{ltgray}}c}{\ess{} & \zero \\\hline \zero & \zero}
+       \mat{c}{\bvr{*} \\[3pt]\hline\rowcolor{ltgray} \rvn{*}} \\[5pt]
+%
+   &= \sbc{} \bbvr{*} 
+%
+\end{split}
+\end{equation}
+Because the \ns s are silenced by the sabot row and column vectors, we may construct the decomposition without using \ns \ components. This is called the \emph{truncated} \asvd.\index{singular value decomposition!truncated form!block structure} The two variants of the \asvd \ are shown in table \eqref{tab:SVD:block forms} below.
+%%%%%%
+\input{chapters/"computing the svd I"/"tab svd and truncated svd"}  % table
+
+
+%%%%%%%%%%%
+\subsection{The range vectors}
+The range vectors form an orthonormal basis for the column and row spaces respectively:
+\begin{equation}
+  \begin{split}
+    \brnga{}  =  \spn{ \buo, \dots, \burho }, \\
+    \brnga{*} =  \spn{ \bvo, \dots, \bvrho }.
+  \end{split}
+\end{equation}
+These spans are special because they encode the relative alignment between $\brnga{}$ and $\brnga{*}$.
+\begin{equation}
+  \begin{split}
+    %
+    \bur{} &= \mat{c|c|c}{
+      \buo & \dots & \burho
+    } \\
+    %
+    \bvr{} &= \mat{c|c|c}{
+      \bvo & \dots & \bvrho
+    }
+    %
+  \end{split}
+\end{equation}
+
+
+The domain is the first space resolved in the SVD. The definition $\aesvd{*}$ can be rewritten as the matrix equation
+\begin{equation}
+  \begin{split}
+    \A{}\,\bvr{} &= \bur{}\,\sig{}.
+  \end{split}
+\end{equation}
+This implies the matrix-vector equation
+\begin{equation}
+  \Avk = \sigma_{k} {\bl{ u_{k} }}, \quad k=1:\rho
+\end{equation}
+which is the prescription for building the $\bluu$ vectors.
+
+
+%%%%%%%%%%%
+\subsection{The \ns \ vectors}
+\begin{equation}
+  \begin{split}
+    \rnlla{}  =  \spn{ {\rd{ u_{\rho+1} }}, \dots, {\rd{ u_{m-\rho} }} } \\
+    \rnlla{*} =  \spn{ {\rd{ v_{\rho+1} }}, \dots, {\rd{ v_{n-\rho} }} }
+  \end{split}
+\end{equation}
+
+Right- and left-null vectors.
+\begin{equation}
+  \begin{split}
+    \A{}\, \ruk &= \zero, \quad k=\rho+1:n \\
+    \paren{ \ruk^{*} \A{} }^{*} &= \zero, \quad k=\rho+1:m \\
+  \end{split}
+\end{equation}
+
+
+%%%%%%%%%%%
+\subsection{Domain matrices}
+The matrices are unitary.
+\begin{equation}
+  \U{*} = \U{-1}.
+\end{equation}
+
+%%
+\input{chapters/"computing the svd I"/"tab personae dramatis"}
+\input{chapters/"computing the svd I"/"tab schema for the svd"}
+\input{chapters/"computing the svd I"/"tab column vectors of the domain matrices form an orthonormal span"}
+\input{chapters/"computing the svd I"/"tab eigenvectors and null vectors"}
+\input{chapters/"computing the svd I"/"tab watkins diagram"}
+
+
+\endinput

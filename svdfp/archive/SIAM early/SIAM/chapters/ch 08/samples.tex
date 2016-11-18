@@ -1,0 +1,134 @@
+\section[Visualization II: SVD]{Visualization II\\Singular value decompositions in $\real{2}$}
+Let's pick a few simple matrices and look at a representation of their \svdl s. We will plot the two column vectors of $\Y{}$ on one plot and both column vectors of $\X{}$ on the other plot. The black like represents the first column vector, the blue vector the second. The unit circle bounds the figures. The next plot is an ellipse. It represents the distortions in the unit circle caused by the $\sig{}$ matrix. By convention, the largest distortion, $\sig{}$, is in the $x$ direction, and an the equivalent or smaller distortion is in the $y$ direction.
+
+The angle between the vectors in the domain matrices is of course $\pihalf$, but the orientation is defined moving from the black arrow to the blue arrow. If this motion is counterclockwise, then the quarter circle is shaded with green. If if is clockwise, the shading is red. 
+
+A very important point has been glossed over so far. The miracle of the SVD is that it finds these angular orientations between the domain matrices. These orientations are not arbitrary and so little to no tolerance for adjustment as we shall see. While finding orthonormal resolutions for domain and codomain is trivial, finding the relative the orientation is what makes the SVD special.
+
+When you examine the plots, remember that
+\begin{equation}
+  \begin{split}
+     \svda{T}, \\
+     \svdta{T}.
+  \end{split}
+\end{equation}
+This implies that when you compare the decomposition of the matrix in the top row with the decomposition of the transpose in the bottom row that you should be comparing $\X{}$ in the top row to $\Y{}$ in the bottom row. These matrices are related by a transpose.
+
+\clearpage
+\break
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{m{0.75in}m{1.75in}m{1.75in}m{1.75in}}
+  $ \quad \quad \A{}$ & $\qquad \quad \qquad \Y{}$ & $\qquad \qquad \qquad \X{}$ & $\qquad \qquad \qquad \sig{}$ \\ \hline\hline
+  $\mat{rc}{1&2\\-1&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 01"} \\
+  $\mat{cr}{1&-1\\2&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/01_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 01"} \\
+\end{tabular}
+\end{center}
+\caption[A decomposition for one of the sample matrices]{A decomposition for one of the sample matrices used throughout the text. We can look at this image and tell the decomposition is simple: the domain matrix has column vectors which form the identity matrix. The codomain matrix is a simple rotation by $\frac{\pi}{4}$. On the bottom we see the transpose matrix resolved. Notice how the chirality changes between matrix and transpose.}
+\label{tab:pmII:visualsa}
+\end{table}%
+\end{landscape}
+%%%%
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{m{0.75in}m{1.75in}m{1.75in}m{1.75in}}
+  $ \quad \qquad \A{}$ & $\qquad \qquad \qquad \Y{}$ & $\qquad \qquad \qquad \X{}$ & $\qquad \qquad \qquad \sig{}$ \\ \hline\hline
+  $\mat{rr}{1 & \frac{1}{2} \\-1 & \frac{1}{3}}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 02"} \\
+  $\mat{rr}{1 & -1 \\ \frac{1}{2} & \frac{1}{3}}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/02_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 02"} \\
+\end{tabular}
+\end{center}
+\caption[A decomposition for one of the sample matrices]{A decomposition for one of the sample matrices used throughout the text. We can look at this image and tell the decomposition is simple: the domain matrix has column vectors which form the identity matrix. The codomain matrix is a simple rotation by $\frac{\pi}{4}$. On the bottom we see the transpose matrix resolved. Notice how the chirality changes between matrix and transpose.}
+\label{tab:pmII:visualsb}
+\end{table}%
+\end{landscape}
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{m{0.75in}m{1.75in}m{1.75in}m{1.75in}}
+  $ \quad \qquad \A{}$ & $\qquad \qquad \qquad \Y{}$ & $\qquad \qquad \qquad \X{}$ & $\qquad \qquad \qquad \sig{}$ \\ \hline\hline
+  $\mat{rr}{1&0\\-1&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 03"} \\
+  $\mat{rr}{1&-1\\0&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/03_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 03"} \\
+\end{tabular}
+\end{center}
+\caption[A decomposition for one of the sample matrices]{A decomposition for one of the sample matrices used throughout the text. We can look at this image and tell the decomposition is simple: the domain matrix has column vectors which form the identity matrix. The codomain matrix is a simple rotation by $\frac{\pi}{4}$. On the bottom we see the transpose matrix resolved. Notice how the chirality changes between matrix and transpose.}
+\label{tab:pmII:visualsc}
+\end{table}%
+\end{landscape}
+
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{m{0.75in}m{1.75in}m{1.75in}m{1.75in}}
+  $ \quad \qquad \A{}$ & $\qquad \qquad \qquad \Y{}$ & $\qquad \qquad \qquad \X{}$ & $\qquad \qquad \qquad \sig{}$ \\ \hline\hline
+  $\mat{rr}{1&2\\0&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x1} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 04"} \\
+  $\mat{rr}{1&0\\2&2}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_y2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/post_mortemII/graphics/04_x2} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/"ch 08 svd pics 04"} \\
+\end{tabular}
+\end{center}
+\caption[A decomposition for one of the sample matrices]{A decomposition for one of the sample matrices used throughout the text. We can look at this image and tell the decomposition is simple: the domain matrix has column vectors which form the identity matrix. The codomain matrix is a simple rotation by $\frac{\pi}{4}$. On the bottom we see the transpose matrix resolved. Notice how the chirality changes between matrix and transpose.}
+\label{tab:pmII:visualsd}
+\end{table}%
+\end{landscape}
+
+\break
+\clearpage
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{m{0.75in}m{1.75in}m{1.75in}m{1.75in}}
+  $ \quad \qquad \A{}$ & $\qquad \qquad \qquad \Y{}$ & $\qquad \qquad \qquad \X{}$ & $\qquad \qquad \qquad \sig{}$ \\ \hline\hline
+  $\mat{rr}{1&-1\\1&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 Y 5"} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 Xt 5"} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 S 5"} \\
+  $\mat{rr}{1&1\\-1&-1}$ \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 Y 5t"} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 Xt 5t"} \qquad & \qquad 
+  \includegraphics[ width = 1.75in ]{pdf/"ch 08"/svd/"ch 08 01 S 5"} \\
+\end{tabular}
+\end{center}
+\caption[The mapping is frustrated]{The mapping is frustrated. This is the rank-deficient case; there aren't enough range vectors to span the space. In this instance there is one range vector (black) and one \ns \ vector (red).}
+\label{tab:8:visualse}
+\end{table}%
+\end{landscape}
+
+\endinput

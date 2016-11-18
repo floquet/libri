@@ -1,0 +1,37 @@
+\providecommand{\svd}[1]    { \Y{}\, \sig{}   \, \X{ \mathrm{#1} } }
+\providecommand{\svdt}[1]   { \X{}\, \sig{T}  \, \Y{ \mathrm{#1} } }
+\providecommand{\svdd}[1]   { \Y{\mathrm{#1}}\A{}\X{} }
+\providecommand{\mpgi}[1]   { \X{}\, \sig{(+)}\, \Y{ \mathrm{#1} } }
+\providecommand{\svdthin}[1]{ \widetilde{\Y{}}\, \widetilde{\sig{}}\, \widetilde{\mathbf{X}}^{\mathrm{#1}} }
+
+\newcommand{\xrng}[1]{\X{#1}_{\mathcal{R}}}
+\newcommand{\xnll}[1]{\X{#1}_{\mathcal{N}}}
+\newcommand{\yrng}[1]{\Y{#1}_{\mathcal{R}}}
+\newcommand{\ynll}[1]{\Y{#1}_{\mathcal{N}}}
+
+\newcommand{\yrn}[1]  { \mat{c>{\columncolor{ltgray}}c}{\yrng{} & \ynll{#1}} }
+\newcommand{\ytrn}[1] { \mat{c}{\yrng{#1} \\ \rowcolor{ltgray} \ynll{}}}
+
+\newcommand{\xrn}[1]  { \mat{c>{\columncolor{ltgray}}c}{\xrng{#1} & \xnll{}}}
+\newcommand{\xtrn}[1] { \mat{c}{\xrng{#1} \\ \rowcolor{ltgray} \xnll{}}}
+
+\newcommand{\yft}[1]  { \mat{c>{\columncolor{ltgray}}c}{\rnga{} & \nlla{#1}} }
+\newcommand{\xft}[1]  { \mat{c>{\columncolor{ltgray}}c}{\rnga{#1} & \nlla{}} }
+
+\newcommand{\ytft}[1] { \mat{c}{\rnga{}   \\ \rowcolor{ltgray}\nlla{#1}} }
+\newcommand{\xtft}[1] { \mat{c}{\rnga{#1} \\ \rowcolor{ltgray}\nlla{}} }
+
+\providecommand{\svda}[1]  {\A{}   & = \svd{#1}}
+\providecommand{\svdta}[1] {\A{#1} & = \svdt{#1}}
+
+\providecommand{\svdax}[1] {\A{}     = \svd{#1}}
+\providecommand{\svdtax}[1]{\A{#1}   = \svdt{#1}}
+
+\providecommand{\mpgia}[1] {\Ap    & = \mpgi{#1}}
+\providecommand{\mpgiax}[1]{\Ap      = \mpgi{#1}}
+
+\providecommand{\svdtag}[1]{\Y{}_{ #1 }\, \Sigma_{ #1 }\, \X{*}_{ #1 }}
+\providecommand{\svdtagA}[1]{\A{}_{ #1 } = \svdtag{#1}}
+
+
+\endinput

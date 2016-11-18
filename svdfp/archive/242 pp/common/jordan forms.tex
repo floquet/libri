@@ -1,0 +1,19 @@
+% Jordan forms
+\newcommand{ \jordantwo }[0] {
+\mat{cc}{ 1 & 1 \\ 0 & 1 } }
+
+\newcommand{ \jordanthree }[0] {
+\mat{ccc}{ 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 } }
+
+\newcommand{ \numc }[0] { \sqrt{ \recip{10} \paren{ 5 + \sqrt{5} } } }
+\newcommand{ \numd }[0] { \sqrt{ \recip{10} \paren{ 5 - \sqrt{5} } } }
+
+\newcommand{ \jordantwoU }[0] {
+\mat{rr}{ {\bl{ \numc }} & {\bl{ -\numd }} \\ {\bl{ \numd }} & {\bl{ \numc }} } }
+
+\newcommand{ \jordantwoVT }[0] {
+\mat{rr}{ {\bl{ \numd }} & {\bl{ \numc }} \\ {\bl{ -\numc }} & {\bl{ \numd }} } }
+
+\newcommand{ \jordantwoS }[0] {
+\half
+\mat{rr}{ 1 + \sqrt{5} & 0 \\ 0 & -1 + \sqrt{5} } }

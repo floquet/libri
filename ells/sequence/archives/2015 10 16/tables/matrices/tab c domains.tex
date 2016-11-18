@@ -1,0 +1,26 @@
+%    Figure insertion; default placement is top; if the figure occupies
+%    more than 75% of a page, the [p] option should be specified.
+\begin{table}[t]
+	\begin{center}
+		\begin{tabular}{ccc}
+		  %
+		  \textbf{Solution space} & \textbf{Measurement space} \\
+		  result: $\xls = \mat{c}{1\\6}$ & data: $b = \mat{c}{2\\1}$\\[15pt]
+		  %
+		  \includegraphics[ width = 2.25in ]{\pathgraphics matrices/"c domain"} & \qquad
+		  %
+		  \includegraphics[ width = 2.25in ]{\pathgraphics matrices/"c codomain"} \\
+		  %
+		  Domain & Codomain \\[5pt]
+		  %
+		  $\V{} \in \cmplx{n}$ & $\U{} \in \cmplx{m}$ \\[10pt]
+		  %
+		\end{tabular}
+	\end{center}
+	%\label{tab:}
+	\caption{The domain and the codomain for example matrix c. Both null spaces, $\rnlla{}$ and $\rnlla{*}$ are trivial. The unit circles show the SVD decomposition: the column vectors of $\V{}$ on the left and $\U{}$ on the right. The green shading indicates a right-handed coordinate system, the red a left-handed system. The matrix $\A{}$ maps the solution to the data: $\A{}\xls=b$.}
+\end{table}%
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathtables "tab XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

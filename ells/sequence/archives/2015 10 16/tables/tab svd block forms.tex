@@ -1,0 +1,27 @@
+%    Figure insertion; default placement is top; if the figure occupies
+%    more than 75% of a page, the [p] option should be specified.
+\begin{table}[t]
+	\begin{center}
+		\begin{tabular}{lccccc}
+	   	%
+		  rank deficiency & $\rnlla{*}$ & $\rnlla{}$ & $\U{}$ & $\sig{}$ & $\V{*}$\\\hline
+		  & \\
+		  %
+		  none & $\trivial$ & $\trivial$ & $\bbur{}$ & $\sbn{}$ & $\bbvr{*}$ \\[5pt]
+		  %
+		  column & $\trivial$ & nontrivial & $\bbur{}$ & $\sbr{}$ & $\cvblockfs{*}$ \\[5pt]
+		  %
+		  row  & nontrivial & $\trivial$ & $\cublockf$ & $\sbc{}$ & $\bbvr{*}$ \\[5pt]
+		  %
+		  column \& row & nontrivial & nontrivial & $\cublockf$ & $\sbb{}$ & $\cvblockfs{*}$ \\[5pt]
+		  %
+		  %
+		\end{tabular}
+	\end{center}
+	\label{tab:svd blocks}
+	\caption[Decomposition block forms]{Decomposition block forms for $\aesvd{*}$.}
+\end{table}%
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathtables "tab XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

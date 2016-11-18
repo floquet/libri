@@ -1,0 +1,57 @@
+\section{Jargon}
+
+%%%%%%
+\subsection{Overview}
+The goal here is to prepare the reader for the terminology which follows.
+
+%%%%%%
+\subsection{AKA}
+Here is a table of ``also known as''
+\begin{table}[htdp]
+\caption{default}
+\begin{center}
+\begin{tabular}{ll}
+null space $\nll{\A{}}$ & kernel\\
+ & right null space\\
+null space $\nll{\A{}}$ & cokernel\\
+ & left null space\\
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
+
+
+%%%%%%
+\subsection{Range and image}
+The column space refers to the vector space induced by the columns. The range, or image, is the collection of all possible combinations of the column vectors. For a matrix with $m$ rows, the induced vector space is $\cmplxm$. If there are fewer than $m-$columns, or in general if there are fewer than $m$ linearly independent column vectors, than the host space is incomplete. When the host space is incomplete there will be a complementary space.
+
+
+%%%%%%
+\subsection{Domains}
+Here is the tricky part. Both the domain and the codomain are domains. When we speak of the domain matrices they are, in general, the matrices $\X{}$ and $\Y{}$. Individually, $\X{}$ is a set of basis vectors for the domain. Or the domain matrix for short. The matrix $\Y{}$ is the codomain matrix. The old saying ``the usage is clear from context'' ignores the fact that many readers are trying to develop the intuition of context.
+
+%%%%%%
+\subsection{The singular values}
+We will see that the singular values derive from the eigenvalues of the product matrices $\prdm{*}$ and $\prdmm{*}$. The eigenvalues are the roots of the characteristic polynomials and may include zero and may 
+in no particular order. When we speak of the eigenvalues of the product matrix, we mean a list ordered by decreasing size without zero values. While it is perfectly valid to write an eigenvalue spectrum as this
+\begin{equation}
+  \lambda\paren{\prdm{*}} = \lst{9,2,0,2},
+\end{equation}
+in this work we consider this spectrum to be
+\begin{equation}
+  \lambda\paren{\prdm{*}} = \lst{9,2,2}.
+\end{equation}
+
+%%%%%%
+\subsection{The $\sig{}$ matrix}
+\begin{enumerate}
+\item $\ess{}$, the full rank diagonal matrix of singular values
+\item $\Xi$, the sabot matrix, a matrix of zeros of the same dimension as the target matrix.
+\item $\sig{}$, the sabot matrix with $\ess{}$ embedded starting at the $\lst{\text{r},\text{c}}=\lst{1,1}$
+\end{enumerate}
+
+\subsection{The SVD of a matrix}
+The gymnastics of articles. The domain matrices are not unique. Therefore the \svdl\ is not unique. The singular values are always unique.
+be ordered in any fashion
+
+\endinput

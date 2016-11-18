@@ -1,0 +1,223 @@
+\subsection[Example I: Jordan normal form]{$\bigstar$ Example I: Jordan normal form}
+\label{sec:vis:2d:I}
+The target matrix is a Jordan normal form
+\begin{equation}
+  \A{} = \jordanthree
+\end{equation}
+which has full rank: $\rho = m = n = 3$. \\ 
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Singular value decomposition}
+The singular value decomposition is best left to \emph{Mathematica}.
+Start with the product matrix $\boxed{2}$ 
+\begin{equation}
+  \W{v} = \wx{*} = \mat{ccc}{
+  1 & 1 & 0 \\
+  1 & 2 & 2 \\
+  0 & 1 & 2 
+  }.
+\end{equation}
+The characteristic polynomial for this matrix is
+\begin{equation}
+  \begin{split}
+     p\paren{\lambda} 
+       &= -\lambda^{3} + \trace\paren{\W{v}} \lambda^{2} + \paren{\trace^{2}\paren{\W{v}}-\trace\paren{\W{v}^{2}}} \lambda + \det{\W{v}}, \\
+       &= -\lambda^3 + 5 \lambda^2 - 6 \lambda + 1 .
+  \end{split}
+\end{equation}
+The eigenvalue spectrum $\boxed{3}$ is
+\begin{equation}
+  \lambda \paren{ \W{v} } = \recip{3}
+  \lst{5+2 \sqrt{7} \cos \paren{ \alpha } , 
+       5-\sqrt{7} \cos \paren{ \alpha } \pm \sqrt{21}\sin \paren{ \alpha } }
+\end{equation}
+where the parameter is given by
+\begin{equation}
+  \alpha_{1} = \recip{3} \arctan \paren{3 \sqrt{3}}.
+\end{equation}
+The $\sig{}$ matrix ${\mg{ \boxed{9} }}$ is then
+\begin{equation}
+  \sig{} = \recip{3} \mat{ccc}{
+	 1+\sqrt{7} \cos \alpha+\sqrt{21} \sin \alpha & 0 & 0 \\
+	 0 & -1+2 \sqrt{7} \cos \alpha & 0 \\
+	 0 & 0 & 1+\sqrt{7} \cos \alpha-\sqrt{21} \sin \alpha 
+  } .
+\end{equation}
+The column vectors of the domain matrix $\V{}$ are the normalized solution vectors to the eigenvalue equation
+\begin{equation}
+  \W{v} v_{k} = \lambda_{k} v_{k}, \qquad k=1:3.
+\end{equation}
+That is,
+\begin{equation}
+  \bvr{} = {\bl{ \mat{c|c|c}{ \hat{v}_{1} & \hat{v}_{2} & \hat{v}_{3} } }}.
+\end{equation}
+There are but three unique elements in the domain matrices. Denote them as this
+\begin{equation}
+  \begin{split}
+    a_{0\,}   &= 1 - 2\cos \alpha_{2}, \\
+    a_{\pm} &= 1 +  \cos \alpha_{2} \pm \sqrt{3} \sin \alpha_{2} .
+  \end{split}
+\end{equation}
+Here the parameter is
+\begin{equation}
+  \alpha_{2} = \recip{3} \arctan \frac{3 \sqrt{3}} {13}
+\end{equation}
+%
+The domain matrix $\boxed{5}$ now has the form
+%
+\begin{equation}
+  \bvr{} = {\bl{ \recip{3} \mat{rrr}{
+  -a_{0\,} & -a_{-} &  a_{+} \\
+   a_{+} &  a_{0\,} & -a_{-} \\
+   a_{-} &  a_{+} & -a_{0\,} \\
+  } }}
+\end{equation}
+%
+The column vectors $u_{k}$ of the codomain matrix are the solutions to the equation
+\begin{equation}
+  \A{} v_{k} = \sigma_{k} u_{k}, \qquad k=1:3.
+\end{equation}
+The result  $\boxed{7}$  is this
+%
+\begin{equation}
+  \bur{} = {\bl{ \recip{3} \mat{rrr}{
+   a_{-} & -a_{+} & -a_{0\,} \\
+   a_{+} & -a_{0\,} & -a_{-} \\
+  -a_{0\,} &  a_{-} &  a_{+} \\
+  } }} .
+\end{equation}
+%
+This completes the SVD. Next we characterize the domain matrices as rotation matrices.
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Codomain matrix $\U{}$ as a rotation matrix}
+We are looking for the normal vector $\xi$ which defines the axis of rotation. This vector is the solves both eigenvalue equations:
+%
+\begin{equation}
+  \begin{split}
+    \U{} \xi  &= \xi \\
+  \end{split}
+\end{equation}
+%
+The solution vector is
+%
+\begin{equation}
+  \xi = \tra{\paren{
+   \frac{2 - \cos \alpha_{2} - \sqrt{3} \sin \alpha_{2}} {-1 + 2 \cos \alpha_{2}},
+   0, 1  }}
+   \label{eq:fixed point:u}
+\end{equation}
+The norm of this vector is
+\begin{equation}
+  \normt{ \xi } = \frac{1 + \cos \alpha_{2} - \sqrt{3} \sin \alpha_{2}} {-1 + 2 \cos \alpha_{2}}
+\end{equation}
+The unit normal vector for the $\U{}$ matrix is then
+\begin{equation}
+  \mathbf{n_{u}} = \frac{ \xi } { \normt{ \xi } } = \tra{ \paren{ \frac{2 - \cos \alpha_{2} - \sqrt{3} \sin \alpha_{2}} {1 + \cos \alpha_{2} - \sqrt{3} \sin \alpha_{2}}, 0, \frac{-1 + 2 \cos \alpha_{2}}{1 + \cos \alpha_{2} - \sqrt{3} \sin \alpha_{2}}} }
+\end{equation}
+%
+\begin{equation}
+  \cos \theta_{u} = \recip{3} \paren{-1 + 2 \cos \alpha_{2}} 
+  \label{eq:3d 01:u:theta}
+\end{equation}
+
+The unit disk perpendicular to the axis of rotation is described by two unit vectors $p$ and $q$ which are mutually perpendicular. The boundary is the circle $C\!\paren{\phi}$  given by
+\begin{equation}
+  C\!\paren{\phi} = p \cos \phi + q \sin \phi, \qquad 0 \le \phi < 2 \pi.
+  \label{eq:3d 01:unit disk}
+\end{equation}
+The task is to find the vectors $p$ and $q$. Notice that the vector in \eqref{eq:fixed point:u} has the form
+\begin{equation}
+  \xi = \mat{c}{ \num \\ 0 \\ \num }
+\end{equation}
+Invoke the Method of Judicious Selection\index{Method of Judicious Selection}. Let's ignore the $\num$ entries in $\xi$ and multiply the by 0. Let the first orthogonal vector be
+\begin{equation}
+  p = \mat{c}{ 0 \\ 1 \\ 0 }.
+\end{equation}
+The complementary vector is the cross product
+\begin{equation}
+\begin{split}
+  q &= \mathbf{n_{u}} \times p \\
+    &= \paren{2 \paren{-2+\cos \alpha} \paren{-2+\cos \alpha + \sqrt{3} \sin \alpha}}^{-1}
+       \mat{c}{
+       1 - 2 \cos \alpha \\ 0 \\ -2 + \cos \alpha + \sqrt{3} \sin \alpha
+       } .
+\end{split}
+\end{equation}
+The codomain matrix $\U{}$ is now characterized as a rotation matrix where the axis of rotation is $\mathbf{n_{u}}$ and the rotation angle $\theta_{u}$ is given by equation \eqref{eq:3d 01:u:theta}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Domain matrix $\V{}$ as a rotation matrix}
+The fixed point for the codomain matrix is the solution to this equation:
+%
+\begin{equation}
+  \begin{split}
+    \V{} \eta  &= \eta \\
+  \end{split}
+\end{equation}
+%
+The solution vector is
+%
+\begin{equation}
+  \eta = \tra{\paren{
+   1, \sqrt{3} \tan \paren{\frac{\alpha_{2}}{2}}, 1 }}
+\end{equation}
+The norm of this vector is
+%
+\begin{equation}
+  \normt{ \eta } = \sqrt{2 + 3 \tan \paren{\frac{\alpha_{2}}{2}} ^2}
+\end{equation}
+The unit normal vector for the $\V{}$ matrix needs no simplification.
+%
+\begin{equation}
+  \mathbf{n_{v}} = \frac{ \eta } { \normt{ \eta } }.
+  \label{eq:3d 01:v:theta}
+\end{equation}%
+%
+The rotation angle is
+%
+\begin{equation}
+  \cos \theta_{v} = \recip{3} \paren{-2 + \cos \alpha_{2}} .
+  \label{eq:3d 01:v:theta}
+\end{equation}
+
+The task is to find the vectors $p$ and $q$ which describe the unit disk in equation \eqref{eq:3d 01:unit disk}. A propitious choice for the first vector
+\begin{equation}
+  p = \rstwo \mat{r}{ 1 \\ 0 \\ -1 }.
+\end{equation}
+The $q$ vector is constructed from the cross product
+\begin{equation}
+\begin{split}
+  q &= \mathbf{n_{v}} \times p \\
+    &= -\paren{ \sqrt{3} \paren{1 + \cos \alpha} \sqrt{ 4/3 + 2 \tan \paren{\frac{\alpha_{2}}{2}}}}^{-1}
+        \mat{c}{
+        \sqrt{3} \sin \alpha \\ 
+        2 \paren{1+\cos \alpha} \\ 
+        \sqrt{3} \sin \alpha
+        } .
+\end{split}
+\end{equation}
+The domain matrix $\V{}$ is now characterized as a rotation matrix where the axis of rotation is $\mathbf{n_{v}}$ and the rotation angle $\theta_{v}$ is given by equation \eqref{eq:3d 01:v:theta}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Depiction}
+The domain and codomain matrices are depicted as rotation matrices in the top line of figure \eqref{tab:coin:a}. This shows the unit vectors $\mathbf{n_{u}}$ and $\mathbf{n_{v}}$. The unit disk which is perpendicular to each vector is shaded.
+\begin{equation}
+  \begin{split}
+    \cos \theta_{u} &\approx \ps 0.328 \\
+    \cos \theta_{v} &\approx -0.336
+  \end{split}
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \mathbf{n_{u}} = \mat{r@{.}l}{-0 & 626 \\ 0 & 000 \\ 0 & 780}, \quad \mathbf{n_{v}} = \mat{r@{.}l}{0 & 7050 \\ 0 & 0775 \\ 0 & 7050}
+  \end{split}
+\end{equation}
+
+\endinput

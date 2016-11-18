@@ -1,0 +1,32 @@
+\chapter[SVD without eigenvalues]{Special case: SVD without eigenvalues}
+\label{chap:simple}
+Consider the quadratic equation
+\begin{equation}
+  ax^{2}+bx+c = 0.
+\end{equation}
+We know that the two roots are given by
+\begin{equation}
+  x_{\pm} = \frac{1}{2a}\paren{-b\pm\sqrt{b^{2}-4ac}}.
+\end{equation}
+However, when we see an equation like
+\begin{equation}
+  x^{2}-x-6 = 0
+\end{equation}
+we don't compute the general solution; we factor the equation into
+\begin{equation}
+  \paren{x-3}\paren{x+2} = 0.
+\end{equation}
+We recognize that there are special cases when the roots can be found by a process that is simpler than the general method.
+
+Similarly, while there is a general method for computing the \svdp \ there is also an elementary method for special cases; such a method will be shown here.
+
+The general SVD requires solving for the eigenvalues of one of the product matrices, either $\prdm{*}$ or $\prdmm{*}$. However, in special cases we can completely bypass the eigenvalue problem and construct the SVD using only Gaussian elimination or even inspection.
+
+%%
+\input{chapters/simple/problem}
+\input{chapters/simple/svd}
+\input{chapters/simple/solution}
+\input{chapters/simple/summary_simple}
+\input{chapters/simple/exercises}
+
+\endinput

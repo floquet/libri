@@ -1,0 +1,92 @@
+\section{Polar decomposition}
+The \index{polar factorization}\textit{polar factorization} is another useful matrix decomposition. It is analogous to finding the polar form of a complex number $z$ into the form
+\begin{equation}
+  z = r e^{i \theta}.
+  \label{eq:zpolar}
+\end{equation}
+This form resolves the complex number into a length $r$ and a direction $e^{i \theta}$. 
+
+For the matrix form of the polar decomposition a target matrix $\A{}$ is resolved into the product of a unitary matrix $\Q{}$ and an Hermitian matrix $\pee{}$ that is also positive semi-definite. Every matrix
+$$
+\A{}\in\cmplx{\by{m}{m}}_{\rho}
+$$
+has a polar decomposition, even when $\rho<m$.
+The decomposition takes the form
+\begin{equation}
+  \A{} = \Q{}\pee{}.
+\end{equation}
+
+The task here is to create the polar decomposition from the \svdl. The common trick is to insert a form of the identity matrix. In this case we will use
+\begin{equation}
+  \I{m} = \X{*}\X{}.
+\end{equation}
+The chain of reasoning is 
+\begin{equation}
+\begin{array}{rcll}
+  \A{}&=&\svd{*} \qquad\qquad\qquad &\text{definition},\\
+      &=&\Y{}\,\I{m}\,\sig{}\,\X{*} \qquad\qquad\qquad &\text{trick: insert identity},\\
+      &=&\Y{}\paren{\X{}\,\X{*}}\sig{}\,\X{*} \qquad\qquad\qquad &\text{trick: }\X{}\text{ is unitary},\\
+      &=&\paren{\Y{}\X{}}\paren{\X{*}\sig{}\,\X{*}} \qquad\qquad\qquad &\text{associativity},\\
+      &=&\Q{}\,\pee{} \qquad\qquad\qquad &\text{define new variables}.
+\end{array}
+\end{equation}
+The polar decomposition can be expressed in terms of the \svdl \ with the assignments
+\begin{equation}
+  \begin{split}
+    \Q{} &= \Y{}\X{*},\\
+    \pee{} &= \X{}\sig{}\X{*}.
+  \end{split}
+\end{equation}
+
+Is the $\Q{}$ matrix unitary? We must demonstrate that $\Q{*}=\Q{-1}$. First compute the Hermitian conjugate in terms of the domain matrices:
+\begin{equation}
+  \begin{array}{lcccccl}
+    \Q{*}  &=& \paren{\Y{}\X{*}}^{*}  &=& \paren{\X{*}}^{*}\paren{\Y{}}^{*} &=& \X{}\Y{*},\\
+    \Q{-1} &=& \paren{\Y{}\X{*}}^{-1} &=& \paren{\X{*}}^{-1}\paren{\Y{}}^{-1} &=& \X{}\Y{*}.
+  \end{array}
+\end{equation}
+The matrix $\Q{}$ is unitary.
+
+Is the $\pee{}$ matrix unitary? A bit more finesse is required:
+\begin{equation}
+  \begin{array}{lcccl}
+    \pee{*}  &=& \paren{\X{}\sig{}\X{*}}^{*}  &=& \X{*}\sig{T}\X{},\\
+    \pee{-1} &=& \paren{\X{}\sig{}\X{*}}^{-1} &=& \X{*}\sig{(+)}\X{}.
+  \end{array}
+\end{equation}
+The matrix $\pee{}$ is unitary in general. However this analysis shows that when the target matrix is unitary the $\pee{}$ matrix will also be unitary.
+
+How is this a polar decomposition? Examine the determinants. The $\Q{}$ matrix is the product of two unitary matrices, each of which represents a rotation or a reflection:
+\begin{equation}
+  \begin{split}
+      \det \Q{} &= \det \paren{\Y{}\X{*}} = \det \Y{} \det \X{*} = e^{i \theta_{y}}e^{-i \theta_{x}}\\
+  & = e^{i \paren{\theta_{y}-\theta_{x}}}.
+  \end{split}
+\end{equation}
+The determinant of the $\pee{}$ matrix supplies the length scale:
+\begin{equation}
+  \begin{split}
+    \det \pee{} &= \det \paren{\X{*}\sig{}\X{}} = \paren{e^{-i \theta_{x}}}\paren{\prod_{j=1}^{m}{\sigma_{j}}}\paren{e^{i \theta_{x}}}\\
+     &=\prod_{j=1}^{m}{\sigma_{j}}.
+  \end{split}
+\end{equation}
+If we define the length parameter to be the product of the singular values
+\begin{equation}
+  R = \prod_{j=1}^{m}{\sigma_{j}}
+\end{equation}
+and the angle $\psi$ the be the difference between the \index{coordinate angles}coordinate angles for the domain decompositions
+\begin{equation}
+  \psi = \theta_{y}-\theta_{x}
+\end{equation}
+then the determinant take the more transparent form
+\begin{equation}
+  \begin{split}
+    \det \Q{}\pee{} &= e^{i\paren{\theta_{y}-\theta_{x}}}\prod_{j=1}^{m}{\sigma_{j}} \\
+      &= R e^{i\psi}.
+  \end{split}
+\end{equation}
+Thus we see an explicit connection to the form in \eqref{eq:zpolar}.
+
+
+
+\endinput

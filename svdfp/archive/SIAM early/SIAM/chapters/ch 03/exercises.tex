@@ -1,0 +1,38 @@
+\clearpage
+
+\begin{enumerate}
+\item After considering the range and codomain of the two formulations, write a single sentence to explain how the equation
+\begin{equation}
+  \A{}x=b
+\end{equation}
+may not have a solution but the normal equations
+\begin{equation}
+  \A{T}\A{}x=\A{T}b
+\end{equation}
+will have a solution. 
+\begin{quotation}
+The vector $b$ may not be in the image or range of the matrix $\A{}$, however the vector $\A{T}b$ is in the range of $\A{T}$ by of construction.
+\end{quotation}
+%%
+\item In the example we found that the product matrix of the matrix $\A{\by{3}{2}}_{2}$
+\begin{equation}
+   \W{y}=\A{}\,\A{T} =
+\mat{cc}
+ {9 & 6 \\
+  6 & 9} 
+\end{equation}
+in equation \eqref{eq:problemgen:Wy} has the eigenvalue spectrum
+\begin{equation}
+  \lambda\paren{\W{y}} = \lst{15,3}.
+\end{equation}
+Using reasoning alone without computation, what is the eigenvalue spectrum of $\W{x}$?
+\begin{quotation}
+  The eigenvalue spectrum of either product matrix contains all of the nonzero eigenvalues. Therefore the nonzero eigenvalues of $\W{x}$ are also $\lst{15,3}$. By inspecting the size of the target matrix, we see that the $\W{x}\in\cmplx{\bys{3}}$ and therefore will have three eigenvalues. Therefore the third eigenvalue is zero. Therefore
+\begin{equation}
+  \lambda\paren{\W{x}}=\lst{15,3,0}.
+\end{equation}
+\end{quotation}
+\end{enumerate}
+%%
+
+\endinput

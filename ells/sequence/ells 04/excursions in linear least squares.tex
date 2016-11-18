@@ -1,0 +1,75 @@
+\documentclass[10pt]{newsiambook}
+
+\usepackage{amsmath,amssymb}
+\usepackage{epstopdf} 
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{graphicx}
+%\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{crop}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{pstricks}
+\setlength\minrowclearance{4pt}
+\usepackage{sidecap}
+\usepackage{stmaryrd}  % https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
+%\usepackage{cancel}
+ 
+\crop	
+\newcommand{\pathname}{../"new common"/}
+\newcommand{\fullpath}{\pathname}
+
+\input{\pathname declarations.tex}
+	
+\makeindex
+
+\begin{document}
+
+\frontmatter
+%
+\tableofcontents
+%
+\listoffigures
+%%
+\listoftables
+%
+%\input{chapters/frontmatter/preface}
+%\input{chapters/frontmatter/literature}
+
+\mainmatter
+%%%%%%%
+\part{Rudiments}
+\input{chapters/"ch least squares problems"}
+\input{chapters/"ch least squares solutions"}
+
+%%%%%%%
+\part{Archetypes}
+\input{chapters/"ch archetype modal"}
+\input{chapters/"ch archetype zonal"}
+
+
+%
+%%%%%%%%
+\part{Appendices}
+\appendix
+\input{appendices/"app notation"}
+\input{appendices/"app jargon"}
+
+%%%%%%
+\part{\ \ Backmatter}
+\backmatter
+%\input{backmatter/acronyms}
+%\input{chapters/backmatter/notation/"head notation"}
+%%\input{backmatter/glossary}
+%\bibliography{chapters/backmatter/bibliography/svdfp}
+%\input{chapters/backmatter/bibliography/svdfp.bib}
+
+\input{"ells bibliography"}
+
+\printindex
+
+\end{document}

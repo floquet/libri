@@ -1,0 +1,33 @@
+\chapter[Singular values: Information]{Singular values:\\ Information}
+
+\section{Introduction}
+We have explored a very natural interpretation of the singular values are factors arbitrating the difference between the different length scales of the domain and codomain. Now we will take a very different vantage point and look at singular values as bits of information which describe details in images. This involves truncating the spectrum of singular values.
+
+Many are familiar with the photo on the cover of Demmel's delightful book which shows low rank approximations of a photo. We will perform the same type of approximation here using an image of Camille Jordan. Besides showing the obligatory low rank approximations, we will look at the error in the approximations. Also, we will look at block structures and reversals of the domain matrices.
+
+Besides seeing low rank approximation in action, we will look at the tradeoff between storing an entire image and storing a rank reduced SVD.
+
+Next we alter the images through convolutions to see how this will see how this affects the spectrum of singular values.
+
+Finally we look at structure variations. First by looking at block, then by rotating columns and rows.
+
+\begin{figure}[h!] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[]{pdf/"ch 06"/Jordan/"06 Jordan array"} 
+   \caption[A photograph of Camille Jordan]{A photograph, in full resolution, of Camille Jordan, a pioneer of the \svdl. In matrix form, this image has $m=326$ rows and $n=266$ columns and has rank $\rho = 266$. The data are scaled to the interval $\brac{0,1}$, where 0 is black and 1 is white. What do the low rank approximations look like? \\ \ \\ There are 86,716 ( 326 $\times$ 266 ) entries in the array. An approximation of rank $\rhohat$ contains $593 \rhohat$ numbers. This implies that we must use no more than the first 146 singular values if we want to save storage space.}
+   \label{fig:06:Camille}
+\end{figure}
+
+\clearpage
+%%
+%\input{chapters/"ch 07"/"simple objects"}
+\input{chapters/"ch 07"/Camille}
+\input{chapters/"ch 07"/shift}
+\input{chapters/"ch 07"/blocks}
+\input{chapters/"ch 07"/pixels}
+\input{chapters/"ch 07"/convolve}
+\input{chapters/"ch 07"/melting}
+\input{chapters/"ch 07"/pseudoinverse}
+%\input{chapters/"ch 07"/comparison}
+
+\endinput

@@ -1,0 +1,57 @@
+\section{Unitary matrices}
+
+Unitary matrices are easy to work with.
+two views: a set of basis vectors, a process
+unitary, orthogonal
+\begin{equation}
+  \U{}\U{*} = \I{}
+\end{equation}
+or
+\begin{equation}
+  \U{-1} = \U{*}
+\end{equation}
+Idempotent, index $k=2$.
+
+Perhaps too much detail
+
+spheres into spheres
+
+%%
+\subsection[Products of unitary matrices]{Products of unitary matrices are unitary}
+
+An important realization is that the product of unitary matrices is also unitary. We will see that by looking at domain matrices as products of elementary unitary forms the \svdp \ looks much simpler.
+
+Consider two conformable unitary matrices $\U{}\in\cmplx{m\times m}$ and $\V{}\in\cmplx{m\times m}$. Is there product unitary also?
+
+Define
+\begin{equation}
+  \W{} = \U{}\V{*}.
+\end{equation}
+The question we are asking is this: Does the matrix product
+\begin{equation}
+  \W{}\W{}^{*} = \W{}^{*}\W{} = \I{m}?
+  \label{eq:domains:unitarytest}
+\end{equation}
+
+To be explicit we show
+\begin{equation}
+  \W{}^{*}= \paren{\U{}\V{*}}^{*} = \paren{\V{*}}^{*}\U{*} = \V{}\U{*}.
+\end{equation}
+This implies the following:
+\begin{equation}
+  \begin{split}
+    \W{}\W{}^{*} &= \paren{\U{}\V{*}}\paren{\V{}\U{*}}\\
+      &=\U{} \paren{\V{*}\V{}} \U{*}\\
+      &= \U{}\,\U{*}\\
+      &= \I{m}.
+  \end{split}
+\end{equation}
+A similar process shows that
+\begin{equation}
+  \W{}^{*}\W{} = \I{m}.
+\end{equation}
+Therefore the criteria of equation \eqref{eq:domains:unitarytest} are satisfied. Therefore the product of two unitary matrices is unitary. Therefore the product of three or more matrices are unitary.
+
+This shows that a unitary matrix may be the composition of other unitary matrices. The implication is that we may examine the domain matrices and reveal a composition of elementary processes.
+
+\endinput

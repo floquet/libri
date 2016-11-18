@@ -1,0 +1,30 @@
+% double products
+\newcommand{ \spa }[0]       { \sig{}\, \sig{\ssym} }
+\newcommand{ \spb }[0]       { \sig{\ssym} \sig{} }
+
+% triple forms
+\newcommand{ \sppa }[0]      { \spa \sig{} }
+\newcommand{ \sppb }[0]      { \spb \sig{\ssym} }
+
+% block forms
+\newcommand{ \sbb }[1]       { \mat{c|c} { \ess{#1} & \zero \\ \hline \zero & \zero } }
+\newcommand{ \sbh }[1]       { \matt{c|c}{ \ess{#1} & \zero \\ \hline \zero & \zero } }
+\newcommand{ \sbc }[1]       { \mat{c}   { \ess{#1} \\ \hline \zero } }
+\newcommand{ \sbr }[1]       { \mat{c|c} { \ess{#1} & \zero } }
+\newcommand{ \sbn }[1]       { \mat{c}   { \ess{#1} } }
+\newcommand{ \sbe }[1]       { \mat{c|c} { \ess{#1} & \zero_{1} \\ \hline \zero_{2} & \zero_{3} } }
+\newcommand{ \sbctt }[1]     { \matt{c}  { \ess{#1} \\ \hline \zero } }
+
+% dimensional forms
+\newcommand{ \sbf }[1]       { \mat{c|c} { \ess{#1} & \zero \\ \hline \zero & \zero }_{\bymn} }
+\newcommand{ \sbg }[1]       { \matt{c|c}{ \ess{#1} & \zero \\ \hline \zero & \zero }_{\bynm} }
+\newcommand{ \sbct }[1]      { \matt{c}  { \ess{#1} \\ \hline \zero } }
+\newcommand{ \sbrt }[1]      { \matt{c|c}{ \ess{#1} & \zero } }
+
+% stencil
+\newcommand{ \stencil }[0]   { \mat{c|c}{ \I{\rho} & \zero \\[1pt] \hline \zero & \zero } }
+
+% diagonal
+\newcommand{ \eesd }[1]      { \mat{ccc}{ \sigma_{1}^{#1} \\ &\ddots \\ && \sigma_{\rho}^{#1} } }
+
+\endinput

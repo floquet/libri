@@ -1,0 +1,182 @@
+\section{An economic proof}
+
+The book by Laub is a treasure of economy and clarity. His proof\cite[p. 35]{Laub} of the SVD theorem fits in quite well with the motif of intuition we are nurturing. In many ways, his presentation is a more rigorous presentation of the development presented in chapter \eqref{chap:moreformal}. As such, it is a natural choice to present first.
+
+The proof that follows is verbose so it is presented in a format which separates the central idea of each step from explanatory narrative. To outline, we form a product matrix so that we have an Hermitian (square, symmetric) matrix to work with. We resolve the range space of this matrix. We then resolve the null space.
+
+%%%
+\subsection{The proof}
+The goal is to find a matrix decomposition which resolves the four fundamental subspaces associated with a matrix.
+\begin{enumerate}
+%%%
+\item Start with a matrix $\Accmn_{\rho}$: a matrix with $m$ rows and $n$ columns of matrix rank $\rho\paren{\le \min\lst{m,n}}$. 
+\subitem This proof handles the most general case of rectangular matrices. 
+\subitem This matrix may have complex entries. 
+\subitem Of course real matrices are a subset of complex matrices.
+%%%
+\item Form the square $\bys{n}$ matrix $\prdm{*}$ which allows us to resolve an \textbf{eigensystem} of eigenvalues and eigenvectors. The square matrix is necessary because as we saw in \S\eqref{sec:moreformalbigthree}:
+\subitem the eigenvalues are real,
+\subitem the eigenvalues are nonnegative,
+\subitem the eigenvectors are mutually orthogonal.
+\subitem Aside: We have two choices from the product matrices, and either will work.
+%%%
+\item The product matrix $\W{x}=\prdm{*}\in\cmplx{\bys{n}}_{\rho}$. In an act of prescience, label these eigenvalues $\sigma_{k}^{2},\ k=1,n$. Arrange the eigenvalues in decreasing order:
+\begin{equation}
+  \sigma_{1} \ge \sigma_{2} \ge \dots \ge \sigma_{\rho}.
+\end{equation}
+The remaining eigenvalues are zero. That is
+\begin{equation}
+  \lst{ \sigma_{\rho+1}, \sigma_{\rho+2}, \dots, \sigma_{n} } = 0.
+\end{equation}
+\subitem If the matrix is nonsingular then all of the eigenvalues will be greater than zero.
+\subitem The ordering of the eigenvalues in not necessary; it is merely a useful practice.
+\subitem Why describe the eigenvalues as squared quantities? When $m=n$ the eigenvalues of $\prdm{*}$ are the squares of the eigenvalues of $\A{}$.
+\subitem We rely upon the fact that $\rank{\A{}} = \rank{\prdm{*}} = \rank{\prdmm{*}}$.
+%%%
+\item Use the nonzero eigenvalues to assemble the diagonal matrix
+\begin{equation}
+  \ess{} = \mat{cccc}{\sigma_{1}&&&\\&\sigma_{2}\\&&\ddots\\&&&\sigma_{\rho}}.
+\end{equation}
+\subitem We want to write a matrix eigenvalue equation.
+%%%
+\item \textbf{Resolve the range space.} Normalize and collect the $\rho$ eigenvectors as column vectors in the matrix $\xrng{}$ and write a matrix eigenvalue equation
+\begin{equation}
+\begin{array}{ccccc}
+  \prdm{*}&\xrng{} &=& \xrng{}&\ess{}\\
+  \bys{n} & \by{n}{\rho} && \by{n}{\rho} & \bys{\rho}
+  \label{eq:proofs:a}
+\end{array}
+\end{equation}
+\subitem This form is consistent with the matrix-vector form of the equation
+\begin{equation}
+  \A{}x = \lambda x.
+\end{equation}
+\subitem When we allow for zero eigenvalues we must allow for the fact that there is not only a range but also a null space. These eigenvectors only ``see'' the range, hence the subscript.
+%%%
+\item Premultiply by $\X{*}$
+\begin{equation}
+  \begin{split}
+     \X{*}\paren{\prdm{*}\xrng{}} = \X{*}\paren{\xrng{}\ess{2}} = \ess{2}
+   \end{split}
+ \label{eq:proofs:b}
+\end{equation}
+\subitem Because the matrix is unitary $\X{*}_{\mathcal{R}}\xrng{} = \I{n}.$
+%%%
+\item Bracket both sides of the equation with $\ess{-1}$ to obtain an identity matrix:
+\begin{equation}
+\begin{array}{cccl}
+  \ess{-1} & \paren{\X{*}_{\mathcal{R}}\prdm{*}\xrng{}} & \ess{-1} & = \ess{-1}\paren{\ess{2}}\ess{-1} = \I{\rho}.\\
+  \bys{\rho} & \bys{\rho} & \bys{\rho} 
+\end{array}
+\end{equation}
+\subitem Since the zero eigenvalues are excluded the matrix $\ess{}$ is invertible.
+%%%
+\item Define the rank deficiencies
+\begin{equation}
+  \begin{split}
+     \eta_{x} &= n - \rho,\\
+     \eta_{y} &= m - \rho.
+  \end{split}
+\end{equation}
+\subitem The column rank deficiency is $\eta_{x}$.
+\subitem The row rank deficiency is $\eta_{y}$.
+%%%
+\item \textbf{Resolve the null space.} We have looked at the first $\rho$ singular values. Now we address the final $n-\rho-\eta_{x}$ singular values - the zeros. The null space vectors, collected into the matrix $\xnll{}$, are defined via
+\begin{equation}
+\begin{array}{ccccccc}
+  \prdm{*} & \xnll{} &=& \xnll{}&\zero &=& \zero.\\
+  \bys{n}  & \by{n}{\eta_{x}}    && \by{n}{\eta_{x}} & \by{\eta_{x}}{\eta_{x}} && \by{n}{\eta_{x}}
+\end{array}
+\end{equation}
+\subitem Notice the different dimensions on the zero matrices.
+This implies that
+\begin{equation}
+  \X{*}_{\mathcal{N}}\prdm{*}\xnll{} = \paren{\A{}\,\xnll{}}^{*}\paren{\A{}\,\xnll{}} = \zero.
+\end{equation}
+The conclusion is the following
+\begin{equation}
+  \A{}\,\xnll{} = \zero
+\end{equation}
+where the final zero matrix has size $\eta_{x}\times \eta_{x}$.
+\end{enumerate}
+
+%%%
+\subsection{The proof: demonstration}
+Let's walk through the proof and apply the methodology to a sample matrix. For 
+\begin{equation}
+  \A{} = \Aexample
+\end{equation}
+the matrix has $m=3$ rows, $n=2$ columns and has rank $rho=1$. The minimum dimension $d=2$; the column rank deficiency is
+\begin{equation}
+  \eta_{x} = n - \rho = 2;
+\end{equation}
+the row rank deficiency is
+\begin{equation}
+  \eta_{y} = m - \rho = 1.
+\end{equation}
+
+The domain matrices are partitioned as follows:
+\begin{equation}
+  \begin{array}{lcccl}
+    \Y{} &=& \mat{c|c}{\yrng{}&\ynll{}} &=& \Yshade, \\
+    \X{} &=& \mat{c|c}{\xrng{}&\xnll{}} &=& \Xshade.
+  \end{array}
+\end{equation}
+
+\textit{Step 2:} The product matrix of interest is given by this:
+\begin{equation}
+  \prdm{T} = \W{x} = 3 \mat{rr}{1&-1\\-1&1}.
+\end{equation}
+
+\textit{Step 3:} The eigenvalues of the product matrix are the zeros of the characteristic polynomial, $p(\lambda)$. This polynomial is constructed from these quantities
+\begin{equation}
+  \begin{split}
+    \tr \paren{\W{x}} & = 6;\\
+    \det \paren{\W{x}}& = 0.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    p(\lambda) & = \lambda^{2} - \lambda \tr \paren{\W{x}} +\det \paren{\W{x}};\\
+    &= \lambda^{2} - 6 \lambda = 0.
+  \end{split}
+\end{equation}
+The two eigenvalues are these:
+\begin{equation}
+  \lambda(\W{x}) = \lst{6,0}.
+\end{equation}
+
+The singular values are the square root of the ordered, non-zero eigenvalues of the product matrix:
+\begin{equation}
+  \sigma_{1} = \sqrt{6}.
+\end{equation}
+
+\textit{Step 4:} Construct the $\sig{}$ matrix. It has the same size as the target matrix and the singular values are ordered on the diagonal:
+\begin{equation}
+  \sig{} = \Sigmaexampleb.
+\end{equation}
+
+\textit{Step 5:} Construct $\X{}_{}$, the range space portion of the domain matrix. Equation \eqref{eq:proofs:a} becomes
+\begin{equation}
+\begin{array}{ccccc}
+  \prdm{*}&\xrng{} &=& \xrng{}&\ess{},\\
+  \mat{rr}{3&-3\\-3&3}&\mat{r}{1\\-1} &=& \mat{r}{1\\-1} & \mat{c}{6}.
+\end{array}
+\end{equation}
+
+%%%
+\section{Implications}
+Relating the range spaces of the domain matrices to the spaces of the target matrix:
+\begin{equation}
+  \begin{array}{rclcl}
+     \rng{\yrng{}} &=& \rng{\A{}} &=& \nll{\A{*}}^{\perp},\\
+     \rng{\ynll{}} &=& \rng{\A{}}^{\perp} &=& \nll{\A{*}},\\
+     \rng{\xrng{}} &=& \nll{\A{}}^{\perp} &=& \rng{\A{*}},\\
+     \rng{\xnll{}} &=& \nll{\A{}} &=& \rng{\A{*}}^{\perp}.\\
+  \end{array}
+\end{equation}
+
+Show the proofs.
+
+\endinput

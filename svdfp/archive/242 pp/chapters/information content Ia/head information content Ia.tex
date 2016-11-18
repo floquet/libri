@@ -1,0 +1,22 @@
+\chapter[Information content I\\A: Camille's image]{Information content I\\A: Camille's image}
+
+This next three chapters explore the information content of the singular values using an image of Camille Jordan. Start by interpreting the image as a matrix of pixels each with a gray level value between 0 (black) and 1 (white). The goal is to answer basic questions like What does a singular value spectrum look like? How is information like contrast and resolution encoded into the spectrum? How do transformations affect the spectrum? What do the rank one bases matrices look like?
+
+In the end these questions will be answered and they compel examination of more basic shapes of in the following chapter. For now, we begin with figure \eqref{fig:camille:class photo} an image of an elderly Camille Jordan. As a matrix, the origin pixel (1,1) is in the upper left hand corner. There are $m=326$ rows and $n=266$ columns. Because each of the rows is distinct, the matrix has full row rank $\rho = 266$. The coordinate system defined as $\paren{rows,cols}$ is right-handed.
+
+%%%%%%%%%%%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 3in ]{images/"information content I"/intro/"camille matrix".pdf} 
+   \caption[Camille Jordan, circa 1915]{Camille Jordan, circa 1915\index{Jordan, Camille!photo!as matrix}. This image represents a matrix with $m = 326$ rows and $n = 266$ columns for a total of $mn=86,716$ pixels. We will treat the matrix as having full column rank. The entries vary from 0 (black) to 1 (white). As a matrix the origin is in the upper left-hand corner; the rows increase as you move downward.}
+   \label{fig:camille:class photo}
+\end{figure}
+
+%
+\input{chapters/"information content Ia"/"sec matrix basics"}
+\input{chapters/"information content Ia"/"sec information content"}
+\input{chapters/"information content Ia"/"sec powers"}
+\input{chapters/"information content Ia"/"sec information content and convolution"}
+\input{chapters/"information content Ia"/"sec smoothing the singular values"}
+
+\endinput

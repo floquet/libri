@@ -1,0 +1,66 @@
+\section{The SVD and the Fourier-Bessel decomposition}
+
+Another way to think of the \svdp \ is as an expansion in terms of a fixed set of rank one matrices. These matrices are defined in terms of outer products of column vectors from the basis matrices. The amplitudes which determine the contribution from each matrix are the squared singular values.
+
+The outer products express the orthogonality of the expansion. For example
+\begin{equation}
+  \begin{split}
+    \W{x} = \prdm{*} = \paren{\sum_{k=1}^{\rho}{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}}^{*}\sum_{j=1}^{\rho}{\sigma_{j}\, \X{}_{j}\, \Y{*}_{j}}.
+  \end{split}
+\end{equation}
+The orthogonality condition flows naturally from the unitary nature of the domain matrices:
+\begin{equation}
+  \X{*}_{k}\,\X{}_{j} = \Y{*}_{k}\,\Y{}_{j} =
+  \begin{cases}
+    1 & k = j\\
+    0 & k \ne j
+  \end{cases}.
+\end{equation}
+
+The cross terms with $k\ne j$ vanish:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{j}\, \Y{}_{j}\, \X{*}_{j}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}} &= \paren{\sigma_{j}\X{}_{j}\, \Y{*}_{j}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}}, \\
+    &= \sigma_{k}\sigma_{j}\X{}_{k}\underbrace{\paren{\Y{*}_{k}\,\Y{}_{j}}}_{0}\X{*}_{j}\\
+    & = \zero,
+  \end{split}
+\end{equation}
+an $m\times m$ matrix of zeros.
+
+The cross terms with $k=j$ are the survivors:
+\begin{equation}
+  \begin{split}
+    \paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}^{*}\paren{\sigma_{k}\, \Y{}_{k}\, \X{*}_{k}}&= \paren{\sigma_{k}\X{}_{k}\, \Y{*}_{k}}\paren{\sigma_{k}\Y{}_{k}\, \X{*}_{k}} \\
+    &= \sigma_{k}^{2}\,\X{}_{k}\paren{\Y{*}_{k}\,\Y{}_{k}}\X{*}_{k}\\
+    &= \sigma_{k}^{2}\,\X{}_{k}\,\X{*}_{k}.
+  \end{split}
+\end{equation}
+
+The final result is this
+\begin{equation}
+  \W{x} = \prdm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\X{}_{k}\,\X{*}_{k}}.
+\end{equation}
+By similar machinations we find the complementary product matrix
+\begin{equation}
+  \W{y} = \prdmm{*} = \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\Y{}_{k}\,\Y{*}_{k}}.
+\end{equation}
+Notice the similarity of this formulation to the expression using the full matrices.
+
+In terms of the \svdl \ the product matrices are these
+\begin{equation}
+  \begin{array}{rccccccl}
+    \W{x} &=& \prdm{*}  &=& \paren{\svd{*}}^{*}&\svd{*} &=& \wx{*},\\
+    \W{y} &=& \prdmm{*} &=& \svd{*}&\paren{\svd{*}}^{*} &=& \wy{*}.
+  \end{array}
+\end{equation}
+
+Compare the equivalent formulations to see the stenciling and shape arbitration effects of the $\sig{}$ matrix. The matrix formulation shows the stenciling action of the $\sig{}$ matrix. The second expression is a sum of outer products scaled by the squares of the singular values:
+\begin{equation}
+  \begin{array}{rcccc}
+    \W{x} &=& \wx{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\X{}_{k}\,\X{*}_{k}},\\[10pt]
+    \W{y} &=& \wy{*} &=& \sum_{k=1}^{\rho}{\sigma_{k}^{2}\,\Y{}_{k}\,\Y{*}_{k}}.
+  \end{array}
+\end{equation}
+The Fourier-Bessel expansion represents the thin SVD\index{thin SVD}; the null space vectors are never encountered.
+
+\endinput

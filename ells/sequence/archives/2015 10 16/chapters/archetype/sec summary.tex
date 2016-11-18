@@ -1,0 +1,147 @@
+\section{\label{sec:bevington summary}Summary}
+
+\`a la Bevington
+Repeat equation \eqref{eqn:bevington linear system}.
+\input{\pathequations "eqn bevington matrix full repeat"}  %  <  <  <  <  <  <  <
+
+% SUBSECTION
+\subsection{SVD Decomposition}
+Every matrix has a \asvd \ of the form
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \aesvd{*}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+In block form the overdetermined linear system looks like
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \A{} = \csvdblockbc{*}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Solution via pseudoinverse
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \apempp{*}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+which has the block form
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Ap = \bbvr{}\, \sbctu{-1} \cublockfs{ * }
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The pseudoinverse of the sigma matrix
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sig{\ssym} = \sbctu{-1}
+        &= \mat{cc|ccccccc}{\sigma_{1}^{-1} & 0  & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & \sigma_{2}^{-1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 } \\
+        &= \mat{cc|ccccccc}{0.0585054 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0.735542 & 0 & 0 & 0 & 0 & 0 & 0 & 0}.
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Computation
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Ap = \frac{1}{180}\mat{rrrrrrrrr}{
+			  80 & 65 & 50 & 35 & 20 & 5 & -10 & -25 & -40 \\
+			 -12 & -9 & -6 & -3 & \ps 0 & \ps3 & 6 & 9 & 12 \\
+      }
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      a = \Ap\, \Y{} = \bsoln \approx \bsolna
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+
+% SUBSECTION
+\subsection{QR Decomposition}
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \A{} = \Q{} \R{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      a = \R{-1} \Q{*} \Y{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Q{} = \mat{cc}{
+      \frac{1}{3}\mat{c}{ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 } &
+      \frac{1}{2\sqrt{15}}\mat{r}{ -4 \\ -3 \\ -2 \\ -1 \\ 0 \\ 1 \\ 2 \\ 3 \\ 4}
+      }, \qquad
+      \R{} = \mat{cc}{3 & 15 \\ 0 & 2\sqrt{15}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \R{-1} = \mat{cc}{\frac{1}{3} & \frac{5}{2\sqrt{15}} \\ 0 & \frac{1}{2\sqrt{15}}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{Normal equations}
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \A{*}\A{}\,a = \A{*}\Y{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      a = \paren{\A{*}\A{}}^{-1}\A{*}\Y{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \paren{\A{*}\A{}}^{-1} = \frac{1}{180}\mat{rr}{95 & -15 \\ -15 & 3}, \qquad 
+      \A{*} \Y{} = \frac{1}{10}\mat{c}{4667\\28\,980}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"sec XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

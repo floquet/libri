@@ -1,0 +1,222 @@
+\section{More on domains}
+A considerable portion of the theoretical discussions to follow is based upon a clear understanding of domains and complete spaces. 
+
+%%
+\subsection{The mapping action of the matrix $\A{}$}
+Pick an example matrix 
+\begin{equation}
+  \A{}\in\cmplx{\by{3}{2}}.
+\end{equation}
+This matrix maps \vv s to \vvv s. We will represent the collection of all \vv s as a square on the left and the collection of all \vvv s as a square on the right. The target matrix $\A{}$ connects points in the left square with points in the right square as shown in figure \eqref{fig:mapa}:
+%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/prelim/map_01} 
+   \caption[Generic mapping actions]{Generic mapping actions. The domain $\X{}$ is the collection of \vv s; the codomain $\Y{}$ is the collection of \vvv s. The matrix $\A{}$ connects each \vv \ to a \vvv.}
+   \label{fig:mapa}
+\end{figure}
+
+Or symbolically
+\begin{equation}
+  \A{} \mat{c}{\star \\ \star} = \mat{c}{\bullet \\ \bullet \\ \bullet }.
+\end{equation}
+
+%%
+\subsubsection{Going from domain to codomain}
+The cases of interest are when then map is frustrated and unable to reach the entire codomain. For example, the matrix 
+\begin{equation}
+  \A{}= \Aexample
+  \label{eq:A}
+\end{equation}
+maps \vv s to \vvv s. The problem is that this matrix cannot connect to the entire set of \vvv s. In fact, this matrix can only see a limited set of \vvv s. To understand why, look at the general problem
+\begin{equation}
+  \A{} x = \Aexample \mat{c}{x_{1}\\x_{2}} = \alpha\mat{r}{1\\-1\\1}
+\end{equation}
+where $\alpha = x_{1}-x_{2}$. The three vector describe the line through origin and the point $p=\mat{ccc}{1&-1&1}$. The position on this line is completely encoded in the parameter $\alpha$.
+
+For example, there is no vector in the domain which maps to the constant vectors:
+\begin{equation}
+  \Aexample \mat{c}{x_{1}\\x_{2}} \ne \mat{c}{1\\1\\1}.
+\end{equation}
+Let's revise the diagram to show that the map is frustrated and able to reach only some of the vectors in the codomain. The square representing the \vvv s will be separated into two regions. The shaded portion represents the \vvv s that can't be connected to any \vv \ under the mapping of $\A{}$. The result is figure \eqref{fig:map_01}.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/prelim/map_02} 
+   \caption[The mapping action of the target matrix is frustrated]{The mapping action of the target matrix is frustrated and unable to reach all of the \vvv s in the codomain. The excluded portion of the codomain is represented by the shaded region on the right.}
+   \label{fig:map_01}
+\end{figure}
+
+%%
+\subsubsection{Going from codomain to domain}
+Consider the action of the transpose: we start with a \vvv \  and map to a \vv. The transpose matrix is
+\begin{equation}
+  \A{T}= \Atexample.
+\end{equation}
+Here too there is a problem with the mapping and it cannot reach the full domain.
+\begin{equation}
+  \A{T} y = \Atexample \mat{c}{y_{1}\\y_{2}\\y_{3}} = \mat{r}{y_{1} - y_{2} + y_{3}\\-y_{1} + y_{2} - y_{3}} = \alpha\mat{r}{1\\-1}
+\end{equation}
+where this time $\alpha = y_{1}-y_{2}+y_{3}$. Notice for example there is no vector in the domain which maps to the constant vectors:
+\begin{equation}
+  \Atexample \mat{c}{y_{1}\\y_{2}\\y_{3}} \ne \mat{c}{1\\1}.
+\end{equation}
+The diagram for this process is shown in figure \eqref{fig:mapc}.
+%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/prelim/map_04} 
+   \caption[The mapping action of the transpose matrix is also frustrated]{The mapping action of the transpose matrix is also frustrated and unable to reach all of the \vv s in the codomain. The excluded portion of the domain is represented by the shaded region on the left.}
+   \label{fig:mapc}
+\end{figure}
+
+%%
+\subsubsection{The round trip between codomain and domain}
+With the separate actions of the target and transpose matrices resolved, the final diagram can be assembled. It is shown in figure \eqref{fig:mapd}.
+%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/prelim/map_05} 
+   \caption[The mapping actions of the matrix in equation \eqref{eq:A}]{The mapping actions of the matrix in equation \eqref{eq:A}. The matrix and its transpose map to a portion of $\cmplx{3}$ and a portion of $\cmplx{2}$ respectively.}
+   \label{fig:mapd}
+\end{figure}
+
+%%
+\subsubsection{Vector spaces}
+The ultimate diagram in figure \eqref{fig:mapd} represents the mapping actions of the target and transpose matrices. The simplicity of the diagram robs us of an opportunity to quantify the issues with the mappings. Yet it provides a clear representation of the two maps within each matrix.
+
+Figure \eqref{fig:mapd} is the mental picture that should form when you look at a matrix. This of course does not tell the complete story.
+
+In the context of vector spaces we can make some powerful observations about the matrix $\A{}$. In both cases the spaces are incomplete. In the \vv \ case there is basically one vector, the first row:
+\begin{equation}
+  r_{1} = \mat{r}{1\\-1}.
+\end{equation}
+To complete the space $\real{2}$ we need another real vector. We choose an orthogonal\footnote{Orthogonality simplifies our manipulations.} vector
+\begin{equation}
+  r_{1}^{\perp} = \mat{r}{1\\1}.
+\end{equation}
+The symbol ``$\perp$'' means ``perpendicular to.'' That is
+\begin{equation}
+  r_{1}\cdot r_{1}^{\perp} = \mat{r}{1\\-1} \cdot \mat{c}{1\\1} = \mat{c}{0\\0} = \zero.
+\end{equation}
+With these two vectors we can span $\real{2}$, the plane. Mathematically the expression is this
+\begin{equation}
+  \real{2} = \spn \lst{r_{1},r_{1}^{\perp}} = \spn \lst{\mat{r}{1\\-1},\mat{c}{1\\1}}.
+\end{equation}
+
+To conceptualize the meaning of span, think of it as the collection of all vectors attained by scaling and combining the spanning vectors. In this case that would be
+\begin{equation}
+ \alpha\, r_{1} + \beta\, r_{1}^{\perp} = \alpha \mat{r}{1\\-1} + \beta \mat{c}{1\\1}
+\end{equation}
+where the scalars $\alpha, \beta$ are arbitrary.
+
+Is this span a plane? Can we reach any arbitrary point in $\real{2}$ with this spanning set? Yes, for example
+\begin{equation}
+  \begin{split}
+    \mat{c}{x\\y} &= \frac{1}{2}\paren{x-y}\mat{r}{1\\-1} + \frac{1}{2}\paren{x+y}\mat{r}{1\\1},\\
+    &= \frac{1}{2}\mat{r|c}{1&1\\-1&1}\mat{c}{x+y\\x-y}.
+  \end{split}
+\end{equation}
+
+The \vvv \ case is also begins with a lone vector, the first column:
+\begin{equation}
+  c_{1} = \mat{r}{1\\-1\\1}.
+\end{equation}
+To complete $\real{3}$ we need two vectors for an \index{orthogonal complement}orthogonal complement. One such choice is
+\begin{equation}
+  c_{1}^{\perp} = \spn \lst{\veca,\vecb},
+\end{equation}
+a plane.
+Using the symbol $\oplus$ to denote the addition of vector spaces, the complete space becomes
+\begin{equation}
+  \real{3} = \spn \lst{\mat{r}{1\\-1\\1}} \oplus \spn \lst{\veca,\vecb}.
+\end{equation}
+Notice that the matrix only contained some of the information that we needed; \textit{the completion of the spaces was a separate process.}
+
+Figure \eqref{fig:mape} shows the mapping process in diagram form against the resolution of the host spaces. The shaded regions represent the orthogonal complements to the row and column vectors in the matrix $\A{}$.
+%%%%
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/prelim/map_06} 
+   \caption[The mapping actions of the matrix $\A{}$ and the vector space decompositions]{The mapping actions of the matrix $\A{}$ and the vector space decompositions. The shaded regions are the orthogonal complements spanned by the null space vectors.}
+   \label{fig:mape}
+\end{figure}
+
+We are now at the point where we can close the discussion on domains. Many functions map from $\real{n}$ to $\real{m}$. Analogously, many matrices are complete maps from $\real{n}$ to $\real{m}$. There are classes of functions where the mapping is frustrated: either points in the domain $\real{n}$ are not accessible or points in the range $\real{m}$ are not accessible or both. 
+
+In the matrix case these frustrated maps have special signatures. Consider the $3\times2$ matrix in equation \eqref{eq:A}. All $2-$vectors from $\real{n=2}$ are valid inputs, but it is not possible to map to all vectors in $\real{m=3}$. The matrix $\A{}$ maps the plane to a line, a line which lives in $\real{3}$.
+
+Look at the figure \eqref{tab:0:rn} showing the hierarchy of domains. We can interpret it as showing the discrete steps of frustration. In the best case a $3\times2$ matrix will map from the plane $\real{2}$ to a volume $\real{3}$. If the map is frustrated, it will map from the plane $\real{2}$ to another plane. This plane is a two-dimensional object in three space. If the map has maximal frustration, as in equation \eqref{eq:0}, it will map from the plane $\real{2}$
+to a line. This line is a one-dimensional object in three space.
+
+For a matrix of size $m\times n$ the number of possible mappings is given by the parameter
+\begin{equation}
+  \nu = \min \lst{m, n}.
+\end{equation}
+Consider the set of arbitrary real $m\times n$ matrices. If the matrix is tall, then $m>n$ and it will have one and only one of these $n$ mapping actions:
+\begin{equation}
+\begin{array}{cccl}
+\real{n} & \mapsto & \real{1} & \qquad \text{row rank deficiency} = n - 1,\\
+\real{n} & \mapsto & \real{2} & \qquad \text{row rank deficiency} = n - 2,\\
+& \vdots\\
+\real{n} & \mapsto & \real{n} & \qquad \text{full row rank}.
+\end{array}
+\end{equation}
+The frustrated mappings signal rank deficiencies.
+If the matrix is wide, then $m<n$ and it will have one and only one of these $m$ mapping actions:
+\begin{equation}
+\begin{array}{cccl}
+\real{n} & \mapsto & \real{1} & \qquad \text{row rank deficiency} = n - 1,\\
+\real{n} & \mapsto & \real{2} & \qquad \text{row rank deficiency} = n - 1,\\
+& \vdots\\
+\real{n} & \mapsto & \real{m} & \qquad \text{row rank deficiency} = n - m.
+\end{array}
+\end{equation}
+
+For example all real $3\times2$ matrices will have one and only one of these $\nu=2$ mapping actions:
+\begin{enumerate}
+\item plane $(\real{2}) \quad \mapsto \quad$ line   $(\real{1})$
+\item plane $(\real{2}) \quad \mapsto \quad$ plane  $(\real{2})$
+\end{enumerate}
+
+The transpose of these matrices, the real $2\times3$ matrices will have one and only one of these $\nu=2$ mapping actions:
+\begin{enumerate}
+\item volume $(\real{3}) \quad \mapsto \quad$ line   $(\real{1})$
+\item volume $(\real{3}) \quad \mapsto \quad$ plane  $(\real{2})$
+\end{enumerate}
+By looking only at the matrix size we see that all transposes of this set of matrices must represent frustrated mappings.
+
+The matrix $\A{}$ in equation \eqref{eq:A} has these mapping properties:
+\begin{equation}
+  \begin{array}{llcll}
+    \A{}:\quad & \text{plane }(\real{2}) &\mapsto & \text{line }(\real{1}) & \text{row rank deficiency }=1,\\
+    \A{T}:\quad & \text{volume }(\real{3}) &\mapsto & \text{line }(\real{1}) & \text{column rank deficiency }=2.\\
+  \end{array}
+\end{equation}
+
+What about these frustrated maps? They inhabit only part of the target space. For example, the line in $3-$space is a one-dimensional construct in a three-dimensional space. To complete the space, to be able to describe all points in the host space, we need to construct a plane perpendicular to the line. The summary below in table \eqref{tab:prelim:maps} shows the different actions for mapping into and completing target spaces.
+\begin{table}[htdp]
+\begin{center}
+\boxed{
+\begin{tabular}{llll}
+  \textit{maps from   } & \textit{maps  to} & \textit{completion} & \textit{completion}\\
+  \textit{domain  } & \textit{codomain} & \textit{space} & \textit{vectors}\\\hline
+  hyperplane($\real{4}$) & line  ($\real{1}$) & volume & (3)\ $4-$vectors\\
+  hyperplane($\real{4}$) & plane ($\real{2}$) & plane  & (2)\ $4-$vectors\\
+  hyperplane($\real{4}$) & volume($\real{3}$) & line   & (1)\ $4-$vector\\
+  hyperplane($\real{4}$) & hyperplane($\real{4}$) & $\emptyset$ & - \\[5pt]
+  volume($\real{3}$) & line  ($\real{1}$) & \text{plane} & (2)\ \ $3-$vectors\\
+  volume($\real{3}$) & plane ($\real{2}$) & \text{line}  & (1)\ \ $3-$vector\\
+  volume($\real{3}$) & volume($\real{3}$) & $\emptyset$ & - \\[5pt]
+  plane ($\real{2}$) & line  ($\real{1}$) & \text{line}  & (1)\ \ $2-$vector\\
+  plane ($\real{2}$) & plane ($\real{2}$) & $\emptyset$ & -\\[5pt]
+\end{tabular}
+}
+\end{center}
+\label{tab:prelim:maps}
+\caption[A summary of matrix mapping actions]{A summary of matrix mapping actions. Matrices can be viewed as maps between an input domain and an output codomain. Here are the possible choices for the smallest matrices. Notice that it is not possible to map to a higher dimensional object. If there is a rank deficiency in the row space then the completion space will be nontrivial. The \svdl \ forces resolution of these mappings for a matrix and its transpose.}
+\end{table}%
+
+
+The \svdl \ can be viewed as a process which sorts out these mappings and completes the host space. In our example the target matrix maps onto a line in the volume. We found two orthogonal vectors in the volume to construct a plane orthogonal to the line to complete the host space $\real{3}$. The transpose matrix maps to a line in $\real{2}$. To complete $\real{2}$ we found an orthogonal vector which defined the perpendicular space to complete $\real{2}$. 
+
+\endinput

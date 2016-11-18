@@ -1,0 +1,148 @@
+\section[$\pee{}\A{}=\B{}\C{}$]{Full rank factorization}
+For full rank matrices. Meyer 4.5.20, p. 221
+
+%%
+\subsection{Theory}
+For $\A{}\in\cmplx{\bymn}_{\rho}$ there is a full rank factorization of the form
+\begin{equation}
+  \A{}=\B{}\,\C{}
+\end{equation}
+\begin{quote}
+The component matrices appear naturally from an $EAR$ reduction.
+\begin{enumerate}
+\item $\B{\byt{m}{\rho}} = \mat{c|c|c}{\brac{\A{}}_{*,1}&\dots&\brac{\A{}}_{*,\rho}}$: the $\rho$ basic columns of the target matrix;
+\item $\C{\byt{\rho}{n}} = \mat{c}{\brac{\E{\A{}}}_{1,*}\\\hline\vdots\\\hline\brac{\E{\A{}}}_{\rho,*}}$: the $\rho$ nonzero rows of reduced form $\E{\A{}}$.
+\end{enumerate}
+
+\end{quote}
+
+%%
+\subsection{Examples}
+Meyer 2.5.1, p. 67
+The target matrix is given by this:
+\begin{equation}
+  \A{} = \mat{rrrrr}{1&1&2&2&1\\2&3&4&4&3\\2&3&4&4&2\\3&5&8&6&5}.
+\end{equation}
+
+You can verify that one reduction sequence is shown here:
+\begin{equation}
+\begin{split}
+  \E{\A{}} &= \G{3}\,\G{2}\,\G{1}\,\A{}\\
+%%
+ & =
+\left[
+\begin{array}{cccc}
+ 1 & 0 & 0 & 0 \\
+ 0 & \frac{1}{2} & 0 & 0 \\
+ 0 & 0 & 1 & 0 \\
+ 0 & 0 & 0 & 1
+\end{array}
+\right]
+%%
+\left[
+\begin{array}{cccc}
+ 1 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 1 \\
+ 0 & 1 & 0 & 0 \\
+ 0 & 0 & 1 & 0
+\end{array}
+\right]
+%%
+\left[
+\begin{array}{rccc}
+ 1 & 0 & 0 & 0 \\
+ -2 & 1 & 0 & 0 \\
+ -2 & 0 & 1 & 0 \\
+ -3 & 0 & 0 & 1
+\end{array}
+\right]
+\mat{rrrrr}{1&1&2&2&1\\2&3&4&4&3\\2&3&4&4&2\\3&5&8&6&5}\\
+%%%
+   &= 
+\left[
+\begin{array}{rrrr}
+ 1 & 0 & 0 & 0 \\
+ -\frac{3}{2} & 0 & 0 & \frac{1}{2} \\
+ -2 & 1 & 0 & 0 \\
+ -2 & 0 & 1 & 0
+\end{array}
+\right]
+\mat{rrrrr}{1&1&2&2&1\\2&3&4&4&3\\2&3&4&4&2\\3&5&8&6&5}\\
+  &=
+  
+\end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&=&\B{}&\C{}\\
+    \mat{cc}{1&2\\3&4} &=& \mat{cc}{1&0\\3&1}&\mat{rr}{1&2\\0&-2}
+  \end{array}
+\end{equation}
+
+The decomposition is not unique. This is Meyer's example 3.10.4\cite[p. 151]{meyer2000matrix} with a different solution:
+
+\begin{equation}
+  \begin{array}{ccccc}
+    \mathbf{P}&\A{}&=&\LL{}&\U{}\\
+    \mat{rrr}{1&0&0 \\ 0&0&1 \\ 0&1&0}&
+    \mat{rrr}{1&2&-3 \\ 4&8&12 \\ 2&3&2}&
+    = &
+    \mat{rrr}{
+ 1 & 0 & 0 \\
+ 2 & 1 & 0 \\
+ 4 & 0 & 1}&
+    \mat{rrr}{
+ 1 & 2 & -3 \\
+ 0 & -1 & 8 \\
+ 0 & 0 & 24
+ }
+  \end{array}
+\end{equation}
+
+%%
+\subsection{Application}
+Use the $\L\,\U{}$ decomposition to solve the linear system
+
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&x&=&b \\
+    \mat{rrr}{1&1&1 \\ 3&0&-1 \\ -1&2&1}&
+      \mat{r}{x_{1}\\x_{2}\\x_{3}} & = & 
+    \mat{r}{1\\2\\-1}.
+  \end{array}
+\end{equation}
+
+The decomposition is
+\begin{equation}
+  \begin{array}{cccc}
+    \A{}&=&\LL{}&\U{}\\
+    \mat{rrr}{1&1&1 \\ 3&0&-1 \\ -1&2&1} &=& \mat{ccc}{1&0&0\\2&1&0\\4&0&1}&\mat{rrr}{1&2&-3\\0&-1&8\\0&0&24}.
+  \end{array}
+\end{equation}
+
+The two steps are these:
+\begin{enumerate}
+\item Solve for the dummy vector $y$ using \index{forward substitution}forward substitution.
+\begin{equation}
+  \begin{array}{cccc}
+    \LL{}&y&=&b\\
+    \mat{rrr}{1&0&0\\3&1&0\\-1&-1&1}&\mat{r}{y_{1}\\y_{2}\\y_{3}}&
+    =&\mat{r}{2\\4\\2}
+  \end{array}
+\end{equation}
+\item Solve for the solution vector $x$ via \index{back substitution}back substitution.
+\begin{equation}
+  \begin{array}{cccc}
+    \U{}&x&=&y\\
+    \mat{rrr}{1&1&1\\0&-3&-4\\0&0&-2}&\mat{r}{x_{1}\\x_{2}\\x_{3}}&
+    =&\mat{r}{2\\-2\\2}
+  \end{array}
+\end{equation}
+\end{enumerate}
+The solution vector is then
+\begin{equation}
+  x = \mat{r}{x_{1}\\x_{2}\\x_{3}} = \mat{r}{1\\2\\-1}.
+\end{equation}
+
+\endinput

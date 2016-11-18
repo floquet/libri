@@ -1,0 +1,201 @@
+\section{Definition of the matrix pseudoinverse}
+Can the matrix inverse be generalized? Can we find a consistent framework to talk about the inverse of a rectangular matrix? A singular matrix? Why would we search for such a beast?
+
+We have seen in chapter \eqref{chap:simple} that general linear systems do not have an inverse, but they still offer a least squares solution. A reasonable expectation would be to connect the least squares solution with a generalized matrix inverse. In fact we saw that a generalized inverse would allow a direct solution to the least squares problem. 
+
+The generalized matrix inverse also offers generalized nomenclature. It is also known as the pseudoinverse or the Moore-Penrose inverse.
+
+Connect to the Drazin inverse.
+
+So the concept of a generalized inverse is not far fetched. However, important theoretical work needed to be done to solidify the ideas. We begin with important guidelines which serve 
+An elegant collection of necessary and conditions define the pseudoinverse. These conditions are credited to Sir Arthur Penrose [??].
+
+\newtheorem*{thm}{Theorem}
+\begin{thm}
+The matrix $\G{}$ is a pseudoinverse of the matrix $\A{}$ if and only these four properties are satisfied:
+\begin{enumerate}
+\item $\A{}\G{}\A{} = \A{}$
+\item $\G{}\A{}\G{} = \G{}$
+\item $\paren{\A{}\G{}}^{*} = \A{}\G{}$
+\item $\paren{\G{}\A{}}^{*} = \G{}\A{}$
+\end{enumerate}
+\end{thm}
+
+Notice the conventional inverse also satisfies these four properties.
+
+%
+\subsection{The sabot matrix}
+Perhaps the most confusing details involve the sabot matrix $\sig{}$. This container of zeros has the same shape as the target matrix. It contains a diagonal matrix $\textbf{S}$ of non-zero singular values. As an example a matrix $\A{}\in\cmplx{\by{4}{3}}_{2}$ the sabot matrix looks like
+\begin{equation}
+  \sig{} = \mat{c|c}{\textbf{S} & \zero \\\hline \zero & \zero} = 
+  \mat{cc|c}{\sigma_{1}&0&0\\0&\sigma_{2}&0\\\hline0&0&0\\0&0&0}.
+\end{equation}
+The transpose behaves as expected:
+\begin{equation}
+  \sig{T} = \mat{c|c}{\textbf{S}^{\mathrm{T}} & \zero \\\hline \zero & \zero} = 
+  \mat{cc|cc}{\sigma_{1}&0&0&0\\0&\sigma_{2}&0&0\\\hline0&0&0&0}.
+\end{equation}
+The confusion comes when we try to invert the sabot matrix. The singular value matrix $\textbf{S}$ inverts easily: just take the reciprocal of the diagonal entries. But what about the sabot entries? By looking at the conformability we see that we must also take the transpose of the sabot matrix. That is, if we want to multiply the size $\by{m}{n}$ sabot by its inverse on either the right or the left the inverse must have size $\by{n}{m}$. To form the inverse of the sabot matrix $\sig{}$ form the transpose and invert the matrix $\textbf{S}$. To remind us that this is special process use the following symbol
+\begin{equation}
+  \sig{(+)} = \mat{c|c}{\textbf{S}^{-1} & \zero \\\hline \zero & \zero} = 
+  \mat{cc|cc}{\frac{1}{\sigma_{1}}&0&0&0\\0&\frac{1}{\sigma_{2}}&0&0\\[3pt]\hline0&0&0&0}.
+\end{equation}
+
+%%
+\section{Manipulations}
+\begin{equation}
+  \begin{split}
+    \svda{*}\\
+    \A{*}&=\paren{\svd{*}}^{*}=\X{}\,\sig{T}\Y{*}.
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+  \sig{T}\sig{} &= 
+  \mat{c|c}{\textbf{S}^{\mathrm{T}} & \zero \\\hline \zero & \zero}^{\by{n}{m}}_{\rho} 
+  \mat{c|c}{\textbf{S} & \zero \\\hline \zero & \zero}^{\by{m}{n}}_{\rho} = 
+  \mat{c|c}{\textbf{S}^{2} & \zero \\\hline \zero & \zero}^{\by{n}{n}}_{\rho} \\
+  \sig{}\,\sig{T} &= 
+  \mat{c|c}{\textbf{S} & \zero \\\hline \zero & \zero}^{\by{m}{n}}_{\rho} 
+  \mat{c|c}{\textbf{S}^{\mathrm{T}} & \zero \\\hline \zero & \zero}^{\by{n}{m}}_{\rho} = 
+  \mat{c|c}{\textbf{S}^{2} & \zero \\\hline \zero & \zero}^{\by{m}{m}}_{\rho}
+  \end{split}
+\end{equation}
+These special cases where there is no sabot follow naturally
+\begin{enumerate}
+\item if $\rho=m$ then $\sig{}\sig{T} = \ess{2}$;
+\item if $\rho=n$ then $\sig{T}\sig{} = \ess{2}$;
+\item if $\rho=m=n$ then $\sig{T}\sig{} = \sig{}\sig{T} = \ess{2}$.
+\end{enumerate}
+
+\begin{equation}
+  \begin{split}
+  \sig{T}\sig{} &= \mat{cc|cc}{\sigma_{1}^{2}&0&0&0\\0&\sigma_{2}^{2}&0&0\\\hline0&0&0&0\\0&0&0&0} \\
+  \sig{}\,\sig{T} &= \mat{cc|c}{\sigma_{1}^{2}&0&0\\0&\sigma_{2}^{2}&0\\\hline0&0&0}
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+  \sig{(+)}\sig{} &= 
+  \mat{c|c}{\textbf{S}^{-1} & \zero \\\hline \zero & \zero}^{\by{n}{m}}_{\rho} 
+  \mat{c|c}{\textbf{S} & \zero \\\hline \zero & \zero}^{\by{m}{n}}_{\rho} = 
+  \mat{c|c}{\I{\rho} & \zero \\\hline \zero & \zero}^{\by{n}{n}}_{\rho}=\J{n}{\rho} \\
+  \sig{}\,\sig{(+)} &= 
+  \mat{c|c}{\textbf{S} & \zero \\\hline \zero & \zero}^{\by{m}{n}}_{\rho} 
+  \mat{c|c}{\textbf{S}^{-1} & \zero \\\hline \zero & \zero}^{\by{n}{m}}_{\rho} = 
+  \mat{c|c}{\I{\rho} & \zero \\\hline \zero & \zero}^{\by{m}{m}}_{\rho}=\J{m}{\rho}
+  \end{split}
+\end{equation}
+
+For $\A{}\in\cmplx{\by{3}{4}}_{2}$
+
+\begin{equation}
+  \begin{split}
+  \sig{(+)}\sig{} &= 
+  \mat{cc|cc}{1&0&0&0\\0&1&0&0\\\hline0&0&0&0\\0&0&0&0} = \J{4}{2} \\
+  \sig{}\,\sig{(+)} &= 
+  \mat{cc|c}{1&0&0\\0&1&0\\\hline0&0&0} = \J{3}{2}
+  \end{split}
+\end{equation}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ ]{pdf/svd/mask_06_04_04} 
+   \caption{The stencil action of the truncated identity matix.}
+   \label{fig:svd:stencil}
+\end{figure}
+
+%%
+\subsection[Construction: general case]{Constructing the pseudoinverse when $\A{}$ is singular}
+Let's back up and look at the process more carefully.
+Given a \svdl \ decomposition, how do we construct the pseudoinverse? The simplest step would be to apply the inverse operation to the decomposition. The domain matrices invert easily - they are orthogonal, so forming the Hermitian conjugate forms the inverse. The sticky issue comes from the matrix of singular values, $\sig{}$. How should we ``invert'' a matrix which is not square and which may have zero elements on the lower diagonals?
+
+If two matrices $\U{}$ and $\V{}$ are both nonsingular, then we can relate the inverse of the product to the product of the inverses:
+\begin{equation}
+  \paren{\U{}\V{}}^{-1} = \V{-1}\U{-1}.
+\end{equation}
+
+Consider the case of a nonsingular matrix $\A{}$.
+\begin{equation}
+  \paren{\A{}}^{-1} \Rightarrow \paren{\svd{*}}^{-1} \Rightarrow \paren{\X{*}}^{-1}\paren{\sig{}}^{-1}\paren{\Y{}}^{-1}=\X{}\,\sig{-1}\,\Y{*}.
+\end{equation}
+Because the domain matrices are unitary, their inverses are trivial to compute: form the Hermitian conjugate. When the target matrix is nonsingular the $\sig{}$ matrix is diagonal and can also be inverted easily.
+
+Retreat to the safe case: when $\sig{}$ is square and diagonal with a full diagonal with no zero elements. There we would invert the diagonal elements like so
+\begin{equation}
+  \begin{split}
+   \sig{}       & \quad \Rightarrow \quad \sig{-1},\\    
+   \sig{}_{k,k} & \quad \Rightarrow \quad \frac{1}{\sig{}_{k,k}}, \quad k=1,2,\dots,\rho.    
+  \end{split}
+\end{equation}This motivates us to move to the pathological cases and simply invert all of the singular values. By definition, in this work singular values are non-zero. In order to be conformable we also need to form the transpose.
+
+To invert a singular \index{singular values matrix!inversion}singular values matrix $\sig{}$, perform these two steps:
+\begin{enumerate}
+\item form the transpose matrix $\sig{T}$,
+\item invert the singular values.
+\end{enumerate}
+In terms of the $\ess{}$ matrix the operations look like this:
+\begin{equation}
+  \begin{split}
+    \sig{} &= \mat{c|c}
+    {
+    \ess{} & \zero \\\hline
+    \zero & \zero
+    }^{\paren{m\times n}} \\
+    \sig{(+)} &= \mat{c|c}
+    {
+    \ess{-1} & \zero \\\hline
+    \zero & \zero
+    }^{\paren{n\times m}}
+  \end{split}
+\end{equation}
+The trouble with this formulation is that it obscures the transpose of the sabot matrix.  Hopefully the examples will clarify this transposition of the sabot.
+
+For our well-travelled example matrix this process looks like
+\begin{equation}
+\begin{array}{ccc}
+\sig{} &\Rightarrow& \sig{(+)} \\
+ \mat{c|c}{\sigma_{1} & 0\\\hline0 & 0 \\0 & 0} & \Rightarrow & \mat{c|cc}{\frac{1}{\sigma_{1}} & 0 & 0\\[3pt]\hline0 & 0 & 0} \\
+\Sigmaexampleb  & \Rightarrow & \mat{c|cc}{\ssix & 0 & 0\\[4pt]\hline0 & 0 & 0}.
+\end{array}
+\end{equation}
+Because the process is unique to the $\sig{}$ matrix, it uses a dedicated superscript ``(+)''. In conversational mathematics, we would say
+\begin{quote}
+  To form the inverse of the $\sig{}$ matrix of singular values invert all non-zero entries and form the transpose matrix.
+\end{quote}
+
+These simplistic, intuitive steps work. 
+\begin{equation}
+    \mpgiax{*}
+\end{equation}
+The relationships between \svdl s for the target matrix, the Hermitian conjugate and the psuedoinverse are shown here:
+\begin{equation}
+  \begin{array}{lcccc}
+    \A{} &=& \Y{} & \sig{} & \X{*} \\
+    \A{*} &=& \X{} & \sig{T} & \Y{*} \\
+    \Ap &=& \X{} & \sig{(+)} & \Y{*} \\
+  \end{array}
+\end{equation}
+
+%%
+\subsection[Construction: special case]{Constructing the pseudoinverse when $\A{}$ is nonsingular}
+For the case when the target matrix $\A{}$ is nonsingular there is no sabot matrix: $\sig{}=\ess{}$ and the inversion is process is
+\begin{equation}
+  \begin{split}
+    \sig{} &= \ess{} \\
+    \sig{(+)} &= \ess{-1}
+  \end{split}
+\end{equation}
+Restated another way, a matrix is nonsingular if and only if the matrix of singular values fils the sabot matrix.
+\begin{equation}
+  \A{} \text{ is nonsingular}\qquad \iff \qquad \sig{}=\ess{}
+\end{equation}
+In these cases the $\sig{}$ matrix will be square and diagonal with no zero entries on the diagonal.
+
+%%
+\subsection[Verification: singular case]{Verification of the pseudoinverse: nonsingular case}
+
+\endinput

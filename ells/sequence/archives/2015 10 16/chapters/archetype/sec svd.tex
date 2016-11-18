@@ -1,0 +1,404 @@
+\section{\label{sec:bevington svd}Singular value decomposition}
+
+% SUBSECTION
+\subsection{Singular value decomposition}
+The least squares problem delivers a singular value decomposition (SVD) without the muss and fuss of solving an eigensystem. The SVD is given by the matrix product
+  % = =  e q u a t i o n
+  \begin{equation}
+    \aesvd{*}.
+    %\label{eqn:}
+  \end{equation}
+  % = =
+For the full column rank problem we have we can expand in the following block decomposition
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{} = \csvdblockbc{*}
+    \label{eqn:ls block}
+  \end{equation}
+  % = =
+The $\ess{}$ matrix contains the singular values
+  % = =  e q u a t i o n
+  \begin{equation}
+    \ess{} = \mat{cc}{\sigma_{1} & 0 \\ 0 & \sigma_{2}}.
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The column vectors of the matrix $\bvr{}$ represent an orthonormal basis for the row space (domain). The column vectors of the matrix $\bur{}$ represent two of the nine vectors in an orthonormal basis for the column space (codomain).
+
+% SUBSECTION
+\subsection{Singular values}
+The singular value spectrum of the matrix $\A{}$ is the square root of the (non-zero) eigenvalues of the product matrix $\wx{*}$
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sigma \paren{\A{}} = \sqrt{\lambda\paren{\wx{*}}}.
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The eigenvalues of the product matrix are the roots of the characteristic polynomial $p(\lambda)$ for said matrix.
+  % = =  e q u a t i o n
+  \begin{equation}
+    p(\lambda) = \lambda^{2} - \lambda \, \tr{\wx{*}} + \det\paren{\wx{*}}
+    %\label{eqn:}
+  \end{equation}
+  % = = 
+We are well familiar with the determinant by now; the trace is  $\tr{\wx{*}}=\oto+\xtx$. The singular values are then
+%  e q u a t i o n
+\begin{equation}
+  %\begin{split}
+    \lambda = \lst { \lambda \in \real{} \colon p(\lambda) = 0}
+  %\end{split}
+%\label{eq:}
+\end{equation}
+%  e q u a t i o n
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sigma = \sqrt{\half \paren{\oto+\xtx \pm \sqrt{4\paren{\otx}^{2} - \paren{\oto-\xtx}^{2}}}} .
+  \end{equation}
+  % = =
+(The astute reader will notice that the discriminant does not seem to have the familiar form of $b^{2}-4ac$. The earnest reader will discover why this is so.)
+The singular value spectrum for these data is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sigma = \sqrt{3\paren{49 \pm \sqrt{2341}}}
+    \approx \paren{17.0924, 1.35954} .
+    %\label{eqn:}
+  \end{equation}
+  % = =
+We now have the sigma matrix and the matrix of singular values $\ess{}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \sig{} = \mat{c}{\ess{}\\\hline\zero} = \mat{cc}{\sigma_{1} & 0 \\ 0 & \sigma_{2} \\\hline 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0} \approx \mat{cc}{17.0924 & 0 \\ 0 & 1.35954 \\\hline 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{Domain matrix}
+By the singular value theorem the domain matrix $\bvr{}$ is unitary which restricts the matrix type to being either a rotation matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mathbf{R}\paren{\theta} = \rot{\theta},
+    %\label{eqn:}
+  \end{equation}
+  % = =
+a reflection matrix like
+  % = =  e q u a t i o n
+  \begin{equation}
+    \pee{} = \mat{cc}{0 & 1 \\ 1 & 0 },
+    %\label{eqn:}
+  \end{equation}
+  % = =
+or a convolution of those types. Start by trying the simplest case, a rotation matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} = \brot{\theta} = \mathbf{R}\paren{\theta}
+    \label{eq:vrot}
+  \end{equation}
+  % = =
+here colored in blue because the column vectors belong to $\brnga{*}$. 
+
+% SUBSUBSECTION
+\subsubsection{Eigenvalue problem}
+Using the rotation matrix in \eqref{eq:vrot}, the eigenvalue problems are these
+% = =  e q u a t i o n
+\begin{equation}
+  \begin{split}
+    \wx{*} \thetx{\theta} &= \lambda_{1} \thetx{\theta} , \\
+    \wx{*} \thety{\theta} &= \lambda_{2} \thety{\theta} .
+    %\label{eq:}
+  \end{split}
+\end{equation}
+% = =
+
+% SUBSUBSECTION
+\subsubsection{Alternative method}
+We can skip the eigenvector problem. To find the domain matrix we exploit the \asvd \ of the product matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} \ess{2} \bvr{*} = \wx{*} .
+    \label{eq:decompwx}
+  \end{equation}
+  % = =
+The objective is to find the rotation angle $\theta$. The immediate result of equations \eqref{eq:decompwx}, and \eqref{eq:vrot} is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \brot{\theta} \ess{2} \brot{\theta}^{\mathrm{T}} &= \wx{*}, \\[5pt]
+      \mat{cc}{\sigma_{1}^{2}\costs + \sigma_{2}^{2}\sints & \paren{\sigma_{1}^{2} - \sigma_{2}^{2}}\cst \\[3pt]
+             \paren{\sigma_{1}^{2} - \sigma_{2}^{2}}\cst & \sigma_{2}^{2}\costs + \sigma_{1}^{2}\sints } &=
+    \thatmat{} ,
+    \end{split}
+    \label{eqn:cheat svd}
+  \end{equation}
+  % = =
+where we used the result
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \sig{T} \sig{} = \mat{cc}{\ess{}&\zero}\mat{c}{\ess{}\\\zero} = \ess{2} .
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Equation \eqref{eqn:cheat svd} presents multiple solution paths for the angle $\theta$. For example
+  % = =  e q u a t i o n
+  \begin{equation}
+    \cost = \sqrt{\frac{\sigma_{2}^{2} - \oto}{\sigma_{2}^{2} - \sigma_{1}^{2}}} = \sqrt{\frac{\xtx - \sigma_{1}^{2}}{\sigma_{2}^{2} - \sigma_{1}^{2}}} .
+    \label{eq:costtheory}
+  \end{equation}
+  % = =
+This implies
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \sin \theta = \sqrt{ \frac{ \oto - \sigma_{1}^{2} } { \sigma_{2}^{2} - \sigma_{1}^{2}} }
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The domain matrix is now
+  % = =  e q u a t i o n
+  \begin{equation}
+    \V{} = \bbvr{} 
+         = \paren{\sigma_{2}^{2} - \sigma_{1}^{2}}^{-\half}
+           \bl{\mat{rr}{\sqrt{\sigma_{2}^{2}-\oto} & -\sqrt{\oto-\sigma_{1}^{2}} \\[3pt] \sqrt{\oto-\sigma_{1}^{2}} & \sqrt{\sigma_{2}^{2}-\oto}}} .
+  \end{equation}
+  % = =
+Using the data set at hand
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bbvr{} = 
+    \bl{\mat{cr}{
+    \sqrt{\frac{1}{2}-\frac{23}{\sqrt{2341}}} & -\sqrt{\frac{1}{2}+\frac{23}{\sqrt{2341}}} \\
+    \sqrt{\frac{1}{2}+\frac{23}{\sqrt{2341}}} & \sqrt{\frac{1}{2}-\frac{23}{\sqrt{2341}}} \\
+    }} \\
+    \approx
+    \bl{\mat{cr}{
+    0.156956 & -0.987606 \\
+    0.987606 & 0.156956 \\
+    }} ,
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is $\textbf{R}\!\paren{\theta\approx0.449832\pi}$.
+
+% SUBSECTION
+\subsection{Codomain matrix}
+The final component is of course the codomain matrix. Knowing the decomposition for the adjoint matrix $\A{*}$ and that the linear system is overdetermined we can write
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bur{*} = \ess{-1} \bvr{*} \A{*} .
+  \end{equation}
+  % = =
+The $k$th column vector of this matrix has the compact form
+  % = =  e q u a t i o n
+  \begin{equation}
+    \brac{\bur{*}}_{k} = \bl{\paren{\sigma_{1}^{2}-\sigma_{2}^{2}}^{-\half}
+      \mat{c}{ \sigma_{1}^{-2} \paren{\sqrt{\sigma_{2}^{2} - \oto} - x_{k}\sqrt{\oto - \sigma_{1}^{2}}} \\[5pt]
+               \sigma_{2}^{-2} \paren{\sqrt{\sigma_{2}^{2} - \oto} + x_{k}\sqrt{\oto - \sigma_{1}^{2}}} } }.
+  \end{equation}
+  % = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      f_{\pm}\paren{x_{k}} = \sqrt{\sigma_{2}^{2} - \oto} \pm x_{k}\sqrt{\oto - \sigma_{1}^{2}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \bur{*} = \bl{\paren{\sigma_{1}^{2}-\sigma_{2}^{2}}^{-\half}} \mat{cc}{
+        \sigma_{1}^{-2} f_{-}\paren{x_{1}} & \sigma_{2}^{-2} f_{+}\paren{x_{1}} \\
+        \sigma_{1}^{-2} f_{-}\paren{x_{1}} & \sigma_{2}^{-2} f_{+}\paren{x_{1}} \\
+         \vdots & \vdots \\
+        \sigma_{1}^{-2} f_{-}\paren{x_{9}} & \sigma_{2}^{-2} f_{+}\paren{x_{9}}
+      }
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bur{} = \bl{\paren{6\sqrt{10}}^{-1}
+    \mat{rr}{ \urowmmp{68}{3212} \\[3pt]
+              \urowmmp{47}{2003} \\[3pt]
+              \urowmmp{32}{968}  \\[3pt]
+              \urowmmp{23}{107}  \\[3pt]
+              \urowpmm{50}{580}  \\[3pt]
+              \urowpmm{23}{1093} \\[3pt]
+              \urowppm{32}{1432} \\[3pt]
+              \urowppm{47}{1597} \\[3pt]
+              \urowppm{68}{1588} } }
+  \end{equation}
+  % = =
+If one wishes to complete the codomain matrix, use the Gram-Schmidt orthonormalization process on the matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \U{} = \mat{ccccccccc}{ \brac{\bur{}}_{1} & \brac{\bur{}}_{2} & \rd{e_{1,9}} & \rd{e_{2,9}} & \rd{e_{3,9}} & \rd{e_{4,9}} & \rd{e_{5,9}} & \rd{e_{6,9}} & \rd{e_{7,9}} }
+  \end{equation}
+  % = =
+starting with column three.
+
+Completing the codomain matrix with an orthonormal span of the null space is optional and can be done by feeding the range space components and a complementary set of unit vectors into a Gram-Schmidt algorithm.
+
+% SUBSECTION
+\subsection{Error terms}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \eps_{k}^{2} = \frac{\paren{\A{}\alpha - y}^{\mathrm{T}}\paren{\A{}\alpha - y}} {m-n} \brac{\paren{\wx{*}}^{-1}}_{kk}
+  \end{equation}
+  % = =
+
+The error terms can be computed after this step. Given that the product matrix decomposition in \eqref{eq:decompwx} is a \asvd \ we can trivially write the inverse matrix as
+  % = =  e q u a t i o n
+  \begin{equation}
+    \paren{\wx{*}}^{-1} = 
+    \bvr{} \ess{-2} \bvr{*} = \frac{1}{180} \mat{rr}{95 & -15 \\ -15 & 3}
+  \end{equation}
+  % = =
+The error terms in \eqref{eq:lr errors} become
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \eps &= \sqrt{ \frac{r^{\mathrm{T}}r}{\oto-n} }
+              \sqrt{ \frac{1}{\sigma_{1}\sigma_{2}} }
+              \sqrt{\mat{c}{ \frac{\costs}{\sigma_{2}^{2}} + \frac{\sints}{\sigma_{1}^{2}} \\[5pt]
+              \frac{\costs}{\sigma_{1}^{2}} + \frac{\sints}{\sigma_{2}^{2}}}}, \\
+           &= \sqrt{ \frac{r^{\mathrm{T}}r}{m - n} }
+              \sqrt{\mat{c}{ \sigma_{1}^{2} - \sqrt{\paren{\sigma_{2}^{2} - \oto} \paren{\sigma_{2}^{2} - \sigma_{1}^{2}}} \\[3pt]
+              \sigma_{2}^{2} + \sqrt{\paren{\sigma_{2}^{2} - \oto} \paren{\sigma_{2}^{2} - \sigma_{1}^{2}}} }}.
+    \end{split}
+  \end{equation}
+\input{\pathequations "eqn bevington u numeric"}  %  <  <  <  <  <  <  <
+
+
+% SUBSECTION
+\subsection{Visualization}
+With the \asvd \ in hand, we can the domain space plots more concrete and we do so below beginning in figure \eqref{fig:bevington codomain}. The black vector represents the measurements
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Y{} = \bl{\A{}\,a} - \rd{\R{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+$$ y \in\cmplx{9}, 
+\quad \bl{\A{}\,a} \in\brnga{} \subseteq \cmplx{2},
+\quad \rd{r} \in\rnlla{*} \subseteq \cmplx{7} $$
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y = \frac{1}{10}\mat{c}{156\\175\\366\\438\\582\\616\\642\\704\\988}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The closest point in the range $\brnga{}$ to the data vector is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \A{}\,a = \frac{1}{360}\bl{\mat{r}{5120\\8507\\11\,894\\15\,281\\18\,668\\22\,055\\25\,442\\28\,829\\32\,216}}
+         = \alpha_{1} [\bur{}]_{1} + \alpha_{2} [\bur{}]_{2} \ \in\brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+where the coordinates are
+% = =  e q u a t i o n
+  \begin{equation*}
+    \begin{split}
+      \mat{c}{\alpha_{1}\\\alpha_{2}} &
+        = \paren{30\paren{\sqrt{2341}-31}\sqrt{4682}+58\sqrt{2341}}^{-1}
+      \mat{c}{4\,104\,889 + 75\,341 \sqrt{2341} \\ 3 \sqrt{15} \paren{753\,593-15\,933 \sqrt{2341}}} \\ &
+      \approx
+      \mat{r}{171.733\\ -4.45594}
+    \end{split}
+    \label{eqn:alpha}
+  \end{equation*}
+% = =
+The residual error vector lies entirely in the null space $\rnlla{*}$
+% = =  e q u a t i o n
+%  \begin{equation}
+%    \begin{split}
+%      -r &= \frac{1}{360}{\rd{\mat{r}{
+%      496 \\ -2207 \\ 1282 \\ 487 \\ 2284 \\ 121 \\ -2330 \\ -3485 \\ 3352
+%      }}} \\ &=
+%        \alpha_{3} [\run{}]_{1} + \alpha_{4} [\run{}]_{2} + \alpha_{5} [\run{}]_{3}
+%      + \alpha_{6} [\run{}]_{4} + \alpha_{7} [\run{}]_{5} + \alpha_{8} [\run{}]_{6}
+%      + \alpha_{9} [\run{}]_{7}
+%      \ \in\rnlla{*}
+%    \end{split}
+%    %\label{eqn:}
+%  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \rd{r} = \frac{1}{360}{\rd{\mat{r}{
+      -496 \\ 2207 \\ -1282 \\ -487 \\ -2284 \\ -121 \\ 2330 \\ 3485 \\ -3352
+      }}} \\ 
+         = \run{} \mat{c}{
+           \alpha_{3} \\  \alpha_{4} \\  \alpha_{5} \\  \alpha_{6} \\
+           \alpha_{7} \\  \alpha_{8} \\  \alpha_{9} }
+      \quad \in\rnlla{*}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The coordinates are now
+% = =  e q u a t i o n
+  \begin{equation*}
+    %\begin{split}
+      \mat{c}{ \alpha_{3} \\ \alpha_{4} \\ \alpha_{5} \\ \alpha_{6} \\ \alpha_{7} \\ \alpha_{8} \\ \alpha_{9} } =
+      \paren{60 \sqrt{24\,747\,709}}^{-1} \mat{r}{
+    680 \sqrt{7\,815\,066} \\ -1933 \sqrt{3\,907\,533} \\ -3621 \sqrt{186\,073} \\
+    6679 \sqrt{10\,434} \\ 13\,406 \sqrt{29\,526} \\ 2196 \sqrt{85\,386} \\ 
+    641 \sqrt{3\,344\,285}
+      }
+    %\end{split}
+    %\label{eqn:}
+  \end{equation*}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y = \U{} \alpha = \bl{\A{}\,a} - \rd{r}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+\input{\pathfigures "fig bevington codomain"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathfigures "fig bevington domain"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      M(\alpha) = \normt{y-\alpha_{1} u_{1}-\alpha_{2} u_{2}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The minimizer is given by \eqref{eqn:alpha}.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      M(171.733,-4.45594) \approx 17.7949.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+\input{\pathfigures "fig bevington codomain data"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+\input{\pathtables "tab bevington pole plots"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+\input{\pathtables "tab usv block"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

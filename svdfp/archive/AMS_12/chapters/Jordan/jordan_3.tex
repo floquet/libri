@@ -1,0 +1,387 @@
+\section[]{$3\times3$ Jordan forms}
+\label{sec:Jordan:3}
+
+In many cases $3\times3$ Jordan forms can be viewed as  block matrices with a $2\times2$ Jordan form and a zero matrix.
+
+\subsection{Off-diagonal entries}
+%%
+Consider the forms where two off-diagonal entries are one.
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{3,3} = 
+\mat{ccc}
+{
+                1 & 1 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+}   &= \svd{T}\\
+   &=
+   %%  
+\underbrace{\mat{c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}
+{
+                1 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+}}_{\text{col 2 $\leftrightarrow$ col 3}}
+%%
+\mat{c|cc}{                
+            \sqrt{2} & 0 & 0 \\\hline
+            0 & 0 & 0 \\
+            0 & 0 & 0
+}%%  
+\mat{rrr}
+{                
+\cos\theta & -\sin\theta & 0 \\
+\rowcolor{ltgray}
+0 & 0 & 1 \\
+\rowcolor{ltgray}
+\sin\theta & \cos\theta & 0
+}
+  \end{split}
+\end{equation}
+with
+\begin{equation}
+  \theta = -\frac{\pi}{4}.
+\end{equation}
+The $\X{}$ matrix represents a three dimensional coordinate system rotated by an angle $\theta$ about the line $x_{2}=x_{3}$. Only part of this rotation is ``visible''; the rest is ``hidden''in the null space.
+
+The domain matrix $\X{}$ is a composition - or matrix product - of more fundamental orthogonal matrix forms. Any easy way to resolve this is to look at the action of the matrix upon an arbitrary vector:
+\begin{equation}
+ \mat{ccc}
+{                
+\cos\theta & -\sin\theta & 0 \\
+0 & 0 & 1 \\
+\sin\theta & \cos\theta & 0
+} 
+\mat{c}
+{x\\y\\z}
+=
+\mat{c}
+{x\cos\theta-y\sin\theta \\ z \\ x\sin\theta+y\cos\theta}
+\end{equation}
+We see these two operations:
+\begin{enumerate}
+\item a counterclockwise rotation of the $x-y$ axes by an angle $\theta$;
+\item an interchange of the $y$ and $z$ axes.
+\end{enumerate}
+\begin{equation}
+  \mat{ccc}
+  {1&0&0\\
+   0&0&1\\
+   0&1&0}
+  \mat{ccc}
+  {\cos\theta & -\sin\theta & 0\\
+   \sin\theta &  \cos\theta & 0\\
+        0     &       0     & 1}
+   =
+\mat{ccc}
+{                
+\cos\theta & -\sin\theta & 0 \\
+0 & 0 & 1 \\
+\sin\theta & \cos\theta & 0
+}
+\end{equation}
+
+
+%%%%%
+Compare the related forms.
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{3,5} = 
+\mat{ccc}
+{
+                1 & 0 & 1 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+}   &= \svd{T}\\
+   &=
+   %%  
+\underbrace{\mat{c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}
+{
+                1 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+}}_{\text{col 2 $\leftrightarrow$ col 3}}
+%%
+\mat{c|cc}{                
+            \sqrt{2} & 0 & 0 \\\hline
+            0 & 0 & 0 \\
+            0 & 0 & 0
+}%%  
+\mat{rcr}{                
+                 \cos\theta & 0 & -\sin\theta \\
+\rowcolor{ltgray}
+                 \sin\theta & 0 &  \cos\theta \\
+\rowcolor{ltgray}
+                0 & 1 & 0
+}
+  \end{split}
+\end{equation}
+%%%
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{3,6} = 
+\mat{ccc}{
+                0 & 1 & 1 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+}   &= \svd{T}\\
+   &=
+   %%  
+\underbrace{\mat{c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}
+{
+                1 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+}}_{\text{col 2 $\leftrightarrow$ col 3}}
+%%
+\mat{c|cc}{                
+            \sqrt{2} & 0 & 0 \\\hline
+            0 & 0 & 0 \\
+            0 & 0 & 0
+}%%  
+\mat{rrr}{                
+                0 & \cos\theta & -\sin\theta \\
+\rowcolor{ltgray}
+                0 & \sin\theta & \cos\theta \\
+\rowcolor{ltgray}
+                1 & 0 & 0
+}
+  \end{split}
+\end{equation}
+
+%%
+\subsection{Embedding}
+Embed the $\mathcal{J}_{2,7}$ block.
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{3,11} &= 
+\mat{cc|c}
+{
+                1 & 1 & 0 \\
+                0 & 1 & 0 \\\hline
+                0 & 0 & 0
+}   = \svd{T}\\
+   &=
+   %%  
+\mat{rr>{\columncolor{ltgray}}r}
+{
+                \cos\theta & -\sin\theta & 0 \\
+                \sin\theta &  \cos\theta & 0 \\
+                0 & 0 & 1
+}
+%%
+\mat{cc|c}
+{                
+            \alpha_{+} & 0 & 0 \\
+            0 & \alpha_{-} & 0 \\\hline
+            0 & 0 & 0
+}%%  
+\mat{rrr}
+{                
+                 \cos\paren{-\theta_{c}} &  -\sin\paren{-\theta_{c}} & 0 \\
+                 \sin\paren{-\theta_{c}} &   \cos\paren{-\theta_{c}} & 0 \\
+\rowcolor{ltgray}
+                0 & 0 & 1
+}
+  \end{split}
+\end{equation}
+where the singular values and angles have the same definitions as in equations \eqref{eq:j27:1}-\eqref{eq:j27:3}.
+
+%%
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{3,57} &= 
+\mat{c|cc}
+{
+                0 & 0 & 0 \\\hline
+                0 & 1 & 1 \\
+                0 & 0 & 1
+}   = \svd{T}\\
+   &=
+   %%  
+\mat{rr>{\columncolor{ltgray}}r}
+{
+                0 & 1 & 0\\
+                \cos\theta & 0 & -\sin\theta \\
+                \sin\theta & 0 &  \cos\theta \\
+}
+%%
+\mat{cc|c}
+{                
+            \alpha_{+} & 0 & 0 \\
+            0 & \alpha_{-} & 0 \\\hline
+            0 & 0 & 0
+}%%  
+\mat{rrr}
+{                
+                0 & \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}}\\
+                1 & 0 & 0 \\
+\rowcolor{ltgray}
+                0 & \sin\paren{-\theta_{c}} & \cos\paren{-\theta_{c}} \\
+}
+  \end{split}
+\end{equation}
+
+There are three ways to embed this block in a $4\times4$ matrix.
+
+%%
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{4,19} &= 
+\mat{cc|cc}
+{
+                1 & 1 & 0 & 0 \\
+                0 & 1 & 0 & 0 \\\hline
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+}   = \svd{T}\\
+   &=
+   %%  
+\mat{cr>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}
+{
+                \cos\theta & -\sin\theta & 0 & 0 \\
+                \sin\theta &  \cos\theta & 0 & 0 \\
+                 0 & 0 & 0 & 1 \\
+                 0 & 0 & 1 & 0 
+}
+%%
+\mat{cc|cc}
+{                
+            \alpha_{+} & 0 & 0 & 0 \\
+            0 & \alpha_{-} & 0 & 0 \\\hline
+            0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0
+}%%  
+\mat{ccrc}
+{                
+                0 & \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}} & 0 \\
+                0 & \sin\paren{-\theta_{c}} &  \cos\paren{-\theta_{c}} & 0 \\
+\rowcolor{ltgray}
+                0 & 0 & 0 & 1 \\
+\rowcolor{ltgray}
+                1 & 0 & 0 & 0 \\
+}
+  \end{split}
+\end{equation}
+%%%
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{4,176} &= 
+\mat{c|cc|c}
+{
+                0 & 0 & 0 & 0 \\\hline
+                0 & 1 & 1 & 0 \\
+                0 & 0 & 1 & 0 \\\hline
+                0 & 0 & 0 & 0 \\
+}   = \svd{T}\\
+   &=
+   %%  
+\mat{cr>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}
+{
+                 0 & 0 & 0 & 1 \\
+                 \cos\theta & -\sin\theta & 0 & 0 \\
+                 \sin\theta &  \cos\theta & 0 & 0 \\
+                 0 & 0 & 1 & 0
+}
+%%
+\mat{cc|cc}
+{                
+            \alpha_{+} & 0 & 0 & 0 \\
+            0 & \alpha_{-} & 0 & 0 \\\hline
+            0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0
+}%%  
+\mat{ccrc}
+{                
+                0 & \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}} & 0 \\
+                0 & \sin\paren{-\theta_{c}} &  \cos\paren{-\theta_{c}} & 0 \\
+\rowcolor{ltgray}
+                0 & 0 & 0 & 1 \\
+\rowcolor{ltgray}
+                1 & 0 & 0 & 0 \\
+}
+  \end{split}
+\end{equation}
+%%%
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{4,896} &= 
+\mat{cc|cc}
+{
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\\hline
+                0 & 0 & 1 & 1 \\
+                0 & 0 & 0 & 1
+}   = \svd{T}\\
+   &=
+   %%  
+\mat{cr>{\columncolor{ltgray}}r>{\columncolor{ltgray}}r}
+{
+                 0 & 0 & 0 & 1 \\
+                 0 & 0 & 1 & 0 \\
+                \cos\theta & -\sin\theta & 0 & 0 \\
+                \sin\theta &  \cos\theta & 0 & 0
+}
+%%
+\mat{cc|cc}
+{                
+            \alpha_{+} & 0 & 0 & 0 \\
+            0 & \alpha_{-} & 0 & 0 \\\hline
+            0 & 0 & 0 & 0\\
+            0 & 0 & 0 & 0
+}%%  
+\mat{cccr}
+{                
+                0 & 0 & \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}} \\
+                0 & 0 & \sin\paren{-\theta_{c}} &  \cos\paren{-\theta_{c}} \\
+\rowcolor{ltgray}
+                0 & 1 & 0 & 0 \\
+\rowcolor{ltgray}
+                1 & 0 & 0 & 0 \\
+}
+  \end{split}
+\end{equation}
+What happens when there are two blocks?
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{4,915} &= 
+\mat{cc|cc}
+{
+                1 & 1 & 0 & 0 \\
+                0 & 1 & 0 & 0 \\\hline
+                0 & 0 & 1 & 1 \\
+                0 & 0 & 0 & 1
+}   = \svd{T}\\
+   \Y{} &=
+   %%  
+\mat{ccrr}
+{
+                 0 & \cos\theta & 0 & -\sin\theta \\
+                 0 & \sin\theta & 0 & \cos\theta \\
+                \cos\theta & 0 & -\sin\theta & 0 \\
+                \sin\theta & 0 &  \cos\theta & 0
+}\\
+%%
+\sig{} &=
+\mat{cccc}
+{                
+            \alpha_{+} & 0 & 0 & 0 \\
+            0 & \alpha_{+} & 0 & 0 \\\
+            0 & 0 & \alpha_{-} & 0\\
+            0 & 0 & 0 & \alpha_{-}
+}\\
+%%  
+\X{T} &=
+\mat{crcr}
+{                
+                0 & 0 & \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}} \\
+                \cos\paren{-\theta_{c}} & -\sin\paren{-\theta_{c}} & 0 & 0 \\
+                0 & 0 & \sin\paren{-\theta_{c}} &  \cos\paren{-\theta_{c}} \\
+                \sin\paren{-\theta_{c}} &  \cos\paren{-\theta_{c}} & 0 & 0
+}
+  \end{split}
+\end{equation}
+
+
+\endinput

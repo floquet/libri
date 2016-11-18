@@ -1,0 +1,16 @@
+\subsection{Block forms}
+
+This structure survives as expected when the blocks are embedded. The ordering of the singular values forces the domain matrices to change structure.
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{c|c}{\mathcal{J}_{2}&\zero\\\hline \zero&\I{2}} &=\mat{cc|cc}{1&1&0&0 \\ 0&1&0&0 \\\hline 0&0&1&0 \\ 0&0&0&1} \\ 
+    &=\sqrt{\frac{1}{10}}
+    \mat{cccc}{\alpha_{+}&0&0&-\alpha_{-} \\ \alpha_{+}&0&0&\sqrt{20}\alpha_{+}^{-1} \\ 0&0&\sqrt{10}&0 \\ 0&\sqrt{10}&0&0}  
+    \mat{cccc}{\beta_{+}&0&0&0 \\ 0&1&0&0 \\ 0&0&1&0 \\ 0&0&0&\beta_{-}}
+    \sqrt{\frac{1}{10}}
+    \mat{cccc}{\alpha_{-} & \alpha_{+}&0&0 \\ 0&0&0&\sqrt{10} \\ 0&0&\sqrt{10}&0 \\ -\alpha_{+}&\sqrt{20}\alpha_{+}^{-1}&0&0}
+  \end{split}
+\end{equation}
+
+\endinput

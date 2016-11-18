@@ -1,0 +1,481 @@
+\chapter{Modal Example}  %    S    S    S    S    S    S    S    S    S
+The linear system for this problem relates a series of temperature measurements, $T$, to positions, $x$:
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{array}{cccc}
+     \A{} & a & = & T \\
+     \mat{cc}{ 1 & x_{1} \\ 1 & x_{2} \\ \vdots & \vdots \\ 1 & x_{9} } &
+     \mat{c}{ a_{0} \\ a_{1} } & = &
+     \mat{cc}{ T_{1} \\ T_{2} \\ \vdots \\ T_{9} } .
+    %\label{eq:}
+    \end{array}
+  \end{equation*}
+Different solution methods are explored in the other volume. The solution of minimum error norm is the pseudoinverse solution
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    a = \Ap T .
+    \label{eq:bev ap}
+  %\end{split}
+  \end{equation*}
+The normal equations are another path. They are
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \wx{*} a = \A{*} T
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+which has the solution
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+    a = \paren{\wx{*}}^{-1} \A{*}T .
+    \label{eq:bev normal}
+  %\end{split}
+  \end{equation}
+The errors in the fit parameters are an important part of the solution and they are given by
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \eps_{k} = \sqrt{ \frac{\rtr{*}} {m - n} \paren{\wx{*}}^{-1}_{kk} }, \quad k = 1\colon n
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}  
+  
+\section{Mathematica}  %    S    S    S    S    S    S    S    S    S
+Figure \ref{fig:bevington mm} shows the input data and computation in Mathematica. Notice that the data are expressed as rational numbers to preclude numeric errors.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   %\centering
+   \includegraphics[ width = 3in ]{\pathgraphics "bevington classic"/"bevington mm"} 
+   \caption{Bevington's example solved in Mathematica using different methods.}
+   \label{fig:bevington mm}
+\end{figure}
+
+Three solution paths are shown. The first path (\texttt{In[7]}) uses the intrinsic command \texttt{LeastSquares}, and, as in the other cases, exact results are returned. The next method is based upon the normal equations (\texttt{In[9]}), and the final solution uses the pseudoinverse method (\texttt{In[10]}).
+
+\section{Fortran 2015}  %    S    S    S    S    S    S    S    S    S
+The main program, \texttt{bevington.f08}, is rather brief and acts as control routine. The module files are loaded, and then routines are called to load the data, compute intermediate quantities and results.
+\begin{lstlisting}
+! respect load order
+include 'sharedModules/mod precision definitions.f08'
+include 'sharedModules/mod parameters.f08'
+include 'sharedModules/mod measurements.f08'
+include 'sharedModules/mod intermediates definitions.f08'
+include 'sharedModules/mod build matrices.f08'
+include 'sharedModules/mod compute results.f08'
+
+program bevington
+
+    use mPrecisionDefinitions, only : ip
+    use mParameters
+    use mMeasurements
+    use mIntermediatesDefinitions
+    use mBuildMatrices
+    use mResults
+
+    implicit none
+
+    integer ( ip ) :: k = 0
+
+    type ( measurements )  :: myMeasurements
+    type ( intermediates ) :: myIntermediates
+    type ( matrices )      :: myMatrices
+    type ( results )       :: myResults
+
+        call myMeasurements  % load_data             ( )
+        call myIntermediates % compute_intermediates ( myMeasurements )
+        call myMatrices      % build_matrices        ( myIntermediates )
+        call myResults       % compute_results       ( myMatrices, myMeasurements )
+
+        do k = 1, n
+            print *, myResults % descriptor ( k ), " = ", &
+                     myResults % a ( k ), "+/-", &
+                     myResults % epsilon ( k )
+        end do
+
+end program bevington
+\end{lstlisting}
+
+The modules are listed according to the load order established by the \texttt{include} commands. The first of these modules defines working precision for the computation. Therefore, the precision is controlled in two places (lines 8 and 9).
+\begin{lstlisting}
+module mPrecisionDefinitions
+
+    use iso_fortran_env
+
+    implicit NONE
+
+    ! Define working precision
+    integer, parameter        :: rp = REAL64
+    integer, parameter        :: ip = INT64
+
+    ! real constants
+    real ( rp ), parameter    :: zero = 0.0_rp
+    real ( rp ), parameter    :: one  = 1.0_rp
+
+end module mPrecisionDefinitions
+\end{lstlisting}
+
+The number of fit parameters is an important number which determines the number of columns in the matrix $\A{}$. While this parameter definition can be tucked into the main routine, it is a seed for other parameters as simulation complexity grows.
+\begin{lstlisting}
+module mParameters
+
+    use mPrecisionDefinitions, only : ip
+
+    implicit none
+
+    integer ( ip ), parameter :: n = 2
+
+end module mParameters
+\end{lstlisting}
+
+These data are taken from \cite[Table 6-1]{Bevington} and represent the position in cm, \texttt{x}, and the temperature in centigrade, \texttt{y}.
+\begin{lstlisting}
+module mMeasurements
+
+    use mPrecisionDefinitions, only : ip, rp, one, zero
+
+    implicit none
+
+    integer ( ip ), parameter :: m = 9
+
+    type :: measurements
+        real ( rp ), dimension ( 1 : m ) :: x = zero, y = zero, &
+                                            ones = one, residuals = zero
+    contains
+        private
+        procedure, public :: load_data
+    end type measurements
+
+contains
+
+    subroutine load_data ( me )
+
+        class ( measurements ), target :: me
+
+!           load data
+            me % x ( 1 ) = 1.0_rp
+            me % x ( 2 ) = 2.0_rp
+            me % x ( 3 ) = 3.0_rp
+            me % x ( 4 ) = 4.0_rp
+            me % x ( 5 ) = 5.0_rp
+            me % x ( 6 ) = 6.0_rp
+            me % x ( 7 ) = 7.0_rp
+            me % x ( 8 ) = 8.0_rp
+            me % x ( 9 ) = 9.0_rp
+
+            me % y ( 1 ) = 15.6_rp
+            me % y ( 2 ) = 17.5_rp
+            me % y ( 3 ) = 36.6_rp
+            me % y ( 4 ) = 43.8_rp
+            me % y ( 5 ) = 58.2_rp
+            me % y ( 6 ) = 61.6_rp
+            me % y ( 7 ) = 64.2_rp
+            me % y ( 8 ) = 70.4_rp
+            me % y ( 9 ) = 98.8_rp
+
+    end subroutine load_data
+
+end module mMeasurements
+\end{lstlisting}
+
+The first processing step is to perform the vector operations. Another option is to use the intrinsic command \texttt{sum} instead of using the dot product. But please, don't use \texttt{do} loops; the vector tools in Fortran are much faster.
+\begin{lstlisting}
+module mIntermediatesDefinitions
+
+    use mMeasurements
+
+    implicit none
+
+    type :: intermediates
+        real ( rp ) :: em = zero, sx = zero, sx2 = zero, sy = zero, sxy = zero
+    contains
+        private
+        procedure, public :: compute_intermediates
+    end type intermediates
+
+contains
+
+    subroutine compute_intermediates ( me, myMeasurements )
+
+        class ( intermediates ), target      :: me
+
+        type ( measurements ), intent ( in ) :: myMeasurements
+
+            me % em  = dot_product ( myMeasurements % ones, myMeasurements % ones )
+            me % sx  = dot_product ( myMeasurements % ones, myMeasurements % x )
+            me % sy  = dot_product ( myMeasurements % ones, myMeasurements % y )
+            me % sx2 = dot_product ( myMeasurements % x,    myMeasurements % x )
+            me % sxy = dot_product ( myMeasurements % x,    myMeasurements % y )
+
+    end subroutine compute_intermediates
+
+end module mIntermediatesDefinitions
+\end{lstlisting}
+The matrices are built using array constructors for the column vectors (lines 27, 28, and 30). Notice that the product matrix $\wx{*}$ is never constructed; instead there is a direct construction of the inverse matrix, $\paren{\wx{*}}^{-1}$.
+\begin{lstlisting}
+module mBuildMatrices
+
+    use mIntermediatesDefinitions
+    use mParameters
+
+    implicit none
+
+    type :: matrices
+        real ( rp ), dimension ( 1 : n, 1 : n ) :: ASAinv = zero
+        real ( rp ), dimension ( 1 : n )        :: B      = zero
+        real ( rp )                             :: det    = zero
+    contains
+        private
+        procedure, public :: build_matrices
+    end type matrices
+
+contains
+
+    subroutine build_matrices ( me, myIntermediates )
+
+        class ( matrices ),     target        :: me
+
+        type ( intermediates ), intent ( in ) :: myIntermediates
+
+            me % det = myIntermediates % em * myIntermediates % sx2 &
+                                            - myIntermediates % sx ** 2
+            me % ASAinv ( : , 1 ) = [ myIntermediates % sx2, -myIntermediates % sx ]
+            me % ASAinv ( : , 2 ) = [-myIntermediates % sx,   myIntermediates % em ]
+            me % ASAinv = me % ASAinv / me % det
+            me % B = [ myIntermediates % sy, myIntermediates % sxy ]
+
+    end subroutine build_matrices
+
+end module mBuildMatrices
+\end{lstlisting}
+This final module computes the solution vector $a$ and the error vector $\eps$ using vector tools. The diagonal matrix elements are harvested in line 40 using an implied \texttt{do} loop.
+\begin{lstlisting}
+module mResults
+
+    use mBuildMatrices
+    use mParameters
+    use mMeasurements
+
+    implicit none
+
+    integer ( ip ) :: row = 0
+
+    type :: results
+        real ( rp ), dimension ( 1 : n )           :: a          = zero
+        real ( rp ), dimension ( 1 : n )           :: epsilon    = zero
+        real ( rp )                                :: r2         = zero
+        character ( len = 9 ), dimension ( 1 : n ) :: descriptor = [ 'intercept', &
+                                                                     'slope    ' ]
+    contains
+        private
+        procedure, public :: compute_results
+    end type results
+
+contains
+
+    subroutine compute_results ( me, myMatrices, myMeasurements )
+
+        class ( results ), target               :: me
+
+        type ( matrices ),     intent ( in )    :: myMatrices
+        type ( measurements ), intent ( inout ) :: myMeasurements
+
+!           fit parameters
+            me % a = matmul ( myMatrices % ASAinv, myMatrices % B )
+            me % a = matmul ( myMatrices % ASAinv, myMatrices % B )
+
+!           errors
+            myMeasurements % residuals = myMeasurements % y - me % a ( 1 ) &
+                                       - myMeasurements % x * me % a ( 2 )
+            me % r2 = dot_product ( myMeasurements % residuals, &
+                                    myMeasurements % residuals )
+            me % epsilon = [ ( myMatrices % ASAinv ( row, row ), row = 1, n ) ]
+            me % epsilon = sqrt ( me % epsilon * me % r2 / ( m - n ) )
+
+    end subroutine compute_results
+
+end module mResults
+\end{lstlisting}
+
+
+%\footnotesize{
+%\begin{verbatim}
+%! respect load order
+%include 'sharedModules/mod precision definitions.f08'
+%include 'sharedModules/mod parameters.f08'
+%include 'sharedModules/mod data structures.f08'
+%include 'sharedModules/mod intermediates definitions.f08'
+%include 'sharedModules/mod build matrices.f08'
+%include 'sharedModules/mod compute results.f08'
+%
+%program bevington
+%
+%!   order irrelevant
+%    use mPrecisionDefinitions
+%    use mParameters
+%    use mDataStructures
+%    use mIntermediatesDefinitions
+%    use mBuildMatrices
+%    use mResults
+%
+%    implicit none
+%
+%    integer ( ip ) :: k = 0
+%
+%    type ( measurements )  :: myMeasurements
+%    type ( intermediates ) :: myIntermediates
+%    type ( matrices )      :: myMatrices
+%    type ( results )       :: myResults
+%
+%        call myMeasurements  % load_data             ( ) 
+%        call myIntermediates % compute_intermediates ( myMeasurements )
+%        call myMatrices      % build_matrices        ( myIntermediates )
+%        call myResults       % compute_results       ( myMatrices, myMeasurements )
+%
+%        do k = 1, n
+%            print *, myResults % descriptor ( k ), " = ", myResults % a ( k ), &
+%                                                   "+/-", myResults % sigma ( k )
+%        end do
+%
+%end program bevington
+%\end{verbatim}}
+
+The compilation command is
+{\footnotesize{
+\begin{verbatim}
+$ gfortran  -Wall -Wextra -Wconversion -Og -pedantic -fcheck=bounds \\
+    -fbacktrace -g  -fmax-errors=5 xbevington.f08
+\end{verbatim}}}
+and execution results are
+{\footnotesize{
+\begin{verbatim}
+$ ./a.out
+  intercept =    4.8138888888888971      +/-   4.8862063121833534
+  slope     =    9.4083333333333314      +/-  0.86830164765636075
+\end{verbatim}}}
+How good are these numerical values? With arbitrary precision computation we are able to measure the full precision of a computation:
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{array}{lll}
+       %
+       \text{Fortran}             & 4.8138888888888\mg{971}    & 9.40833333333333\mg{14} \\
+       %
+       \text{Arbitrary precision} & 4.813888888888888888888889 & 9.408333333333333333333333
+       %
+    \end{array}
+  \end{equation*}
+ 
+\section{Octave}  %    S    S    S    S    S    S    S    S    S
+The open-source program Octave offers a nice set of tools applicable to numerical linear algebra as seen by the following screen session. The first line creates a column vector of data, and the second line measures the length. This returns $m$, the number of measurements. Because the measurements are on a regular mesh, the vector $x$ can be generated easily with an array command as seen in 3. There are a few ways to compute a vector of 1's and in line 4 we chose to exploit vector arithmetic.
+{\footnotesize{\begin{verbatim}
+octave:1> T = [ 156; 175; 366; 438; 582; 616; 642; 704; 988 ] / 10;
+octave:2> m = length( T );
+octave:3> x = 1 : m;
+octave:4> ones = x - x + 1;
+octave:5> A = [ ones ; x ].';
+\end{verbatim}}}
+Three different solution methods follow. The first, in line 6, matches \eqref{eq:bev normal}. The next method, line 7, exploits the ease of the backslash command in  solving linear systems. Finally, in line 8, there is a direct application of the pseudoinverse matrix using the command \texttt{pinv}.
+{\footnotesize{\begin{verbatim}
+octave:6> a = inv( A.' * A ) * ( A.' * T )
+a =
+
+   4.8139
+   9.4083
+
+octave:7> a = A.' * A \ A.' * T
+a =
+
+   4.8139
+   9.4083
+
+octave:8> a = pinv( A ) * T
+a =
+
+   4.8139
+   9.4083
+\end{verbatim}}}
+
+\section{Excel 2011}  %    S    S    S    S    S    S    S    S    S
+Spreadsheet toolkits can solve the example problem. Figure \ref{fig:bevington xl} shows one method of solution.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 5in ]{\pathgraphics "bevington classic"/"bevington excel"} 
+   \caption{Bevington's example solved in Excel using the normal equations.}
+   \label{fig:bevington xl}
+\end{figure}
+
+Table \ref{tab:bevington named ranges} details the named ranges. Table \ref{tab:bevington named variables} details the named variables.
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Named ranges.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        name & data range & formula \\\hline
+        %
+        {\texttt{ x }}          & {\texttt{ B2:B10 }} \\
+        %
+        {\texttt{ y }}          & {\texttt{ C2:C10 }} \\
+        %
+        {\texttt{ prediction }} & {\texttt{ E2:E10 }} & {\texttt{ =  intercept + x * slope }} \\
+        %
+        {\texttt{ residuals }}  & {\texttt{ F2:F10 }} & {\texttt{ =  y - prediction }}\\
+        %
+        {\texttt{ astara }}     & {\texttt{ D17:E18 }} \\
+        %
+        {\texttt{ astara\_inv }} & {\texttt{ F17:G18 }} \\
+        %
+        {\texttt{ b }}          & {\texttt{ H17:H18 }} \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:bevington named ranges}
+  \end{table}%
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Named variables.}
+    \begin{center}
+      \begin{tabular}{ll}
+        %
+        name & formula \\\hline
+        %
+        {\texttt{ m }}           & {\texttt{ =  COUNT( x ) }} \\
+        %
+        {\texttt{ sx }}          & {\texttt{ =  SUM( x ) }} \\
+        %
+        {\texttt{ sx2\_ }}       & {\texttt{ =  SUMPRODUCT( x, x ) }} \\
+        %
+        {\texttt{ sy }}          & {\texttt{ =  SUM( y ) }} \\
+        %
+        {\texttt{ sxy }}         & {\texttt{ =  SUMPRODUCT( x, y ) }}\\
+        %
+        {\texttt{ determinant }} & {\texttt{ =  m * sx2\_ + sx\char`\^2 }} \\
+        %
+        {\texttt{ r\char`\^2 }}  & {\texttt{ =  SUMSQ( residuals ) }} \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:bevington named variables}
+  \end{table}%
+
+The product matrix $\wx{*}$ has the expression
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \texttt{astara} = \mat{ll}{ \texttt{m} & \texttt{sx} \\ \texttt{sx} & \texttt{sx\_}}.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The inverse matrix, $\paren{\wx{*}}^{-1}$, is defined using an intrinsic command
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \texttt{astara\_inv} = \texttt{MINVERSE( astara )}.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The data vector is
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \texttt{b} = \mat{l}{ \texttt{sy} \\ \texttt{sxy} }.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+The solution is a matrix--vector multiplication \texttt{MMULT( astara\_inv, b )}, and the individual entries are named \texttt{intercept} and \texttt{slope}. The error term, $\eps$, is the only instance where cell addressing is used. For instance, the term $\eps_{0}$ is computed using \texttt{=  SQRT( r\_2 / ( m - 2 ) * F17 )}, where \texttt{F17} is the first term on the diagonal of $\paren{\wx{*}}^{-1}$.
+
+\endinput

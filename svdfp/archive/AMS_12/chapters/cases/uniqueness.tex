@@ -1,0 +1,52 @@
+\section{Is the SVD unique?}
+Is the SVD unique? The matrix of singular values $\sig{}$ is always unique. This implies that the embedded diagonal submatrix $\SS{}$ is unique. But the domain decomposition matrices $\X{}$ and $\Y{}$ are, in general, not unique.
+
+\subsection{The orthogonal complement}
+Think in the familiar world of $\real{3}$ and consider the perpendicular component of the $z-$axis, the $x-y$ plane.
+
+The most natural decomposition is along the unit vectors $\hat{x}$ and $\hat{y}$. Of course and set of perpendicular vectors in the plane will work. For example, these vectors could be rotated by an arbitrary angle $\theta$ like so:
+\begin{equation}
+  \R{}(\theta)\mat{c|c}{\hat{x}&\hat{y}}=
+  \mat{rr}
+  {
+   \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta
+   }
+   \itwo =
+  \mat{rr}
+  {
+   \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta
+   } =
+   \mat{c|c}{\hat{x}'&\hat{y}'}.
+\end{equation}
+Reflections of the coordinates are also suitable decompositions. We could reflect through the $y-$axis
+\begin{equation}
+  \mat{c|c}{\hat{x}&\hat{y}} =
+  \mat{rr}{-1&0\\0&1}\mat{c|c}{\hat{x}&\hat{y}} = \mat{c|c}{-\hat{x}'&\hat{y}'},
+\end{equation}
+reflect through the $x-$axis
+\begin{equation}
+  \mat{c|c}{\hat{x}&\hat{y}} =
+  \mat{rr}{1&0\\0&-1}\mat{c|c}{\hat{x}&\hat{y}} = \mat{c|c}{\hat{x}'&-\hat{y}'},
+\end{equation}
+reflect through the line $y=x$
+\begin{equation}
+  \mat{c|c}{\hat{x}&\hat{y}} =
+  \mat{rr}{-1&0\\0&-1}\itwo = \mat{c|c}{-\hat{x}&-\hat{y}},
+\end{equation}
+or reflect through a line of arbitrary slope through the origin.
+
+But these are all operations on the orthogonal complement which are stenciled out by the $\sig{}$ matrix.
+
+What about the active components? Are there transformation matrices $\T{y}$ and $\T{x}$ such that
+\begin{equation}
+  \svdax{*} = \T{y}\,\Y{}\,\sig{}\,\T{x}\,\X{}?
+\end{equation}
+
+Isn't this equivalent to
+\begin{equation}
+  \T{y}\,\Y{}\,\sig{}\,\T{x}=\I{n}?
+\end{equation}
+
+
+
+\endinput

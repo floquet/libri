@@ -1,0 +1,83 @@
+\subsection{Nilpotent matrices}
+%
+\begin{equation}
+  \A{k} = \zero, \quad k=2,3,4,\dots
+\end{equation}
+
+Typically, textbooks use an example where the matrix is upper (or lower) triangular and has a zero diagonal. In this manner, each successive power has fewer and fewer entries; the zeros overwhelm the matrix. This makes multiplication by hand much easier.
+
+By way of example, let us turn our attention to a type of nilpotent matrices expounded by Mercer \cite{Mercer}.
+%
+\begin{equation*}
+ \A{} = \mat{cccccr}{
+  2 & 2 & 2 & 2 & 2 & -5 \\
+  8 & 1 & 1 & 1 & 1 & -6 \\
+  1 & 8 & 1 & 1 & 1 & -6 \\
+  1 & 1 & 8 & 1 & 1 & -6 \\
+  1 & 1 & 1 & 8 & 1 & -6 \\
+  1 & 1 & 1 & 1 & 8 & -6 }
+\end{equation*}
+%
+\begin{equation*}
+ \A{2} = \recip{7}
+ \mat{cccccr}{
+  3 & 3 & 3 & 3 & -4 & -4 \\
+  3 & 3 & 3 & 3 & -4 & -4 \\
+  9 & 2 & 2 & 2 & -5 & -5 \\
+  2 & 9 & 2 & 2 & -5 & -5 \\
+  2 & 2 & 9 & 2 & -5 & -5 \\
+  2 & 2 & 2 & 9 & -5 & -5 }
+\end{equation*}
+%
+\begin{equation*}
+ \A{3} = \recip{49}
+ \mat{cccccr}{
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  10 & 3 & 3 & -4 & -4 & -4 \\
+  3 & 10 & 3 & -4 & -4 & -4 \\
+  3 & 3 & 10 & -4 & -4 & -4 }
+\end{equation*}
+%
+\begin{equation*}
+ \A{4} = \recip{343}
+ \mat{ccrrrr}{
+ 5 & 5 & -2 & -2 & -2 & -2 \\
+ 5 & 5 & -2 & -2 & -2 & -2 \\
+ 5 & 5 & -2 & -2 & -2 & -2 \\
+ 5 & 5 & -2 & -2 & -2 & -2 \\
+ 11 & 4 & -3 & -3 & -3 & -3 \\
+ 4 & 11 & -3 & -3 & -3 & -3 } \\
+\end{equation*}
+%
+\begin{equation*}
+ \A{5} = \recip{2401}
+ \mat{crrrrr}{
+ 6 & -1 & -1 & -1 & -1 & -1 \\
+ 6 & -1 & -1 & -1 & -1 & -1 \\
+ 6 & -1 & -1 & -1 & -1 & -1 \\
+ 6 & -1 & -1 & -1 & -1 & -1 \\
+ 6 & -1 & -1 & -1 & -1 & -1 \\
+ 12 & -2 & -2 & -2 & -2 & -2 } \\
+\end{equation*}
+%
+\begin{equation*}
+ \A{6} = \recip{49}
+ \mat{cccccr}{
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  4 & 4 & 4 & -3 & -3 & -3 \\
+  10 & 3 & 3 & -4 & -4 & -4 \\
+  3 & 10 & 3 & -4 & -4 & -4 \\
+  3 & 3 & 10 & -4 & -4 & -4}
+\end{equation*}
+%
+\begin{equation*}
+ \A{6} = \zero
+\end{equation*}
+
+%%%%%%
+\input{chapters/examples/"tab nilpotent"}        % table
+
+\endinput

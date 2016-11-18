@@ -1,0 +1,73 @@
+\section{Computing the SVD}
+At the heart of the \asvd \ is an eigenvalue problem. But not the most general case of the eigenvalue problem; as the matrix is Hermitian the eigenvalues are real. The square roots of these real eigenvalues are the singular values. When the target matrix $\A{}$ is square, the singular values are the eigenvalues of $\A{}$. In one sense then, the singular values are an extension of the concept of an eigenvalue to rectangular matrices.
+
+As with any mathematical procedure, there may be properties that we may exploit to simplify process. One must be careful not to confuse shortcuts with complexity. The steps above will always work and should be viewed as the foundation of computing the SVD. Mathematical insight will often present a path which requires less effort. But first we present the general method of construction in table \eqref{tab:svd flow chart} with the details given here.
+%%%
+\begin{enumerate}
+%
+  \item Start with the target matrix $\A{}$ and form the Hermitian conjugate $\A{*} = \overline{\A{T}}$ by first taking the transpose, then taking the complex conjugate of each entry. Next form the product matrix $\wxe{*}$.
+%
+  \item Find the eigenvalue spectrum of the product matrix. Because the product matrix is Hermitian, these values are real. List the values in descending order. Truncate the list to remove zero values. The list will contain $\rho$ entries. The singular values are the square root of the eigenvalues.
+%
+  \item These singular values are the entries in the diagonal matrix $\ess{}$:
+\begin{equation}
+  \ess{}_{kk} = \sigma_{k} = \sqrt{\lambda_{k}}, \quad k = 1:\rho
+\end{equation}
+%
+  \item Compute the right singular vectors $\bvk$. They are the eigenvectors of $\wx{*}$ corresponding to each $\sigma_{k}$.
+%
+  \item These vectors $\bvk$ are the $\rho$ column vectors of $\bvr{}$, the range component of the \emph{domain} matrix.
+%
+  \item Construct the left singular vectors $\buk$ using the relation
+\begin{equation}
+  \buk = \sigma_{k}^{-1} \A{}\, \bvk, \quad k = 1:\rho.
+\end{equation}
+%
+  \item These vectors $\buk$ are the $\rho$ column vectors of $\bur{}$, the range component of the \emph{codomain} matrix.
+%
+  \item Assemble and verify the decomposition. This will reveal most sign errors and other common mistakes.
+%
+\end{enumerate}
+%%%
+To build a full \asvd, we need to resolve the \ns s with an orthonormal span. While the SVD process forces an alignment and scale resolution between the range spaces $\brnga{}$ and $\brnga{*}$, there is no corresponding connection between the range spaces $\rnlla{*}$ and $\rnlla{}$. The only requirement is that the \ns s be spanned with an orthonormal set. The first tool to find such a span is the Gram-Schmidt process. 
+
+The additional steps to build a complete SVD are indicated with the light gray arrows and are not numbered.
+%%%
+\begin{enumerate}
+%
+  \item After step 3: complete the sabot matrix to form $\sig{}$, the matrix between $\U{}$ and $\V{*}$. By conformity arguments, this matrix must have the same shape as $\A{}$, yet the matrix $\ess{}$ is square. We need to pad the singular values matrix with zero matrices. The dimensions of the components are these
+\arrayrulecolor{medgray}
+\begin{equation}
+  \text{dim }\sbe{} = 
+  \mat{c|c}{ \rho \times \rho &  \rho \times \paren{n-\rho} \\[1pt]\hline \paren{m-\rho} \times \rho & \paren{m-\rho} \times \paren{n-\rho} }
+\end{equation}
+\arrayrulecolor{black}
+%
+  \item After step 5: Find an orthonormal span for $\rnlla{}$. One method is feed the Gram-Schmidt process the $\rho$ vectors $\bvk$ and complete them with a dummy set of $n-\rho$ vectors of length $n$.
+%
+  \item After step 6: Find an orthonormal span for $\rnlla{*}$. Again, one may call upon the Gram-Schmidt process. Here start with the $\rho$ vectors $\buk$ and complete them with a dummy set of $m-\rho$ vectors of length $m$.
+%
+\end{enumerate}
+%%%
+ 
+%%%%%%
+\input{chapters/"computing the svd I"/"tab computational elements"}  % table
+We know have a flow chart for general method for computing the \asvd \ of a matrix. The steps show how that to resolve the four fundamental subspace: the range and \ns s for the matrices $\A{}$ and $\A{*}$.
+
+Rather than commit these mechanistic steps to memory, one should should concentrate on how the SVD is resolving the fundamental subspaces. The elegance of the SVD flows from this simplicity.
+%%%
+\begin{enumerate}
+%
+  \item Compute the singular values.
+  \item Compute the left-eigenvectors which span $\brnga{}$.
+  \item Compute the right-eigenvectors which span $\brnga{*}$.
+  \item Compute the left- and right-nullvectors which span $\rnlla{*}$ and $\rnlla{}$.
+%
+\end{enumerate}
+%%%
+The power of the SVD flows from the fact that the SVD also resolves the alignment of the range spaces and the scale factors connecting them.
+
+The next chapter will present examples for the three sample matrices in painstaking detail. Readers are encouraged to follow along with pencil and paper. 
+
+
+\endinput

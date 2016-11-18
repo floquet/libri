@@ -1,0 +1,38 @@
+\chapter[SVD with eigenvalues]{General case: SVD with eigenvalues}
+\label{chap:general}
+The general method for finding the \svdp \ demands finding the eigenvalues of either product matrix, $\W{x}$ or $\W{y}$. As we will see later, every matrix has a \svdl, and so having a robust general method guarantees that we can resolve every matrix into the component matrices.
+
+%%
+\section{Comparing two SVD strategies}
+In the previous chapter we saw a quick and pedagogical method for composing an SVD. It clearly demonstrated the resolution of the domain and codomain and emphasized the elementary nature of the decomposition.
+
+However, there are some shortcomings to the method: 
+\begin{enumerate}
+\item the essence of the singular values is obscured;
+\item the method is not universal.
+\end{enumerate}
+
+While both methods rely upon augmented reduction, the general method also requires solving an eigensystem.
+
+Table \eqref{tab:3:comparex} compares the simple method of the first chapter with the general method that we are about to explore. In this form the differences in strategy seem innocuous. In fact, the conception of the general method is comparable to the conception of the simple method. However, the general method requires solving an eigensystem. It is the resolution of the eigenvalues and eigenvectors for the product matrix that can make practical decompositions so daunting. 
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|cclll }
+ & {\it construct} & {\it solve for} & {\it method} & {\it pros} & {\it cons} \\ \hline
+ 1 & $\X{}$, $\Y{}$ & $\Sigma$ & augmented reduction & easy & special cases \\[3pt]
+ 2 & $\X{}$, $\Sigma$ & $\Y{}$  & eigenvalue problem  & difficult & universal \\[3pt]\hline
+\end{tabular}
+\end{center}
+\label{tab:3:comparex}
+\caption{Comparing two strategies for the SVD. The easy method of chapter 1 is on top; the general method on the bottom.}
+\end{table}%
+
+%%
+\input{chapters/general/method_gen}
+\input{chapters/general/S}
+\input{chapters/general/problem_gen}
+\input{chapters/general/observations_gen}
+\input{chapters/general/exercises}
+
+\endinput

@@ -1,0 +1,287 @@
+\section{Linear regression}
+
+\subsection{Formulation}
+Given a system a set points of the form $(x_{k}, y_{k})$, $k=1,2,\dots,m$ where the integer $m>2$, find the linear equation
+  % = =  e q u a t i o n
+  \begin{equation}
+    y(x) = \alpha_{0} + \alpha_{1}x
+  \end{equation}
+  % = =
+which best describes the data in the $2-$norm. The corresponding linear system is this
+\begin{equation}
+  \begin{split}
+    \A{} \alpha &= y \\
+    \mat{cc}{1 & x_{1}  \\ 1 & x_{2} \\ \vdots & \vdots \\ 1 & x_{m} }
+    \mat{c}{ \alpha_{0} \\ \alpha_{1} } &=
+    \mat{c}{ y_{1} \\ y_{2} \\ \vdots \\ y_{m} } .
+  \label{eq:linear model}
+  \end{split}
+\end{equation}
+Here $\alpha_{0}$ represents the intercept and $\alpha_{1}$ represents the slope.The solution vector $\alpha\in\cmplx{2}$, and the data vector $(x,y)\in\cmplx{m\times 2}$. 
+
+What will the \asvd \ for the system matrix $\A{}$ look like? In block form we see
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{} = \csvdblockbc{*} .
+  \end{equation}
+  % = =
+
+
+\subsection{Least squares solution}
+By hypothesis we have $\A{}\in\cmplx{m\times 2}_{2}$, that is $\lst{m,n,\rho} = \lst{m,2,2}$. The system is overdetermined  when $m>2$ with at least three distinct $x$ values. Then we have the normal equations solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \alpha = \paren{\wx{*}}^{-1}\A{*}y.
+  \label{eq:product matrix}
+  \end{equation}
+  % = =
+This solution can be recast in terms of the input data. In column form the system matrix in \eqref{eq:linear model}
+is written as
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{} = \mat{cc}{\mathbf{1} & x }
+  \end{equation}
+  % = =
+which implies that the product matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \wx{*} = \thatmat{}
+           = \mat{cc}{m & \sum_{k=1}^{m}x_{k} \\
+                      \sum_{k=1}^{m}x_{k} & \sum_{k=1}^{m}x_{k}^{2} } .
+  \label{eq:wxthatmat}
+  \end{equation}
+  % = =
+This is enough to complete the solution:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{\alpha_{0} \\ \alpha_{1}} =
+    \paren{ \paren{\oto}\paren{\xtx} - \paren{\otx}^{2}}^{-1}
+    \mat{rr}{\xtx & -\otx \\
+            -\otx &  \oto }
+    \mat{c}{ \mathbf{1}^\mathrm{T}y \\  x^\mathrm{T}y} .
+  \end{equation}
+  % = =
+
+One of the most powerful aspects of the method of least squares is the virtue that the quality of the fit parameters is quantified. Lamentably, this quantification is often overlooked. The residual error vector and uncertainties are calculated in this fashion:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      r &= \A{}\alpha - y, \\
+      \eps^{2} &= \frac{r^{\mathrm{T}} r}{\oto-2} \,\textit{diag}\paren{\paren{\wx{*}}^{-1}} .
+    \end{split}
+    \label{eq:lr errors}
+  \end{equation}
+  % = =
+The final result would be quoted as having intercept $\alpha_{0}\pm\eps_{0}$ and slope $\alpha_{1}\pm\eps_{1}$.
+The corresponding errors are
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{\eps_{0} \\ \eps_{1}} = \sqrt{\frac{r \cdot r}{\paren{\oto-2}\paren{\paren{\oto}\paren{\xtx} - \paren{\otx}^{2}}}}
+    \sqrt{\mat{c}{\xtx \\ \oto}}
+  \end{equation}
+  % = =
+
+\subsection{SVD}
+Using the \asvd \ the solution to the linear regression problem is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \alpha = \Ap y = \bvr{} \ess{-1} \bur{*}\, y.
+  \end{equation}
+  % = =
+The task at hand is to use the input vectors $\mathbf{1}$ and $x$ to construct the decomposition matrices. The order of battle follows.
+\begin{enumerate}
+\item Construct the singular values $\sigma{} = \sqrt{\lambda\paren{\wx{*}}}$ .
+\item Construct the domain matrix   $\bvr{}$ exploiting the decomposition for $\wx{*}$.
+\item Construct the range space components of the codomain matrix $\bur{}$ exploiting the decomposition for $\A{*}$.
+\item Construct the null space components of the codomain matrix $\run{}$ using the Gram-Schmidt process.
+\end{enumerate}
+
+\subsubsection{Singular values}
+The characteristic polynomial for the product matrix is
+  % = =  e q u a t i o n
+  \begin{equation}
+  \begin{split}
+    p \paren{\lambda} 
+      &= \lambda^{2} - \lambda \, \trace \paren{\wx{*}} + \det \paren{\wx{*}}, \\
+      &= \lambda^{2} - \lambda \, \paren{\oto + \xtx}   + \paren{\oto} \paren{\xtx} - \paren{\otx}^{2} .
+  \end{split}
+  \end{equation}
+  % = =
+The singular value spectrum is given by the square root of the eigenvalue spectrum for the product matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sigma = \sqrt{\half \paren{\oto+\xtx \pm \sqrt{4\paren{\otx}^{2} - \paren{\oto-\xtx}^{2}}}} .
+  \end{equation}
+  % = =
+
+\subsubsection{Domain matrix}
+To find the domain matrix we exploit the \asvd \ of the product matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} \ess{2} \bvr{*} = \wx{*} .
+    \label{eq:decompwx}
+  \end{equation}
+  % = =
+Since $\bvr{}\in SL\paren{2,C}$ we posit the form
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} = \rot{\theta}
+    \label{eq:vrot}
+  \end{equation}
+  % = =
+The objective is to find the angle $\theta$. The immediate result of equations \eqref{eq:wxthatmat}, \eqref{eq:decompwx}, and \eqref{eq:vrot} is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \rot{\theta} \ess{2} \rot{\theta}^{\mathrm{T}} &= \wx{*}, \\
+      \mat{cc}{\sigma_{1}^{2}\costs + \sigma_{2}^{2}\sints & \paren{\sigma_{1}^{2} - \sigma_{2}^{2}}\cst \\
+             \paren{\sigma_{1}^{2} - \sigma_{2}^{2}}\cst & \sigma_{2}^{2}\costs + \sigma_{1}^{2}\sints } &=
+    \thatmat{} .
+    \end{split}
+  \end{equation}
+  % = =
+which presents multiple solution paths for $\theta$. For example
+  % = =  e q u a t i o n
+  \begin{equation}
+    \cost = \sqrt{\frac{\sigma_{2}^{2} - \oto}{\sigma_{2}^{2} - \sigma_{1}^{2}}} = \sqrt{\frac{\xtx - \sigma_{1}^{2}}{\sigma_{2}^{2} - \sigma_{1}^{2}}} .
+    \label{eq:costtheory}
+  \end{equation}
+  % = =
+The domain matrix is now
+  % = =  e q u a t i o n
+  \begin{equation}
+    \V{} = \bbvr{} = \bl{\paren{\sigma_{2}^{2} - \sigma_{1}^{2}}^{-\half}
+           \mat{rr}{\sqrt{\sigma_{2}^{2}-\oto} & -\sqrt{\oto-\sigma_{1}^{2}} \\ \sqrt{\oto-\sigma_{1}^{2}} & \sqrt{\sigma_{2}^{2}-\oto}}} .
+  \end{equation}
+  % = =
+Given that the product matrix decomposition in \eqref{eq:decompwx} is a \asvd \ we can trivially write the inverse matrix as
+  % = =  e q u a t i o n
+  \begin{equation}
+    \paren{\wx{*}}^{-1} = \bvr{} \ess{-2} \bvr{*}
+  \end{equation}
+  % = =
+
+The error terms in \eqref{eq:lr errors} become
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \eps^{\mathrm{T}} &= \sqrt{ \frac{r^{\mathrm{T}}r}{\paren{\oto-2}\paren{\sigma_{1}\sigma_{2}}} }
+                           \sqrt{\mat{c}{ \frac{\costs}{\sigma_{2}^{2}} + \frac{\sints}{\sigma_{1}^{2}} \\
+                           \frac{\costs}{\sigma_{1}^{2}} + \frac{\sints}{\sigma_{2}^{2}}}}, \\
+                        &= \sqrt{ \frac{r \cdot r}{\paren{\oto-2}} }
+                           \sqrt{\mat{c}{ \sigma_{1}^{2} - \sqrt{\paren{\sigma_{2}^{2} - \oto} \paren{\sigma_{2}^{2} - \sigma_{1}^{2}}} \\
+                                          \sigma_{2}^{2} + \sqrt{\paren{\sigma_{2}^{2} - \oto} \paren{\sigma_{2}^{2} - \sigma_{1}^{2}}} }}.
+    \end{split}
+  \end{equation}
+  % = =
+
+
+\subsubsection{Codomain matrix}
+The final component is of course the codomain matrix. Knowing the decomposition for the adjoint matrix $\A{*}$ and that the linear system is overdetermined we can write
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bur{*} = \ess{-1} \bvr{*} \A{*} .
+  \end{equation}
+  % = =
+The $k$th column vector of this matrix has the compact form
+  % = =  e q u a t i o n
+  \begin{equation}
+    \brac{\bur{*}}_{k} = \bl{\paren{\sigma_{1}^{2}-\sigma_{2}^{2}}^{-\half}
+      \mat{c}{ \sigma_{1}^{-2} \paren{\sqrt{\sigma_{2}^{2} - \oto} - x\sqrt{\oto - \sigma_{1}^{2}}} \\
+               \sigma_{2}^{-2} \paren{\sqrt{\sigma_{2}^{2} - \oto} + x\sqrt{\oto - \sigma_{1}^{2}}} } }.
+  \end{equation}
+  % = =
+Completing the codomain matrix with an orthonormal span of the null space is optional and can be done by feeding the range space components and a complementary set of unit vectors into a Gram-Schmidt algorithm.
+
+\subsubsection{Error terms}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \eps_{k}^{2} = \frac{\paren{\A{}\alpha - y}^{\mathrm{T}}\paren{\A{}\alpha - y}} {m-n} \brac{\paren{\wx{*}}^{-1}}_{kk}
+  \end{equation}
+  % = =
+
+\subsection{Bevington example}
+As an illustration consider the example in Bevington's book \cite[p. 93]{Bevington}. There are nine measurements $\paren{x,y}$; the relevant vectors are these
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mathbf{1} = \mat{c}{1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1}, \quad
+    x          = \mat{c}{1 \\ 2 \\ 3 \\ 4 \\ 5 \\ 6 \\ 7 \\ 8 \\ 9}, \quad
+    y          = \mat{c}{15.6   \\ 17.5 \\ 36.6 \\ 43.8  \\ 58.2 \\ 61.6 \\ 64.2 \\ 70.4 \\ 98.8}.
+  \end{equation}
+The least squares solution for the intercept is $\alpha_{0} = 4.8 \pm 4.9$, and for the slope $\alpha_{1} = 9.41 \pm 0.87$.
+
+Now onto the \asvd \ for the system matrix. The product matrix is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \wx{*} = \mat{cc}{ 9 & 45 \\ 45 & 285 }.
+  \end{equation}
+  % = =
+These eigenvalues produce the singular values
+\begin{equation}
+  \begin{split}
+    \sigma = \sqrt{3\paren{49 \pm \sqrt{2341}}} \approx \lst{17.09, 1.360}.
+  \end{split}
+\end{equation}
+The domain matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} = \bl{\mat{rr}{ \bevrotm{} & - \bevrotp{} \\ \bevrotp{} & \bevrotm{} }}
+             \approx \mat{rr}{0.157 & -0.988 \\ 0.988 & 0.157 }
+  \end{equation}
+  % = =
+Let $\xi_{\pm} = \sqrt{\half \pm \frac{23} {\sqrt{2341}}}$
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bvr{} = \bl{\mat{rr}{\xi_{-} & -\xi_{+} \\ \xi_{+} & \xi_{-}} }
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bur{} = \bl{\paren{6\sqrt{10}}^{-1}
+    \mat{rr}{ \urowmmp{68}{3212} \\
+              \urowmmp{47}{2003} \\
+              \urowmmp{32}{968} \\
+              \urowmmp{23}{107} \\
+              \urowpmm{50}{580} \\
+              \urowpmm{23}{1093} \\
+              \urowppm{32}{1432} \\
+              \urowppm{47}{1597} \\
+              \urowppm{68}{1588} } }
+  \end{equation}
+  % = =
+If one wishes to complete the codomain matrix, use the Gram-Schmidt orthonormalization process on the matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \U{} = \mat{ccccccccc}{ \brac{\bur{}}_{1} & \brac{\bur{}}_{2} & \rd{e_{1,9}} & \rd{e_{2,9}} & \rd{e_{3,9}} & \rd{e_{4,9}} & \rd{e_{5,9}} & \rd{e_{6,9}} & \rd{e_{7,9}} }
+  \end{equation}
+  % = =
+starting with column three.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/examples/"least squares"/"Bevington fit"} \\[40pt]
+   \includegraphics[ width = 4in ]{images/examples/"least squares"/"Bevington residuals"} 
+   \caption{The data compared to the linear fit (top) and the residual fit errors (bottom).}
+   \label{fig:Bevington fit and residual errors}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/examples/"least squares"/"bevington merit"} 
+   \caption{The merit function which quantifies the minimization process. The yellow circles mark one, two, and three standard deviations from the solution point.}
+   \label{fig:Bevington merit functions}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 4in ]{images/examples/"least squares"/"bevington shotgun"} 
+   \caption{The perturbed data set.}
+   \label{fig:Bevington perturbed}
+\end{figure}
+
+\clearpage
+
+\subsection{Bevington example}
+
+
+\endinput

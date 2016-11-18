@@ -1,0 +1,28 @@
+%% matrix decompositions
+\newcommand{\BC}[0]   { \B{}   \C{} }
+\newcommand{\QR}[0]   { \Q{}   \R{} }
+\newcommand{\LU}[0]   { \LL{}  \U{} }
+\newcommand{\PA}[0]   { \pee{} \A{} }
+\newcommand{\CS}[0]   { \C{}   \ess{} }
+\newcommand{\polar}[0]{ \W{}   \pee{} }
+
+%% matrix products
+\newcommand{\AZ}[0]   { \A{} \,  \Z{} }
+
+%% qr factors
+\newcommand{\qrng}[1] {\bl{ \Q{#1}_\atomrng }}
+\newcommand{\qnll}[1] {\rd{ \Q{#1}_\atomnll }}
+
+%% EAR
+\newcommand{\EA}[1]   { \textbf{E}_{\A{#1}} }
+\newcommand{\AI}[2]   { \mat{c|c}{\A{#1} & \I{#2}} }
+\newcommand{\ER}[1]   { \mat{c|c}{\EA{#1} & \R{}} }
+\newcommand{\EAR}[2]  { \R{} \AI{#1}{#2}  = \ER{#1} }
+\newcommand{\EARa}[2] { \R{} \AI{#1}{#2} &= \ER{#1} }
+
+%% full rank factorizations
+\newcommand{\CCS}[1]  { \C{} \C{#1} }
+\newcommand{\BSB}[1]  { \B{#1} \B{} }
+
+
+\endinput

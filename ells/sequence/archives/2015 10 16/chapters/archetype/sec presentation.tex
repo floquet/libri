@@ -1,0 +1,279 @@
+\section{\label{sec:bevington example}Bevington's example}
+
+Given a set of measurements which constant best typifies the data?
+
+% SUBSECTION
+\subsection{Trial function}
+His \emph{trial function} is a straight line
+  % = =  e q u a t i o n
+  \begin{equation}
+    y(x) = a_{0} + a_{1} x
+    %\label{eqn:}
+  \end{equation}
+  % = =
+where $a_{0}$ represents the intercept and $a_{1}$ the slope. The \emph{residual error} vector describes the difference between the measurements and the approximation:
+  % = =  e q u a t i o n
+  \begin{equation}
+    r_{k} = \text{measurement}_{k} - \text{prediction}_{k} = y_{k} - y\paren{x_{k}} \qquad k=1:m
+    %\label{eqn:}
+  \end{equation}
+  % = =
+We will see a delightful representation of this vector in chapter ???. The least squares solution is find the set of parameters $a$ which minimize the sum of the squares of the residual errors:
+  % = =  e q u a t i o n
+  \begin{equation}
+    a_{LS} = \lst{a\in\cmplx{2}\colon r^{\mathrm{T}}r \text{ is minimized}} .
+    %\label{eqn:}
+  \end{equation}
+  % = =
+  
+% SUBSECTION
+\subsection{Merit function}
+This leads to the concept of the \emph{merit function}
+  % = =  e q u a t i o n
+  \begin{equation}
+  \begin{split}
+    M(a) 
+      &= \sum_{k=1}^{m} \paren{\text{measurement}_{k} - \text{prediction}_{k}}^{2} \\
+      &= \sum_{k=1}^{m} \paren{y_{k} - y\paren{x_{k}}}^{2} \\
+      &= \sum_{k=1}^{m} \paren{y_{k} - a_{0} - a_{1} x_{k}}^{2}
+    \label{eqn:merit}
+  \end{split}
+  \end{equation}
+  % = =
+The merit function quantifies the quality of the approximation: smaller values are better. For an exact solution $M(a)=0$. We will gain valuable insight into the method of least squares by studying plots of the \emph{solution space}.
+
+The merit function can be minimized with basic calculus by finding where the gradient function $\nabla M$ vanishes. That is look for a solution where the derivatives in the $a_{0}$ direction and the $a_{1}$ direction are simultaneously 0.\footnote{Will these extrema be maxima or minima? In chapter ??? we will learn they must be minima.} Introducing the shorthand
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \partial_{j} M = \frac{\partial M(a_{0}, a_{1})}{\partial a_{j}}
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+the simultaneous equations to solve are
+\begin{equation}
+  \begin{split}
+    \partial_{0} M &= 0, \\
+    \partial_{1} M &= 0,
+  \end{split}
+\end{equation}
+which become
+\begin{equation}
+  \begin{split}
+    -2 \sum_{k} \paren{y_{k} - a_{0} - a_{1}x_{k}}  &= 0, \\
+    -2 \sum_{k} \paren{y_{k} - a_{0} - a_{1}x_{k}} a_{1}  &= 0.
+  \end{split}
+\end{equation}
+
+% SUBSECTION
+\subsection{Linear system}
+This generates a the linear system with $m=9$ measurements and $n=2$ free parameters. Introducing a shorthand for summation, for example
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sum x_{k} = \sum_{k=1}^{m} x_{k} ,
+    %\label{eqn:}
+  \end{equation}
+  % = =
+the linear system can be written as\footnote{A common stumbling block is the realization that $\sum_{k=1}^{m}1 = \underbrace{1+1+\cdots+1}_{m\text{ instances}}=m$.}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \mathcal{A} a &= b, \\
+      \mat{cc}{\sum 1 & \sum x_{k} \\[2pt] \sum x_{k} & \sum x_{k}^{2}}
+      \mat{c}{a_{0} \\ a_{1} } &= 
+      \mat{c}{\sum y_{k} \\[2pt] \sum x_{k}y_{k}}
+    \end{split}
+    \label{eqn:calculus}
+  \end{equation}
+  % = =
+
+The determinant of the matrix $\mathcal{A}$ is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \Delta = \det\paren{\mathcal{A}} = m \sum x_{k}^{2} - \paren{\sum x_{k}}^{2}.
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The solution to equation \eqref{eqn:calculus} is the matrix product
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{a_{0} \\ a_{1} } = \Delta^{-1}
+    \mat{cc}{\sum x_{k}^{2} & -\sum x_{k} \\[2pt] -\sum x_{k} & \sum 1}
+    \mat{c}{\sum y_{k} \\[2pt] \sum x_{k}y_{k}}
+    \label{eqn:bevington solution product}
+  \end{equation}
+  % = =
+Compare the final results to Bevington's equations 6-19:
+\input{\pathequations "eqn bevington solutions"}  %  <  <  <  <  <  <  <
+
+% SUBSECTION
+\subsection{Error propagation}
+Bevington's greatest contribution may be his masterful explanation of error propagation.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+    s^{2} \approx \frac{\rtr{T}} {m-n}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+\input{\pathequations "eqn bevington errors"}  %  <  <  <  <  <  <  <
+
+% SUBSECTION
+\subsection{Data and results}
+The raw data is presented in table \eqref{tab:bevington data and results}, and the results in equation \eqref{eqn:soln vector}.
+\input{\pathtables "tab bevington data and soln"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      a_{0} &= 4.8 \pm 4.9 \quad \text{\ \ \ (intercept)} \\
+      a_{1} &= 9.41 \pm 0.87 \quad \text{(slope)}
+    \end{split}
+    \label{eqn:soln vector}
+  \end{equation}
+% = =
+An alternative presentation is
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      a_{0} &= 4.8 \paren{4.9} \quad \text{\ \ \ (intercept)} \\
+      a_{1} &= 9.41 \paren{0.87} \quad \text{(slope)}
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+The residual error vector is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      r = \frac{1}{360}
+          \mat{r}{-496 \\ 2207 \\ -1282 \\ -487 \\ -2284 \\ -121 \\ 2330 \\ 3485 \\ -3352}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+making the total error
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \rtr{T} = \frac{1\,139\,969}{3600} \approx 317.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The sum of the residuals is zero
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sum r_{k}=0
+    %\label{eqn:}
+  \end{equation}
+  % = =
+As we will see in the next section, this is a general property of the linear regression.
+
+% SUBSECTION
+\subsection{Residuals are zero sum}
+The total value of the residual errors must be zero: $1^{\mathrm{T}}r=0$ as demonstrated here. By definition \eqref{eqn:merit} the sum of the residuals is
+  % = =  e q u a t i o n
+  \begin{equation}
+    \sum r_{k} = \sum_{k=1}^{m}\paren{y\paren{x_{k}}-a_{0}-a_{1}x_{k}} = \sum y\paren{x_{k}} - m a_{0} + a_{1} \sum x_{k}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+By definition of the residuals we have
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sum r_{k} = \sum \paren{y_{k} - y\paren{x_{k}}} 
+        &= \sum \paren{y_{k} - a_{0} - a_{1} x_{k}} \\
+        &= \sum y_{k} - a_{0} m - a_{1} \sum x_{k} \\
+    \end{split}
+    \label{eqn:}
+  \end{equation}
+% = =
+From \eqref{eqn:bevington soln} we see that
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sum r_{k} 
+        &= \Delta^{-1} \paren{\Delta \sum y_{k} 
+          - m\paren{ \sum x_{k}^{2}\sum y_{k} - \sum x_{k}^{2}\sum y_{k}} \right. \\
+        & \qquad \qquad \qquad \quad \phantom{n} \left.- \sum x_{k} \paren{ m \sum x_{k}\sum y_{k} - \sum x_{k}\sum y_{k}}} \\
+        &= \Delta^{-1} \paren{\Delta \sum y_{k} - \Delta \sum y_{k}} \\
+        &= 0
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =  
+showing that the residual errors have zero sum: $\sum r_{k}=0$. In fact because there are two basis functions there are two zero sum conditions. For the linear regression $d=1$ and the two basis functions are
+  % = =  e q u a t i o n
+  \begin{equation*}
+  \begin{split}
+    f_{0}(x) & = 1, \\
+    f_{1}(x) & = x.
+    %\label{eqn:}
+  \end{split}
+  \end{equation*}
+  % = =
+Together the zero sum conditions are
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sum r_{k} f_{0}(x_{k}) &= \sum r_{k} 1 = 0,\\
+      \sum r_{k} f_{1}(x_{k}) &= \sum r_{k} x_{k} = 0.
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+At double precision these values are
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sum r_{k}       &= 1.5987\times 10^{-14}, \\
+      \sum r_{k} x_{k} &= 1.5632\times 10^{-13}. \\
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The equation relating the average value, \eqref{eqn:average}, provide a quick check on the parameters. The average values for the independent values $x$ and the dependent values $y$ are related by
+  % = =  e q u a t i o n
+  \begin{equation}
+    \bar{y} = \alpha_{0} + \alpha_{1} \bar{x}.
+    %\label{eqn:}
+  \end{equation}
+  % = =
+For these data the average values are
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \overline{x} &= 5, \\
+      \bar{y} &\approx 51.8556.
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+% SUBSECTION
+\subsection{Visualization}
+The trial function is plotted against the data in figure \eqref{fig:solution}. One sees the straight line approximation against the data points. The distance between measurement and prediction is the residual error. 
+\input{\pathfigures "fig bevington fit"}
+Plotting solution against the data is a good first step. Stopping at this first step is a bad practice.The next important step is to examine the residuals in a separate plot. Typically the prediction and the residual error have different magnitudes. In this example, the measurements are contained in the interval $[0, 100]$, yet the errors are contained in $[-10,10]$.
+\input{\pathfigures "fig bevington residuals"}
+\input{\pathfigures "fig bevington merit"}  %  <  <  <  <  <  <  <
+\input{\pathfigures "fig bevington error"}  %  <  <  <  <  <  <  <
+
+An elementary way to explore the errors in equations \eqref{eqn:bevington error terms} is to randomly sample the solution space. The following figure shows 250 solution curves from normally distributed random samples, the point being to compare the spread in the data against the spread in the solutions. Given a mean $\mu$ and a standard deviation $\sigma$, the normal distribution takes the form
+	% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      f(x) = e^{-\frac{{\paren{x-\mu}^{2}}}{2\sigma^{2}}} .
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+An example is shown in figure \eqref{fig:random}. For the intercept term, $\mu=4.8$ and $\sigma=4.0$; for the slope term $\mu=4.8$ and $\sigma=4.0$.
+\input{\pathfigures "fig bevington random"}  %  <  <  <  <  <  <  <
+
+We have been sloppy by dividing by a quantity which may be 0.
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"sec XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

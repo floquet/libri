@@ -1,0 +1,85 @@
+	\chapter{SVD and FTOLA}
+
+\section[The Fundamental Theorem]{The Fundamental Theorem of Linear Algebra}
+Part of the elegance and power of the SVD comes from the fact that it provides an orthogonal decomposition of the four fundamental subspaces. There are different ways to label the Four Fundamental Subspaces. There are two range spaces, which are the images of $\A{}$ and $\astar$. Each of these spaces has an orthogonal complement. It may be simply be called the orthogonal complement of the range space, or it may be called a null space.
+
+Consider $\Amnr$ with $x\in\cmplxn$ being a nonzero vector. Every vector of the form $\A{}x$ will be in the range of $\A{}$. That is,
+\begin{equation}
+  \A{}x \in \rng{\A{}}, \quad x\ne\zero.
+\end{equation}
+Similarly, for $y\in\cmplxm$
+\begin{equation}
+  \astar y \in \rng{\astar}, \quad x\ne\zero.
+\end{equation}
+\begin{equation}
+  \A{*}=\A{-1}
+\end{equation}
+\begin{equation}
+  \A{\!*}=\A{\!-1}
+\end{equation}
+
+
+What about $x^{\perp}$ vectors from the orthogonal complement?
+\begin{equation}
+  \A{}x^{\perp} = \zero.
+\end{equation}
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lll}
+  range  & orthogonal \\
+  space & complement & a.k.a \\\hline
+  $\rnga{}$  & $\rnga{}^{\perp}$  & $\nlla{*}$ \\
+  $\rnga{*}$ & $\rnga{*}^{\perp}$ & $\nlla{}$ \\
+\end{tabular}
+\end{center}
+\label{tab:appB:orhcomp}
+\caption[Range space orthogonal complements]{Range space orthogonal complements.}
+\end{table}%
+
+
+\break
+\section{The SVD and the Four Fundamental Subspaces}
+Example: $\Arrr{3}{2}{1}$: a matrix with $m=3$ rows, $n=2$ columns and matrix rank $\rho=1$. The codomain is $\real{3}$, the domain is $\real{2}$.
+
+\begin{equation*}
+  \A{} = \Aexample, \qquad \A{T} = \Atexample
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{CODOMAIN} =\real{m} &= \rng{\A{}} \oplus \nll{\A{T}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1\\1}} \oplus \text{span}\lst{\mat{>{\columncolor{ltgray}}r}{0\\1\\1},\mat{>{\columncolor{ltgray}}r}{2\\1\\-1}}\\
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \text{DOMAIN} =\real{n} &= \rng{\A{T}} \oplus \nll{\A{}}\\
+      &= \text{span}\lst{\mat{r}{1\\-1}} \oplus \text{span}\lst{\mat{>{\columncolor{ltgray}}c}{1\\1}}\\
+  \end{split}
+\end{equation*}
+
+The basis matrix $\Y{}$ is an orthogonal decomposition of the \textit{codomain}.
+
+The basis matrix $\X{}$ is an orthogonal decomposition of the \textit{domain}.
+
+\begin{equation*}
+  \begin{array}{ccccc}
+  \A{} & = & \Y{} & \sig{} & \X{} \\
+    & = & \yft{T} 
+        & \essmatrix{}  
+        & \xtft{T} \\[10pt]
+    & = & \yrn{} 
+        & \essmatrix{} 
+        & \xtrn{T} \\[10pt]
+    & = & \mat{c>{\columncolor{ltgray}}cc}{\sthree \mat{r}{1\\-1\\1} & \stwo \mat{r}{0\\1\\1}\sthree \mat{r}{2\\1\\-1}}
+        & \Sigmaexampleb
+        & \mat{c}{\stwo \mat{rr}{1&-1} \\ \stwo \mat{rr}{1 & \phantom{-}1}}\\[15pt]
+    & = & \Yshade
+        & \Sigmaexampleb
+        & \Xtshade
+  \end{array}  
+\end{equation*}
+
+\endinput

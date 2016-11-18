@@ -1,0 +1,204 @@
+\section{The Fredholm Alternative}
+The Fredholm Alternative is a foundation concept in functional analysis and linear algebra. Far too often this important concept is not presented in linear algebra 
+curricula. Also, many who have encountered the theorem consider it arcane. Perhaps we can expand the perspective.
+
+\subsection{The Theorem}
+As is so often the case, important theorems have equivalent yet vastly different formulations. Simply stated, some statements are more easily assimilated than others. We will look at three different manifestations of the theorem as a case study. As always, pick the formulation which makes the most sense. We will present a functional analysis version of the theorem proof, then a form which more immediately connects to linear algebra, and finally a linear algebra form.
+
+A form close to the Fredholm's postulation is given by the modern master of analysis, Terence Tao
+%\footnote{\paren{A proof of the Fredholm Alternative}, 
+%\begin{verbatim}
+%http://terrytao.wordpress.com/2011/04/10/a-proof-of-the-fredholm-alternative/
+%\end{verbatim}
+%}:
+\begin{thm}[Fredholm Alternative I]
+Let $\mathcal{X}$ be a Banach space, let $\A{}\colon \mathcal{X} \to \mathcal{X}$ be a compact operator, and let $\lambda \in\cmplx{}$ be non-zero. Then exactly one of the following statements hold:
+\begin{enumerate}
+\item (Eigenvalue) There is a non-trivial solution $x\in\mathcal{X}$ to the equation $\A{} x = \lambda x$.
+\item (Bounded resolvent) The operator $\paren{\A{} - \lambda}$ has a bounded inverse $\paren{\A{} - \lambda}^{-1}$ on $\mathcal{X}$.
+\end{enumerate}
+\label{thm:fredholm1}
+\end{thm}
+
+This is ideally stated for someone strong in functional analysis. We can reshape the statement with an eye towards linear algebra.
+
+\begin{thm}[Fredholm Alternative II]
+Let $\mathcal{X}$ be a Banach space, let $\A{}\colon \mathcal{X} \to \mathcal{X}$ be a compact linear operator. Then we have the following:
+\begin{enumerate}
+\item The \ns \ of $\paren{\I{} - \A{}}$ is finite dimensional.
+\item The range of $\paren{\I{} - \A{}}$ is closed.
+\item $\rng{\I{} - \A{}} = \nll{\I{} - \T{*}}^{\perp}$.
+\item $\nll{\I{} - \A{}} = \lst{0} \qiff \rng{\I{} - \A{}} = \mathcal{X}$
+\item $\dim\paren{\nll{\I{} - \A{}}} = \dim\paren{\nll{\I{} - \T{*}}}$
+\end{enumerate}
+\label{thm:fredholm2}
+\end{thm}
+
+The most palatable form for the reading audience should be this one:
+\begin{thm}[Fredholm Alternative III]
+Given a matrix $\A{}\in\cmplx{\by{m}{n}}$ and a non-zero vector $b\in\cmplx{\by{n}{1}}$, then only one of the following statements can be true.
+
+$\ls$ has a solution.
+
+$\A{*}y=0$ has a non-trivial solution where $y^{*}b \ne 0$. 
+\end{thm}
+
+There exists a solution to $\ls$ iff $b\in\nlla{*}^{\perp}$.
+
+There are two perspectives here. The first is to examine the problem in terms of inverses. The second is to examine the fundamental projectors. Of course these perspectives are unified in terms of the \ftola.
+
+Perhaps the most memorable statement will be in the following images.
+
+\subsection{Embid's images}
+Pedro Embid has a deliciously elegant way he represents the Alternative in his functional analysis lectures. His figures are shown below in figure \eqref{fig:16:alternative}.
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cc}
+$\ls$ has a solution &
+$\A{*}y=0$ has a non-trivial solution \\
+\includegraphics[ width = 2.25in ]{pdf/"ch 16"/"Fredholm in"} &
+\includegraphics[ width = 2.25in ]{pdf/"ch 16"/"Fredholm out"} \\
+CODOMAIN, $\cmplxm$ &
+CODOMAIN, $\cmplxm$ \\[10pt]
+$b \in \spn \lst{\yrng{}}$ &
+$b \notin \spn \lst{\yrng{}}$
+\end{tabular}
+\end{center}
+\label{fig:16:alternative}
+\caption[The Fredholm Alternative in pictures]{The Fredholm Alternative in pictures. These two diagrams tell the complete story. On the left, we see the case where the linear system has a unique solution; there is no \ns. On the right, we see the other case where there is a \ns. The exclusive or in the statement is now obvious: $\A{}$ either has a left-hand \ns \ $\nlla{*}$ or it does not.}
+\end{table}%
+
+These pictures tell the whole story. If the data vector is in the range, then we have a solution. If the data vector is not in the range, it must be in the orthogonal complement. This means that there is a left-\ns with a vector $y$ such that
+\begin{equation}
+  y^{\TT}\A{} = \zero.
+\end{equation}
+Or, taking the adjoint of this equation we could write that
+\begin{equation}
+  \A{*}y =\zero^{*}.
+\end{equation}
+
+If we are in the range, we can't tell if there is a \ns. We just know that we have a solution. However if we know that the data is in the \ns, then we know that there is no solution for the linear system.
+
+\subsection{The SVD}
+How do we express the Alternative in terms of the \svdl? The Alternative states that the data vector $b$ is either in the column space of $\A{}$ or it is not. These distinct cases need elaboration.
+\begin{enumerate}
+\item If $b$ is in the column space of $\A{}$, there are two choices:
+\subitem Either the column space spans $\cmplxm$, that is, there is no \ns:
+\begin{equation*}
+  \Y{} = \mat{c}{ \yrng{} }.
+\end{equation*}
+\subitem Or the column space needs a \ns\ to complete $\cmplxm$ and the data vector is in the range space, not the \ns. In this case we have
+\begin{equation*}
+  \Y{} = \yft{*}.
+\end{equation*}
+\item If $b$ is not in the column space of $\A{}$, there must be a \ns\ for the codomain:
+\begin{equation*}
+  \Y{} = \yft{*}.
+\end{equation*}
+\end{enumerate}
+Notice how the crisp distinctions of the Fredholm Alternative are blurred here since in either case we could have a \ns\ for the codomain. If we look at a \svdl, we can't tell which Alternative holds unless there is no \ns\ for the domain. If there is a \ns, we need to test the data vector to see if it is the range space $\yrng{}$ or the \ns\ $\ynll{}$.
+
+For example, consider a matrix with $m=10$ rows. The SVD reveals that two vectors are needed for the \ns\ to complete the codomain.
+\begin{equation}
+  \begin{split}
+     \Y{} &= \yft{*} \\
+     &= \mat{ccc>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{ y_{1} & \dots & y_{8} & y_{9} & y_{10}}
+  \end{split}
+\end{equation}
+Which of the Alternative's cases are we in? We can't tell yet because we have a \ns\ for the codomain. We need to investigate to see if $b$ is in the range or the \ns. If both
+\begin{equation}
+  \begin{split}
+     b\cdot y_{9}  &=0, \\
+     b\cdot y_{10} &=0, \\
+  \end{split}
+\end{equation}
+then the data vector is not in the \ns\ and $\ls$ has a solution.
+
+%%%
+\subsection{Examples}
+Following standard procedure, we look at our example matrices to illuminate the discussion.
+
+\subsubsection{Full rank matrix}
+Consider the full rank example matrix
+\begin{equation}
+  \A{} = \matrixalpha.
+\end{equation}
+We can express the \svdl\ in the following way:
+\begin{equation}
+  \A{} = \yrng{} \ess{} \xrng{*}.
+\end{equation}
+There is no \ns\ for the codomain. 
+
+\textbf{Alternative:} Therefore $\A{}x=b$ has a nonzero solution for every nonzero $b$.
+
+%%%
+\subsubsection{Full row rank matrix}
+Consider the wide matrix
+\begin{equation}
+  \A{} = \matrixbravo.
+\end{equation}
+We can express the \svdl\ in the following way:
+\begin{equation}
+  \A{} = \yrng{} \mat{c|c}{\ess{}&\zero} \xtft{T}.
+\end{equation}
+Here too there is no \ns\ for the codomain 
+
+\textbf{Alternative:} The linear system $\A{}x=b$ has a nonzero solution for every nonzero $b$.
+
+%%%
+\subsubsection{Column rank deficient matrix}
+Now we turn to a matrix which is deficient in both row and column rank
+\begin{equation}
+  \A{} = \Aexample.
+\end{equation}
+The form of the decomposition follows:
+\begin{equation}
+  \A{} = \yft{} \essmatrix{} \xtft{T}.
+\end{equation}
+We can see without having the SVD that the only data vector which allows a solution to the linear system are vectors of the form
+\begin{equation}
+  b = \alpha \mat{r}{1\\-1\\1}
+  \label{eq:16:Fredholm}
+\end{equation}
+where $\alpha$ is our usual arbitrary scalar.\\
+
+\textbf{Alternatives:} 
+\begin{enumerate}
+\item If $b$ has the form in equation \eqref{eq:16:Fredholm} the system has a solution.
+\item If $b$ does not have the form in equation \eqref{eq:16:Fredholm} the system does not have a solution.
+\end{enumerate}
+
+Let's look at the second case and find the \ns\ vector $\gamma$ which satisfies the Fredholm condition $y^{*}\A{} = 0$. Recall that the codomain matrix is given as this:
+\begin{equation}
+  \Y{} = \Yshade = \mat{c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{y_{1} & y_{2} & y_{3}}.
+\end{equation}
+A generic vector with components in both the range and \ns s will be given as this:
+\begin{equation}
+  b = \alpha_{1} y_{1} + \alpha_{2} y_{2} + \alpha_{3} y_{3}.
+\end{equation}
+By construction, this vector is not in the range space, which demands that at least one of the factors $\alpha_{2}$ or $\alpha_{3}$ are nonzero. In this case, the \ns\ vector we are looking for is a linear combination of the all \ns\ vectors:
+\begin{equation}
+  \gamma = a_{1} y_{2} + a_{2} y_{3}.
+\end{equation}
+Explicit computation shows that the Fredholm criteria is satisfied with appropriate choices of the scalars:
+\begin{equation}
+  \gamma^{*} b = \alpha_{1} a_{1} + \alpha_{2} a_{2} \ne 0
+\end{equation}
+where the arbitrary scalars $a$ are chosen to satisfy this equality.
+
+If the data vector is given by this:
+\begin{equation}
+  b = \mat{r}{1\\-1\\1} + \mat{r}{0\\1\\-1} = \mat{r}{1\\0\\0},
+\end{equation}
+the solution vector is given by this:
+\begin{equation}
+  \gamma = \alpha y_{2} = \alpha' \mat{r}{0\\1\\-1}.
+\end{equation}
+In this case we would have the following
+\begin{equation}
+  \gamma^{*} b = 2\alpha'.
+\end{equation}
+If $\alpha'\ne0$ then we have a \ns\ vector which satisfies the second Alternative. If $\alpha'=0$, then the first Alternative is satisfied.
+
+
+\endinput

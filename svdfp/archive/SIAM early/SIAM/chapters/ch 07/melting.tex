@@ -1,0 +1,81 @@
+
+\break
+\clearpage
+
+\section{Fade to gray}
+In this section we study the effect of reducing the contrast. In particular we want to see how the singular value spectrum changes as the contrast is reduced. To do this we gradually force all the pixels to the mean value for the image, here 0.425068. 
+
+Take matrix element with value $x$. We reduce this value to 0.425068 in $n$ steps. The change in each step is then
+\begin{equation}
+  \frac{0.425068 - x}{n}.
+\end{equation}
+During this contrast reduction the image will go from a matrix of rank $\rho = 266$ to final state with $\rho = 1$. What happens in between? How do the domain matrices change? The results are shown in tables \eqref{tab:jordan:images:melt:1} and  \eqref{tab:jordan:images:melt:2.}
+
+\break
+\clearpage
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccccc}
+  $\A{}$ & $=$ & $\Y{}$ & $\sig{}$ & $\X{T}$ \\
+  %%%
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 000 B"} &&
+  \includegraphics[ width = 1.25in ]{pdf/"ch 07"/melting/"melting 010 000 Y"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 000 S"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 000 Xt"} \\
+  %%%
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 004 B"} &&
+  \includegraphics[ width = 1.25in ]{pdf/"ch 07"/melting/"melting 010 004 Y"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 004 S"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 004 Xt"} \\
+  %%%
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 008 B"} &&
+  \includegraphics[ width = 1.25in ]{pdf/"ch 07"/melting/"melting 010 008 Y"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 008 S"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 008 Xt"} \\
+  %%%
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 009 B"} &&
+  \includegraphics[ width = 1.25in ]{pdf/"ch 07"/melting/"melting 010 009 Y"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 009 S"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 009 Xt"} \\
+  %%%
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 010 B"} &&
+  \includegraphics[ width = 1.25in ]{pdf/"ch 07"/melting/"melting 010 010 Y"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 010 S"}  &
+  \includegraphics[ width = 1.02in ]{pdf/"ch 07"/melting/"melting 010 010 Xt"} \\
+\end{tabular}
+\end{center}
+\label{tab:jordan:images:melt:1}
+\caption[Reducing contrast: SVD components]{Reducing contrast}
+\end{table}%
+
+\clearpage
+\break
+
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccccc}
+  & $\sigma$ \\
+  %%%
+  \includegraphics[ width = 0.255in ]{pdf/"ch 07"/melting/"melting 010 000 bar"}&
+  \includegraphics[ width = 2.00in ]  {pdf/"ch 07"/melting/"melting 010 000 singular values"} \\
+  %%%
+  \includegraphics[ width = 0.255in ]{pdf/"ch 07"/melting/"melting 010 004 bar"}&
+  \includegraphics[ width = 2.00in ]  {pdf/"ch 07"/melting/"melting 010 004 singular values"} \\
+  %%%
+  \includegraphics[ width = 0.255in ]{pdf/"ch 07"/melting/"melting 010 008 bar"}&
+  \includegraphics[ width = 2.00in ]  {pdf/"ch 07"/melting/"melting 010 008 singular values"} \\
+  %%%
+  \includegraphics[ width = 0.255in ]{pdf/"ch 07"/melting/"melting 010 009 bar"}&
+  \includegraphics[ width = 2.00in ]  {pdf/"ch 07"/melting/"melting 010 009 singular values"} \\
+  %%%
+  \includegraphics[ width = 0.255in ]{pdf/"ch 07"/melting/"melting 010 010 bar"}&
+  \includegraphics[ width = 2.00in ]  {pdf/"ch 07"/melting/"melting 010 010 singular values"} \\
+\end{tabular}
+\end{center}
+\label{tab:jordan:images:melt:2}
+\caption[Reducing contrast: singular values]{The change in the singular values as the contrast is reduced to zero. The singular values are plotted on the right. On the left, we have a bar which shows how much of the gray scale is being used. The change in the singular value spectrum is rather minuscule as the contrast is reduced. The change from rank 266 to rank 1 is discrete.}
+\end{table}%
+
+
+\endinput

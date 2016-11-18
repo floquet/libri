@@ -1,0 +1,193 @@
+\chapter{Elementary examples}
+
+\section*{Basic matrices}  %  S  S  S  S  S
+We analyze the least squares solutions for three examples of the form
+$$\axeb .$$
+\input{\pathtables elementary/"tab matrices"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+%\input{chapters/XXX/"sec YYY"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+
+%% SECTION
+\section{Example (a): row and column rank deficient}  %  S  S  S  S  S
+A \asvd\ is \ 
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \aaesvd{*} \\
+      %
+      \matrixa & = 
+      \mat{rrc}{
+      \bl{ \recip{\sqrt{3}}} & \rd{-\frac{1}{\sqrt{2}}} &  \rd{\frac{1}{\sqrt{6}}} \\[5pt]
+      \bl{-\recip{\sqrt{3}}} & \rd{0} \phantom{i}       &  \rd{\frac{2}{\sqrt{6}}} \\[5pt]
+      \bl{ \recip{\sqrt{3}}} & \rd{ \frac{1}{\sqrt{2}}} &  \rd{\frac{1}{\sqrt{6}}} \\
+      }
+      %
+      \sigmaa
+      %
+      \mat{rrc}{
+      \bl{\recip{\sqrt{2}}} &  \bl{-\recip{\sqrt{2}}} \\[5pt]
+      \rd{\recip{\sqrt{2}}} &  \rd{ \recip{\sqrt{2}}}
+      }
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The pseudoinverse matrix is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Ap = \mpp{*} = \recip{6} \mat{rrr}{1 & -1 &  1\\-1 & 1 & -1}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The projection operator
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \ApA = \recip{2} \mat{rr}{1 & -1 \\ -1 & 1}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Given an arbitrary vector in the domain $\paren{y\in\cmplx{n=2}}$, the general least squares solutions is
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \xls &= \Ap b + \paren{\I{n} - \ApA} y \\
+       &=  \recip{6} \mat{r}{1\\-1} + \half \mat{rr}{3&-1\\-1&3} y
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Another way to write this is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \xls = \recip{6} \mat{r}{1\\-1} + \alpha \mat{c}{1\\1}, \qquad \alpha\in\cmplx{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+
+%% SECTION
+\section{Example (b): full column rank}  %  S  S  S  S  S
+A \asvd\ is \ 
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \aaesvd{*} \\
+      %
+      \matrixb & = 
+      \mat{crr}{
+      \bl{  \recip{\sqrt{30}}} & \bl{  \recip{\sqrt{6}}} &  \rd{\frac{2}{\sqrt{5}}} \\[5pt]
+      \bl{\frac{5}{\sqrt{30}}} & \bl{ -\recip{\sqrt{6}}} &  \rd{0} \phantom{i} \\[5pt]
+      \bl{\frac{2}{\sqrt{30}}} & \bl{\frac{2}{\sqrt{6}}} &  \rd{ -\recip{\sqrt{5}}} \\
+      }
+      %
+      \sigmab
+      %
+      \recip{\sqrt{2}}\mat{rc}{
+      \bl{1}  & \bl{1} \\
+      \bl{-1} & \bl{1}
+      }
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The pseudoinverse matrix is
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \Ap = \mpp{*} = \recip{15} \mat{rrr}{-8 & 20 & -16\\12 & 0 & 24}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The projection operator
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \ApA = \I{2} = \idtwo
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The general least squares solutions is
+% = =  e q u a t i o n
+  \begin{equation}
+      \xls = \Ap b = \recip{15} \mat{c}{4\\24}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+%% SECTION
+\section{Example (c): full row and column rank}  %  S  S  S  S  S
+A \asvd\ is \ 
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \aaesvd{*} \\
+      %
+      \matrixc & = 
+      \mat{cr}{
+      \bl{0} & \bl{-1} \\
+      \bl{1} & \bl{0}
+      }
+      %
+      \sigmac
+      %
+      \recip{\sqrt{2}}\mat{rc}{
+      \bl{1}  & \bl{1} \\
+      \bl{-1} & \bl{1}
+      }
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+We can build the inverse using the adjoint and cofactor:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \A{-1} = \frac{\text{adj} \A{}}{\det \A{}} = \Ap = \recip{4} \mat{rc}{2&1\\-2&1}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Again the projection operator is the identity matrix
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \pras =\A{-1}\A{} = \ApA = \I{2} = \idtwo
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The general least squares solutions is
+% = =  e q u a t i o n
+  \begin{equation}
+      \xls = \A{-1}b = \Ap b = \mat{c}{1\\6}
+    %\label{eqn:}
+  \end{equation}
+% = =
+%\input{\pathfigures matrices/"fig c domains"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+\input{\pathtables matrices/"tab c domains"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+%% SUBSECTION
+\subsection{Domain coordinates}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \brac{\xls}_{\V{}} = \V{*}\xls = \recip{\sqrt{2}} \mat{r}{7\\-5}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \brac{b}_{\U{}} = \U{*}b = \mat{r}{1\\-2}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"chap XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

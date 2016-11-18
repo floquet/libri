@@ -1,0 +1,165 @@
+\section[Special types]{The SVD for special types of matrices}
+We can boost intuition by studying the decomposition of special matrix types.
+
+%%%
+\subsection{Normal matrices}
+\begin{equation}
+  \brac{\A{},\A{*}} = \prdmm{*} - \prdm{*} = 0.
+\end{equation}
+
+%%%
+\subsection{Idempotent matrices}
+\begin{equation}
+  \A{2} = 0.
+\end{equation}
+\begin{equation}
+  \A{k} = 0.
+\end{equation}
+
+%%%
+\subsection{Nilpotent matrices}
+\begin{equation}
+  \A{2} = \zero.
+\end{equation}
+\begin{equation}
+  \A{k} = \zero.
+\end{equation}
+
+%%%
+\subsection{Hermitian matrices}
+\subsubsection{Definition}
+\begin{equation}
+  \A{} = \A{*} = \overline{ \A{T} } = \overline{\A{}}^{\TT}.
+\end{equation}
+The matrix is square, therefore 
+\begin{equation}
+  \sig{} = \sig{T}.
+\end{equation}
+\subsubsection{SVD}
+\begin{equation}
+  \begin{split}
+     \A{} &= \A{*}, \\
+     \svd{} &= \svdt{*}
+  \end{split}
+\end{equation}
+Leads to
+\begin{equation}
+  \sig{} = \paren{\Y{*}\X{}} \, \sig{} \, \paren{\X{}\Y{*}}
+\end{equation}
+
+
+\subsubsection{Example}
+\begin{equation}
+  \begin{split}
+    \svda{T} \\
+    \mat{rrc}{
+    -2 & -i & 0 \\
+     i & -2 & 0 \\
+     0 &  0 & 0 } &=
+    \mat{cc>{\columncolor{ltgray}}c}{
+    \frac{-i}{\sqrt{2}} & \frac{-i}{\sqrt{2}} & 0 \\ 
+    \frac{-1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} & 0 \\ 
+    0                   & 0                   & 1 }
+    \mat{cc|c}{
+    3 & 0 & 0 \\
+    0 & 1 & 0 \\\hline
+    0 & 0 & 0}
+    \mat{ccc}{
+    \frac{-i}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\ 
+    \frac{i}{\sqrt{2}}  & \frac{1}{\sqrt{2}} & 0 \\ 
+    \rowcolor{ltgray}
+    0                   & 0                  & 1 }
+  \end{split}
+\end{equation}
+%%
+\begin{equation}
+  \Y{} \, \X{*} = \X{} \, \Y{*} = \mat{rrc}{
+  -1 &  0 & 0 \\
+   0 & -1 & 0 \\
+   0 &  0 & 1 }
+\end{equation}
+
+
+%%%
+\subsection{RPN matrices\index{RPN matrix}\index{matrix!types!RPN}}
+%%%
+\subsubsection{Definition}
+A matrix $\A{}$ is a range perpendicular to \ns \ (RPN) matrix when the range of $\A{}$ is perpendicular to the \ns \ of $\A{}$:
+\begin{equation}
+  \rnga{} \perp \nlla{}.
+  \label{eq:11:rpn}
+\end{equation} 
+%%%
+\subsubsection{Theory}
+By looking at the domain matrices, 
+\begin{equation}
+  \begin{split}
+     \X{} &= \xft{*}, \\
+     \Y{} &= \yft{*},
+  \end{split}
+  \label{eq:11:dom}
+\end{equation}
+we see that these matrices must be square. (For two vectors to be orthogonal they must have the same length.)
+From the \ft \ we know that 
+\begin{equation}
+  \begin{split}
+     \rnga{}  &\perp \nlla{*}, \\
+     \rnga{*} &\perp \nlla{}, \\
+  \end{split}
+\end{equation}
+Using this and equation \eqref{eq:11:rpn} we see that
+\begin{equation}
+  \begin{split}
+     \rnga{} &= \rnga{*},\\
+     \nlla{} &= \nlla{*}.
+  \end{split}
+  \label{eq:11:eqls}
+\end{equation}
+Equations \eqref{eq:11:eqls} and \eqref{eq:11:dom} imply that the domain matrices are equal:
+\begin{equation}
+  \X{} = \Y{}.
+\end{equation}
+%%%
+\subsubsection{Example}
+The matrix given by
+\begin{equation}
+  \begin{split}
+    \svda{T} \\
+    \mat{rrc}{
+   1 & -1 & 1 \\
+  -1 &  2 & 0 \\
+   1 &  0 & 2} &=
+    \mat{cc>{\columncolor{ltgray}}c}{
+    \sthree             & 0     & \frac{-2}{\sqrt{6}} \\ 
+    \frac{-1}{\sqrt{3}} & \stwo & \frac{-1}{\sqrt{6}} \\ 
+    \sthree             & \stwo & \ssix }
+    \mat{cc|c}{
+    3 & 0 & 0 \\
+    0 & 1 & 0 \\\hline
+    0 & 0 & 0}
+    \mat{ccc}{
+    \sthree             & \frac{-1}{\sqrt{3}} & \sthree  \\ 
+    0                   & \stwo               & \stwo \\
+    \rowcolor{ltgray} 
+    \frac{-2}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \ssix  }
+  \end{split}
+\end{equation}
+is an RPN matrix because
+\begin{equation*}
+  \X{} = \Y{}.
+\end{equation*}
+
+Also known as range-symmetric or EP matrices
+For more discussion, see Meyer, \cite[p. 408]{Meyer}.
+
+%%%
+\subsection{SPD matrices}
+\begin{equation}
+  z^{\mathrm{T}}\A{}z \ge 0
+\end{equation}
+
+%%%
+\subsection{Diagonally dominant matrices}
+
+
+\endinput

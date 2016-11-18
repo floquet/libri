@@ -1,0 +1,89 @@
+\subsection{Matrix (a)}
+This matrix has a row and column rank deficiency. Therefore, neither \ns \ is trivial.
+
+%%%%%%%%%%%
+\subsubsection{Column space}
+To find the column space is to reduce the matrix $\A{}$ to the row echelon form $\E{}$. The matrix is
+\begin{equation*}
+  \A{} = \matrixa.
+  \tag{\ref{eq:matrix a}}
+\end{equation*}
+
+For instructional purpose, proceed with the reductions to row echelon form. The pivot elements are boxed. The range of the matrix $\A{}$ is given by the basic columns of $\A{}$. Since there is but one pivot there is but one basic column:
+\begin{equation}
+  \begin{split}
+\arrayrulecolor{black}
+    \EARa{}{2} \\
+    \mat{cc}{1 & 0 \\ 1 & 1 }
+    \mat{rrr|cc}{1 & -1 & 1 & 1 & 0 \\ -1 & 1 & -1 & 0 & 1} &=
+\arrayrulecolor{medgray}
+    \mat{rrr!{\color{black}\vline}cc}{\boxed{1} & -1 & 1 & 1 & 0 \\\hline 0 & 0 & 0 & \rone & \rone}
+  \end{split}
+\end{equation}
+\arrayrulecolor{black}
+The range of the matrix $\A{}$ is given by the basic columns of $\A{}$. Again there is a single pivot and one basic column:
+\begin{equation}
+  \rnga{*} = \spn{ \bvecam }.
+\end{equation}
+This span describes all vectors which lay upon the line through the origin and the point $p=\tra{ \lst{1,-1} }$.The \ns \ vector is associated with the zero pivot in the reduced matrix $\E{}$, and is the shaded vector:
+\begin{equation}
+  \nlla{}= \spn{ \rvecan }.
+\end{equation}
+Recall that these are the \ns \ vectors for the transpose matrix. For example,
+\begin{equation}
+  \matrixat \rvecan = \zerothree = \zero .
+\end{equation}
+The codomain, or range or image space or column space, then is resolved as
+\begin{equation}
+  \begin{split}
+    \cmplx{2} 
+       &= \qquad \ \brnga{} \quad \;   \oplus \qquad \rnlla{*} \\
+       &= \spn{ \bvecam } \oplus \spn{ \rvecan }.
+  \end{split}
+  \label{eq:ftola:a:codomain}
+\end{equation}
+
+%%%%%%%%%%%
+\subsubsection{Row space}
+To resolve the row space, we can resolve the column space of the transpose matrix.
+\begin{equation}
+  \begin{split}
+%\setlength\arrayrulewidth{2pt}
+\arrayrulecolor{black}
+    \R{} \mat{c|c}{\A{} & \I{3}} &= \mat{c|c}{\E{} & \R{}} \\
+    \mat{rcc}{1 & 0 & 0 \\ 1 & 1 & 0 \\ -1 & 0 & 1 }
+    \mat{rr|ccc}{1 & -1 & 1 & 0 & 0 \\ -1 & 1 & 0 & 1 & 0 \\ 1 & -1 &  0 & 0 & 1} &=
+\arrayrulecolor{medgray}
+    \mat{rr!{\color{black}\vline}rcc}
+    {\boxed{1} & -1 & 1 & 0 & 0 \\\hline  
+     0 & 0 & \rone & \rone & \rzero \\
+     0 & 0 & \rminus\rone & \rzero & \rone }
+  \end{split}
+\end{equation}
+\arrayrulecolor{black}
+The span of the range is 
+\begin{equation}
+  \brnga{*} = \spn{ \bvecaa }.
+\end{equation}
+This is the set of all vectors which lay upon the line through the origin and the point $p=\tra{ \lst{1,-1,1} }$.
+The \ns \ vectors are associated with the zero rows in the reduced matrix $\E{}$. These and subsequent \ns \ vectors are shaded red. The \ns \ vectors span the \ns:
+\begin{equation}
+  \rnlla{} = \spn{ \rvecac, \rvecad }.
+\end{equation}
+The domain, or range or image space or row space, then is resolved as
+\begin{equation}
+  \begin{split}
+    \cmplx{3} 
+      &= \qquad \ \,  \brnga{} \quad \ \, \oplus \qquad \qquad \rnlla{*} \\
+      &= \spn{ \bvecaa } \oplus \spn{ \rvecac, \rvecad }.
+  \end{split}
+  \label{eq:ftola:a:codomain}
+\end{equation}
+Notice that the \ns \ vectors here are not mutually orthogonal that is
+%
+\begin{equation}
+  \rvecac \cdot \rvecad = -1 \ne 0.
+\end{equation}
+While these vectors span the \ns, they are not an orthogonal basis for the \ns. This will be remedied by the \asvd.
+
+\endinput

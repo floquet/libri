@@ -1,0 +1,56 @@
+\section{Chiral inverses}
+
+\subsection{In pictures}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{cccl}
+  $\X{}$ & $\Y{}$ & inverse type \\\hline
+  %
+  \includegraphics[]{pdf/"ch 14"/"r 2 c 2 s 0"} &
+  \includegraphics[]{pdf/"ch 14"/"r 2 c 2 s 0"} &
+  $\Ap = \A{-1}$ \\[20pt]
+  %
+  \includegraphics[]{pdf/"ch 14"/"r 2 c 2 s 0"} &
+  \includegraphics[]{pdf/"ch 14"/"r 3 c 3 s 1"} &
+  $\Ap = \AinvL$ \\[20pt]
+  %
+  \includegraphics[]{pdf/"ch 14"/"r 3 c 3 s 1"} &
+  \includegraphics[]{pdf/"ch 14"/"r 2 c 2 s 0"} &
+  $\Ap = \AinvR$ \\[20pt]
+  %
+  \includegraphics[]{pdf/"ch 14"/"r 2 c 2 s 1"} &
+  \includegraphics[]{pdf/"ch 14"/"r 3 c 3 s 2"} &
+  $\Ap \ne \AinvL,\ \Ap \ne \AinvR$ \\
+  %
+\end{tabular}
+\end{center}
+\label{tab:14:experiment:b}
+\caption{Chiral inverses in pictures. This table shows that the presence of a null space determines the type of matrix inverse. We see representative domain matrices under $\X{}$ and codomain matrices under $\Y{}$. Following convention, column vectors in the null space are shaded.}
+\end{table}%
+
+\begin{landscape}
+\subsection{Rank conditions}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{llllll}
+%
+ chirality & $\A{}$ & equivalence & identity relation & $\rho$ & rank \\\hline
+%
+ ambichiral & $\cmplxmm$ & $\Ap = \A{-1}$ & $\leftinv = \rightinv = \I{m}$ & $\rho = m$ & full matrix rank \\
+%
+ left & $\cmplxmn$ & $\Ap = \AinvL$ & $\leftinv = \I{n}$ & $\rho = n$ & full column rank \\
+%
+ right & $\cmplxmn$ & $\Ap = \AinvR$ & $\rightinv = \I{m}$ & $\rho = m$ & full row rank \\
+%
+ ampichiral & $\cmplxmn$ &   & & $\rho \ne n$  & column rank deficiency \& \\
+ &&& & $\rho \ne m$& row rank deficiency
+%
+\end{tabular}
+\end{center}
+\label{tab:14:experiment:a}
+\caption{Pseudoinverse chirality and rank. A full rank condition - either in row or column - produces a chiral inverse. With rank deficiency in both row and column we obtain an ambichiral inverse, an inverse that neither right nor left handed.}
+\end{table}%
+\end{landscape}
+
+
+\endinput

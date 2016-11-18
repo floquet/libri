@@ -1,0 +1,251 @@
+\section{A Generalized Inverse for Matrices}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[ width = 5in ]{images/pseudoinverse/"penrose header"} 
+   \caption[The Penrose paper]{The Penrose paper. \it{Mathematical Proceedings of the Cambridge Philosophical Society}, Volume 51, Issue	03, July 1955, pp 406-413}
+   \label{fig:penrose header}
+\end{figure}
+
+%%%%%%%%%%%
+\subsection{Defining the pseudoinverse}
+The matrix $\X{}$ is a pseudoinverse of the matrix $\A{}$ if and only if the following four equations are satisfied
+
+\begin{equation}
+  \begin{split}
+    \ax \A{} &= \A{} \\
+    \X{} \ax &= \A{}
+  \end{split}
+  \label{eq:penrose:a}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \paren{\ax}^{*} &= \ax \\
+    \paren{\X{} \A{}}^{*} &= \X{} \A{}
+  \end{split}
+  \label{eq:penrose:b}
+\end{equation}
+
+%%%%%%%%%%%
+\subsubsection{$\sig{}$ gymnastics}
+The singular value decomposition resolves a matrix into very basic components: two unitary matrices and a real diagonal-like matrix. Experience shows that many errors occur when manipulating the diagonal-like $\sig{}$ matrices. Before investigating the Penrose criteria, we will devote a section to the manipulation of the $\sig{}$ matrices. This will cover product matrices like
+$$
+ \spa,\ \spb,\ \sppa \text{ and } \sppb.
+$$
+  
+Using the block structure of the SVD component matrices as done in the chapter on least squares. The $\sig{}$ matrix (say ``sigma matrix'') is a diagonal matrix $\ess{}$ in a matrix of zeros which acts as a sabot to provide the correct dimensionality. The $\sig{}$ matrix has the same shape as the target matrix $\A{}$.
+\begin{equation}
+  \sig{} = \sbb{}
+\end{equation}
+This is a helpful representation but there is an inauspicious ambiguity. The block matrix of the $\sig{}$ matrix has the same representation as the transpose matrix $\sig{T}$. To be clear, we show the dimensions of the forms of the $\sig{}$ matrices we will need. Given $\aicmnr$,
+%\begin{equation}
+%  \begin{split}
+%    \sig{}   &= \sbf{} \\
+%    \sig{T}  &= \sbg{T} \\
+%    \sig{\ssym} &= \sbg{-1} \\
+%  \end{split}
+%\end{equation}
+%
+\begin{equation}
+  \sig{} = \sbf{} \quad \sig{T} = \sbg{T} \quad \sig{\ssym} = \sbg{-1}
+\end{equation}
+%
+where the singular values matrix $\ess{}$ is square, real, and fully diagonal. To help the reader spot the transform of the sabot matrix we use light gray braces. Because the matrix of singular values is square and diagonal, it is also symmetric. Therefore $\ess{} = \ess{T}$. So while $\sig{}$ and $\sig{T}$ have the same diagonal values, they have differing dimensions. To distinguish the block forms, note the use of the gray braces:
+%
+\begin{equation}
+  \sig{} = \sbb{}, \quad \sig{T} = \sbh{}.
+\end{equation}
+%
+The inverse matrix $\ess{-1}$ always exists and is a diagonal matrix with entries given by the reciprocals of the diagonal elements of $\ess{}$.
+\begin{equation}
+  \begin{split}
+    \ess{} = \ess{T} = \mat{ccc}{\sigma_{1} \\ & \ddots \\ && \sigma_{\rho} },
+      \quad \ess{-1} = \mat{ccc}{\recip{\sigma_{1}} \\ & \ddots \\ && \recip{\sigma_{\rho}} }
+  \end{split}
+\end{equation}
+
+The product of a $\sig{}$ matrix and its pseudoinverse is a stencil matrix \index{stencil matrix}  
+\begin{equation}
+  \begin{split}
+    \spa &= \II{\rho,m} = \stencil_{\bymm}, \\
+    \spb &= \II{\rho,n}\, = \stencil_{\bynn}.
+  \end{split}
+\end{equation}
+Two useful identities come from full rank conditions. For full column rank
+\begin{equation}
+  \spb = \sbrt{-1} \sbc{} = \I{n};
+\end{equation}
+for full row rank
+\begin{equation}
+  \spa = \sbr{} \sbct{-1} = \I{m}.
+\end{equation}
+
+Attention should be given to the dimensions of the stencil matrix. For example:
+\begin{equation}
+  \II{\rho,m} = \mat{c|c}{ 
+    \I{\rho} & \textbf{0}_{\by{\rho}{\paren{n-\rho}}} \\ \hline
+    \textbf{0}_{\by{\paren{m-\rho} }{\rho}} & \textbf{0}_{\by{\paren{m-\rho} }{\paren{n-\rho}}}} \\
+\end{equation}
+The stencil matrix is named for its masking action under matrix multiplication. Consider a matrix $\U{}\in\cmplxmm$. Under postmultiplication the stencil matrix masks out the final $m-\rho$ columns:
+\begin{equation}
+  \U{}\, \II{\rho,m} = 
+    \brac{\bl{u_{1} \dots u_{\rho}} | \textbf{0}_{1} \dots \mathbf{0}_{m-\rho}} =
+    \mat{ccc|>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c>{\columncolor{ltgray}}c}{
+    \bl{u_{1,1}}  & \bl{\dots} & \bl{u_{1,\rho}} & 0      & \dots & 0 \\
+    \bl{\vdots}   &       & \bl{\vdots}     & \vdots &       & \vdots \\
+    \bl{u_{m,1}}  & \bl{\dots} & \bl{u_{m,\rho}} & 0      & \dots & 0 }.
+\end{equation}
+Under premultiplication the stencil matrix masks out the final $m-\rho$ terms of each column vector:
+\begin{equation}
+  \II{\rho,m}\U{} = \mat{ccc}{ 
+    \bl{u_{1,1}}    & \bl{\dots} & \bl{u_{1,m}} \\ \bl{\vdots} & & \bl{\vdots} \\
+    \bl{u_{\rho,1}} & \bl{\dots} & \bl{u_{\rho,m}} \\ \hline 
+    \rowcolor{ltgray} 0 & \dots & 0 \\
+    \rowcolor{ltgray} \vdots & & \vdots \\
+    \rowcolor{ltgray} 0 & \dots & 0 }
+\end{equation}
+
+The stencil matrices are square and named for their stencil action under multiplication. The first $\rho$ rows (columns) of a target matrix are unchanged under premultiplication (postmultiplication). Of interest are the triple products:
+\begin{equation}
+  \begin{split}
+    \sppa &= \sig{} \\
+    \sppb &= \sig{\ssym} \\
+  \end{split}
+\end{equation}
+The stencil action is apparent in block form
+\begin{equation}
+  \sig{\ssym} \paren{\spa} = \sbh{-1} \stencil =  \sig{\ssym}.
+\end{equation}
+yet the dimensions are ambiguous, a hazard with $\sig{}$ matrices. 
+One cannot emphasize enough the value of explicitly writing out the matrix dimensions to verify conformability:
+%\begin{align*} 
+%a_{11}& =b_{11}&
+%a_{12}& =b_{12}\\ 
+%a_{21}& =b_{21}&
+%a_{22}& =b_{22}+c_{22} 
+%\end{align*}
+%%%
+%\begin{align*} 
+%  \sig{\ssym} & \sig{}  & \sig{\ssym} & =  \sig{\ssym} \\
+% [\bynm]      & [\bymn] & [\bynm]     &  [\bynm] 
+%\end{align*}
+%%
+\begin{table}[htdp]
+%\caption[Triple product of $\sig{}$ matrices]{default}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+ $\sig{\ssym}$ & $\sig{}$ & $\sig{\ssym}$ & $=$ &  $\sig{\ssym}$ \\
+%
+ $[\bynm]$ & $[\bymn]$ & $[\bynm]$ & &  $[\bynm]$ 
+%
+\end{tabular}
+\end{center}
+\label{tab:mpp:dims}
+\end{table}\\
+%%
+For more practice, write out a triple product for the overdetermined linear system where $\rho = n \le m$.
+\begin{equation}
+  \begin{split}
+    \sppa 
+      &= \sbr{} \sbct{-1} \sbr{} \\
+      &= \sbr{}\, \II{\rho,n} \\
+      &= \sig{}
+  \end{split}
+\end{equation}
+
+
+Take the example (b) matrix in equation \eqref{eqn:matrix b}. The $\sig{}$ matrix and its variants are
+\begin{equation}
+  \begin{split}
+    \sig{}   &= \sigmab \\
+    \sig{T}  &= \sigmabt \\
+    \sig{\ssym} &= \sigmabinv
+  \end{split}
+\end{equation}
+where the singular values matrices are
+\begin{equation}
+    \ess{} = \ess{T} = \Sb, \quad \ess{-1} = \Sbinv .
+\end{equation}
+The stencil matrices are these:
+\begin{equation}
+  \begin{split}
+    \spa &= \II{2,3} = \ssinv \\
+    \spb &= \II{2,2} = \sinvs
+  \end{split}
+\end{equation}
+
+%%%%%%%%%%%
+\subsubsection{Checking the Penrose conditions}
+Verification of the Penrose criteria in equations \eqref{eq:penrose:a} and \eqref{eq:penrose:b} is direct using the SVD. The exercise also provides insight into the SVD. Start with the decomposition forms
+\begin{equation*}
+  \begin{split}
+    \aaesvd{*}, \\
+    \apaempp{*}.
+  \end{split}
+\end{equation*}
+First we ponder the products $\A{} \Ap$ and $\Ap \A{}$. Start with
+\begin{equation}
+  \begin{split}
+    \A{} \Ap &= \U{} \spa \U{*}.
+  \end{split}
+\end{equation}
+We recognize the stencil matrix in the middle and write the product in block form where the stencil action is distinct:
+%
+\begin{equation}
+  \begin{split}
+    \AAp 
+      &= \cublockf \stencil \cublockfs{*} \\
+      &= \cublockf \mat{c}{ \bur{*} \\[2pt]\hline \zero } \\
+      &= \bur{} \bur{*}
+  \end{split}
+  \label{eq:penrose:aap}
+\end{equation}
+%
+The effect of the stencil matrix is to mask the \ns \ contributions. If the target matrix has full row rank then
+\begin{equation}
+  \U{} = \mat{c}{\bur{}}
+\end{equation}
+and the matrix product $\bur{} \bur{*}$ is the identity matrix $\I{m}$. Otherwise, the matrix product is \emph{not} the product of a unitary matrix and its adjoint. It is instead the product of \emph{part} of a unitary matrix and part of the adjoint of a unitary matrix. This is summarized in table {tab:penrose:unitary}.
+%%
+\input{chapters/pseudoinverse/"tab contexts for matrix products"}  % table
+%%
+
+The other matrix product features the pseudoinverse on the left. Because this is a frequent  stumbling block, the complete multiplication is again shown, this time moving from left to right.
+%
+\begin{equation}
+  \begin{split}
+    \ApA 
+      &= \cvblockf{} \stencil \cvblockfs{*} \\
+      &= \mat{c|c}{ \bvr{} & \zero } \cvblockfs{*} \\
+      &= \bvr{} \bvr{*}.
+  \label{eq:penrose:apa}
+  \end{split}
+\end{equation}
+%
+As before, this product is the identity matrix $\I{n}$ only when $\A{}$ has full row rank and $\V{}=\mat{c}{\bvr{}}$.
+%
+The products of the range component satisfy the second set of Penrose criteria in equation \eqref{eq:penrose:b}. For example,
+\begin{equation}
+  \paren{\bur{} \bur{*}}^{*} = \paren{\bur{*}}^{*} \bur{*} = \bur{} \bur{*}.
+\end{equation}
+The Penrose criteria in equation \eqref{eq:penrose:b} are quick to verify also. The first is shown here, the second is left as an exercise.
+\begin{equation}
+  \begin{split}
+    \paren{\A{} \Ap} \A{} 
+      &= \Bigl(\svd{*}\Bigr) \paren{\mpp{*}} \Bigl(\svd{*}\Bigr) \\
+      &= \U{} \spa \sig{} \V{*} \\
+      &= \U{} \II{\rho,m} \sig{} \V{*} \\
+      &= \svd{*} \\
+      &= \A{} \quad 
+  \end{split}
+\end{equation}
+
+%%
+\input{chapters/"pseudoinverse"/"ssec lemma"}
+
+
+
+
+\endinput

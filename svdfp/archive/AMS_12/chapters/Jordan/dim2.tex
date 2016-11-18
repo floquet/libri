@@ -1,0 +1,190 @@
+\section[Basic Jordan forms]{The most basic Jordan forms}
+\label{sec:Jordan:basic}
+
+%%
+\subsection{The forms}
+There are seven nonzero, upper triangular $2\times2$ matrix Jordan forms and they are listed here:
+\begin{equation*}
+  \begin{array}{rclrclrcl}
+\mathcal{J}_{2,1} &=& \left[
+                        \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 0
+                        \end{array}
+                        \right], \quad
+\mathcal{J}_{2,2} &=& \left[
+                        \begin{array}{cc}
+                         0 & 1 \\
+                         0 & 0
+                        \end{array}
+                        \right], \quad
+\mathcal{J}_{2,3} &=& \left[
+                        \begin{array}{cc}
+                         1 & 1 \\
+                         0 & 0
+                        \end{array}
+                        \right], \\
+\mathcal{J}_{2,4} &=& \left[
+                        \begin{array}{cc}
+                         0 & 0 \\
+                         0 & 1
+                        \end{array}
+                        \right], \quad
+\mathcal{J}_{2,5} &=& \left[
+                        \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 1
+                        \end{array}
+                        \right], \quad
+\mathcal{J}_{2,6} &=& \left[
+                        \begin{array}{cc}
+                         0 & 1 \\
+                         0 & 1
+                        \end{array}
+                        \right], \\
+\mathcal{J}_{2,7} &=& \left[
+                        \begin{array}{cc}
+                         1 & 1 \\
+                         0 & 1
+                        \end{array}
+                        \right].
+  \end{array}
+\end{equation*}
+The \svdl s are these:
+\begin{equation}
+  \begin{split}
+\mathcal{J}_{2,1} &= 
+\mat{cc}{ 1 & 0 \\
+ 0 & 0} = 
+\I{2}
+\mat{c|c}
+{
+ 1 & 0 \\\hline
+ 0 & 0}
+ \I{2}\\
+\mathcal{J}_{2,2} &= 
+\mat{cc}
+{ 0 & 1 \\
+ 0 & 0} = 
+\I{2}
+\mat{c|c}{ 1 & 0 \\\hline
+ 0 & 0}
+ \underbrace{\mat{cc}
+ { 0 & 1 \\
+\rowcolor{ltgray}
+ 1 & 0}}_{\text{swap rows}}\\
+\mathcal{J}_{2,4} &= 
+\mat{cc}
+{ 0 & 0 \\
+ 0 & 1} = 
+\underbrace{\mat{c>{\columncolor{ltgray}}c}
+{ 0 & 1 \\
+ 1 & 0}}_{\text{swap columns}}
+ \mat{c|c}
+ { 1 & 0 \\\hline
+ 0 & 0}
+ \underbrace{\mat{cc}
+ { 0 & 1 \\
+\rowcolor{ltgray}
+ 1 & 0}}_{\text{swap rows}}\\
+\mathcal{J}_{2,5} &= 
+\itwo
+ = 
+\I{2}\ 
+\I{2}\ 
+\I{2}
+  \end{split}
+\end{equation}
+ 
+These nontrivial forms are related.
+%%
+\begin{equation*}
+  \begin{array}{rcccccccc}
+    \mathcal{J}_{2,3} &=& 
+&\mat{cc}{ 1 & 1 \\
+ 0 & 0} 
+ &=& 
+&\I{2}
+&\mat{c|c}
+{\sqrt{2} & 0 \\\hline
+ 0 & 0}
+& \stwo
+\mat{rr}
+{ 1 & 1 \\
+\rowcolor{ltgray}
+ -1 & 1},\\
+    \mathcal{J}_{2,6} &=& 
+&\mat{cc}
+{0 & 1 \\
+ 0 & 1} 
+ &=& 
+& \stwo
+\mat{r>{\columncolor{ltgray}}r}
+{ 1 &-1 \\
+  1 & 1}
+&\mat{c|c}{
+ \sqrt{2} & 0 \\\hline
+ 0 & 0}
+&\I{2}.
+  \end{array}
+\end{equation*}
+
+%%
+\subsection{Example}
+The two dimensional form of interest is this one:
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{2,3} = \mat{cc}{1&1\\0&0} &= \svd{T}\\
+      &= \I{2}\, \mat{c|c}{\sqrt{2} & 0\\\hline0 & 0} \stwo\mat{rr}{1&1\\\rowcolor{ltgray}
+-1&1}.
+  \end{split}
+\end{equation}
+This decomposition can also be written as a product of rotation matrices
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{2,3} = \mat{cc}{1&1\\0&0} &= \svd{T}\\
+      &= \rat{\theta_{y}}{}\, \mat{c|c}{\sqrt{2} & 0\\\hline
+0 & 0} \rat{\theta_{x}}{T}
+  \end{split}
+\end{equation}
+where the rotation matrix has this form
+\begin{equation}
+  \rat{\theta}{} = \mat{rr}{\cos\theta & -\sin\theta\\\sin\theta&\cos\theta}
+\end{equation}
+and the angles have these values
+\begin{equation}
+  \theta_{y} = 0, \quad \theta_{x} = \frac{\pi}{2}.
+\end{equation}
+
+The fact that the basis matrices are not unique manifests in the periodicity of the trigonometric functions. These rotation angles will also yield the same result:
+\begin{equation}
+  \theta_{y} = k\pi, \quad \theta_{x} = \frac{2k+1}{2}\pi, \quad k\in\mathbb{Z}.
+\end{equation}
+To emphasize this point the decomposition can be cast as this:
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{2,3} = \mat{cc}{1&1\\0&0} = \svd{T} = \rat{k\pi}{}\mat{c|c}{\sqrt{2} & 0\\\hline0 & 0}\rat{\frac{2k+1}{2}\pi}{T},\quad k\in\mathbb{Z}. 
+  \end{split}
+\end{equation}
+Noting the isomorphism between complex numbers and matrices of the form
+\begin{equation}
+  z = a + ib \quad \mapsto \quad \mat{cr}{a&-b\\b&a}, \quad a,b\in\real{}
+\end{equation}
+the decomposition can be written in this form
+\begin{equation}
+  \begin{split}
+    \mathcal{J}_{2,3} = e^{i \theta_{y}}\mat{c|c}{\sqrt{2} & 0\\\hline0 & 0}e^{-i \theta_{x}}.
+  \end{split}
+\end{equation}
+
+The transpose of this Jordan normal form 
+\begin{equation}
+    \mathcal{J}_{2,6} = \mathcal{J}_{2,3}^{\mathrm{T}}= \svd{T} 
+    = e^{i\theta_{x}}\, \mat{c|c}{\sqrt{2} & 0\\\hline0 & 0} e^{-i\theta_{y}}
+\end{equation}
+
+\begin{equation}
+  \chi \mat{c}{x\\y} = \mat{c}{y\\x}.
+\end{equation}
+
+\endinput

@@ -1,0 +1,21 @@
+\section{What is a matrix?}
+At last we can pose an answer to the question What is a matrix? There are many possible answers, but one paradigm is exceptionally useful in the ensuing discussions.
+
+\textit{A matrix is a collection of row vectors and column vectors which each induce separate vector spaces.} 
+
+Let's amplify this thought. A matrix and its adjoint map vectors from one vector space into the other. Start with a matrix $\A{}\in\cmplx{\by{m}{n}}$. Use $x$ to denote $n-$vectors from the domain and $y$ to denote $m-$vectors from the codomain. Here are different ways to look at the matrix as a map between vector spaces:
+\begin{equation}
+\begin{array}{lcccr}
+  \A{}:  &\cmplx{n} & \mapsto & \cmplx{m} & \qquad \A{}x=y,\\
+  \A{*}: &\cmplx{m} & \mapsto & \cmplx{n} & \qquad \A{*}y=x.
+\end{array}
+\end{equation}
+Let $x$ represent an arbitrary $n-$vector and $y$ represent an arbitrary $m-$vector. The top line says that the map $\A{}$ takes us from the land of $n-$vectors to the land of $m-$vectors. The bottom says that the adjoint of the map takes us from the land of $m-$vectors to the land of $n-$vectors.
+
+But we saw earlier that there may be forbidden zones in each of the vector spaces. We need flexibility when we look at these equations. The implication in $\A{}x=y$ is that we are picking the vector $x$ from the domain of $n-$vectors and using the matrix $\A{}$ to map to an $m-$vector $y$ in the codomain. We are \textit{not} picking a vector $y$ from the codomain and assuming there is vector $x$ which map to $y$.
+
+When are there forbidden regions, or null spaces, in the domain and the codomain? Can we quantify the images of the domain and the codomain?
+
+The \svdl \ enables us to see the two constituent vector spaces and resolve them into image and null space.
+
+\endinput

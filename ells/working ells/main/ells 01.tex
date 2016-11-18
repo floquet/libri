@@ -1,0 +1,132 @@
+\documentclass[10pt]{newsiambook}
+
+\usepackage{amsmath,amssymb}
+%\usepackage{epstopdf} 
+\usepackage{color}
+\usepackage{xcolor}
+%\usepackage{transparent}
+\usepackage{colortbl}
+\setlength\minrowclearance{4pt}
+%\usepackage{graphicx}
+%\usepackage{pifont}
+\usepackage{makeidx}
+%\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{crop}
+\usepackage{pdfpages}
+\usepackage{lscape}
+%\usepackage{pdflscape}
+%\usepackage{pdflscape}
+%\usepackage{tabularx}
+%\usepackage{pstricks}
+%\usepackage{sidecap}
+\usepackage{stmaryrd}  % https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
+%\usepackage{epstopdf}
+\usepackage{siunitx}
+%https://tex.stackexchange.com/questions/7735/how-to-get-straight-quotation-marks
+%\usepackage[T1]{fontenc}
+%\usepackage{upquote}
+\usepackage{textcomp}  % http://hevea.inria.fr/examples/test/sym.html
+\usepackage{tikz}
+\usepackage{overpic}
+\usepackage[nomessages]{fp} % http://tex.stackexchange.com/questions/30081/how-can-i-sum-two-values-and-store-the-result-in-other-variable
+ 
+\crop	
+\newcommand{\pathname}{../"common"/}
+\newcommand{\fullpath}{\pathname}
+\newcommand{\pathgraphics}{../pdf/}
+
+\input{\pathname declarations.tex}
+	
+\makeindex
+
+\begin{document}
+
+\frontmatter
+%
+\tableofcontents
+%
+\listoffigures
+%%
+\listoftables
+%
+%\input{chapters/frontmatter/preface}
+%\input{chapters/frontmatter/literature}
+
+\input{../frontmatter/"ch literature"}
+
+\mainmatter
+%%%%%%%
+\part{Rudiments}
+\input{../chapters/rudiments/"ch least squares problems"}
+\input{../chapters/rudiments/"ch least squares solutions"}
+%\input{../chapters/rudiments/"ch grid"}
+
+%%%%%%%
+%\part{Archetypes}
+\input{../chapters/archetypes/"ch archetype modal I"}
+\input{../chapters/archetypes/"ch archetype modal II"}
+\input{../chapters/archetypes/"ch archetype modal III"}
+%\input{../chapters/archetypes/"ch archetype zonal"}
+
+%%%%%%%
+%\part{Least Squares Theory}
+
+%%%%%%%
+%\part{Applications: Polynomial Approximation}
+
+%%%%%%%
+%\part{Applications:\\Finding Patterns}
+%\input{../chapters/patterns/"ch patterns lines"}
+%\input{../chapters/patterns/"ch patterns crystals"}
+
+%%%%%%%
+%\part{Applications: Stitching}
+%\input{../chapters/stitch/"ch stitch piston"}
+
+%%%%%%%
+%\part{Applications:\\Inverting the Gradient}
+%\input{../chapters/gradient/"ch gradient"}
+
+%%%%%%%
+\part{Applications:\\Nonlinear Problems}
+\input{../chapters/nonlinear/"ch linearization"}
+\input{../chapters/nonlinear/"ch census"}
+
+
+%%%%%%%%
+%\part{Appendices}
+%\appendix
+%\input{../appendices/"app exemplars"}
+%\input{../appendices/"app errors"}
+%\input{../appendices/"app notation"}
+%\input{../appendices/"app jargon"}
+
+%%%%%%
+\part{\ \ Backmatter}
+\backmatter
+%\input{backmatter/acronyms}
+%\input{chapters/backmatter/notation/"head notation"}
+%%\input{backmatter/glossary}
+%\bibliography{chapters/backmatter/bibliography/svdfp}
+%\input{chapters/backmatter/bibliography/svdfp.bib}
+
+\input{../"ells bibliography"}
+
+\printindex
+
+\end{document}  %   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+
+%  \tiny
+%  \scriptsize
+%  \footnotesize
+%  \small
+%  \normalsize
+%  \large
+%  \Large
+%  \LARGE
+%  \huge
+%  \Huge
+
+% \section{sec} %    S    S    S    S    S    S    S    S    S    S    S    S
+% \subsection{ssec}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS

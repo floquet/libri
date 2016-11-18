@@ -1,0 +1,98 @@
+\section{Interpretation of the system}
+We saw that the linear system in equation \eqref{eq:2:problem} has no solution. There is no possible vector $\xi$ such that
+\begin{equation}
+  \A{}\xi=\phi.
+\end{equation}
+Yet we have answer, we found a value for the vector $\xi$. What is the significance of this $2-$vector? Under the mapping action $\A{}$, the $2-$vector in the domain corresponds to the $3-$vector $p=\A{}\xi$ in the codomain. The solution we have constructed minimizes the distance between the data $\phi$ and the image of $\A{}$. 
+
+Put another way, the vector $\xi$ which minimizes the error norm
+\begin{equation}
+  \normt{\epsilon}^{2} = \normt{\A{}\xi-\phi}^{2}.
+\end{equation}
+is the orthogonal projection of the data onto the range of $\A{}$. Notice that the minimization occurred in the codomain. The next part of the problem involves the inverse problem: connecting this closest point in the codomain to a point in the domain.
+
+%%
+\subsection{The special solution}
+We see that the special solution provided by the pseudoinverse,
+\begin{equation}
+  \A{+}\phi = \xi_{p}
+\end{equation}
+is the particular solution. The \vvv 
+\begin{equation*}
+  \A{}\xi_{p} = p
+\end{equation*}
+is the orthogonal projection of the data onto the range or $\A{}$ and as such is the solution with the minimum $2-$norm.
+
+In some sense, all roads lead to Rome and we could have obtained this same solution using the normal equations, calculus or numerical iteration. The advantage of using the SVD is that we see a clear decomposition of the ranges and null spaces which we can use to visualize the geometry and quality of the solutions. Let's explore these other solution methods.
+
+%%
+\subsection{The merit function in parameter space}
+In a classic least squares fit, one minimizes a merit function to find the solution. This merit function quantifies the difference between each measurement and the prediction. These differences are called the residual errors. The method of least squares minimizes the sums of the squares of these residual errors. A candidate merit function is
+\begin{equation}
+  M(\xi) = \normt{\A{}\xi-\phi}^{2} = \paren{\A{}\xi-\phi}^{\mathrm{T}}\paren{\A{}\xi-\phi}.
+  \label{eq:merit}
+\end{equation}
+
+
+The plots below show what this merit function looks like. Observe that the merit function takes a $2-$vector as the argument and returns a scalar, a real number. These figures show the solution and how the merit function changes under perturbations of the input variables. The problem with plotting the merit function is seen in the figure. All solutions along the dashed line have the same value for the merit function. Without knowledge of the range of the target matrix we are unable to select any one answer.
+
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[width=2.5in]{pdf/simple/merit_3d.pdf} \quad
+   \includegraphics[width=2in]{pdf/simple/merit_ctr.pdf}
+   \caption{Two views of the merit function in parameter space: the domain. The figure on the left is a 3D rendering; the contour plot on the right may be more useful. This plot shows the solution $\A{+}\phi$ (white point) and the space resolved into orthogonal coordinates, the image space  $\X{}_{:,1}$ (faint dotted line) and the null space $\X{}_{:,2}$ (dashed line). The merit function does not have a minimum point; the minimum is occurs along the null space, the dashed line.}
+   \label{fig:2:merit}
+\end{figure}
+
+The SVD warned us that we could only minimize the merit function along a line: there was a solitary singular value. The zero eigenvalues signal that the system is inconsistent or underdetermined.
+
+%%s
+\section{Solution using the calculus}
+The particular solution also comes from a basic calculus problem: minimize the distance between a point and a line. The point is the measurement and the line is the span of the image vector. Of course a concern is that we are not solving the problem with these machinations. We are finding a \vvv \ in the image; we need the \vv \ in domain that maps to this \vvv.
+
+The line represents the fundamental column in $\A{}$ and is parameterized as
+\begin{equation}
+  \begin{split}
+    f(\alpha)=\alpha\mat{r}{1\\-1\\1}.
+    \label{eq:range}
+  \end{split}
+\end{equation}
+The square of the $L_{2}$ distance $d_{2}$ between the data and the image is given by
+\begin{equation}
+  d_{2}^{2}\paren{\phi,f(\alpha)} = \normt{\phivector-\mat{r}{\alpha\\-\alpha\\ \alpha}}^{2} = 3\alpha^{2}-2\alpha+5.
+\end{equation}
+Minimize this distance in the canonical fashion: set the first derivative equal to zero and solve for $\alpha$. The result is this
+\begin{equation}
+  \alpha = \frac{1}{3}.
+\end{equation}
+This implies that the point $p$ on the line $f(\alpha)$ closest to the data point is this
+\begin{equation}
+  p=\frac{1}{3}\mat{r}{1\\-1\\1}.
+  \label{eq:p}
+\end{equation}
+\begin{figure}[h]
+   \centering
+   \includegraphics[ ]{pdf/simple/image03.pdf} 
+   \caption{The picture in the space of measurements: the image. The thick black line is the range $\rng{\A{}}$ or image of the matrix $\A{}$ given by equation \eqref{eq:range}. The blue arrow represents the measurement vector $\phi$ in equation \eqref{eq:phi}. The least squares solution is the orthogonal projection (red arrow) from the data vector onto the image of the row space. The solution point on the image is also in red and is given in equation \eqref{eq:p}. All of these constructs are shadowed on the floor to help with the perspective. The \vvv \ $p$ is not the solution. The final answer is the \vv \ $\xi_{p}$ which maps to $p$ via $\A{}\xi_{p}=p$. }
+   \label{fig:image}
+\end{figure}
+
+Notice that the point $p$ is a \vvv \ and therefore a resident of the codomain. The solution must be a \vv \ from the domain. The question now arises: which \vv \ $\xi_{p}$ in the domain connects to the \vvv \ $p$? Mathematically we are solving this equation for $\xi_{p}$:
+\begin{equation}
+  \A{}\xi_{p}=p.
+\end{equation}
+
+Before you lament that we have gone back to the beginning and are solving the same linear system observe that this time there is an exact solution. The data vector $p$ is in the image of  the system matrix $\A{}$. 
+
+Because the system is basic we guess the solution to the equation
+\begin{equation}
+ \Aexample \mat{c}{\xi\\\eta} = \frac{1}{3}\mat{r}{1\\-1\\1}
+\end{equation}
+is given by
+\begin{equation}
+  \mat{c}{\xi\\\eta}=\frac{1}{6}\mat{r}{1\\-1}.
+\end{equation}
+
+What if the problem is more complicated? In the case of the normal equations we can depend upon an elimination scheme to provide the solution.
+
+\endinput

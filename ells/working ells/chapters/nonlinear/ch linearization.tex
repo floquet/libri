@@ -1,0 +1,512 @@
+\chapter{Linearization}
+
+\section{Powers Laws and Exponentials}  %    S    S    S    S    S    S    S    S    S
+
+Exponential relationships, such as radioactive decay,
+      \begin{equation*}   %  =   =   =   =   =
+           y = a e^{b x},
+      \end{equation*}
+and power laws, like the learning curve,
+      \begin{equation}   %  =   =   =   =   =
+           y = a x^{b}
+       \label{eq:learning curve}
+      \end{equation}
+are inherently nonlinear. As such, they are outside of the scope of this work. But the problem is that the Internet has helped create and maintain the myth that such problems can be tamed and made linear. This is, empathically, not true.
+
+So this chapter is about the proper way to handle power law and exponential relationships. Along the way, it will become clear why faux linearization does not work. In short, the answer is that the linearization \emph{changes the problem}. That is, it produces a different problem with a different solution.
+    %
+       \begin{equation*}   %  =   =   =   =   =
+           a_{LS}= \lst{a\in\real{2}\colon \normts{y_{k} - a x^{b}} \text{ is minimized}}
+      \end{equation*}
+
+\section{Learning Curve}  %    S    S    S    S    S    S    S    S    S
+The trial function
+  \begin{equation*}   %  =   =   =   =   =
+      y(x) = a x^{b}, \quad x \in \real{+}.
+  \end{equation*}
+If we restrict $x \in \real{+}$, then $b \in \real{}$, avoiding the indeterminate form $0^{0}$. In practice $x \in \natnum$. The variable $a$ is an initial value (at $x = 1$), and $b$ is a rate parameter.
+
+The merit function is
+  \begin{equation}   %  =   =   =   =   =
+      M(a, b) = \sum_{k=1}^{m}\paren{y_{k} - a k^{b}}^{2}
+   %\end{split}
+   \label{eq:learn merit surface}
+  \end{equation}
+
+To advance the discussion, consider the sample set of data for 52 points in table \ref{tab:data learn}.
+\begin{table}[htbp]  % + + + + T A B L E
+    %\caption{default}
+    \begin{center}
+        \begin{tabular}{r r@{.}l r@{.}l r@{.}l | r r@{.}l r@{.}l r@{.}l }
+            %
+            %
+            %
+            $k$ & \multicolumn{2}{c}{$y_{k}$}
+                & \multicolumn{2}{c}{$y(k)$}
+                & \multicolumn{2}{c}{$r_{k}$} &
+            $k$ & \multicolumn{2}{c}{$y_{k}$}
+                & \multicolumn{2}{c}{$y(k)$}
+                & \multicolumn{2}{c}{$r_{k}$} \\\hline
+            %
+            1 &   419 & 115 &  371 &   9 &  47 & 2149 &  27 &  119 & 695 &  128 & 685 &  --8 & 98984 \\
+            2 &   251 & 263 &  297 & 505 &  --46 & 2419 &  28 &  131 & 931 &  127 & 187 &  4 & 74458 \\
+            3 &   291 & 329 &  261 & 092 &  30 & 2371 &  29 &  126 & 702 &  125 & 758 &  0 & 944397 \\
+            4 &   208 & 272 &  237 & 992 &  --29 & 7202 &  30 &  107 & 923 &  124 & 392 &  --16 & 4689 \\
+            5 &   198 & 577 &  221 & 492 &  --22 & 9146 &  31 &  121 & 735 &  123 & 086 &  --1 & 35074 \\
+            6 &   172 & 583 &  208 & 863 &  --36 & 2804 &  32 &  136 & 803 &  121 & 834 &  14 & 969 \\
+            7 &   202 & 107 &  198 & 749 &  3 & 35859 &  33 &  97 & 0772 &  120 & 633 &  --23 & 5554 \\
+            8 &   169 & 911 &  190 & 384 &  --20 & 4736 &  34 &  110 & 727 &  119 & 479 &  --8 & 75175 \\
+            9 &   175 & 674 &  183 & 299 &  --7 & 62479 &  35 &  132 & 09 &  118 & 369 &  13 & 7215 \\
+            10 &  191 & 393 &  177 & 185 &  14 & 2084 &  36 &  94 & 4017 &  117 & 3 &  --22 & 8979 \\
+            11 &  152 & 023 &  171 & 83  &  --19 & 8067 &  37 &  111 & 213 &  116 & 269 &  --5 & 05649 \\
+            12 &  183 & 7   &  167 & 082 &  16 & 6184 &  38 &  113 & 38 &  115 & 275 &  --1 & 89502 \\
+            13 &  157 & 806 &  162 & 831 &  --5 & 02491 &  39 &  112 & 433 &  114 & 315 &  --1 & 88186 \\
+            14 &  142 & 933 &  158 & 991 &  --16 & 0584 &  40 &  123 & 706 &  113 & 387 &  10 & 319 \\
+            15 &  185 & 178 &  155 & 498 &  29 & 6797 &  41 &  125 & 563 &  112 & 489 &  13 & 0742 \\
+            16 &  172 & 109 &  152 &   3 &  19 & 8089 &  42 &  101 & 05 &  111 & 619 &  --10 & 5695 \\
+            17 &  174 & 763 &  149 & 356 &  25 & 4069 &  43 &  101 & 805 &  110 & 777 &  --8 & 9723 \\
+            18 &  151 & 21  &  146 & 632 &  4 & 57821 &  44 &  107 & 492 &  109 & 96 &  --2 & 46808 \\
+            19 &  132 & 162 &  144 & 101 &  --11 & 9391 &  45 &  89 & 7489 &  109 & 167 &  --19 & 4182 \\
+            20 &  125 & 188 &  141 & 741 &  --16 & 5524 &  46 &  107 & 598 &  108 & 397 &  --0 & 799046 \\
+            21 &  144 & 023 &  139 & 531 &  4 & 49148 &  47 &  117 & 91 &  107 & 649 &  10 & 261 \\
+            22 &  117 & 048 &  137 & 457 &  --20 & 4084 &  48 &  94 & 22 &  106 & 922 &  --12 & 7018 \\
+            23 &  125 & 011 &  135 & 503 &  --10 & 4919 &  49 &  108 & 116 &  106 & 214 &  1 & 90216 \\
+            24 &  144 & 994 &  133 & 659 &  11 & 3349 &  50 &  108 & 17 &  105 & 526 &  2 & 64485 \\
+            25 &  126 & 14  &  131 & 914 &  --5 & 77349 &  51 &  116 & 083 &  104 & 855 &  11 & 2277 \\
+            26 &  146 & 929 &  130 & 258 &  16 & 6713 &  52 &  123 & 93 &  104 & 201 &  19 & 7289 %\\\arrayrulecolor{medgray}\hline
+            %   &      &     &      &     &     &      &     &      &    &      &     &  15 & 5529
+            %
+        \end{tabular}
+    \end{center}
+    \label{tab:data learn}
+\end{table}%
+What does the surface of the merit function in \eqref{eq:learn merit surface} look like in solution space? Very much like all the other merit functions so far. There is a unique minimum, a distinct feature of the landscape. The question becomes how to find it.
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \ \\[10pt]
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"learning merit naked"}
+        %
+        \put(28,99) {$M(a) = \sum_{k=1}^{m}\paren{y(k) - a k^{b}}^{2}$}
+        %
+    	\put(53,-3) {$a$}
+    	\put(-2,49) {$b$}
+	    %
+   \end{overpic}
+   \caption{Merit function for the learning curve in solution space.}
+   \label{fig:learn merit naked}
+\end{figure}
+
+\subsection{Problem Statement}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+The problem stated in table \ref{tab:learn:problem statement} embodies the major points discussed up to this point and displays a few details that will become clear as the discussion advances.
+  \begin{table}[h]  %  T A B L E
+    \caption{Problem statement for learning curve.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $y(x) = a e^{b\ln x}$ & $a\in\real{+}$, $b\in\real{}$ \\
+        \bf{residual error} & $r_{k} = y(k) - a k^{b}$ & \\
+        \bf{merit function} & $M(a, b) = \sum_{k=1}^{m}\paren{y(x) - a k^{b}}^{2}$  & \\
+        \bf{unit numbers}   & $k$, $\kto{m}$ &  \\
+        \bf{measurements}   & $y_{k}$, $\kto{m}$ &  \\
+        \bf{results}        & $a$ &  initial value \\
+                            & $b$ &  learning rate\\
+                            %& \multicolumn{1}{c}{$\A{}$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c}{$\A{}$} \\
+        \bf{\# of measurements} & $m = 52$ &  \\
+        \bf{\# of parameters}   & $n = 2$ &  \\
+        \bf{system matrix}  & no system matrix -- problem is nonlinear \\
+        \bf{linear system}  & no linear system -- problem is nonlinear \\
+        \bf{unperturbed solution} & $\mat{c}{a\\b} = \mat{r}{371.9\\-0.322}$ & 80\% rate\\
+        \bf{input data}     & table \ref{tab:data learn}
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:learn:problem statement}
+  \end{table}%
+
+\subsection{Solution}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Without a linear system, attack with calculus as in \S \ref{sec:normal I}. Find the roots of the gradient $\nabla M(a,b) = 0$:
+  \begin{equation*}   %  =   =   =   =   =
+    \begin{split}
+      \partial_{a} M &= -2 \sum_{k=1}^{m}\paren{y_{k} - a k^{b}} k^{b} = 0, \\
+      \partial_{b} M &= -2 \sum_{k=1}^{m}\paren{y_{k} - a k^{b}} a k^{b} \ln k = 0.
+    \end{split}
+   %\label{eq:}
+  \end{equation*}
+Look at the equations in explicit form in table \ref{tab:learn:gradient}.
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{The simultaneous conditions defining $\nabla M(a,b) = 0$.}
+    \begin{center}
+        \begin{tabular}{lcl c lcl}
+        	%
+	        \multicolumn{3}{c}{$\partial_{a} M$} && \multicolumn{3}{c}{$\partial_{b} M$} \\\hline
+            %
+            $a 1^{2b}$ &=& $y_{1} 1^{b}$ & \quad & $a^{2} 1^{2b}$ &=& $a y_{1} 1^{b} \ln 1$ \\
+            $a 2^{2b}$ &=& $y_{2} 2^{b}$ & \quad & $a^{2} 2^{2b}$ &=& $a y_{2} 2^{b} \ln 2$ \\
+            %
+            & \vdots & & \quad & & \vdots  \\
+            %
+            $a 52^{2b}$ &=& $y_{52} 52^{b}$ & \quad & $a^{52} 52^{2b}$ &=& $a y_{52} 52^{b} \ln 52$ \\
+            %
+        \end{tabular}
+    \end{center}
+    \label{tab:learn:gradient}
+\end{table}%
+There is no linear system which isolates the solution parameters in a fashion such as this:
+  \begin{equation*}   %  =   =   =   =   =
+      \A{} \mat{c}{a\\b} = \zeta.
+  \end{equation*}
+
+The condition $\partial_{a} M = 0$ allows the separation of the solution parameters.
+  \begin{equation*}   %  =   =   =   =   =
+      a(b) = \frac{\sum y_{k} k^{b}} {\sum k^{2b}}
+   %\end{split}
+   \label{eq:learn:a}
+  \end{equation*}
+This permits removal of one variable, and reduces this merit function to a single parameter, $b$:
+  \begin{equation}   %  =   =   =   =   =
+      \hat{M}(b) = \sum\paren{y(x) - \frac{\sum y_{k} k^{b}} {\sum k^{2b}} k^{b}}^{2}
+   %\end{split}
+   \label{eq:learn:merit 1d}
+  \end{equation}
+where summations from $k=1$ to 52 are implied.
+
+Figure \ref{fig:learn:one d} shows the plot of $\hat{M}(b)$ with the minimum marked. The nonlinear least squares problem in two dimensions is now reduced to a minimization problem in one dimension. The solutions are posted in table \ref{tab:learn:problem statement}.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \ \\[15pt]
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"minimize one d"}
+        %
+        \put(23,64) {$\hat{M}(b) = \sum\paren{y(x) - \frac{\sum y_{k} k^{b}} {\sum k^{2b}} k^{b}}^{2}$}
+        %
+        \put(37,28) {$\hat{M}(-0.331457) = 16338.2$}
+        %
+    	\put(53,-3) {$b$}
+    	\put(-10,33) {$\hat{M}(b)$}
+	    %
+   \end{overpic}
+   \caption{Merit function constrained to one parameter $b$.}
+   \label{fig:learn:one d}
+\end{figure}
+The curve in figure \ref{fig:learn:one d} represents a slice through the surface of the merit function in figure \ref{fig:learn merit naked}. Such a slice is shown in figure \ref{fig:learn:constrained merit}.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   %\ \\[15pt]
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"learning merit a line"}
+        %
+        \put(23,101) {$M(a, b) = \sum_{k=1}^{m}\paren{y(x) - a k^{b}}^{2}$}
+        %
+        % http://tex.stackexchange.com/questions/136742/changing-background-color-of-text-in-latex
+        \put(10,79) {\colorbox{white}{$a = \frac{\sum y_{k} k^{b}} {\sum k^{2b}}$}}
+        %
+    	\put(53,-3) {$a$}
+    	\put(-6,48) {$b$}
+	    %
+   \end{overpic}
+   \caption{Merit function for the learning curve in solution space showing the constrained $a$ parameter as a dotted line.}
+   \label{fig:learn:constrained merit}
+\end{figure}
+
+\subsection{Results}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+The minimizer is quoted to full double precision for debugging purposes:
+  \begin{equation*}   %  =   =   =   =   =
+      b_{LS} = -0.33145698171782384,
+  \end{equation*}
+the initial value is
+  \begin{equation*}   %  =   =   =   =   =
+      a(b_{LS}) = 376.3700704535057,
+  \end{equation*}
+and the minimum of the merit function is
+  \begin{equation*}   %  =   =   =   =   =
+      M\paren{a_{LS},b_{LS}} = \hat{M}\paren{b_{LS}} = 16338.235321721559.
+  \end{equation*}
+The results and residuals are posted in figure \ref{tab:data learn}.
+
+  \begin{table}[t]  %  T A B L E
+    \caption{Results for learning curve analysis.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{fit parameters} & $a$ & initial value \\
+                            & $b$ & rate \\
+        \bf{solution function} & $y(x) = a x^b$ & ${\brac{L}}$ \\
+        \bf{solution error} & $$ & \\
+        \bf{computed solution} & $\mat{c}{a\\b} = \mat{r}{376.37\\-0.331457} \pm \mat{r}{?\\?}$ \\
+        \bf{unperturbed solution} & $\mat{c}{ \tilde{a} \\ \tilde{b} } = \mat{r}{376\\-0.322}$ \\
+        \bf{$\rtr{*}$} & $16\,338$ \\
+        \bf{problem statement} & table \ref{tab:learn:problem statement} \\
+        \bf{input data}        & table \ref{tab:data learn} \\
+        \bf{plots}          & figure \ref{fig:learn: data v soln} & 1. data and solution \\
+                            & figure \ref{fig:learn:residuals}    & 2. residual errors \\
+                            & figure \ref{fig:learn:merit}        & 3. merit function \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:bevington solution}
+  \end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"learn data v soln"}
+        %
+        \put(43,65) {$y(x) = a x^{b}$}
+        %
+    	\put(66,8) {\color{white}\footnotesize{{minimum = 16\ 338}}}
+        %
+    	\put(53,-3) {$a$}
+    	\put(-4,32) {$b$}
+	    %
+   \end{overpic}
+   \caption{Solution for equations \eqref{eq:learn merit surface} and \eqref{eq:learn:merit 1d} using data in table \ref{tab:data learn}.}
+   \label{fig:learn: data v soln}
+\end{figure}
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"learn residuals"}
+        %
+        \put(33,65) {$M(a) = \sum_{k=1}^{m}\paren{y(k) - a k^{b}}^{2}$}
+        %
+    	\put(66,8) {\color{white}\footnotesize{{minimum = 16\ 338}}}
+        %
+    	\put(51,-3) {$a$}
+    	\put(-2,32) {$b$}
+	    %
+   \end{overpic}
+   \caption{The residual errors in figure \ref{fig:learn: data v soln}.}
+   \label{fig:learn:residuals}
+\end{figure}
+
+The merit function in figure \ref{fig:learn:merit} has a new feature. In addition to the least squares solution and the error ellipses, the unperturbed solution is plotted with and ``$\times$''. This is the ideal solution used to generate the raw data before the noise is added. The least squares solution will converge to this point as the magnitude of the error decreases.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"tagged merit"}
+        %
+        \put(28,99) {$M(a) = \sum_{k=1}^{m}\paren{y(k) - a k^{b}}^{2}$}
+        %
+    	\put(66,8) {\color{white}\footnotesize{{minimum = 16\ 338}}}
+        %
+    	\put(53,-3) {$a$}
+    	\put(-2,49){$b$}
+	    %
+   \end{overpic}
+   \caption{Minimization of the merit function for the learning curve.}
+   \label{fig:learn:merit}
+\end{figure}
+
+\section{What Not To Do}  %    S    S    S    S    S    S    S    S    S
+
+Folklore promotes the idea of transforming the problem to a more amenable form. And certainly transformation is a powerful and useful mathematical technique. But the popular transformation complicates the problem and provides an incorrect answer.
+
+\subsection{Logarithmic Transform}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+While the logarithmic transformation is exact,
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      y = a x^{b} \qquad \Rightarrow \qquad \ln y = \ln a + b \ln x,
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+the application is inappropriate because the problem is not exact. If there is no noise in the data set, the above transformation will preserve the solution. However, if the problem is exact, there is no need to employ least squares. One could take the ratio of two distinct data points,
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \frac{y_{j}}{y_{k}} = \paren{\frac{j}{k}}^{b},
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+and compute
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      b = \frac{\ln \paren{y_{j} / y_{k}}} {\ln \paren{j /k}}.
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+Again, there is no need for least squares methods.
+
+When the data contains noise, and the choice is to use least squares, the logarithmic transformation corrupts the data. Look at the transformation of trial function in the presence of noise, that is, with nonzero residual error:
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      y_{k} = a k^{b} + r_{k}  \qquad \Rightarrow \qquad \ln y_{k} = \ln \paren{a k^{b} + r_{k}}.
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+The logarithmic transform is not linear and does not separate the parameters $a$ and $b$ in the presence of error.
+
+Because this malady is so common, the solution invites belaboring. The function $\ln y = \ln a + b \ln x$ is linear in the new coordinates $\ln y$ and $\ln x$ but only when there is no noise -- only when there is no need for least squares arbitration. The presence of noise creates an additive term and the logarithmic transformation creates a different problem which has a different solution.
+
+\subsection{Linear Transformation}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+A transformation $T$ is linear if and only if
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      T(x + \alpha y) = T(x) + \alpha T(y).
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+The logarithmic transformation fails this primal test:
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      \ln (x + \alpha y) \ne \ln (x) + \alpha \ln (y)
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+The faux solution is
+  \begin{equation}   %  =   =   =   =   =
+     \begin{split}
+     \ln a & = 5.88094 \qquad \rightarrow \qquad a = 358.146, \\
+      b & = -0.314929 .
+     \end{split}
+   \label{eq:learn:soln:faux}
+  \end{equation}
+Note that the value of the merit function is higher than the true minimum:
+  \begin{equation}   %  =   =   =   =   =
+   %\begin{split}
+      M(358.146, -0.314929) = 17005 > 16338.
+   %\end{split}
+   \label{eq:learn:merit:min}
+  \end{equation}
+The eyeball is a poor instrument for distinguishing between the correct solution in table \ref{tab:bevington solution} and \eqref{eq:learn:soln:faux}. However, the merit function sharply delineates the two.
+
+The merit shows the solution \eqref{eq:learn:soln:faux} marked with $\boxplus$, distinctly away from the minimum of the merit function as seen in equation \eqref{eq:learn:merit:min} and figure \ref{fig:learn:merit}.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"faux"/"learn two solutions"}
+        %
+        \put(28,99) {$M(a) = \sum_{k=1}^{m}\paren{y(k) - a k^{b}}^{2}$}
+        %
+    	  \put(66,8) {\color{white}\footnotesize{{minimum = 16\ 338}}}
+        %
+    	\put(53,-3) {$a$}
+    	\put(-2,49) {$b$}
+	    %
+   \end{overpic}
+   \caption{The merit function for the learning curve showing the minimum and the value .}
+   \label{fig:learn:merit}
+\end{figure}
+
+\subsection{\label{ssec:RTF}Reflection Test Fails}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+\section{Radioactive Decay}  %    S    S    S    S    S    S    S    S    S
+
+\subsection{Theory}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+\subsection{Problem Statement}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+  \begin{table}[h]  %  T A B L E
+    \caption{Problem statement for radioactive decay.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{trial function} & $c(t) = a e^{b t}$ & counts \\
+        \bf{residual error} & $r_{k} = c_{k} - a e^{b t_{k}}$ & counts \\
+        \bf{merit function} & $M(a) = \sum_{k=1}^{m}\paren{c_{k} - a e^{b t_{k}}}^{2}$  & counts$^2$ \\
+        \bf{measurements}   & $t_{k}$, $\kto{m}$ & time, s \\
+                            & $c_{k}$, $\kto{m}$ & counts \\
+        \bf{results}        & $a \pm \eps_{a}$ & initial value \\
+                            & $b \pm \eps_{b}$ & power \\
+                            %& \multicolumn{1}{c}{$\A{}$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c}{$\A{}$} \\
+        \bf{\# of measurements} & $m = 10$ & rows in $\A{}$ \\
+        \bf{\# of parameters}   & $n = 2$ & columns in $\A{}$ \\
+        \bf{system matrix}  & $\A{} \in \real{10 \times 2}_{2}$ \\
+        \bf{linear system}  & $\mat{cc}{1 & x_{1}  \\ \vdots & \vdots \\ 1 & x_{m}} 
+                               \mat{c}{a_{0} \\ a_{1}} = 
+                               \mat{c}{T_{1} \\ \vdots \\ T_{m}}$ \\
+        \bf{ideal solution} & $\mat{c}{a_{0}\\a_{1}} = \mat{c}{0\\10}$ \\
+        \bf{input data}     & table \ref{tab:bevington data and results}
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:bevington inputs}
+  \end{table}%
+
+
+  \begin{equation*}   %  =   =   =   =   =
+   %\begin{split}
+      C = C_{0} e^{-t/\tau}
+   %\end{split}
+   %\label{eq:}
+  \end{equation*}
+
+\begin{table}[htbp]  % + + + + T A B L E
+    \caption{Logarithmic scaling distorts errors.}
+    \begin{center}
+        \begin{tabular}{r}
+            %
+            \includegraphics[ width = 3in ]{\pathgraphics "nonlinear"/"decay"/"linear errors"} \\[10pt]
+            %
+            \includegraphics[ width = 3in ]{\pathgraphics "nonlinear"/"decay"/"log errors"}\
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+\begin{table}[htbp]  % + + + + T A B L E
+    %\caption{default}
+    \begin{center}
+        \begin{tabular}{rrr}
+            %
+            $k$ & $t$ & $c$ \\\hline
+            %
+             1  & 0   & 106 \\
+             2  & 15  &  80 \\
+             3  & 30  &  98 \\
+             4  & 45  &  75 \\
+             5  & 60  &  74 \\
+             6  & 75  &  73 \\
+             7  & 90  &  49 \\
+             8  & 105 &  38 \\
+             9  & 120 &  37 \\
+             10 & 135 &  22
+            %
+        \end{tabular}
+    \end{center}
+    %\label{default}
+\end{table}%
+
+\subsection{Results}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+  \begin{table}[t]  %  T A B L E
+    \caption{Results for radioactive decay.}
+    \begin{center}
+      \begin{tabular}{lll}
+        %
+        \bf{fit parameters} & $a_{0}$ & intercept, $^{\circ}$C \\
+                            & $a_{1}$ & slope, $^{\circ}$C / cm \\
+        \bf{solution function} & $T(x) = a_{0} + a_{1} x$ & $^{\circ}$C \\
+        \bf{solution error} & $\eps_{T}^{2}(x) = \eps_{0}^{2} + x^{2} \eps_{1}^{2} + a_{1}^{2} \eps_{x}^{2} $ &$^{\circ}$C \\
+        \bf{computed solution} & $\mat{c}{a_{0}\\a_{1}} = \mat{c}{4.8\\9.41} \pm \mat{c}{4.9\\0.87}$ \\
+        \bf{ideal solution} & $\mat{c}{ \tilde{a}_{0} \\ \tilde{a}_{1} } = \mat{c}{0\\10}$ \\
+        \bf{$\rtr{*}$} & $316.6$ \\
+        \bf{curvature matrix $\wxi{*}$} & $\frac{1}{180}\mat{rr}{95 & \mg{-15} \\ \mg{-15} & 3 }$\\[5pt]
+        \bf{problem statement} & table \ref{tab:bevington inputs} \\
+        \bf{input data}        & table \ref{tab:bevington data and results} \\
+        \bf{plots}          & figure \ref{fig:bevington soln v data}    & 1. data and solution \\
+                            & figure \ref{fig:bevington residuals}      & 2. residual errors \\
+                            & figure \ref{fig:bevington merit function} & 3. merit function \\
+        %
+      \end{tabular}
+    \end{center}
+  \label{tab:bevington solution}
+  \end{table}%
+
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+   \centering
+   \begin{overpic}[ scale = \myscale ]
+	   {\pathgraphics "nonlinear"/"decay"/"merit two"}
+        %
+        \put(28,99) {$M(a,b) = \sum_{k=1}^{m}\paren{c(k) - a e^{bt}}^{2}$}
+        %
+        %
+    	\put(54,-3) {$a$}
+    	\put(-4,48) {$b$}
+	    %
+   \end{overpic}
+   \caption{The merit function for the learning curve showing the minimum and the value .}
+   \label{fig:learn:merit}
+\end{figure}
+
+\endinput

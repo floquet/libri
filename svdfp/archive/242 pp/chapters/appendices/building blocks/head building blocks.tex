@@ -1,0 +1,56 @@
+\chapter{Building blocks}
+
+This appendix brings together all the information on the decomposition block structures for the matrix, its adjoint, and its pseudoinverse.
+\begin{equation*}
+  \aesvd{*}
+  \tag{\ref{eq:svd:genesis}}
+\end{equation*}
+
+The \asvd, in full and thin block forms
+\begin{equation}
+  \A{} = \csvdblockb{*} = \svdblockbf{*}
+\end{equation}
+%
+The adjoint matrix
+%
+\begin{equation}
+  \A{*} = \adjointf{*} = \adjointt{*}
+\end{equation}
+%
+The pseudoinverse
+%
+\begin{equation}
+  \Ap = \mppa{*} = \mppb{*}
+\end{equation}
+%
+The product matrices are these:
+\begin{equation}
+  \begin{split}
+    \wxe{*} &= \cvblockf{} \sbb{2} \cvblockfs{*} = \bbvr{} \sbn{2} \bbvr{*} \\
+    \wye{*} &= \cublockf{} \sbb{2} \cublockfs{*} = \bbur{} \sbn{2} \bbur{*}
+  \end{split}
+\end{equation}
+%
+The range space projection matrices are these:
+\begin{equation}
+  \begin{split}
+    \pra  &= \ApA = \cvblockf{} \sbh{-1} \sbb{} \cvblockfs{*} \\
+          &= \bbvr{} \bbvr{*} \\
+    \pras &= \AAp = \cublockf{} \sbb{} \sbh{-1} \cublockfs{*} \\
+          &= \bbur{} \bbur{*}
+  \end{split}
+\end{equation}
+while the \ns \ projectors are
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \pnas &= \I{n} - \ApA \\
+            &= \I{n} - \bbvr{} \bbvr{*} \\
+      \pna  &= \I{m} - \AAp \\
+            &= \I{m} - \bbur{} \bbur{*}
+    \end{split}
+  \end{equation}
+  % = =
+
+
+\endinput

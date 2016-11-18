@@ -1,0 +1,1271 @@
+\documentclass{amsbook}
+
+  \usepackage{amsmath,amssymb}
+  \usepackage{graphicx}
+  \usepackage{colortbl}
+  \usepackage{color,array}
+  \usepackage[usenames,dvipsnames]{xcolor}  % https://tex.stackexchange.com/questions/115024/is-there-a-simple-way-to-brighten-or-darken-a-color
+  \usepackage{multirow}  % https://en.wikibooks.org/wiki/LaTeX/Tables#Columns_spanning_multiple_rows
+  \usepackage{stmaryrd}  % https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
+  \usepackage{multirow}
+
+\newcommand{\pathname}     {../common/}
+\newcommand{\fullpath}     {\pathname}
+\newcommand{\pathgraphics} {../graphics/}
+
+\def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+\def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+
+\input{\pathname declarations.tex}
+\makeindex
+
+\begin{document}  % + + +
+
+\frontmatter
+
+\title{Excursions in linear least squares}
+
+%    author one information
+\author{Daniel Topa}
+\address{}
+\curraddr{}
+\email{dantopa@gmail.com}
+\thanks{}
+
+\subjclass[2010]{Primary }
+
+\keywords{least squares, \Ltwo, \ltwo}
+
+\date{}
+
+\begin{abstract}
+\end{abstract}
+
+\maketitle
+
+%    Change page number to 7 if a dedication is present.
+\setcounter{page}{5}
+
+\tableofcontents
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\include{}
+
+\mainmatter   %   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =
+
+%    Include main chapters here.
+\part{\label{part:first}Rudiments}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+\chapter{\label{ch:least squares}Least Squares}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+\section{\label{sec:linear systems}Linear Systems}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+  This story begins with the archetypal matrix-vector equation
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \axeb .
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+The matrix $\A{}$ has $m$ rows, $n$ columns, and has rank $\rho$; the vector $b$ encodes $m$ measurements. The solution vector $x$ represents the $n$ free parameters in the model. In mathematical shorthand,
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \aicmnr, \quad b \in \cmplxm, \quad x \in \cmplxn
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+with $\cmplx{}$ representing the field of complex numbers. The matrix $\A{}$ and the vector $b$ are given, and the task is to find the vector $x$.
+
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{rrr}{ 
+      -\frac{1}{L_{1}} & \frac{1}{L_{1}} & 0 \\
+       0 & -\frac{1}{L_{2}} & \frac{1}{L_{2}} }
+    \mat{c}{ \varphi_{0} \\ \varphi_{1} \\ \varphi_{2} }
+    =
+    \mat{c}{ x_{1} \\ x_{2} }
+    \label{eq:zonalls}
+  %\end{split}
+  \end{equation*}
+
+\section{\label{sec:lss}Least Squares Solution}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+The solutions for the linear system in \eqref{eq:zonalls}
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \mat{c}{ \varphi_{0} \\ \varphi_{1} \\ \varphi_{2} } =
+    \mat{rr}{ -2 L_{1} & -L_{2} \\ L_{1} & -L_{2} \\  L_{1} & 2 L_{2} }
+    \mat{c}{ x_{1} \\ x_{2} } + \alpha
+    \mat{c}{ 1 \\ 1 \\ 1 }, \qquad \alpha \in \cmplx{} .
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+Given $\aicmn$
+
+\section{\label{sec:ftola}Fundamental Theorem of Linear Algebra}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+  \begin{table}[htdp]  %  T A B L E
+    \caption[The Fundamental Theorem of Linear Algebra]{The Fundamental Theorem of Linear Algebra }
+    \begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain:   & $\cmplx{n}$ & = & $\brnga{*}$ & $\oplus$ & $\rnlla{}$ \\[17pt]
+    		  %
+    		  codomain: & $\cmplx{m}$ & = & $\brnga{}$  & $\oplus$ & $\rnlla{*}$
+    		  %
+      \end{tabular}
+    \end{center}
+  \label{tab:ftola}
+  \end{table}%
+
+%  \begin{table}[htdp]  %  T A B L E
+%    \caption[The Fundamental Theorem of Linear Algebra in pictures]{The Fundamental Theorem of Linear Algebra  in pictures}
+%    \begin{center}
+%    		\begin{tabular}{ccc}
+%		      % 
+%		      Domain && Codomain \\\hline
+%    		  %
+%    		  \includegraphics[ width = 2.25in ]{../graphics/ftola/"least squares wide domain"} &
+%		      $\A{} \colon \cmplx{n} \mapsto \cmplx{m} $ &
+%		      \includegraphics[ width = 2.25in ]{../graphics/ftola/"least squares tall codomain"} \\
+%		      %
+%		      & $\cmplx{n} \mapsfrom \cmplx{m} \colon \A{*} \cmplx{n} \overset{\A{}}{\mapsto} \cmplx{m}$ \\
+%    		  %
+%		  		$\cmplx{n}$ && $\cmplx{m}$ \\
+%    		  %
+%      \end{tabular}
+%    \end{center}
+%  \label{tab:ftola}
+%  \end{table}%
+
+  \begin{table}[htdp]  %  T A B L E
+    \caption[The Fundamental Theorem of Linear Algebra in pictures]{The Fundamental Theorem of Linear Algebra in pictures}
+    \begin{center}
+    		\begin{tabular}{crclc}
+		      % 
+		      Domain &&&& Codomain \\\hline
+		      %
+		      \ \\
+    		  %
+		  		$\cmplx{n}$ &&&& $\cmplx{m}$ \\
+    		  %
+    		  \includegraphics[ width = 2.25in ]{../graphics/ftola/"least squares wide domain"}
+		  		  & $\A{} \colon \cmplx{n}$ & $\mapsto$ & $\cmplx{m} $ &
+		      \includegraphics[ width = 2.25in ]{../graphics/ftola/"least squares tall codomain"} \\
+		      %
+		        & $\cmplx{n}$ & $\mapsfrom$ & $\cmplx{m} \colon \A{*}$ \\
+    		  %
+      \end{tabular}
+    \end{center}
+  %\label{tab:ftola}
+  \end{table}%
+
+\begin{center}
+  \raisebox{-.5\height}{\includegraphics[ width = 2.0in ]{../graphics/ftola/"least squares wide domain"}}
+  \parbox{2cm}{\centering $\A{} \colon \cmplx{n} \mapsto \cmplx{m} $}
+  \raisebox{-.5\height}{\includegraphics[ width = 2.0in ]{../graphics/ftola/"least squares tall codomain"}}
+\end{center}
+
+\end{document}%\chapter{\label{ch:my chapter}My Chapter}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+%\section{\label{sec:my section}My Section}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+%\subsection{\label{ssec:my subsection}My Subsection}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+\part{\label{part:zonal}Zonal fits}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%\input{\pathchapter matrices/"chap matrices"}
+
+\chapter{\label{ch:gradient problems}Gradient Problems}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+The archetypal problem is
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \F{} = \nabla \phi
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+where the vector $\F{}\in\cmplxn$ is measured and the goal is to compute the scalar function $\phi(x)\colon \realn \mapsto \cmplx{}$ in the Sobolev space
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    W^{1,2}\left( \Omega \right) = \left\{ \phi\in L^{2}\left( \Omega \right)\colon \partial_{x}^{1}\phi\in L^{2}\left( \Omega \right) \right\}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+where the integrals in $L^{2}$ are in the Lebesgue sense and the derivative in the weak sense.
+
+\section{Rank Defect}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+Start the discussion in the context of a full rectangular grid. The derivative action of the gradient introduces a rank defect stemming from fundamental invariance:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    D_{x} \phi(x) = D_{x} \paren{\phi_{x} + const}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+This goes back to the saying ``you never solve for potential, you solve for potential differences.'' For example, if the steps in you house are 20 cm high, then going up three stair takes you 60 cm higher. But we cannot say what at what height we starting; we only know the change of height.
+
+In $n$ dimensions this will manifest is a solution with $n$ free variables
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split} 
+    \varphi = \mat{c}{\varphi_{1} \\ \vdots \\ \varphi_{m}} = \phi_{general} + \phi_{homogeneous} = \xi + \alpha_{1} \eta_{1} + \dots + \alpha_{n} \eta_{n}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+where $\alpha\icn$, and $\xi, \eta \icn$. The general solution is in the range space
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \phi_{general} = \xi \in \brnga{*}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+and the homogenous solution vectors are in the null space
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \eta_{k} \in \rnlla{}, \qquad k = 1\colon n
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+and are mutually orthogonal: $\eta_{j} \cdot \eta_{k} = 0$ for $j=k$.
+
+\section{Average Gradient}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+Of particular interest is the case where a device measures the average of a gradient.
+
+Consider the domain
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Gamma = \lst{x\ir\colon 0 < x < \lambda_{1} m}, \qquad \lambda_{1} \ir, m \in \mathbb{N}
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+with the equipartition
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \omega_{k} = \lst{x\ir\colon \lambda_{1} (k - 1) < x < \lambda_{1} k}, k=1\colon m.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+There are neither underlaps:
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \Gamma = \bigcup_{k=1}^{m} \omega_{k},
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+nor overlaps in this covering
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    \omega_{j} \cap \omega_{k} = \emptyset, j\ne k.
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+
+%\subsection{My Subsection}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+
+\part{\label{part:zonal}Modal fits}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%\input{\pathchapter polynomials/"chap polynomials"}
+%\input{\pathchapter orthogonals/"chap orthogonals"}
+
+%    Include main chapters here.
+\part{\label{part:nonlinear}Nonlinear problems}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+    Blindly applying linear tools to nonlinear problems presents many paths to perdition. Hope, no matter how fervent, cannot remedy mathematical maladies.
+
+    We stress the definition of the least squares problem in \eqref{eqn:definition} as the first indication that something is amiss. We stress visualization methods to help reveal the status of a calculation.
+    \begin{enumerate}
+    \item finding reasonable approximations which nudge the problem into linearity;
+    \item iterating the solution to a linear problem to improve a nonlinear problem; 
+    \item separating a problem into linear and nonlinear components.
+    \end{enumerate}
+
+\chapter{\label{ch:best circle}Best Circle}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+\section{Nonlinear Formulation}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+This is an example of a numbered first-level heading.
+
+A circle is characterized by two parameters: an origin and a radius. The origin is a vector quantity, the radius a scalar.
+  % = =  e q u a t i o n
+  \begin{equation}
+    \org = \mat{c}{x_{0} \\ y_{0}}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Given a set of measurements $p_{j}$, $j=1\colon m$.
+  % = =  e q u a t i o n
+  \begin{equation}
+    \paren{ x - x_{0} }^{2} - \paren{ y - y_{0} }^{2} = \rho^{2}
+    \label{eqn:nonlinear trial}
+  \end{equation}
+  % = =
+
+This implies a trial function
+  % = =  e q u a t i o n
+  \begin{equation}
+    \chi^{2}\paren{\org,\rho} = \sum_{j=1}^{m} \paren{\rho^{2} - \paren{ x_{j} - x_{0} }^{2} + \paren{ y_{j} - y_{0} }^{2}}^{2}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+
+In equation \eqref{eqn:nonlinear trial} the fit parameters for the origin appear in a nonlinear fashion, making this a nonlinear problem. There are many ways to solve such a problem. However, our focus is on linear problems.
+
+\section{Linear formulation}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+We start with the simple vector equation
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{j} = r_{k} + \org 
+    %\label{eqn:}
+  \end{equation}
+  % = =
+from which we conclude
+   % = =  e q u a t i o n
+  \begin{equation}
+    p_{j}^{2} = r_{j}^{2} + \org^{2} + 2 r_{j} \cdot \org 
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The trick is make one parameter disappear. To do so examine differences between the measurements
+  % = =  e q u a t i o n
+  \begin{equation}
+    \Delta_{jk} = p_{j} - p_{k} = r_{j} - r_{k} 
+    \label{eqn:difference}
+  \end{equation}
+  % = =
+The data is no longer a list of $m$ measurements of $p$; instead it is a list of $\tau$ differences where 
+  % = =  e q u a t i o n
+  \begin{equation}
+    \tau = \half m(m-1)
+    %\label{eqn:}
+  \end{equation}
+  % = =
+For example, when $m=4$
+    \begin{table}[htbp]
+    \caption{The new data set compared to the old. The measured values $p$ are converted to a set of differences $\Delta_{jk}$.}
+    \begin{center}
+      \begin{tabular}{rcc}
+        %
+        & measurements & inputs\\\hline
+        %
+        1 & $p_{1}$ & $\Delta_{12} = p_{1} - p_{2}$ \\
+        %
+        2 & $p_{2}$ & $\Delta_{13} = p_{1} - p_{3}$ \\
+        %
+        3 & $p_{3}$ & $\Delta_{14} = p_{1} - p_{4}$ \\
+        %
+        4 & $p_{4}$ & $\Delta_{23} = p_{2} - p_{3}$ \\
+        %
+        5 &         & $\Delta_{24} = p_{2} - p_{4}$ \\
+        %
+        6 &         & $\Delta_{34} = p_{3} - p_{4}$
+      \end{tabular}
+    \end{center}
+    \label{tab:p's}
+    \end{table}%
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{j}^{2} - p_{k}^{2} = r_{j}^{2} - r_{k}^{2} + 2 \paren{r_{j} - r_{k}} \cdot \org
+    %\label{eqn:}
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    r_{j}^{2} = \rho^{2} \qquad j = 1\colon m
+    %\label{eqn:}
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    r_{j}^{2} - r_{k}^{2} = 0 \qquad j,k = 1\colon m
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The final trial function is this using equation \eqref{eqn:difference}
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{j}^{2} - p_{k}^{2} = 2 \paren{p_{j} - p_{k}} \cdot \org
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The trial function is then
+  % = =  e q u a t i o n
+  \begin{equation}
+    p_{j}^{2} - p_{k}^{2} = 2 \paren{p_{j} - p_{k}} \cdot \org
+    %\label{eqn:}
+  \end{equation}
+  % = =
+and the merit function
+  % = =  e q u a t i o n
+  \begin{equation}
+    \merit{\org} = \sum_{j=1}^{m-1} \sum_{k=1}^{m} \sq{p_{j}^{2} - p_{k}^{2} - 2 \paren{p_{j} - p_{k}} \cdot \org}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Label the pairs
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xi = \lst{ \mat{c}{1\\2}, \mat{c}{1\\3}, \dots, \mat{c}{m-1\\m} }
+    %\label{eqn:}
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \merit{\org} = \sum_{\mu=1}^{\tau} \sq{2\Delta_{\xi} \cdot \org -p_{\xi_{1}}^{2} + p_{\xi_{2}}^{2}}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+
+    Linear system
+    \begin{equation}
+      \begin{split}
+        p_{1}^{2} - p_{2}^{2} &= 2\paren{p_{1}-p_{2}}\cdot \org \\ 
+        p_{1}^{2} - p_{3}^{2} &= 2\paren{p_{1}-p_{3}}\cdot \org \\ 
+        &  \ \, \vdots \\
+        p_{m-1}^{2} - p_{m}^{2} &= 2\paren{p_{m-1}-p_{m}}\cdot \org
+      \end{split}
+    \end{equation}
+    solve for the origin $\org$.
+    The problem statement
+      % = =  e q u a t i o n
+      \begin{equation}
+        \Delta \org = b
+        %\label{eqn:}
+      \end{equation}
+      % = =
+    In $d$ dimensions the matrix dimensions are
+    $$\Delta \in\real{\tau \times d}_{d}, \quad \org   \in\real{d \times 1},  \quad b      \in\real{\tau \times 1}$$
+    and the matrices are defined as
+      % = =  e q u a t i o n
+      \begin{equation}
+        \Delta = 2\mat{c}{p_{1} - p_{2} \\ \vdots \\p_{m-1} - p_{m}}, \quad
+        \org   = \mat{c}{x_{1} \\ \vdots \\x_{d}}, \quad
+        b      = \mat{c}{p_{1}^{2} - p_{2}^{2} \\ \vdots \\p_{m-1}^{2} - p_{m}^{2}}
+        %\label{eqn:}
+      \end{equation}
+
+\chapter{\label{ch:population}Focal Length}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+This is a delightful example from the wild for it represents not only interesting mathematics but also represents the sociology of applied mathematics. In simplest form, a colleague walks in with a set of measurements and asks for linear analysis. You, the analyst, has no input on the design of the measurement apparatus or the measurement scheme. The apparatus may have been assembled for another task and the measurements represent a sanity check on the design. The apparatus may have been assembled in great haste or after great deliberation. The apparatus may represent significant financial and temporal investment, or it may be trivial. The device may be available for further measurement refinements, or it may be at a distant facility, or it may have been harvested for parts or deconstructed to free bench space.
+
+Applied mathematics contains elements of applied sociology. The customer may have significant emotional investment in the device, the data, and the linear model. The customer may be phobic to higher order fits. The spectrum runs from someone who wants a number for a report to someone who wants insight. ``Here is my spreadsheet.'' The hope being that the magic of least squares will salvage the experimental effort or just a subconscious association between computer results and legitimacy.
+
+Critical elements are beyond our control. A good approach is to provide not just an answer, but also motivation for our colleagues to involve data analysts in device and experiment design.
+
+Here we sit witnessing the collision of practicality and quality.
+
+Often we are reliving a cautionary tale in designing the device you want to build instead of the device you need to make a measurement.
+
+Is the best fit a good fit? A beauty of the method of least squares comes from the qualitative evaluation of the fit parameters. 
+Let's explore the application of linear methods to nonlinear problems.
+Laboratory constrains mathematics. You inherit a spreadsheet and are asked to do basic analysis. We may think of the task as asking the question ``how well does a linear model describe the data?''
+
+In the case at hand, we had purchased a high quality lens with an expected focal length of $f = 1$ meter and the measurements were a quick test of a concept to measure focal length with a wavefront sensor.
+
+\section{First analysis}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{rr@{.}lr@{.}lr@{.}lr@{.}lr@{.}l}
+    		  %
+    		  $k$ & \multicolumn{2}{c}{$x_{k}$} 
+		          & \multicolumn{2}{c}{$R_{k}$}
+		          & \multicolumn{2}{c}{$x_{k}R_{k}$} 
+		          & \multicolumn{2}{c}{$\phi + e x_{k}$}
+		          & \multicolumn{2}{c}{residual} \\\hline
+    		  %
+    1  & $0$  & 0600 & $15$ & 782463 & $0$ & 946948 & $0$ & 878471 & $0$ & 0684766 \\
+    2  & $0$  & 0500 & $18$ & 891135 & $0$ & 944557 & $0$ & 886614 & $0$ & 0579429 \\
+    3  & $0$  & 0400 & $23$ & 960752 & $0$ & 95843 & $0$ & 894756 & $0$ & 0636736 \\
+    4  & $0$  & 0300 & $32$ & 353135 & $0$ & 970594 & $0$ & 902899 & $0$ & 0676949 \\
+    5  & $0$  & 0200 & $50$ & 59144 & $1$ & 0118288 & $0$ & 911042 & $0$ & 100787 \\
+    6  & $0$  & 0100 & $104$ & 688717 & $1$ & 0468872 & $0$ & 919184 & $0$ & 127703 \\
+    7  & $0$  & 0000 & $-1839$ & 049364 & $0$ & $0000$ & $0$ & 927327 & $-0$ & 927327 \\
+    8  & $-0$ & 0100 & $-103$ & 184318 & $1$ & 0318432 & $0$ & 93547 & $0$ & 0963735 \\
+    9  & $-0$ & 0200 & $-50$ & 736612 & $1$ & 0147322 & $0$ & 943612 & $0$ & 0711199 \\
+    10 & $-0$ & 0300 & $-33$ & 758937 & $1$ & 0127681 & $0$ & 951755 & $0$ & 0610131 \\
+    11 & $-0$ & 0400 & $-25$ & 711537 & $1$ & 0284615 & $0$ & 959898 & $0$ & 0685638 \\
+    12 & $-0$ & 0500 & $-20$ & 803821 & $1$ & 0401911 & $0$ & 96804 & $0$ & 0721507 \\
+    13 & $-0$ & 0600 & $-17$ & 466853 & $1$ & 0480112 & $0$ & 976183 & $0$ & 0718282 \\
+         %
+    		\end{tabular}
+    	\end{center}
+    	\caption[Full data set and results for focal length measurement]{Full data set and results for focal length measurement.}
+    	\label{tab:focal length data and results}
+    \end{table}%
+
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"hyperbola all"}
+    	\caption[The complete data set]{The complete data set.}
+    	\label{fig:hyperbola}
+    \end{figure}
+
+Thin lens equation
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x\paren{R+e} = -f^{2}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Trial function is not of the form $y(x) = a_{0}+a_{1}x$ but is instead an implicit function $x y = a_{0}+a_{1}x$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x R = \phi + e x 
+    %\end{split}
+    \label{eqn:fl trial}
+  \end{equation}
+% = =  
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+     x R - \phi - e x = 0
+    %\label{eq:}
+  %\end{split}
+  \end{equation}
+Physical fact
+  \begin{equation}   %  =   =   =   =   =
+  %\begin{split}
+    M ( x, r ) = x R - \phi - e x
+    %\label{eq:}
+  %\end{split}
+  \end{equation}
+  % = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \abs{\phi} = f^{2}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Linear system
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} z &= b\\
+      \mat{cc}{1 & x_{1} \\ \vdots & \vdots \\ 1 & x_{m}}
+      \mat{c}{\phi \\ e} &= 
+     -\mat{c}{x_{1}R_{1} \\ \vdots \\ x_{m}R_{m}}
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The expected focal length is $f=1$ m.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      f_{measured} = 0.963 \pm 0.062 \text{ m}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+  \begin{equation}   %  =   =   =   =   =
+    \begin{split}
+      f &= \sqrt{-\phi} \\
+      \sigma_{f} &= \frac{\sigma_{\phi}}{\sqrt{2}\abs{\phi}}
+    \end{split}
+  \end{equation}
+  
+    \begin{table}[t]  %  T A B L E
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  \bf{measurements} & $x_{k}$, $k=1:m$ & micrometer position \\
+    		               & $R_{k}$, $k=1:m$ & radius of curvature \\[5pt]
+		      %
+		      \bf{result} & $f\pm\eps_{\phi}$ \\[5pt]
+    		  %
+    		  \bf{fit parameters} & $\phi\pm\eps_{\phi}$ \\
+    		                      & $e\pm\eps_{e}$ \\[5pt]
+    		  %
+    		  \bf{trial function} & $\phi + e x = - x R$ \\[5pt]
+    		  %
+    		  \bf{merit function} & $M(\phi, e) = \sum_{k=1}^{m} \paren{\phi + e x_{k} + x_{k} R_{k}}^{2}$ \\[5pt]
+    		  %
+    		  \bf{linear system} & $\mat{cc}{1 & x_{1} \\ \vdots & \vdots \\ 1 & x_{m}} \mat{c}{\phi \\ e} = -\mat{c}{x_{1}R_{1} \\ \vdots \\ x_{m}R_{m}}$ \\[5pt]
+    		  %
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:statement focal length}
+    	\caption{Problem statement: determine focal length $f$.}
+    \end{table}
+    %
+    \begin{figure}[t]  %  F I G U R E
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length fit v data"}
+    	\caption[Solution plotted against the data.]{The solution curve \eqref{eqn:bevington soln} plotted against the data in table \ref{tab:focal length data and results}.}
+    	\label{fig:focal length solution}
+    \end{figure}
+    \begin{figure}[t]  %  F I G U R E
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length residuals"}
+    	\caption{A closer look at the residual errors plotted on an absolute scale.}
+    	\label{fig:focal length residuals}
+    \end{figure}
+    \begin{figure}[t]  %  F I G U R E
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length merit"}
+    	\caption[The merit function in solution space]{The merit function in solution space.}
+    	\label{fig:focal length merit}
+    \end{figure}
+		%
+    \begin{table}[t]
+    	\begin{center}
+    		%\begin{tabular}{llcccl}
+    		\begin{tabular}{llcr@{.}lcr@{.}l}
+    		  %
+    		  \bf{fit parameters} & $\phi\pm\eps_{\phi}$ & = & $-0$ & $927$ & $\pm$ & $0$ & $081$ \\
+    		                      & $e\pm\eps_{e}$       & = &  $0$ & $8$   & $\pm$ & $2$ & $2$ \\[5pt]
+		      %
+		      \bf{result}         & $f\pm\eps_{f}$       & = &  $0$ & $963$ & $\pm$ & $0$ & $062$ \\[5pt]
+    		  %
+    		  $\rtr{T}$ & \multicolumn{5}{l}{$0.08511$}\\[5pt]
+    		  %
+    		  $c$ & \multicolumn{5}{l}{$\frac{1}{91} \mat{cc}{7 & 0 \\ 0 & 5000}$}\\[8pt]
+    		  %
+    		  \bf{plots} & \multicolumn{5}{l}{data vs fit: figure \ref{fig:focal length solution}} \\
+    		             & \multicolumn{5}{l}{residuals: figure \ref{fig:focal length residuals}} \\
+    		             & \multicolumn{5}{l}{merit function in $\brnga{*}$: figure \ref{fig:focal length merit}} \\[5pt]
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:results focal length}
+    	\caption{Results: focal length $f$}
+    \end{table}
+    %
+
+\clearpage
+
+\section{Second Analysis}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{rr@{.}lr@{.}lr@{.}lr@{.}lr@{.}l}
+    		  %
+    		  $k$ & \multicolumn{2}{c}{$x_{k}$} 
+		          & \multicolumn{2}{c}{$R_{k}$}
+		          & \multicolumn{2}{c}{$x_{k}R_{k}$} 
+		          & \multicolumn{2}{c}{$\phi + e x_{k}$}
+		          & \multicolumn{2}{c}{residual} \\\hline
+    		  %
+    1 & $0$ & 0600 & $15$ & 782463 & $0$ & 946948 & $0$ & 955748 & $-0$ & 00880062 \\
+    2 & $0$ & 0500 & $18$ & 891135 & $0$ & 944557 & $0$ & 963891 & $-0$ & 0193343 \\
+    3 & $0$ & 0400 & $23$ & 960752 & $0$ & 95843 & $0$ & 972034 & $-0$ & 0136036 \\
+    4 & $0$ & 0300 & $32$ & 353135 & $0$ & 970594 & $0$ & 980176 & $-0$ & 00958232 \\
+    5 & $0$ & 0200 & $50$ & 59144 & $1$ & 0118288 & $0$ & 988319 & $0$ & 0235098 \\
+    6 & $0$ & 0100 & $104$ & 688717 & $1$ & 0468872 & $0$ & 996462 & $0$ & 0504255 \\
+    7 & $-0$ & 0100 & $-103$ & 184318 & $1$ & 0318432 & $1$ & 012747 & $0$ & 0190962 \\
+    8 & $-0$ & 0200 & $-50$ & 736612 & $1$ & 0147322 & $1$ & 0208896 & $-0$ & 00615739 \\
+    9 & $-0$ & 0300 & $-33$ & 758937 & $1$ & 0127681 & $1$ & 0290323 & $-0$ & 0162642 \\
+    10 & $-0$ & 0400 & $-25$ & 711537 & $1$ & 0284615 & $1$ & 0371749 & $-0$ & 00871344 \\
+    11 & $-0$ & 0500 & $-20$ & 803821 & $1$ & 0401911 & $1$ & 0453176 & $-0$ & 00512651 \\
+    12 & $-0$ & 0600 & $-17$ & 466853 & $1$ & 0480112 & $1$ & 0534602 & $-0$ & 00544907 \\ 
+    		  %
+      \end{tabular}
+    	\end{center}
+    	\caption{Truncated data set and results for focal length measurement}
+    	\label{tab:focal length II data and results}
+    \end{table}
+		%
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"hyperbola cull"}
+    	\caption[The culled data set]{The cull data set.}
+    	\label{fig:focal length cull}
+    \end{figure}
+    %
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{llcccl}
+    		  %
+    		  \bf{fit parameters} & $\phi\pm\eps_{\phi}$ & = & $-1.0046$ & $\pm$ & $0.0062$ \\
+    		                      & $e\pm\eps_{e}$       & = & $0.81$    & $\pm$ & $0.16$ \\[5pt]
+		      %
+		      \bf{result}         & $f\pm\eps_{f}$       & = & $1.0023$   & $\pm$ & $0.0044$ \\[5pt]
+    		  %
+    		  $\rtr{T}$ & \multicolumn{5}{l}{$0.004623$}\\[5pt]
+    		  %
+    		  $c$ & \multicolumn{5}{l}{$\frac{1}{1092} \mat{cc}{91 & 0 \\ 0 & 60\,000}$}\\[8pt]
+    		  %
+    		  \bf{plots} & \multicolumn{5}{l}{data vs fit: Fig. \ref{fig:focal length II solution}} \\
+    		             & \multicolumn{5}{l}{residuals: Fig. \ref{fig:focal length II residuals}} \\
+    		             & \multicolumn{5}{l}{merit function in $\brnga{*}$: Fig. \ref{fig:focal length II merit}} \\[5pt]
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:results focal length II}
+    	\caption{Improved results: focal length $f$}
+    \end{table}
+    %
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length II fit v data"}
+    	\caption[Solution plotted against the data.]{The solution curve \eqref{eqn:bevington soln} plotted against the data in table \ref{tab:bevington data}.}
+    	\label{fig:focal length II solution}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length II residuals"}
+    	\caption{A closer look at the residual errors plotted on an absolute scale.}
+    	\label{fig:focal length II residuals}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length II merit"}
+    	\caption[The merit function in solution space]{The merit function in solution space: the white cross in the center marks the solution found in \eqref{eqn:bevington soln}, the yellow curves represent the error ellipses with radii of $\paren{a_{0},a_{1}}$, $2\paren{a_{0},a_{1}}$, and $3\paren{a_{0},a_{1}}$.}
+    	\label{fig:focal length II merit}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length II random"}
+    	\caption[Whisker plot]{Whisker plot.}
+    	\label{fig:focal length II random}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length II random dots"}
+    	\caption[Sampled solution values]{Sampled solution values.}
+    	\label{fig:focal length II random dots}
+    \end{figure}
+    % = =  e q u a t i o n
+      \begin{equation}
+        %\begin{split}
+          f_{measured} = 1.0023 \pm 0.0042 \text{ m}
+        %\end{split}
+        %\label{eqn:}
+      \end{equation}
+    % = =
+    \begin{figure}[t]
+    	\includegraphics[ width = 4.25in ]{\pathgraphics "focal length"/"focal length normal"}
+    	\caption[Accuracy and precision before and after removing data]{Accuracy and precision before and after removing data.}
+    	\label{fig:focal length normal}
+    \end{figure}
+Precision improves by an order of magnitude when the point at the origin is excluded. The exclusion criteria is based on the statistics of the data set, not difficulty in the measurement.
+
+  \begin{table}[htdp]  %  T A B L E
+    \caption{Focal length computation for both data sets.}
+    \begin{center}
+      \begin{tabular}{lr@{.}lcr@{.}l}
+        %
+        full set & $0$ & $963$ & $\pm$ & $0$ & $062$ \\
+        %
+        exclude origin & $1$ & $0023$ & $\pm$ & $0$ & $0042$
+        %
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:?}
+  \end{table}%
+
+\clearpage
+\chapter[]{\label{ch:population}Population Growth}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+In this section we take a nonlinear model for population growth and separate the linear and nonlinear terms.
+
+\section{Model}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      y(t) = c_{1} + c_{2} \paren{t-1900} + c_{3} e^{d\paren{t-1900}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \min_{c\in\real{3}} \normts{\A{}(d)\mat{c}{c_{1}\\c_{2}\\c_{3}}-y}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+\section{Example}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{rrrrr}
+    		%
+		          &&&& \multicolumn{1}{c}{rel.}\\
+    		 year & census & fit & \multicolumn{1}{c}{$r$} & error \\\hline
+    		%
+    		 1900 & 76.00  & 77.51  & 1.51  & 2.0\% \\
+    		 1910 & 91.97  & 90.98  & $-0.99$ & $-1.1$\% \\
+    		 1920 & 105.71 & 104.87 & $-0.84$ & $-0.8$\% \\
+    		 1930 & 122.78 & 119.48 & $-3.29$ & $-2.7$\% \\
+    		 1940 & 131.67 & 135.36 & 3.69  & 2.8\% \\
+    		 1950 & 150.70 & 153.46 & 2.76  & 1.8\% \\
+    		 1960 & 179.32 & 175.45 & $-3.87$ & $-2.2$\% \\
+    		 1970 & 203.24 & 204.26 & 1.029 & 0.5\% \\
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	\caption{Data v. prediction.}
+    \end{table}%
+
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"error wide"} \\[20pt]
+    	\includegraphics{\pathgraphics census/"error zoom"}
+    	\caption{The shaded region in this plot is shown below.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"data v fit"}
+    	\caption{Solution plotted against data.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+    	\includegraphics{\pathgraphics census/"residuals"}
+    	\caption{Residual errors.}
+    	%\label{fig:}
+    \end{figure}
+    \begin{figure}[t]
+      \includegraphics[ width = 4in ]{\pathgraphics census/"census merit"}
+      \caption[The merit function showing least squares solution]{The merit function with $c_{1}$ and $c_{2}$ fixed at best values showing least squares solution (center) and null cline (dashed, yellow).}
+    	%\label{fig:}
+    \end{figure}
+
+    \begin{figure}[t]
+    	\includegraphics[ width = 4in ]{\pathgraphics census/"census 3d"}
+    	\caption{The merit function in three dimensions.}
+    	%\label{fig:}
+    \end{figure}
+
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{ll}
+    		  %
+    		  \bf{fit parameters} & $c = \mat{r@{.}l}{0 & 010 \\ 0 & 0170 \\ 0 & 0096} \pm 
+    		                             \mat{r@{.}l}{0 & 031 \\ 0 & 0014 \\ 0 & 0020}$ \\[18pt]
+    		                      & $d = 0.056136\,\pm\,?.?$ \\[5pt]
+    		  %
+    		  $\rtr{T}$ & $0.009025$\\[5pt]
+    		  %
+    		  $\alpha$ & $\mat{r@{.}lr@{.}lr@{.}l}
+    		    {0 & 5397 & -0 & 0188 &  0 & 0165 \\
+    		    -0 & 0188 &  0 & 0011 & -0 & 0014 \\
+    		     0 & 0165 & -0 & 0014 &  0 & 0022 }$\\[15pt]
+    		  %
+    		  \bf{plots} & data vs fit \eqref{fig:census fit} \\
+    		             & residuals \eqref{fig:census fit} \\
+    		             & merit function in $\brnga{*}$ \eqref{fig:census merit} \\[5pt]
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\label{tab:results census}
+    	\caption{Results: census}
+    \end{table}%
+
+\section{Comparison}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+
+%\part{\label{part:first}Scalar fields}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%
+%\part{\label{part:first}Vector fields}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%
+%\part{\label{part:first}Tensor fields}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%
+%
+%\part{\label{part:first}Zonal fits}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+%  
+%\part{\label{part:}Stitching}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+%\part{\label{part:}This is a Part Title Sample}  %   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+\appendix
+
+\chapter[Least squares with exemplars]{Least squares with exemplar matrices}   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %   %
+
+\section{Linear systems}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+The essential concepts of least squares and the fundamental subspaces spring to life using exemplar matrices. The canonical linear system is
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \Axeb
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+The matrix $\A{}$ has $m$ rows and $n$ columns of complex numbers. The matrix rank is $\rho\le\min\paren{m,n}$. In shorthand, the three components are
+    \begin{enumerate}
+    	\item $\aicmnr$: the system matrix, an input;
+    	\item $b\in\cmplxm$: the data vector, an input;
+    	\item $x\in\cmplxn$: the solution vector, the output.
+    \end{enumerate}
+The residual error from the best fit is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    r = \Axmb .
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Ignore the trivial cases where $b=0$.
+
+Exemplar matrices have obvious \asvd s.
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Exemplar matrices and their block forms.}
+    \begin{center}
+      \begin{tabular}{cccc}
+        %
+        $\idtwo$ & $\exemplartall$ & $\exemplarwide$ & $\exemplarboth$ \\[20pt]
+        %
+        $\mat{c}{\I{2}}$ & $\mat{c}{\I{2}\\\hline\zero}$ & $\mat{c|c}{\I{2}&\zero}$ & $\mat{c|c}{\I{2}&\zero\\\hline\zero & 0}$ 
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:}
+  \end{table}%
+  \\
+
+  \begin{table}[htbp]  %  T A B L E
+    \caption{Exemplar matrices and their block forms.}
+    \begin{center}
+      \begin{tabular}{cc}
+        %
+        exemplar & block form \\\hline
+        \ \\
+        %
+        $\idtwo$ & $\mat{c}{\I{2}}$ \\[15pt]
+        %
+        $\exemplartall$ & $\mat{c}{\I{2}\\\hline\zero}$ \\[20pt]
+        %
+        $\exemplarwide$ & $\mat{c|c}{\I{2}&\zero}$ \\[15pt]
+        %
+        $\exemplarboth$ & $\mat{c|c}{\I{2}&\zero\\\hline\zero & 0}$
+        %
+      \end{tabular}
+    \end{center}
+  %\label{tab:}
+  \end{table}%
+
+\section{Exemplars}  %    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S    S
+
+
+\subsection{Full rank: $\rho = m = n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Start with an ideal linear system
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \idtwo \xtwo &= \bvtwo.
+    \label{eqn:ideal}
+    \end{split}
+  \end{equation}
+
+{\bf{Subspace decomposition:}}
+
+    {\small{
+    \begin{table}[h!]
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain:   & $\cmplx{2}$ & = & $\brnga{*}$ & $\mg{\oplus}$ & $\mr{\nlla{}}$ & = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[12pt]
+    		  %
+    		  codomain: & $\cmplx{2}$ & = & $\brnga{}$ & $\mg{\oplus}$ & $\mr{\nlla{*}}$ & = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[10pt] 
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	\caption[Subspace decomposition for the $\A{}$ matrix in \eqref{eqn:ideal}]{Subspace decomposition for the $\A{}$ matrix in \eqref{eqn:ideal}.}
+    \end{table}
+    }}
+Because the matrix $\A{}$ has full column rank the null space $\rnlla{*}$ is trivial. Because the matrix $\A{*}$ has full row rank the null space $\rnlla{}$ is trivial.\\
+
+{\bf{Existence and uniqueness:}}
+We have unconditional existence and uniqueness without regard to the data vector. The exact solution is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \xtwo = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. More formally, the linear system has a unique solution for any value of $b_{1}, b_{2} \ic$.
+
+
+\subsection{Full column rank: $\rho = n < m$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Foreshadowing the resolution of the range and null spaces, we show a partitioning
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplartall \xtwo &= \bvthree.
+    \label{eqn:fcr}
+    \end{split}
+  \end{equation}
+  % = =
+
+{\bf{Subspace decomposition:}}
+
+    \begin{table}[h!]
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+					%
+					%& \multicolumn{9}{l}{\ftola} \\
+    		  %
+    		  domain:   & $\cmplx{2}$ & = & $\brnga{*}$ & $\mg{\oplus}$ & $\mr{\nlla{}}$ & = & $\spn{\bl{\xx},\bl{\yy}}$   & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$ \\[12pt]
+    		  %
+    		  codomain: & $\cmplx{3}$ & = & $\brnga{}$ & $\oplus$ & $\rnlla{*}$ & = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$      & $\spn{\rd{\zzz}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the data vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \underbrace{\bl{\mat{c}{b_{1} \\ b_{2} \\ 0}}}_{\in\brnga{}} + \underbrace{\rd{\mat{c}{0\\0\\b_{3}}}}_{\in\rnlla{*}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{Existence and uniqueness:}}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{No existence:}}
+When the data vector inhabits the null space we do not even have a least squares solution. 
+
+{\bf{Existence, no uniqueness:}}
+
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} = 0 $ \\[3pt]
+    		  existence  & $b\in\brnga{} \oplus \rnlla{*} $ &  ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} \ne 0 $ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $b_{1} = b_{2} = 0$, $b_{3}\in\cmplx{}$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:fcr}.}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+\subsection{Full row rank: $\rho = m < n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Foreshadowing the resolution of the range and null spaces, we show a partitioning
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplarwide \xthree &= \bl{\bvtwo}.
+    \label{eqn:frr}
+    \end{split}
+  \end{equation}
+  % = =
+
+{\bf{Subspace decomposition:}}
+
+    \begin{table}[h!]
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain: & $\cmplx{3}$ & = & $\brnga{*}$ & $\oplus$ & $\rnlla{}$ & = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$ \\[17pt]
+    		  %
+    		  codomain: & $\cmplx{2}$ & = & $\brnga{}$ & $\mg{\oplus}$ & $\mr{\nlla{*}}$ & = & $\spn{\bl{\xx},\bl{\yy}}$ & $\mg{\oplus}$ & $\mg{\spn{\zerotwo}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the solution vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \underbrace{\bl{\mat{c}{x_{1} \\ x_{2} \\ 0}}}_{\in\brnga{*}} + \underbrace{\rd{\mat{c}{0\\0\\x_{3}}}}_{\in\rnlla{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{Existence and uniqueness:}}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{No existence}}
+When the data vector inhabits the null space we do not even have a least squares solution. 
+
+{\bf{Existence, no uniqueness:}}
+
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} = 0 $ \\[3pt]
+    		  existence  & $b\in\brnga{} \oplus \rnlla{*} $ &  ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} \ne 0 $ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $b_{1} = b_{2} = 0$, $b_{3}\in\cmplx{}$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:fcr}.}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+\subsection{Row and column rank deficit: $\rho < m, \rho < n$}  %   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS   SS
+Partitioning
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplarboth \xthree &= \mat{c}{\bl{b_{1}} \\ \bl{b_{2}} \\ \rd{b_{3}} }.
+    \label{eqn:frr}
+    \end{split}
+  \end{equation}
+  \\
+{\textbf{\bsvd}}
+% = =  e q u a t i o n
+    \begin{equation}
+      %\begin{split}
+        \exemplarboth = \svd{*} = 
+        \mat{ccc}{ \bone & \bzero & \rzero \\ \bzero & \bone & \rzero \\ \bzero & \bzero & \rzero } \ 
+        \exemplartall \ 
+        \mat{cc}{ \bone & \bzero \\  \bzero & \bone }
+        %\label{eq:}
+      %\end{split}
+    \end{equation}
+% = =
+
+{\bf{Subspace decomposition:}}
+
+    \begin{table}[h!]
+    	\begin{center}
+    		\begin{tabular}{rccccccccc}
+    		  %
+    		  domain:   & $\cmplx{3}$ & = & $\brnga{*}$ & $\oplus$ & $\rnlla{}$ & = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$ \\[17pt]
+    		  %
+    		  codomain: & $\cmplx{3}$ & = & $\brnga{}$ & $\oplus$ & $\rnlla{*}$ & = & $\spn{\bl{\xxx},\bl{\yyy}}$ & $\oplus$ & $\spn{\rd{\zzz}}$
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	%\label{tab:}
+    	%\caption{default}
+    \end{table}%
+
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the solution vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \underbrace{\bl{\mat{c}{x_{1} \\ x_{2} \\ 0}}}_{\in\brnga{*}} + \underbrace{\rd{\mat{c}{0\\0\\x_{3}}}}_{\in\rnlla{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{Existence and uniqueness:}}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+{\bf{No existence}}
+When the data vector inhabits the null space we do not even have a least squares solution. 
+
+{\bf{Existence, no uniqueness:}}
+
+    \begin{table}[t]
+    	\begin{center}
+    		\begin{tabular}{lll}
+    		  %
+    		  statement & subspace condition & data conditions\\\hline
+    		  %
+    		  existence and uniqueness & $b\in\brnga{}$ & ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} = 0 $ \\[3pt]
+    		  existence  & $b\in\brnga{} \oplus \rnlla{*} $ &  ($b_{1}\ne0$ or $b_{2}\ne0$) and $b_{3} \ne 0 $ \\[3pt]
+    		  no existence & $b\in\rnlla{*}$ & $b_{1} = b_{2} = 0$, $b_{3}\in\cmplx{}$ \\
+    		  %
+    		\end{tabular}
+    	\end{center}
+    	\caption{Existence and uniqueness for the full column rank linear system in equation \eqref{eqn:fcr}.}
+    	\label{tab:ftola spaces}
+    \end{table}%
+
+\backmatter   %   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =   =
+
+\bibliographystyle{amsplain}
+\bibliography{}
+
+\printindex
+
+\end{document}

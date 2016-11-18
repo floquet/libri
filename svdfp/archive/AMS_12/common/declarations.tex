@@ -1,0 +1,192 @@
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\setlength\minrowclearance{4pt}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{section}{chapter}
+\numberwithin{equation}{section}
+
+%%
+\providecommand{\abs}[1]    {\left|#1\right|}
+\providecommand{\norm}[1]   {\left\lVert#1\right\rVert}
+\providecommand{\normo}[1]  {\left\lVert#1\right\rVert_{1}}
+\providecommand{\normt}[1]  {\left\lVert#1\right\rVert_{2}}
+\providecommand{\norminf}[1]{\left\lVert#1\right\rVert_\infty}
+\providecommand{\normp}[1]  {\left\lVert#1\right\rVert_{p}}
+\providecommand{\normf}[1]  {\left\lVert#1\right\rVert_F}
+
+\providecommand{\real}[1]{\mathbb{R}^{#1}}
+\providecommand{\cmplx}[1]{\mathbb{C}^{#1}}
+\providecommand{\complex}[1] { \mathbb{C}^{\by{m}{n}}_{#1} }
+
+\providecommand{\nll}[1]{\mathcal{N}\paren{#1}}
+\providecommand{\rng}[1]{\mathcal{R}\paren{#1}}
+
+\providecommand{\Ain}[1] {\A{\by{m}{n}}_{#1}}
+\providecommand{\Ar}[1]  {\A{}\in\real{\by{#1}{#1}}}
+\providecommand{\Ac}[1]  {\A{}\in\cmplx{\by{#1}{#1}}}
+\providecommand{\Acc}[2] {\A{}\in\cmplx{\by{#1}{#2}}}
+\providecommand{\Accmn}  {\Acc{m}{n}}
+\providecommand{\Amnr}   {\Accmn_{\rho}}
+
+\providecommand{\svd}[1]{\Y{}\, \Sigma \, \X{ \mathrm{#1} }}
+\providecommand{\svdthin}[1]{\widetilde{\Y{}}\, \widetilde{\sig{}}\, \widetilde{\mathbf{X}}^{\mathrm{#1}}}
+\providecommand{\svda}[1]{\A{} & = \svd{#1}}
+\providecommand{\svdax}[1]{\A{}  = \svd{#1}}
+\providecommand{\svdt}[1]{\X{} \, \sig{T} \, \Y{ \mathrm{#1} }}
+\providecommand{\mpgi}[1]{\X{} \, \sig{(+)} \, \Y{ \mathrm{#1} }}
+\providecommand{\mpgia}[1]{\Ap & = \mpgi{#1}}
+\providecommand{\mpgiax}[1]{\Ap = \mpgi{#1}}
+
+\providecommand{\svdtag}[1]{\Y{}_{ #1 }\, \Sigma_{ #1 }\, \X{*}_{ #1 }}
+\providecommand{\svdtagA}[1]{\A{}_{ #1 } = \svdtag{#1}}
+
+\providecommand{\A}[1] { \textbf{A}^{\mathrm{#1}} }
+\providecommand{\B}[1] { \textbf{B}^{\mathrm{#1}} }
+\providecommand{\C}[1] { \textbf{C}^{\mathrm{#1}} }
+\providecommand{\D}[1] { \textbf{D}^{\mathrm{#1}} }
+\providecommand{\LL}[1]{ \textbf{L}^{\mathrm{#1}} }
+\providecommand{\M}[1] { \textbf{M}^{\mathrm{#1}} }
+\providecommand{\N}[1] { \textbf{N}^{\mathrm{#1}} }
+\providecommand{\pee}[1]{\textbf{P}^{\mathrm{#1}} }
+\providecommand{\Q}[1] { \textbf{Q}^{\mathrm{#1}} }
+\providecommand{\R}[1] { \textbf{R}^{\mathrm{#1}} }
+\providecommand{\T}[1] { \textbf{T}^{\mathrm{#1}} }
+\providecommand{\V}[1] { \textbf{V}^{\mathrm{#1}} }
+\providecommand{\U}[1] { \textbf{U}^{\mathrm{#1}} }
+\providecommand{\X}[1] { \textbf{X}^{\mathrm{#1}} }
+\providecommand{\Y}[1] { \textbf{Y}^{\mathrm{#1}} }
+\providecommand{\Z}[1] { \textbf{Z}^{\mathrm{#1}} }
+\providecommand{\ess}[1]{\textbf{S}^{\mathrm{#1}} }
+\providecommand{\J}[2] { \textbf{J}^{#2}_{#1} }
+\providecommand{\E}[1] { \textbf{E}_{#1} }
+\providecommand{\G}[1] { \textbf{G}_{\mathrm{#1}} }
+\providecommand{\I}[1] { \textbf{I}_{#1} }
+\providecommand{\K}[1] { \textbf{K}_{#1} }
+\providecommand{\W}[1] { \textbf{W}_{\mathrm{#1}} }
+\providecommand{\sig}[1] { \Sigma^{\mathrm{#1}} }
+
+\providecommand{\prdm}[1]  {\A{ \mathrm{#1} }\A{}}
+\providecommand{\prdmm}[1] {\A{}\,\A{ \mathrm{#1} }}
+\providecommand{\wx}[1]    {\X{}\,\sig{T}\,\sig{}\,\X{#1}}
+\providecommand{\wy}[1]    {\Y{}\,\sig{}\,\sig{T}\,\Y{#1}}
+\providecommand{\pra}[1]   {\Y{}\,\J{m}{\rho}\Y{#1}}
+\providecommand{\pnap}[1]  {\X{}\,\J{n}{\rho}\,\X{#1}}
+\providecommand{\prodx}[2] {\X{}_{#2}\,\X{#1}_{#2}}
+\providecommand{\prody}[2] {\Y{}_{#2}\,\Y{#1}_{#2}}
+
+\providecommand{\paren}[1] { \left( #1 \right) }
+\providecommand{\inner}[1] { \langle #1 \rangle }
+\providecommand{\brac}[1]  { \left[ #1 \right] }
+%\providecommand{\list}[1]  { \lbrace #1 \rbrace }
+\providecommand{\lst}[1]   { \left\{ #1 \right\} }
+\providecommand{\dim}[1]   { \text{dim}\paren{ #1 } }
+\providecommand{\rank}[1]  {\text{rank}\paren{#1}}
+
+\providecommand{\mat}[2] {\left[\begin{array}{#1}#2\end{array}\right]}
+\providecommand{\rat}[2] {\mathbf{R}^{\mathrm{#2}}\paren{#1}}
+
+\providecommand{\by}[2]  {#1 \times #2}
+\providecommand{\bys}[1] {#1 \times #1}
+\providecommand{\byt}[2] {\mathit{#1} \times \mathit{#2}}
+\providecommand{\bymn}   {\by{m}{n}}
+\providecommand{\bymm}   {\bys{m}}
+
+\providecommand{\xrng}{\X{}_{\mathcal{R}}}
+\providecommand{\xnll}{\X{}_{\mathcal{N}}}
+\providecommand{\yrng}{\Y{}_{\mathcal{R}}}
+\providecommand{\ynll}{\Y{}_{\mathcal{N}}}
+
+
+%% order
+\providecommand{\order}[1] { \mathcal{o}\paren{#1} }
+\providecommand{\Order}[1] { \mathcal{O}\paren{#1} }
+
+%%
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\mx}{max}
+\DeclareMathOperator{\dm}{dim}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\sgn}{sign}
+\DeclareMathOperator{\spn}{sp}
+\DeclareMathOperator{\rref}{rref}
+
+\DeclareMathOperator{\rot}{\textbf{R}\paren{\theta}}
+
+\DeclareMathOperator{\Ap}{\A{+}}
+\DeclareMathOperator{\leftinv}{\A{+}\A{}}
+\DeclareMathOperator{\rightinv}{\A{}\A{+}}
+\DeclareMathOperator{\AinvL}{\A{-1}_{\mathrm{L}}}
+\DeclareMathOperator{\AinvR}{\A{-1}_{\mathrm{R}}}
+\DeclareMathOperator{\AinvB}{\A{-1}_{\mathrm{L,R}}}
+
+\DeclareMathOperator{\projra} {\mathbf{P}_{\rng{\A{}}}}
+\DeclareMathOperator{\projrap}{\mathbf{P}_{\rng{\A{}}^{\perp}}}
+\DeclareMathOperator{\projna} {\mathbf{P}_{\nll{\A{}}}}
+\DeclareMathOperator{\projnap}{\mathbf{P}_{\nll{\A{}}^{\perp}}}
+
+\DeclareMathOperator{\projrat} {\mathbf{P}_{\rng{\A{T}}}}
+\DeclareMathOperator{\projratp}{\mathbf{P}_{\rng{\A{T}}^{\perp}}}
+\DeclareMathOperator{\projnat} {\mathbf{P}_{\nll{\A{T}}}}
+\DeclareMathOperator{\projnatp}{\mathbf{P}_{\nll{\A{T}}^{\perp}}}
+
+\newcommand{\archetype}{\Aexample = \Yshade \Sigmaexampleb \Xtshade}
+\newcommand{\archetypez}{\Aexample &= \Yshade \Sigmaexampleb \Xtshade}
+
+\newcommand{ \svdl }{singular value decomposition}
+\newcommand{ \svdp }{singular value decomposition (SVD)}
+\newcommand{ \ft }{Fundamental Theorem}
+\newcommand{ \ftola }{\ft \ of Linear Algebra}
+\newcommand{ \qr }{$\Q{}\,\R{}$ decomposition}
+
+\newcommand{ \ls }  {\A{} x = b}
+\newcommand{ \lsa } {\A{} x & = b }
+\newcommand{ \zero }{\textbf{0}}
+\newcommand{ \one } {\textbf{1}}
+
+\newcommand{ \mv }  {$m-$vector}
+\newcommand{ \nv }  {$n-$vector}
+\newcommand{ \vv }  {$2-$vector}
+\newcommand{ \vvv } {$3-$vector}
+
+%\newcommand{ \pivot } {1 \negthickspace\negthickspace\negmedspace\bigcirc}
+\newcommand{ \pivot } {\boxed{1}}
+\definecolor{ltgray}{gray}{0.9}
+\definecolor{veryltgray}{gray}{0.95}
+
+
+%% common fractions
+\newcommand{\rtwo}  { \frac{1}{2} }
+\newcommand{\rthree}{ \frac{1}{3} }
+\newcommand{\rfour} { \frac{1}{4} }
+\newcommand{\rfive} { \frac{1}{5} }
+\newcommand{\rsix}  { \frac{1}{6} }
+
+\newcommand{\stwo}  { \frac{1}{\sqrt{2}} }
+\newcommand{\sthree}{ \frac{1}{\sqrt{3}} }
+\newcommand{\sfive} { \frac{1}{\sqrt{5}} }
+\newcommand{\ssix}  { \frac{1}{\sqrt{6}} }
+
+\newcommand{\nstwo}  { \frac{-1}{\sqrt{2}} }
+\newcommand{\nsthree}{ \frac{-1}{\sqrt{3}} }
+\newcommand{\nsfive} { \frac{-1}{\sqrt{5}} }
+\newcommand{\nssix}  { \frac{-1}{\sqrt{6}} }
+
+%%other definitions
+\input{common/common.tex}
+\input{common/pauli.tex}
+\input{common/gellmann.tex}
+\input{common/matrices.tex}

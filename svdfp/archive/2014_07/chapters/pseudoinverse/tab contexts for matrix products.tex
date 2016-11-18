@@ -1,0 +1,19 @@
+\begin{table}[htdp]
+\caption[Contexts for matrix products like $\bur{}\bur{*}$]{Contexts for matrix products like $\bur{}\bur{*}$. Attention must be given to the context of the matrix product. It is an identity matrix only when $\U{}=\mat{c}{\bur{}}$, the case of full column rank.}
+\begin{center}
+\begin{tabular}{lccccc}
+%
+column rank condition & $\U{}$ &&&& \\\hline
+%
+full column rank      & $\U{}=\mat{c}{\bur{}}$ & $\bur{}$ & $\bur{*}$ & $=$   & $\I{m}$ \\
+%
+ && $\byy{m}$ & $\byy{m}$ && $\byy{m}$\\[10pt]
+%%
+column rank deficient & $\U{}=\cublockf{}$ & $\bur{}$ & $\bur{*}$ & $\ne$ & $\I{m}$ \\
+%
+ && $\by{m}{\rho}$ & $\by{\rho}{m}$ && $\byy{m}$
+%
+\end{tabular}
+\end{center}
+\label{tab:penrose:unitary}
+\end{table}%

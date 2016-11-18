@@ -1,0 +1,36 @@
+\clearpage
+\thispagestyle{empty}
+
+\begin{landscape}
+%\arrayrulecolor{medgray}
+\begin{table}[htdp]
+\caption[Summary of the matrix reductions]{Summary of the matrix reductions. While the range space vectors are all orthogonal to the \ns \ vectors, the vectors within each subspace are not mutually orthogonal. That is, the spanning sets are not orthogonal in general.}
+\begin{center}
+\begin{tabular}{ccc|ccc|ccc}
+% 
+ &&&& $\cmplxm$ &&& $\cmplxn$ \\[4pt]
+ & matrix & matrix rank & $\brnga{}$ & $\oplus$ & $\rnlla{*}\phantom{m}$ & $\brnga{*}$ & $\oplus$ &$\rnlla{}$ \\ \hline
+%
+  &&&&&\\
+%
+(a) & $\matrixa$ & $\rho = 1$ & 
+$\spn{\bvecam}$ & $\oplus$ & $\spn{\rvecan}$ & $\spn{\bvecaa}$ & $\oplus$ & 
+$\spn{\rvecad,\rvecae}$ \\ [40pt]
+%
+(b) & $\matrixb$ & $\rho = 2$ & 
+$\spn{ \bvecba, \bvecbb }$ & $\oplus$ & $\spn{ \rvecbc }$ & 
+$\spn{ \bvecbd, \bvecbe }$ & $\goplus$ & $\glzerotwo$ \\[40pt]
+%
+(c) & $\matrixc$ & $\rho = 2$ & 
+$\spn{ \bveccf, \bveccg }$ & $\goplus$ & $\glzerotwo$ & 
+$\spn{ \bvecch, \bvecce }$ & $\goplus$ & $\glzerotwo$
+%
+%\arrayrulecolor{black}
+\end{tabular}
+\end{center}
+\label{tab:ftola:reductions}
+\end{table}
+\end{landscape}
+%%
+
+\endinput

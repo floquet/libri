@@ -1,0 +1,53 @@
+\section{The matrix of singular values}
+
+In this volume we have, by fiat, restricted the singular values to being nonzero. This is a convention, by no means a theoretical necessity. It is possible to pose a consistent development without this requirement. However, this does simplify the discussion and agree with common practise.
+
+One of the biggest problems that people have with the SVD stems from not being able to manipulate the $\sig{}$ matrix. Please take a few minutes to make sure that you are able to start with the matrix in the $\sig{}$ column and produce $\sig{T}$, $\sig{\psymbol}$ and the products $\sig{T}\sig{\psymbol}$ and $\sig{\psymbol}\sig{T}$.
+
+\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htdp]
+\begin{center}
+\begin{tabular}{lccccc}
+  $\A{}$ & $\sig{}$ & $\sig{T}$ & $\sig{(+)}$ & $\sig{}\sig{(+)}$ & $\sig{(+)}\sig{}$\\
+  %%
+  $\cmplx{\by{3}{2}}_{1}$ &
+  $\mat{c|c}{\sigma_{1}&0\\\hline0&0\\0&0}$ & 
+  $\mat{c|cc}{\sigma_{1}&0&0\\\hline0&0&0}$ & 
+  $\mat{c|cc}{\frac{1}{\sigma_{1}}&0&0\\[3pt]\hline0&0&0}$ &
+  $\mat{c|cc}{1&0&0\\\hline0&0&0\\0&0&0}$ & 
+  $\mat{c|c}{1&0\\\hline0&0}$ \\
+  \ \\\hline
+  %%
+  $\cmplx{\by{2}{3}}_{2}$ &
+  $\mat{cc|c}{\sigma_{1}&0&0\\0&\sigma_{2}&0}$ & 
+  $\mat{cc}{\sigma_{1}&0\\0&\sigma_{2}\\\hline 0&0}$ & 
+  $\mat{cc}{\frac{1}{\sigma_{1}}&0\\0&\frac{1}{\sigma_{2}}\\[3pt]\hline 0&0}$ &
+  $\itwo$ & 
+  $\mat{cc|c}{1&0&0\\0&1&0}$\\
+  \ \\\hline
+  %%
+  $\cmplx{\bys{2}}_{2}$ &
+  $\mat{cc}{\sigma_{1}&0\\0&\sigma_{2}}$ & 
+  $\mat{cc}{\sigma_{1}&0\\0&\sigma_{2}}$ & 
+  $\mat{cc}{\frac{1}{\sigma_{1}}&0\\0&\frac{1}{\sigma_{2}}}$ & $\itwo$ & 
+  $\itwo$\\
+  \ \\
+\end{tabular}
+\end{center}
+\caption[Different forms for the $\sig{}$ matrix]{Different forms for the $\sig{}$ matrix for three types of matrices. The matrices $\sig{}$ and $\sig{T}$ share the same diagonal; $\sig{T}$ and $\sig{(+)}$ share the same shape. The product matrices $\sig{}\sig{(+)}$ and $\sig{(+)}\sig{}$ share the same nonzero diagonal elements and have different shapes. The first two columns involve the singular values, the next column use the arithmetic inverse of the singular values. The last two column use ones.}
+\label{tab:sing}
+\end{table}%
+\end{landscape}
+
+Stencils
+truncated identity
+\begin{equation}
+  \begin{split}
+    \sig{}\sig{(+)} &= \mat{c|c}{\I{m}&\zero\\\hline\zero&\zero} = \J{m}{\rho}, \\
+    \sig{(+)}\sig{} &= \mat{c|c}{\I{n}&\zero\\\hline\zero&\zero} = \J{n}{\rho}.
+  \end{split}
+\end{equation}
+
+
+\endinput

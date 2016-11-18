@@ -1,0 +1,156 @@
+\section{Example: matrix (b)}
+\label{sec:svd I:b}
+The target matrix $\dimsb$. It has full column rank but is row rank deficient:
+\begin{equation}
+  \A{} = \matrixb.
+\end{equation}
+The \ns \ for the domain is trivial:
+\begin{equation}
+  \rnlla{} = \trivial.
+\end{equation}
+The \asvd \ takes the block form
+\begin{equation}
+  \aesvd{*} = \csvdblockbc{*}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 1: singular values}
+The Hermitian conjugate and the product matrix are
+\begin{equation}
+  \A{*} = \matrixbt, \quad \wv = \wx{*} = \wxb.
+\end{equation}
+To compute the characteristic polynomial, we will use
+\begin{equation}
+  \begin{split}
+    p\paren{\lambda} 
+      &= \lambda^{2} - \lambda \text{tr} \paren{\wv} + \det \paren{\wv} \\
+      &= \lambda^{2} - \frac{9}{8}\lambda + \frac{45}{256}
+  \end{split}
+\end{equation}
+The roots of the characteristic equation are the eigenvalues:
+\begin{equation}
+  \lambda \paren{\wv} = \lst{ \frac{15}{16}, \frac{3}{16} }. 
+\end{equation}
+The singular values are
+\begin{equation}
+  \sigma = \lst{ \frac{\sqrt{15}}{4}, \frac{\sqrt{3}}{4} }.
+\end{equation}
+The matrix of singular values is
+\begin{equation}
+  \ess{} = \text{diagonal} \lst{\sigma} = \essb
+\end{equation}
+and the $\sig{}$ matrix becomes
+\begin{equation}
+  \sig{} = \sbc{} = \sigmab.
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 2: $\brnga{*}$}
+Resolve the domain by computing the eigenvectors in the same order as the eigenvalues. Since we use the normalized form of the eigenvectors, we can ignore scaling factor of $1/16$.
+\begin{equation}
+  \begin{split}
+    \paren{\wv - \lambda_{1}\I{2}}\bvo = \mat{cc}{9-15 & 6 \\ 6 & 9-15}\bvo = \mat{rr}{-6 & 6 \\ 6 & -6}\bvo = \zerotwo
+  \end{split}
+\end{equation}
+\begin{equation}
+  \bvo = \vecbxa.
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \paren{\wv - \lambda_{2}\I{2}}\bvo = \mat{cc}{9-3 & 6 \\ 6 & 9-3}\bvt = \mat{cc}{6 & 6 \\ 6 & 6}\bvt = \zerotwo
+  \end{split}
+\end{equation}
+\begin{equation}
+  \bvt = \vecbxb.
+\end{equation}
+Of course the negative version of the vectors would work as well.
+
+\begin{equation}
+  \V{} = \bvr{} = \mat{cc}{ \vecbxa & \vecbxb }.
+  \label{eq:b:v}
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 3: $\brnga{}$}
+We resolve the range space for the codomain by direct contraction. The \mv s are scaled images of \nv s:
+\begin{equation}
+  \begin{split}
+    \A{}\,\bvo       &= \sigma_{1} \buo \\
+    \matrixb \vecbxa &= \frac{\sqrt{15}}{4} \paren{\buo}  
+  \end{split}
+\end{equation}
+from which we conclude
+\begin{equation}
+  \buo = \obvecbm.
+\end{equation}
+%
+We resolve the range space for the codomain by direct contraction. The \mv s are scaled images of \nv s:
+\begin{equation}
+  \begin{split}
+    \A{}\,\bvt       &= \sigma_{2} \buo \\
+    \matrixb \vecbxb &= \frac{\sqrt{3}}{4} \paren{\buo}  
+  \end{split}
+\end{equation}
+from which we conclude
+\begin{equation}
+  \but = \obvecbn.
+\end{equation}
+We can complete the range space components:
+\begin{equation}
+  \ur{} = \mat{c|c}{ \obvecbm & \obvecbn }.
+\end{equation}
+
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Step 4: $\rnlla{*}$, $\rnlla{}$}
+Because this matrix has full column rank, the \ns \ $\rnlla{}$ is trivial. This leaves the \ns \ $\rnlla{*}$. Using the rank plus nullity theorem, we conclude that there is only one vector in this space. One way to construct this vector is to use the cross product
+\begin{equation}
+  a \times b = c
+\end{equation}
+\begin{equation}
+  \mat{c}{ a_{1} \\ a_{2} \\ a_{3} } \times 
+  \mat{c}{ b_{1} \\ b_{2} \\ b_{3} } =
+  \mat{c}{ a_{2}b_{3} - b_{3}a_{2} \\ 
+           a_{3}b_{1} - b_{1}a_{3} \\ 
+           a_{1}b_{2} - b_{2}a_{1} }
+\end{equation}
+\begin{equation}
+  \buo \times \but = {\rd{ u_{3} }}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \buo \times \but 
+      &= {\rd{ \tilde{u}_{3} }}, \\
+    \obvecbm \times \obvecbn
+      &= \recip{2\sqrt{45}} 
+         \mat{r}{ 10 + 2 \\ 2 - 2 \\ -1 - 5 } \\
+      &= \recip{2\sqrt{45}} 
+         \mat{r}{ 12 \\ 0 \\ -6 }
+  \end{split}
+\end{equation}
+The normalized vector is
+\begin{equation}
+  {\rd{ u_{3} }} = \orvecbo
+\end{equation}
+The codomain is resolved into a complete orthonormal basis
+\begin{equation}
+  \U{} = \ublockf{} = \mat{c|c|c}{ \obvecbm & \obvecbn & \orvecbo }.
+\end{equation}
+
+\begin{equation}
+  \aesvdecompb
+\end{equation}
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Observations}
+
+\endinput

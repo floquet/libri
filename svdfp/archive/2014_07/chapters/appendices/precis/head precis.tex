@@ -1,0 +1,156 @@
+\chapter{Linear algebra pr\'ecis}
+Existence and uniqueness
+  % = =  e q u a t i o n
+  \begin{equation}
+    \Axeb
+  \end{equation}
+  % = =
+Discussed in the guise of  of identity-type matrices.
+
+\section{0, 1, $\infty$}   %  S  S  S  S  S  S  S  S  S  S  S  S  S  S  S
+Every linear system can be characterized by the number of solutions
+\begin{itemize}
+\item 0: no solution
+\item 1: a unique solution
+\item $\infty$: an infinite number of solutions
+\end{itemize}
+
+\section{Trivial: 1}   %  S  S  S  S  S  S  S  S  S  S  S  S  S  S  S
+Data vector and solution vector have the same dimension. That is $b\icm$ and $x\icm$; the linear system matrix is square.
+  % = =  e q u a t i o n
+  \begin{equation}
+    \idtwo
+    \mat{c} { x_{1} \\ x_{2} } =
+    \mat{c} { b_{1} \\ b_{2} }    
+  \end{equation}
+  % = =
+There is a unique solution:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c} { x_{1} \\ x_{2} } = \bl{ \mat{c} { b_{1} \\ b_{2} } }
+  \end{equation}
+  % = =
+
+
+\section{Tall: 0 or 1}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{cc}{ 1 & 0 \\ 0 & 1 \\ 0 & 0 }
+    \mat{c} { x_{1} \\ x_{2} } =
+    \mat{c} { b_{1} \\ b_{2} \\ b_{3} }
+  \end{equation}
+  % = =
+In block form we may write
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{\I{2} \\\hline \zero }
+    \mat{c} { x_{1} \\ x_{2} } =
+    \mat{c} { b_{1} \\ b_{2} \\\hline b_{3} } =
+    \bl{ \mat{c} { b_{1} \\ b_{2} \\ 0 } } + \rd{ \mat{c} { 0 \\ 0 \\ b_{3} } }
+  \end{equation}
+  % = =
+
+
+When $b_{3}=0$ the solution is unique
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \mat{c} { x_{1} \\ x_{2} } = \bl{ \mat{c} { b_{1} \\ b_{2} } }
+  \end{equation}
+  % = =
+
+When $b_{3}\neq0$ there is no solution and we turn to least squares.
+  % = =  e q u a t i o n
+  \begin{equation}
+    x_{LS} = \mat{c} { x_{1} \\ x_{2} } = \bl{ \mat{c}  { b_{1} \\ b_{2} } }
+  \end{equation}
+  % = =
+The error is $r^{\mathrm{T}}r=\normts{\Axmb} = b_{3}^{2}$. Observe that when $b_{3}=0$ the error $r^{\mathrm{T}}r=0$; the solution is exact.
+
+When $b_{1} = b_{2} = 0$ there is not even a least squares solution. By inspection it is clear that the linear system
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{cc}{ 1 & 0 \\ 0 & 1 \\ 0 & 0 }
+    \mat{c} { x_{1} \\ x_{2} } =
+    \rd{ \mat{c} { 0 \\ 0 \\ b_{3} } }
+  \end{equation}
+  % = =
+has no solution either directly or by the method of least squares.
+We say that the data vector is in the \ns \ of $\A{*}$: $b\in\rnlla{*}$.
+
+\section{Wide: $\infty$}   %  S  S  S  S  S  S  S  S  S  S  S  S  S  S  S
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{ccc}{ 1 & 0 & 0 \\ 0 & 1 & 0 }
+    \mat{c}  { x_{1} \\ x_{2} \\ x_{3} } =
+    \bl{ \mat{c}  { b_{1} \\ b_{2} } }
+  \end{equation}
+  % = =
+In block form we may write
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c|c}{\I{2} & \zero }
+    \mat{c} { x_{1} \\ x_{2} \\\hline x_{3} } =
+    \bl{ \mat{c}  { b_{1} \\ b_{2} } }
+  \end{equation}
+  % = =
+There are an infinite number of solutions
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{ \mat{c} { b_{1} \\ b_{2} \\ 0 } } + \alpha \rd{ \mat{c} { 0 \\ 0 \\ 1 } }, \qquad \alpha\ic .
+  \end{equation}
+  % = =
+There are an infinite number of solutions representing the continuum of values represented by the free parameter $\alpha$.
+
+The solution of minimum norm $x_{min}$
+  % = =  e q u a t i o n
+  \begin{equation}
+    x_{min} = \min_{\alpha\ic} \normts{\bl{\mat{c} { b_{1} \\ b_{2} \\ 0 }} + \alpha \rd{\mat{c} { 0 \\ 0 \\ 1 }} } = \bl{ \mat{c} { b_{1} \\ b_{2} \\ 0 } }
+  \end{equation}
+  % = =
+That is when $\alpha=0$.
+
+\section{Transpose}
+The preceding two examples represent the same matrix:
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \mat{cc}  { 1 & 0 \\ 0 & 1 \\\hline 0 & 0 }^{*} &= \mat{cc|c}{ 1 & 0 & 0 \\ 0 & 1 & 0 }, \\
+      \mat{cc|c}{ 1 & 0 & 0 \\ 0 & 1 & 0 }^{*}        &= \mat{cc} { 1 & 0 \\ 0 & 1 \\\hline 0 & 0 }.
+    \end{split}
+  \end{equation}
+  % = =
+The partitioning highlights this relationship.
+
+\section{SVD}
+  % = =  e q u a t i o n
+  \begin{equation}
+    \idtwo = \svd{*} = \bl{ \I{2} } \, \I{2} \, \bl{ \I{2} }
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{cc}{ 1 & 0 \\ 0 & 1 \\ 0 & 0 } = \svd{*} 
+      = \mat{ccc}{ \bone & \bzero & \rzero \\ \bzero & \bone & \rzero \\ \bzero & \bzero & \rone } \, 
+        \mat{c}{ \I{2} \\\hline \zero } \, 
+            \bl{ \I{2} }
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{ccc}{ 1 & 0 & 0 \\ 0 & 1 & 0 } = \svd{*} 
+      = \bl{ \I{2} } \, 
+        \mat{c|c}{ \I{2} & \zero } \, 
+        \mat{ccc}{ \bone & \bzero & \bzero \\ \bzero & \bone & \bzero \\ \rzero & \rzero & \rone }
+  \end{equation}
+  % = =
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{ccc}{ 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 } = \svd{*} 
+      = \mat{ccc}{ \bone & \bzero & \rzero \\ \bzero & \bone & \rzero \\ \bzero & \bzero & \rone } \, 
+        \mat{c|c}{ \I{2} & \zero \\\hline \zero & \zero } \, 
+        \mat{ccc}{ \bone & \bzero & \bzero \\ \bzero & \bone & \bzero \\ \rzero & \rzero & \rone }
+  \end{equation}
+  % = =
+
+
+\endinput

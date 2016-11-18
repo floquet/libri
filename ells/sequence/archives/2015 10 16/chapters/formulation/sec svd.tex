@@ -1,0 +1,132 @@
+\section{\label{sec:formulation svd}Singular Value Decomposition}
+
+% SUBSECTION
+\subsection{Decomposition}
+\input{\pathtables "tab svd block forms"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+% SUBSECTION
+\subsection{Motivation: the pseudoinverse solution}
+Given a matrix $\X{} \in \cmplx{m}$ and a unitary matrix $\Q{}\in \cmplx{m}$
+Unitary invariance under the $2-$norm and the Frobenius norm.
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normt{\X{}} = \normt{\Q{} \X{}} = \normt{\X{}\Q{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+Definition of the least square problem
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x_{LS} = \lst{x\in\cmplx{n} \colon \normt{r} \text{ is minimized}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normt{r} = \normt{\axmb} = \normt{\svd{*}x - b}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Unitary transformation delivers a simpler problem
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normt{\U{*}r} = \normt{r}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normt{r} = \normt{\U{*}r} = \normt{\sig{}\,\V{*}x-\U{*}b}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+Now we can separate range and null spaces
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normts{\sig{}\,\V{*}x-\U{*}b} = \normts{\sbc{}\bvr{*}x-\cublockfs{*}b}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The subspace components correspond to error terms which can and can't be controlled by varying the minimizer $x$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \normts{\mat{c}{\ess{}\bvr{*}x\\\hline\zero}-\mat{c}{\bur{*}b\\[3pt]\hline\run{*}b}} = 
+      \underbrace{\normts{\ess{}\bvr{*}x-\bur{*}b}}_{\text{controlled}} + 
+      \underbrace{\normts{\run{*}b}}_{\text{uncontrolled}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+The piece under control can be driven to zero by making the choice
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \bvr{}\ess{-1}\bur{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+This is the pseudoinverse solution. The portion that cannot be controlled leaves a residual error
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \rtr{T} = \normts{\run{*}b}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+This term measures how much of the data vector intrudes into the null space $\rnlla{*}$
+
+
+% SUBSECTION
+\subsection{$\sig{}$ gymnastics}
+Success with the \asvd \ involve being able to manipulate the $\sigma$ matrices. Keep track of shape arbitration. Recall $\ess{T}=\ess{}$.
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \sig{}\sig{T} &= \sbb{}\sbh{T} = \sbb{2}_{n\times n} \\
+      \sig{T}\sig{} &= \sbh{T}\sbb{} = \sbb{2}_{m\times m} \\
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \spa &= \sbb{}\sbh{-1} = { \mat{c|c} { \I{2} & \zero \\ \hline \zero & \zero } }_{n\times n} \\
+      \spb &= \sbh{T}\sbb{} = { \mat{c|c} { \I{2} & \zero \\ \hline \zero & \zero } }_{m\times m} \\
+    \end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      \wx{*} = \U{}\sbb{2}\U{*}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{Identities}
+%\input{\pathtables "tab svd block forms"}  %  <  <  <  <  <  <  <  <  <  <  <  <
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"sec XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

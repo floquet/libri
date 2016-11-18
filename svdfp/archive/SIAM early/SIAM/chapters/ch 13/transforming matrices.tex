@@ -1,0 +1,93 @@
+\section{Overview}
+
+In linear algebra there is a progression of diagonalization problems.
+\begin{equation*}
+  \begin{array}{lll}
+       \text{Spectral theorem}\\
+    \qquad  \qquad  \text{Schur's triangularization theorem}\\
+    \qquad \qquad \qquad  \qquad  \text{Singular value decomposition theorem}
+  \end{array}
+\end{equation*}
+
+%%%
+\section{Unitary transformation of matrices}
+A good deal of linear algebra is dedicated to the unitary transformation of matrices. Most often this is to reduce a matrix to diagonal form when possible, and if not to upper diagonal form.
+
+%%%
+\subsection{Spectral Theorem}
+The best outcomes come from the most restrictive class, the normal matrices. These square matrices are diagonalized by a single unitary matrix. Formally, the mathematical statement is this: For a target matrix $\Ac{m}_{m}$ with the property
+\begin{equation*}
+  \brac{\A{},\A{*}} = \A{}\A{*} - \A{*}\A{} = \zero
+\end{equation*}
+there exists a matrix $\Q{}\in\cmplx{\byy{m}}$ with the property that
+\begin{equation*}
+  \Q{}\Q{*} = \Q{*}\Q{} = \I{m}
+\end{equation*}
+such that
+\begin{equation*}
+  \Q{*}\A{}\,\Q{} = \D{}
+\end{equation*}
+where the diagonal matrix $\D{}\in\Ac{m}_{m}$ where the eigenvalues populate the diagonal. This is a statement of the spectral theorem.
+
+If the matrix is symmetric, the eigenvalues are real. If the matrix is skew symmetric, the eigenvalues are imaginary. That is,
+\begin{equation}
+  \begin{array}{rcrccll}
+     \A{} &=& \A{*}  & \qquad \implies & \qquad \lambda_{k} \in \real{}, \quad    & k=1:m, \\
+     \A{} &=& -\A{*} & \qquad \implies & \qquad \lambda_{k} \in \mathbb{I}, \quad & k=1:m.
+  \end{array}
+\end{equation}
+
+In general the eigenvalues will be complex. We can see this by writing the matrix as a sum of symmetric and skew symmetric components:
+\begin{equation}
+  \A{} = \underbrace{\rtwo \paren{\A{} + \A{*}}}_{\text{symmetric}} + \underbrace{\rtwo \paren{\A{} - \A{*}}}_{\text{skew symmetric}}
+\end{equation}
+
+%%%
+\subsection{Schur's Triangularization Theorem}
+Schur's remarkable theorem tells us that \emph{every} square matrix can be reduced to upper triangular form. The power of this result comes from the generality of the application. No matter what square matrix we present, we know that we are able to reduce it to upper-triangular form using a unitary transformation. 
+
+\begin{thm}[Schur's triangualrization theorem]
+Every square matrix is unitarily similar to an upper-triangular matrix.
+\label{thm:Schur}
+\end{thm}
+
+Given an matrix $\Ac{m}$, there exists a unitary matrix $\Q{}\in\cmplxmm$ such that
+\begin{equation}
+  \Q{*}\A{}\Q{} = \T{}
+\end{equation}
+where the matrix $\T{}$ is upper triangular. In fact, we sometimes need to express the upper-triangular matrix as the sum of a diagonal matrix $\D{}$ and a matrix $\N{}$ whose entries all lie above the diagonal.
+\begin{equation}
+  \T{} = \D{} + \N{}.
+\end{equation} 
+This will be important when we look at functions of matrices.
+
+But what if our target matrix $\A{}$ is not square? What if we want a unitary transformation to reduce the matrix not just to upper-triangular, but to diagonal form? In these cases, we need the most powerful decomposition of all, the \svdl.
+
+%%%
+\subsection{The Singular Value Decomposition Theorem}
+And so we come to the end of line with the \svdl, the most robust tool for diagonalization. Given \emph{any} matrix $\A{}$ the \svdl \ is the unitary transformation which reduces a matrix to diagonal form:
+\begin{equation}
+  \Y{*}\A{}\X{} = \sig{}.
+\end{equation}
+The matrix specifications are these:
+\begin{equation*}
+  \Amnr, \quad \sig{}\in\cmplx{\by{m}{n}}_{\rho}, \quad \Y{}\in\cmplx{\byy{m}}, \quad \X{}\in\cmplx{\byy{n}}.
+\end{equation*}
+As always, the target matrix $\A{}$ and the matrix $\sig{}$ have the same shape and the same rank, $\rho$. The singular values are real and ordered such that
+\begin{equation*}
+  \sigma_{1} \ge \sigma_{2} \ge \dots \ge \sigma_{\rho} > 0.
+\end{equation*}
+
+\begin{enumerate}
+\item Spectral theorem:
+\subitem target matrix must be square and normal,
+\subitem diagonal elements are the eigenvalues,
+\item Schur triangularization theorem:
+\subitem target matrix must be square,
+\subitem diagonal elements are the eigenvalues,
+\item SVD theorem:
+\subitem no restrictions on target matrix,
+\subitem diagonal elements are the singular values.
+\end{enumerate}
+
+\endinput

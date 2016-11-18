@@ -1,0 +1,103 @@
+\chapter{$\cmplx{}$ vs. $\real{}$}
+
+\section{Life is complex}
+The salient observation is that the real line is embedded in the complex plane. Therefore we may view real numbers as a subset of the complex numbers. Even simple operations with purely real numbers cannot be restricted to the real number line. For example, solutions to equations like
+\begin{equation}
+  x^{2} + 1 = 0
+\end{equation}
+force us into the complex plane. Even functions as simple as
+\begin{equation}
+  y(x) = a x^{2} + b x + c, \quad \lst{a,b,c}\in\real{3}
+\end{equation}
+can be problematic. The roots are real when the discriminant is not negative
+\begin{equation}
+  \sqrt{b^{2} - 4 a c} \ge 0,
+\end{equation}
+that is when
+\begin{equation}
+  b^{2} \ge 4 ac
+\end{equation}
+
+The function
+\begin{equation}
+  y(x) = \frac{1} {\sqrt{x^{2} + 1}}
+\end{equation}
+has finite values for all derivatives for all orders over the entire real line;\begin{equation}
+  \max_{x\ir}\abs{\frac{d^{n}} {dx^{n}} y(x)} < \infty, \qquad n \in \mathbb{Z}^{+}
+\end{equation}
+This function is very well-behaved. Yet why does the Taylor expansion about the origin have a radius of convergence of only 1? Because of the pole in the complex plane.
+
+Finite binary representation of real numbers can generate complex numbers. For example, in the error propagation numbers are added quadratically. For example, given the functional relationship
+\begin{equation}
+  a + b = c
+\end{equation}
+the measurement error becomes
+\begin{equation}
+  \sigma_{a}^{2} + \sigma_{b}^{2} = \sigma_{c}^{2}
+\end{equation}
+The final step is a square root operation
+\begin{equation}
+  \sigma_{c} = \sqrt{\sigma_{c}^{2}}
+\end{equation}
+Sets of large numbers should almost completely cancel. While we know the result must be real, the digital representation will often have a very small imaginary component. While the difference between $-10^{-16}$ and $10^{-16}$ is usually negligible in practice, the difference between $\sqrt{10^{-16}}$ and $\sqrt{-10^{-16}}$ is the difference between an answer and an error message.
+
+%%%%%%%%
+\section{Reflections}
+If we are in the field of complex numbers
+\begin{equation}
+  \alpha = a + i b
+\end{equation}
+where $i$ is the imaginary unit. The complex conjugate
+\begin{equation}
+  \overline{\alpha} = a - i b.
+\end{equation}
+is the reflection of $\alpha$ through the real axis. The expression
+\begin{equation}
+  \alpha = \overline{\alpha} \quad \Rightarrow \quad b = 0. 
+\end{equation}
+
+%%%%%%%%
+\section{Spaces}
+Take a matrix with real entries such as
+\begin{equation}
+  \A{} = \mat{cc}{a & b \\ c & d}.
+\end{equation}
+This matrix is a member of the space of $\byy{2}$ matrices with real elements:
+\begin{equation}
+  \A{} \in \real{\byy{2}}
+\end{equation}
+Matrices in this class include $-\A{}$, $\half \A{}$, $\pi \A{}$, $10^{23}\A{}$, \dots
+
+We use real numbers in any example where we want to plot vectors.
+
+%%%%%%%%
+\section{Conversion}
+%%
+\begin{table}[htdp]
+\caption[One way trip for complex numbers]{One way trip for complex numbers.}
+\begin{center}
+\begin{tabular}{lcl}
+%
+  unitary & $\Longrightarrow$ & orthogonal \\
+  Hermitian conjugate  & $\Longrightarrow$ & transpose
+%
+\end{tabular}
+\end{center}
+\label{tab:conversion}
+\end{table}
+%%
+
+%%%%%%%%
+\section{Algorithms}
+Consider an early step in computing the \asvd, forming the product matrix $\W{x}$. The command
+\begin{equation}
+  Wx = \wx{*}
+\end{equation}
+always works. The command
+\begin{equation}
+  Wx = \A{T}\A{}
+\end{equation}
+will not work if there is a single complex number in the matrix $\A{}$. If the goal is to write a computer code for general application, then one can either use the economical statement or \dots? Test each entry to see if any values are complex? (Slow.) Hope that all entries are real? (Overly optimistic.)
+
+
+\endinput

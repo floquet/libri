@@ -1,0 +1,34 @@
+\break
+\clearpage
+%%
+\begin{table}[htdp]
+\caption[A schema for the general \asvd]{A schema for the general \asvd \ where $\aicmnr$. First is the block structure showing the range and \ns \ components along with the singular values matrix $\ess{}$ embedded in the sabot matrix. These four sets of column vectors define spans for the four fundamental subspaces. The origin and use of the singular values $\sigma$ is shown on the bottom. They are the ordered eigenvalues of the product matrix $\wx{*}$. There are $\rho$ eigenvectors for the domain and the codomain, but the number of null vectors differ. The domain will have $n-\rho$ null vectors; the codomain $m-\rho$ null vectors.}
+\begin{center}
+\begin{tabular}{ccccc}
+%
+ && \emph{codomain} & \emph{scaling} & \emph{domain} \\[10pt]
+%
+  $\A{}$ & = & $\U{}$ & $\sig{}$ & $\V{*}$ \\
+%
+  & = & $\cublockf$ & $\sbb{}$ & $\cvblockfs{*}$ \\
+%
+  & = & $\mat{ccc|ccc}{\buo & \dots & \burho & \rurpo & \dots & \rum}$ 
+      & $\mat{ccc|c}{\sigma_{1} &&&  \\ & \ddots & & \zero \\[3pt] && \sigma_{\rho} \\[3pt]\hline & \zero & & \zero}$ 
+      & $\mat{c}{\bvo^{\bstar} \\ \vdots \\ \bvrho^{\bstar}  \\[2pt]\hline \rvrpo^{\rstar} \\ \vdots \\ \rvnn^{\rstar} }$
+%
+\end{tabular}
+\end{center}
+\label{tab:schema}
+\end{table}
+%%
+$$
+\ess{} = \eesd{} \\[5pt]
+$$
+$$
+\lambda \paren{\wx{*}} = \lst{\sigma_{1}, \dots, \sigma_{\rho}, 0, \dots, 0 } \\[5pt]
+$$
+$$
+\sigma_{1} \ge \sigma_{2} \ge \cdots \ge \sigma_{\rho} > 0
+$$
+
+\endinput

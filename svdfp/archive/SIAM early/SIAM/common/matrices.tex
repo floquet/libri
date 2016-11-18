@@ -1,0 +1,270 @@
+%% Example matrices
+
+\newcommand{ \Aexample }
+{
+    \mat{ rr }
+      {
+       1 & -1 \\
+      -1 &  1 \\
+       1 & -1
+      }
+}
+
+\newcommand{ \Aplus }
+{
+  \frac{1}{6}
+  \mat{rrr}
+  {
+   1 &  \phantom{-}1 &  1\\
+  -1 &  1 & -1
+  }
+}
+
+\newcommand{ \Atexample } 
+{
+    \mat{ rrr }
+      {
+       1 & -1 & 1 \\
+      -1 & 1 & -1 \\
+      }
+}
+
+\newcommand{\phivector}
+{
+  \mat{c}
+  {
+  2\\1\\0
+  }
+}
+
+\newcommand{\ximatrix}
+{
+  \mat{c}
+  {
+  \xi \\ \eta
+  }
+}
+
+\newcommand{ \Sigmatexamplea } {
+\left[
+\begin{array}{c|cc}
+ \sqrt{6} & 0 & 0 \\ \hline
+ 0 & 0 & 0
+\end{array}
+\right]
+}
+
+\newcommand{ \Sigmaexampleb } {
+\left[
+\begin{array}{c|c}
+ \sqrt{6} & 0 \\ \hline
+ 0 & 0 \\
+ 0 & 0
+\end{array}
+\right]
+}
+
+\newcommand{ \Sigmaexample } {
+\left[
+\begin{array}{cc}
+ \sqrt{6} & 0 \\ 
+ 0 & 0 \\
+ 0 & 0
+\end{array}
+\right]
+}
+
+\newcommand{ \Sigmainverse } {
+\left[
+\begin{array}{c|cc}
+ \ssix & 0 & 0 \\[5pt] \hline
+ 0 & 0 & 0
+\end{array}
+\right]
+}
+
+\newcommand{ \Xshadex } {
+\left[
+\begin{array}{ r >{\columncolor{ltgray}}r }
+  \stwo & \stwo \\[5pt]
+ -\stwo & \phantom{-}\stwo
+\end{array}
+\right]
+}
+
+\newcommand{ \Xshade } {
+\stwo
+\left[
+\begin{array}{ r >{\columncolor{ltgray}}r }
+  1 & 1 \\
+ -1 & \phantom{-}1
+\end{array}
+\right]
+}
+
+\newcommand{ \Xtshade } {
+\stwo
+\left[
+\begin{array}{ rr }
+  1 & -1 \\[5pt]
+\rowcolor{ltgray}
+  \phantom{-}1 &  1
+\end{array}
+\right]
+}
+
+\newcommand{ \Yshade } {
+\left[
+\begin{array}{ r >{\columncolor{ltgray}}c >{\columncolor{ltgray}}r }
+  \sthree & 0 & \frac{2}{ \sqrt{6} } \\[5pt]
+ -\sthree & \stwo &  \ssix \\[5pt]
+  \sthree & \stwo & -\ssix
+\end{array}
+\right] 
+}
+
+\newcommand{ \Ytshade } {
+\left[
+\begin{array}{ rrr }
+  \sthree & -\sthree & \sthree \\[5pt]
+\rowcolor{ltgray}
+   0 & \stwo &  \stwo \\[5pt]
+\rowcolor{ltgray}
+  \frac{2}{ \sqrt{6} } & \ssix & -\ssix
+\end{array}
+\right] 
+}
+
+\newcommand{ \Aa }
+{
+    \mat{ ccc }
+      {
+       0 & 3 & 0 \\
+       1 & 2 & 0
+      }
+}
+
+\newcommand{ \Ab }
+{
+    \mat{ rc }
+      {
+       1 & 2 \\
+      -1 & 2
+      }
+}
+
+\newcommand{ \veca } {
+\mat{r}{0\\1\\1}
+}
+
+\newcommand{ \vecb } {
+\mat{r}{2\\1\\-1}
+}
+
+\newcommand{ \Xexample } {
+\stwo
+\left[
+\begin{array}{ rr }
+   1 & 1 \\[5pt]
+  -1 & \phantom{-}1
+\end{array}
+\right]
+}
+
+
+\newcommand{ \Xtexample } {
+\stwo
+\left[
+\begin{array}{ rr }
+  \phantom{-}1 & -1 \\[5pt]
+  1 &  1
+\end{array}
+\right]
+}
+
+\newcommand{ \Sigmatexample } {
+\left[
+\begin{array}{c|cc}
+ \sqrt{6} & 0 & 0 \\ \hline
+ 0 & 0 & 0
+\end{array}
+\right]
+}
+
+\newcommand{ \Sigmaexamplepi } {
+\mat{c|cc}
+{
+ \ssix & 0 & 0 \\[5pt] \hline
+        0 & 0 & 0
+}
+}
+
+\newcommand{ \Aexamplecol } {
+\left[
+\begin{array}{ r|r }
+  1 & -1 \\
+ -1 & 1 \\
+  1 & -1
+\end{array}
+\right]
+}
+
+\newcommand{ \Aexamplerow } {
+\left[
+\begin{array}{ rr }
+ 1 & -1 \\ \hline
+ -1 & 1 \\ \hline
+ 1 & -1
+\end{array}
+\right]
+}
+
+\newcommand{ \Aexamplepi } {
+  \rsix
+  \mat{rrr}
+  { 1 & -1 &  1\\
+   -1 &  1 & -1
+  }
+}
+
+\newcommand{ \AexampleApA } {
+  \rtwo
+  \mat{rr}
+  { 1 & -1\\
+   -1 &  1
+  }
+}
+
+\newcommand{ \AexampleAAp } {
+  \rsix
+  \mat{rrr}
+  { 1 & -1 &  1\\
+   -1 &  1 & -1\\
+    1 & -1 &  1
+  }
+}
+
+\newcommand{ \Smatrix } {
+  \mat{cccc}
+  {  \sigma_{1}\\
+  &  \sigma_{2}\\
+  && \ddots    \\
+  &&&\sigma_{\rho}}
+}
+
+\newcommand{ \Smatrixinv } {
+  \mat{cccc}
+  {  \sigma_{1}^{-1}\\
+  &  \sigma_{2}^{-1}\\
+  && \ddots    \\
+  &&&\sigma_{\rho}^{-1}}
+}
+
+\providecommand{\essmatrix}[1]  { \mat{c|c}{\ess{#1}&\zero\\\hline\zero&\zero} }
+\providecommand{\ceematrix}[1]  { \mat{c|c}{\C{#1}&\zero\\\hline\zero&\zero} }
+\providecommand{\idmatrix}[1]   { \mat{c|c}{\I{#1}&\zero\\\hline\zero&\zero} }
+
+\providecommand{\essmatrixt}[1] { \mat{c|c}{\ess{#1}&\zero} }
+\providecommand{\essmatrixw}[1] { \mat{c}{\ess{#1} \\\hline\zero} }
+
+\endinput

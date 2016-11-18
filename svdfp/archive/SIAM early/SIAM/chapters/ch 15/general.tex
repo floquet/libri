@@ -1,0 +1,27 @@
+\section{The general solution}
+
+Let's resume the discussion with the issue posed in \S\eqref{sec:pi}. The issue was the general system to the linear system given by 
+$$
+\ls.
+$$
+By generalizing the matrix inverse we were able to solve the general problem. THe target matrix did not have to be square; it was no longer restricted to being nonsingular. This general solution was expressed in equation \eqref{eq:solution:general}:
+$$
+    \Ap\paren{\A{}x} = \A{+}b.
+$$
+We were troubled by the fact that the matrix product on the left-hand side is in general not an identity matrix:
+\begin{equation}
+  \Ap\A{} \ne \I{n}.
+\end{equation}
+(Later on in \S\eqref{sec:chiral} we saw that the pseudoinverse is a left inverse
+\begin{equation}
+  \Ap\A{} = \I{n}
+\end{equation}
+when the target matrix has full column rank.) We also went on to discover in \S\eqref{sec:solution:complete} that while $\A{+}b$ is the point solution, it is not the complete solution as seen, for example, in equation \eqref{eq:simple:fullsoln}.
+
+Now armed with the knowledge of the four fundamental projectors from \S\eqref{sec:orthproj} we can bring this issue into full theoretical appreciation. In equation \eqref{eq:fourprojpi} we saw that the matrix product of interest is the operator which projects vectors onto the perpendicular complement of the of the null space of the target matrix:
+\begin{equation}
+  \projnap = \leftinv.
+\end{equation}
+
+
+\endinput

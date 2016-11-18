@@ -1,0 +1,37 @@
+\section[2D coordinate systems]{Coordinate systems in 2 dimensions}
+
+The column vectors in the domain matrices can be interpreted as an orthonormal bases for the vector spaces induced by the target matrix $\A{}$.
+
+In spaces of dimensions two and three the unitary matrices can be interpreted as being rotation matrices provided the determinant is +1.
+%
+\begin{equation}
+  \det \A{} = 1
+\end{equation}
+%
+\begin{equation}
+  \T{}_{2} = \mat{cr}{a&-b \\ b&a}
+\end{equation}
+%
+\begin{equation}
+  a^{2} + b^{2} = 1
+\end{equation}
+\begin{equation}
+  \theta = \arctan \paren{b/a} 
+\end{equation}
+%
+\begin{equation}
+  \theta =
+  \begin{cases}
+    \arctan \paren{b/a} & a \ne 0 \\
+    \pi / 2 & a = 0
+  \end{cases}
+\end{equation}
+%
+\begin{equation}
+  \T{}_{2} \paren{\theta} = \rotation{\theta}
+\end{equation}
+
+%%%%%%
+\input{chapters/bases/"tab successive rotations"}  % table
+
+\endinput

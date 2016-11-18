@@ -1,0 +1,42 @@
+\section{More on domains}
+Let's look at domains in the familiar context of the calculus. THis will allow us to connect things.
+
+Then onto set theory. An example will keep the discussion more concrete and less abstract.
+
+%%
+\subsection{The mapping action of the function $f(x)$.}
+Consider the real function
+\begin{equation}
+  y=\sqrt{\paren{x-1}\paren{x+2}}
+\end{equation}
+What is the domain and range of this function? What are the allowable values of $x$ which yield a valid $y$?
+
+%%
+\subsection{The mapping action of the matrix $\A{}$}
+Start with the matrix 
+\begin{equation}
+  \A{}= \Aexample.
+\end{equation}
+This matrix maps $2-$vectors to $3-$vectors. We will represent the collection of all $2-$vectors as a circle and the collection of all $3-$vectors as a square. The target matrix $\A{}$ connects points in the circle with points in the square as shown in this figure:
+$$
+\text{circle to square}.
+$$
+Or symbolically
+\begin{equation}
+  \A{} \mat{c}{\star \\ \star} = \mat{c}{\bullet \\ \bullet \\ \bullet }.
+\end{equation}
+The problem is that this matrix cannot connect to the entire set of $3-$vectors. In fact, this matrix can only see a limited set of $3-$vectors. To understand why, look at the general problem
+\begin{equation}
+  \A{} x = \Aexample \mat{c}{x\\y} = \alpha\mat{r}{1\\-1\\1}
+\end{equation}
+where $\alpha = x-y$. For example, there is no vector in the domain which maps to the constant vectors:
+\begin{equation}
+  \Aexample \mat{c}{x\\y} \ne \mat{c}{1\\1\\1}.
+\end{equation}
+This requires that the diagram be revised. The square representing the $3-$vectors will be separated into two regions. The shaded portion represents the $3-$vectors that can't be connected to any $2-$vector under the mapping of $\A{}$.
+$$
+\text{circle to square}.
+$$
+
+
+\endinput

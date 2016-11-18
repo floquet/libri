@@ -1,0 +1,334 @@
+%% Example matrices
+\newcommand{ \dimsc }[0]    { \cmplxall{2}{2}{2} }
+
+\newcommand{ \matrixc }
+{
+    \mat{ cr }
+      {
+       1 & -1 \\
+       2 & 2
+      }
+}
+
+%% transpose
+
+\newcommand{ \matrixct }
+{
+    \mat{ rc }
+      {
+        1 & 2 \\
+       -1 & 2
+      }
+}
+
+%% inverse
+
+\newcommand{ \Aplusc }
+{
+    \recip{4}
+    \mat{ rc }
+      {
+        2 & 1 \\
+       -2 & 1
+      }
+}
+
+\newcommand{ \Asplusc }
+{
+    \recip{4}
+    \mat{ cr }
+      {
+        2 & -2 \\
+        1 &  1
+      }
+}
+
+%% inverse of transpose
+
+\newcommand{ \Aplusct }
+{
+    \recip{4}
+    \mat{ cr }
+      {
+        2 & -2 \\
+        1 & 1
+      }
+}
+
+%% product matrices
+
+\newcommand{ \wxc }[0]
+{
+    \mat{ cc }
+      {
+       5 & 3 \\
+       3 & 5
+       }
+}
+
+\newcommand{ \wyc }[0]
+{
+    \mat{ cc }
+      {
+       2 &  0 \\
+       0 &  8
+      }
+}
+
+%% projectors
+
+\newcommand{ \prac }[0]
+{
+  \idtwo
+}
+
+\newcommand{ \prasc }[0]
+{
+  \idtwo
+}
+
+\newcommand{ \pnac }[0]
+{
+  \gztwo
+}
+
+\newcommand{ \pnasc }[0]
+{
+  \gztwo
+}
+
+%% adjoint projectors
+
+\newcommand{ \pracs }[0]
+{
+  \idtwo
+}
+
+\newcommand{ \prascs }[0]
+{
+  \idtwo
+}
+
+\newcommand{ \pnacs }[0]
+{
+  \gztwo
+}
+
+\newcommand{ \pnascs }[0]
+{
+  \gztwo
+}
+
+%% decomposition products
+\newcommand{ \matrixcX}[0] 
+{
+    {\bl{ 
+    \rstwo
+    \mat{cr}{
+    \bone & \bminus\bone \\
+    \bone & \ps \bone
+    }  }}
+}
+
+\newcommand{ \matrixcXt}[0] 
+{
+    {\bl{ 
+    \rstwo
+    \mat{rr}{
+           \bone &  \ps \bone \\
+    \bminus\bone &  \ps \bone
+    }  }}
+}
+
+\newcommand{ \matrixcXtg}[0] 
+{
+    {\bl{ 
+    \rstwo
+    \mat{rr}{
+    e^{-i\phi} &  e^{-i\phi} \\
+    e^{-i\theta} & -e^{-i\theta}
+    } }} 
+}
+
+\newcommand{ \matrixcY}[0] 
+{
+   {\bl{ 
+    \mat{cr}{
+     0 & -1 \\
+     1 &  0
+    }
+    }}
+}
+
+
+\newcommand{ \matrixcYg}[0] 
+{
+    {\bl{ 
+    \mat{cc}{
+    0 & e^{i\phi} \\
+    -e^{i\theta} &  0
+    } }} 
+}
+
+\newcommand{ \matrixcYb}[0] 
+{
+    \rstwo
+   {\bl{ 
+    \mat{cr}{
+     0 & -1 \\
+     1 &  0
+    }
+    }}
+}
+
+\newcommand{ \matrixcYt}[0] 
+{
+   {\bl{ 
+    \mat{rc}{
+     0 & 1 \\
+    -1 & \ps0
+    }
+    }}
+}
+
+\newcommand{ \sigmac }[0] 
+{
+    \sqrt{2}
+    \mat{ cc }
+      {
+        2 & 0 \\
+        0 & 1
+      }
+}
+
+\newcommand{ \sigmact }[0] 
+{
+    \sqrt{2}
+    \matt{ cc }
+      {
+        2 & 0 \\
+        0 & 1
+      }
+}
+
+\newcommand{ \sigmacinv }[0] 
+{
+    \recip{2\sqrt{2}}
+    \matt{ cc }
+      {
+        1 & 0 \\
+        0 & 2
+      }
+}
+
+%% data vector c
+\newcommand{ \datac }[0]
+{
+    \mat{ c }
+      {
+       2 \\
+       1
+      }
+}
+
+\newcommand{ \datact }[0]
+{
+    \mat{ cc }
+      {
+       2 & 1
+      }
+}
+
+%% x_{LS}
+\newcommand{ \xlsc }[0]
+{
+   {\bl{  
+    \recip{4}
+    \mat{ r }
+      {
+        5 \\
+       -3
+      }
+    }}
+}
+
+%% Ax_{LS}
+\newcommand{ \datacAxls }[0]
+{
+   {\bl{ 
+    \mat{ c }
+      {
+       2 \\
+       1
+      }
+    }}
+}
+
+%% r
+\newcommand{ \datacr }[0]
+{
+    {\rd{ 
+    \mat{ c }
+      {
+       0 \\
+       0
+      }
+     }}
+}
+
+
+%% ||r||
+\newcommand{ \normcr }[0]
+{
+    0
+}
+
+%% ||r||^{2}
+\newcommand{ \normcrs }[0]
+{
+    0
+}
+
+
+%% SVD
+\newcommand{ \svdecompc }[0]     { \matrixcY \, \sigmac \, \matrixcXt} 
+\newcommand{ \aesvdecompc }[0]   { \A{} = \svdecompc } 
+\newcommand{ \svdecompcg }[0]    { \matrixcYg \, \sigmac \, \matrixcXtg} 
+\newcommand{ \aesvdecompcg }[0]  { \A{} = \svdecompcg } 
+
+%% 2 vectors
+\newcommand{ \vecca }      { \mat{r}{-1\\ 1} }
+\newcommand{ \veccb }      { \mat{r}{\ps1\\ 1} }
+\newcommand{ \veccc }      { \mat{r}{ 0\\ 1} }
+\newcommand{ \veccd }      { \mat{r}{ 1\\ 0} }
+\newcommand{ \vecce }      { \mat{r}{ 2\\ 2} }
+\newcommand{ \veccf }      { \mat{r}{ 1\\ 2} }
+\newcommand{ \veccg }      { \mat{r}{-1\\ 2} }
+\newcommand{ \vecch }      { \mat{r}{ 1\\-1} }
+
+\newcommand{ \bvecca }     { {\bl{ \vecca }} }
+\newcommand{ \bveccb }     { {\bl{ \veccb }} }
+\newcommand{ \bveccc }     { {\bl{ \veccc }} }
+\newcommand{ \bveccd }     { {\bl{ \veccd }} }
+\newcommand{ \bvecce }     { {\bl{ \vecce }} }
+\newcommand{ \bveccf }     { {\bl{ \veccf }} }
+\newcommand{ \bveccg }     { {\bl{ \veccg }} }
+\newcommand{ \bvecch }     { {\bl{ \vecch }} }
+
+\newcommand{ \obvecca }    { {\bl{ \rstwo \vecca }} }
+\newcommand{ \obveccb }    { {\bl{ \rstwo \veccb }} }
+\newcommand{ \obveccc }    { {\bl{        \veccc }} }
+\newcommand{ \obveccd }    { {\bl{        \veccd }} }
+
+%%%%%%%%%%%
+\newcommand{ \obcuo }    {\bl{ \mat{c} { 0\\ 1} }}
+\newcommand{ \obcut }    {\bl{ \mat{r} {-1\\ 0} }}
+\newcommand{ \obcuot }   {\bl{ \mat{cc}{ 0 & 1} }}
+\newcommand{ \obcutt }   {\bl{ \mat{rc}{-1 & 0} }}
+
+\newcommand{ \obcvo }    {\bl{ \rstwo \mat{c}{ 1\\ 1} }}
+\newcommand{ \obcvt }    {\bl{ \rstwo \mat{r}{-1\\ 1} }}
+\newcommand{ \obcvot }   {\bl{ \rstwo \mat{cc}{ 1 & 1} }}
+\newcommand{ \obcvtt }   {\bl{ \rstwo \mat{rr}{-1 & 1} }}
+
+\endinput

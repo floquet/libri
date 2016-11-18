@@ -1,0 +1,103 @@
+\section{\label{sec:bevington normal equations}Normal equations}
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    \wx{*} = \thatmat{}
+           = \mat{cc}{m & \sum_{k=1}^{m}x_{k} \\
+                      \sum_{k=1}^{m}x_{k} & \sum_{k=1}^{m}x_{k}^{2} } .
+  \label{eq:wxthatmat}
+  \end{equation}
+  % = =
+This is enough to complete the solution (compare to \eqref{eqn:bevington solution product}):
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{\alpha_{0} \\ \alpha_{1}} =
+    \paren{ \paren{\oto}\paren{\xtx} - \paren{\otx}^{2}}^{-1}
+    \mat{rr}{\xtx & -\otx \\
+            -\otx &  \oto }
+    \mat{c}{ \mathbf{1}^\mathrm{T}y \\  x^\mathrm{T}y} .
+  \end{equation}
+  % = =
+The determinant of the product matrix
+  % = =  e q u a t i o n
+  \begin{equation}
+    \det\paren{\wx{*}} = \Delta = \paren{\oto} \paren{\xtx} - \paren{\otx}^{2}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+When is the determinant 0? When the $x$ vector is proportional to the $1$ vector
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \alpha 1,
+    %\label{eqn:}
+  \end{equation}
+  % = =
+that is, when the measurement locations are all identical: $x_{1} = x_{2} = \cdots = x_{m}=\alpha$. (In the case the rank of the matrix $\A{}$ would be $\rho=1$.)
+Put in a form comparable to \eqref{eqn:bevington soln}
+\input{\pathequations "eqn bevington vector solutions"}  %  <  <  <  <  <  <  <
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      r &= \A{}\alpha - y, \\
+      \eps^{2} &= \frac{r^{\mathrm{T}} r}{\oto-n} \,\textit{diag}\paren{\paren{\wx{*}}^{-1}} .
+    \end{split}
+    \label{eq:lr errors}
+  \end{equation}
+  % = =
+The final result would be quoted as having intercept $\alpha_{0}\pm\eps_{0}$ and slope $\alpha_{1}\pm\eps_{1}$.
+The corresponding errors are (\eqref{eqn:bevington error terms})
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mat{c}{\eps_{0} \\ \eps_{1}} = \sqrt{\frac{r^{\mathrm{T}} r}{\paren{\oto-n}\Delta}}
+    \sqrt{\mat{c}{\xtx \\ \oto}}
+  \end{equation}
+  % = =
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{} = \mat{cc}{1 & x}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Form the normal equations
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{} a = y \quad \longrightarrow \quad \wx{*}\,a = \A{*}y
+    %\label{eqn:}
+  \end{equation}
+  % = =
+The existence of a solution (when $y\ne0$) is guaranteed. How do we know this? 
+Consider the form recast so
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{*} \paren{\A{}a} = \A{*} y
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Read this as ``a matrix times a vector equals the same matrix times another vector''.
+  % = =  e q u a t i o n
+  \begin{equation}
+    \A{*} v_{1} = v_{2}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+This system has a solution whenever the vector $v_{2}$ can be expressed as a combination of the columns of the matrix $\A{*}$. 
+  % = =  e q u a t i o n
+  \begin{equation}
+    a = \paren{\A{*}\A{}}^{-1}\A{*}y
+    %\label{eqn:}
+  \end{equation}
+  % = =
+
+
+  % = =  e q u a t i o n
+  \begin{equation}
+    \mathcal{A} = \A{*}\A{}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"sec XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

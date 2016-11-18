@@ -1,0 +1,105 @@
+\section{Complex numbers}
+The field of complex numbers 
+\begin{equation}
+  z = a+ib
+\end{equation}
+with $a, b \in \real{}$ is \index{complex numbers!isomorphism} isomorphic to matrices of the form
+\begin{equation}
+  \Z{} = \mat{cr}{a&-b\\b&a}.
+  \label{eq:fun:Z}
+\end{equation}
+You can check the isomorphism easily. For example
+\begin{equation}
+  z^{2} = a^{2} - b^{2} + i2ab.
+\end{equation}
+In the matrix notation this has the form
+\begin{equation}
+  z^{2}=\mat{cc}{a^{2} - b^{2} & -2ab\\2ab & a^{2} - b^{2}}.
+\end{equation}
+This matches the square of the matrix operator
+\begin{equation}
+  \Z{2}= \mat{cr}{a&-b\\b&a}\mat{cr}{a&-b\\b&a} =\mat{cc}{a^{2} - b^{2} & -2ab\\2ab & a^{2} - b^{2}}.
+\end{equation}
+
+%%
+\subsection{Finding the decomposition}
+With complex numbers in matrix form we are able to talk about the \svdl \ of a complex number. There are a few ways to approach this problem. One way is to guess $\X{}=\I{2}$ and reason that the fundamental length scale is the length of the vector. This leads to
+\begin{equation}
+  \sig{} = r \itwo.
+\end{equation}
+The codomain matrix then assembles quickly. However, we detail an approach which relies less on intuition and more on deduction.
+
+The problems [XX] for the second chapter explored the interpretation of a complex number as rotation operator. To rotate a vector in $\real{2}$ by an angle $\theta$ multiply by the orthogonal matrix
+\begin{equation}
+  \R{}(\theta) = \mat{cr}{\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta}.
+\end{equation}
+For this matrix the elements are constrained by
+\begin{equation}
+  \cos^{2} \theta + \sin^{2} \theta = 1.
+\end{equation}
+For the $\Z{}$ matrix in equation \eqref{eq:fun:Z} the constraint is
+\begin{equation}
+  a^{2}+b^{2} = r^{2}.
+\end{equation}
+The first constraint equation describes the unit circle; the second equation a circle of radius $r$.
+
+As demonstrated in the exercises, the rotation matrix has an \svdl \ of the form
+\begin{equation}
+  \begin{split}
+    \R{}(\theta) &= \svd{T} \\
+    \R{}(\theta) &= \R{}(\theta) \, \I{2} \, \I{2}\\
+    \mat{cr}{\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta} &= \mat{cr}{\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta}\, \itwo \, \itwo.
+  \end{split}
+\end{equation}
+By straightforward extension
+\begin{equation}
+  \begin{split}
+    \Z{} &= \svd{T} \\
+    \Z{} &= \R{}(\theta)\,\paren{r\I{2}}\,\I{2}\\
+    \mat{cr}{a & -b \\ b & a} &= \mat{cr}{\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta}\, \mat{cc}{r&0\\0&r} \, \itwo
+  \end{split}
+\end{equation}
+where the angle has the usual definition
+\begin{equation}
+  \theta = \arctan \frac{b}{a}.
+\end{equation}
+In terms of the original parameters and $r$ the expansion is
+\begin{equation}
+  \Z{} = \svd{T} = \paren{\frac{1}{r}\mat{cr}{a&-b\\b&a}}\,\paren{r\I{2}}\,\I{2}.
+\end{equation}
+This completes an analytic decomposition that is most unforgiving if treated directly.
+
+%%
+\subsection{Equivalent solutions}
+The singular value matrix $\sig{}$ is unique, but the domain matrices are not. One immediate variant is
+\begin{equation}
+  \Z{} = \svd{T} = \paren{\frac{1}{r}\mat{rr}{-b&a\\a&b}}\,\paren{r\I{2}}\,\mat{cc}{0&1\\1&0}.
+\end{equation}
+
+%%
+\subsection{Working with the decomposition}
+
+%%
+\subsubsection{Complex conjugates}
+From complex variable theory we know that
+\begin{equation}
+  z\overline{z} = \abs{z} = a^{2}+b^{2}
+\end{equation}
+is a scalar.
+\begin{equation}
+  \begin{split}
+    Z \overline{Z} &= \mat{rr}{a&-b\\b&a}\mat{rr}{a&b\\-b&a}\\
+      &= \paren{\svd{T}}\paren{\X{}\,\sig{T}\,\Y{T}}\\
+      &= \brac{\paren{\frac{1}{r}\mat{rr}{a&-b\\b&a}}\,\paren{r\I{2}}\,\I{2}} \brac{\paren{\frac{1}{r}\mat{rr}{a&b\\-b&a}}\,\paren{r\I{2}}\,\I{2}} \\
+      &= \mat{rr}{a^{2}+b^{2}&0\\0&a^{2}+b^{2}}.
+  \end{split}
+\end{equation}
+
+%%
+\subsubsection{Matrix exponential}
+
+%%
+\subsubsection{Linear fractional transformations}
+
+
+\endinput

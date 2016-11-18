@@ -1,0 +1,24 @@
+\subsection{2 $\times$ 2 form}
+For matrices $\Ac{2}$ there is only one Jordan canonical form
+\begin{equation}
+  \mathcal{J}_{2}=\mat{cc}{1&1 \\ 0&1}.
+\end{equation}
+If we make the following intermediate definitions
+\begin{equation}
+  \begin{split}
+    \alpha_{\pm} &= \sqrt{\frac{5\pm\sqrt{5}}{10}},\\
+    \beta_{\pm}  &= \frac{1}{2}\paren{\sqrt{5}\pm1},\\
+  \end{split}
+\end{equation}
+the \svdl \ becomes this
+\begin{equation}
+  \begin{split}
+    \svda{T}\\
+    \mat{cc}{1&1 \\ 0&1} &= 
+      \mat{cc}{\alpha_{+} & -\alpha_{-} \\ \paren{\sqrt{5}\,\alpha_{+}}^{-1} & \alpha_{+}}
+      \mat{cc}{\beta_{+}&0 \\ 0&\beta_{-}}
+      \mat{cc}{\alpha_{-} & \alpha_{+} \\ -\alpha_{+} & \paren{\sqrt{5}\,\alpha_{+}}^{-1}}.
+  \end{split}
+\end{equation}
+
+\endinput

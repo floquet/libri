@@ -1,0 +1,16 @@
+\section{\label{sec:bevington geometry}Geometry of least squares }
+
+Let us repose the problem in a more fundamental way.
+%\input{\pathequations "eqn bevington linear system short"}  %  <  <  <  <  <  <  <
+\input{\pathequations "eqn bevington linear system full"}  %  <  <  <  <  <  <  <
+Notice that we can not solve this problem one point at a time. That is given any point $\paren{x_{k}, y_{k}}$ we cannot find a solution set $a_{k}$ - there is not enough information. We would have to consider pairs of points to find a solution set. Yet by looking at the plot of the data, each pair of points will produce a distinctly different solution.
+%\input{\pathequations "eqn bevington linear system short"}  %  <  <  <  <  <  <  <
+\input{\pathequations "eqn bevington matrix full"}  %  <  <  <  <  <  <  <
+From this viewpoint the essential vectors are evident:
+\input{\pathequations "eqn bevington vectors"}  %  <  <  <  <  <  <  <
+The matrix $\aicmnr$ has $m=9$ rows, $n=2$ columns, and has full column rank $\rho = 2$. The parameter $m$ counts the number of measurements, the parameter $n$ counts the number of solutions variables, here slope and intercept.
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+%\input{\pathchapter "chapter name"/"sec XXX"}  %  <  <  <  <  <  <  <  <  <  <  <  <

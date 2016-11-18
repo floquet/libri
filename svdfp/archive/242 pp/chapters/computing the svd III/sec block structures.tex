@@ -1,0 +1,83 @@
+\section{Block structures and the SVD}
+Does block structure transmit to the decomposition matrices in the SVD? Certainly the $\sig{}$ will order the singular values for the matrices in question.
+
+\begin{equation}
+  \A{} = \mat{ccc}{ 
+    a & \gzero & \gzero \\
+    \gzero & b & \gzero \\
+    \gzero & \gzero & c  }
+\end{equation}
+\begin{equation}
+  \A{} = \mat{rrrrrrr}{
+	  1 & -1 &  1 & \phantom{-1}\gzero & \phantom{-1}\gzero & \phantom{-1}\gzero & \gzero \\
+	 -1 &  1 & -1 & \gzero & \gzero & \gzero & \gzero \\
+	  \gzero &  \gzero &  \gzero & 0 & \recip{4} & \gzero & \gzero \\
+  	\gzero &  \gzero &  \gzero & \frac{3}{4} & \half & \gzero & \gzero \\
+	  \gzero &  \gzero &  \gzero & 0 & \half & \gzero & \gzero \\[2pt]
+    \gzero &  \gzero &  \gzero & \gzero & \gzero & 1 & -1 \\
+    \gzero &  \gzero &  \gzero & \gzero & \gzero & 2 &  2 }
+\end{equation}
+%
+\begin{equation}
+  \begin{split}
+    \sigma_{a} &= \lst{\sqrt{6}}, \\
+    \sigma_{b} &= \recip{4} \sqrt{\lst{15,3}}, \\
+    \sigma_{c} &= \sqrt{2} \lst{2,1}, \\
+    \sigma_{A} &= \lst{2\sqrt{2}, \sqrt{6}, \sqrt{2}, \frac{\sqrt{15}}{4}, \frac{\sqrt{3}}{4}}.
+  \end{split}
+\end{equation}
+%
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+\begin{equation}
+  \begin{split}
+    \A{} &=  
+    \mat{rrr|cc|cr}{
+	  1 & -1 &  1 & \gzero & \gzero & \gzero & \gzero \\
+	 -1 &  1 & -1 & \gzero & \gzero & \gzero & \gzero \\\hline
+	  \gzero &  \gzero &  \gzero & 0 & \recip{4} & \gzero & \gzero \\
+  	\gzero &  \gzero &  \gzero & \frac{3}{4} & \half & \gzero & \gzero \\
+	  \gzero &  \gzero &  \gzero & 0 & \half & \gzero & \gzero \\[2pt]\hline
+    \gzero &  \gzero &  \gzero & \gzero & \gzero & 1 & -1 \\
+    \gzero &  \gzero &  \gzero & \gzero & \gzero & 2 &  2 } \\[10pt]
+    %
+    &= \svd{*}\\[5pt]
+    %
+    &=
+    {\tiny{
+    \mat{ccrcccc}{
+		 \gzero & \brstwo & \gzero & \gzero & \gzero & \gzero & \rrstwo \\
+		 \gzero & \brsmtwo & \gzero & \gzero & \gzero & \gzero & \rrstwo \\[4pt]
+		 \gzero & \gzero & \gzero & \brsthirty  & \brssix  & \rrsmtfive & \gzero \\
+		 \gzero & \gzero & \gzero & \brsfthirty & \brsmsix & \rzero & \gzero \\
+		 \gzero & \gzero & \gzero & \brstthirty & \brstsix & \rrsfive & \gzero \\[4pt]
+		 \bzero & \gzero & \bminus\bone & \gzero & \gzero & \gzero & \gzero \\
+		 \bone & \gzero & \bzero & \gzero & \gzero & \gzero & \gzero }
+		 %
+	  \mat{ccccc|cc}{
+		 2 \sqrt{2} & \gzero & \gzero & \gzero & \gzero & \gzero & \gzero \\
+		 \gzero & \sqrt{6} & \gzero & \gzero & \gzero & \gzero & \gzero \\
+		 \gzero & \gzero & \sqrt{2} & \gzero & \gzero & \gzero & \gzero \\
+		 \gzero & \gzero & \gzero & \frac{\sqrt{15}}{4} & \gzero & \gzero & \gzero \\
+		 \gzero & \gzero & \gzero & \gzero & \frac{\sqrt{3}}{4} & \gzero & \gzero \\[4pt]\hline
+		 \gzero & \gzero & \gzero & \gzero & \gzero & 0 & \gzero \\
+		 \gzero & \gzero & \gzero & \gzero & \gzero & \gzero & 0 }
+		 %
+    \mat{ccccccc}{
+		 \gzero    & \gzero     & \gzero    & \gzero   & \gzero   & \brstwo  & \brstwo \\
+		 \brsthree & \brsmthree & \brsthree & \gzero   & \gzero   & \gzero   & \gzero \\
+		 \gzero    & \gzero     & \gzero    & \gzero   & \gzero   & \brsmtwo & \brstwo \\
+		 \gzero    & \gzero     & \gzero    & \brstwo  & \brstwo  & \gzero   & \gzero \\
+		 \gzero    & \gzero     & \gzero    & \brsmtwo & \brstwo  & \gzero   & \gzero \\
+		 {\rd{ \frac{-2}{\sqrt{6}} }}       & \rrssix  & \rrsmsix & \gzero   & \gzero & \gzero & \gzero \\
+		 \rzero    & \rrstwo    & \rrstwo   & \gzero   & \gzero   & \gzero   & \gzero \\
+		 }}}
+  \end{split}
+\end{equation}
+Block structure does not survive; right- and left-singular vectors do.
+Compare with the decompositions in table \eqref{tab:svden:compare svds}.
+\end{landscape}
+
+
+\endinput

@@ -1,0 +1,209 @@
+\chapter[Least squares with exemplars]{Least squares with exemplar matrices}
+
+\section{Linear systems}  %  S  S  S  S  S  S  S  S  S  S  S
+The essential concepts of least squares and the fundamental subspaces spring to life using exemplar matrices. The canonical linear system is
+  % = =  e q u a t i o n
+  \begin{equation*}
+    \Axeb
+    %\label{eqn:}
+  \end{equation*}
+  % = =
+The matrix $\A{}$ has $m$ rows and $n$ columns of complex numbers. The matrix rank is $\rho\le\min\paren{m,n}$. In shorthand, the three components are
+\begin{enumerate}
+	\item $\aicmnr$: the system matrix, an input;
+	\item $b\in\cmplxm$: the data vector, an input;
+	\item $x\in\cmplxn$: the solution vector, the output.
+\end{enumerate}
+The residual error from the best fit is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    r = \Axmb .
+    %\label{eqn:}
+  \end{equation}
+  % = =
+Ignore the trivial cases where $b=0$.
+
+Exemplar matrices have obvious \asvd s.
+$$ \idtwo,\ \exemplartall,\ \exemplarwide,\ \exemplarboth$$
+
+$$ \mat{c}{\I{2}},\ \mat{c}{\I{2}\\\hline\zero},\ \mat{c|c}{\I{2}&\zero},\ \mat{cc}{\I{2}&\zero\\\hline\zero & 0} $$
+
+% SECTION
+\section{Full rank: $\rho = m = n$}
+Start with an ideal linear system
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \idtwo \xtwo &= \bvtwo.
+    \label{eqn:ideal}
+    \end{split}
+  \end{equation}
+  % = =
+
+% SUBSECTION
+\subsection{Subspace decomposition}
+\input{\pathtables "tab fr"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+Because the matrix $\A{}$ has full column rank the null space $\rnlla{*}$ is trivial. Because the matrix $\A{*}$ has full row rank the null space $\rnlla{}$ is trivial.\\
+
+% SUBSECTION
+\subsection{Existence and uniqueness}
+We have unconditional existence and uniqueness without regard to the data vector. The exact solution is 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \xtwo = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. More formally, the linear system has a unique solution for any value of $b_{1}, b_{2} \ic$.
+
+
+% SECTION
+\section{Full column rank: $\rho = n < m$}
+Foreshadowing the resolution of the range and null spaces, we show a partitioning
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplartall \xtwo &= \bvthree.
+    \label{eqn:fcr}
+    \end{split}
+  \end{equation}
+  % = =
+
+% SUBSECTION
+\subsection{Subspace decomposition}
+\ftola
+\input{\pathtables "tab fcr"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the data vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \underbrace{\bl{\mat{c}{b_{1} \\ b_{2} \\ 0}}}_{\in\brnga{}} + \underbrace{\rd{\mat{c}{0\\0\\b_{3}}}}_{\in\rnlla{*}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{Existence and uniqueness}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{No existence: }
+When the data vector inhabits the null space we do not even have a least squares solution. 
+
+% SUBSECTION
+\subsection{Existence, no uniqueness: }
+
+\input{\pathtables "tab eandu 02"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+
+% SECTION
+\section{Full row rank: $\rho = m < n$}
+Foreshadowing the resolution of the range and null spaces, we show a partitioning
+  % = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+      \A{} x &= b \\
+      \exemplarwide \xthree &= \bl{\bvtwo}.
+    \label{eqn:frr}
+    \end{split}
+  \end{equation}
+  % = =
+
+% SUBSECTION
+\subsection{Subspace decomposition}
+\ftola
+\input{\pathtables "tab frr"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+Thanks to the gentle behavior of the exemplar matrix, the range and null space components for the solution vector are apparent:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x = \underbrace{\bl{\mat{c}{x_{1} \\ x_{2} \\ 0}}}_{\in\brnga{*}} + \underbrace{\rd{\mat{c}{0\\0\\x_{3}}}}_{\in\rnlla{}}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{Existence and uniqueness}
+When the data vector component $b_{3} = 0$, 
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      b = \bl{\mat{c}{b_{1} \\ b_{2} \\ 0}} \in \brnga{}
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+the linear system is consistent and we have a unique solution 
+  % = =  e q u a t i o n
+  \begin{equation}
+    x = \bl{\xtwo} = \bl{\bvtwo}
+    %\label{eqn:}
+  \end{equation}
+  % = =
+which is also the least squares solution
+  % = =  e q u a t i o n
+  \begin{equation}
+    \xls = x = \bvbltwo
+    %\label{eqn:}
+  \end{equation}
+  % = =
+with $\tra{r}r = 0$ residual error. Notice that the solution vector is in the complementary range space, the range space of $\A{*}$:
+% = =  e q u a t i o n
+  \begin{equation}
+    %\begin{split}
+      x \in \brnga{*}.
+    %\end{split}
+    %\label{eqn:}
+  \end{equation}
+% = =
+
+% SUBSECTION
+\subsection{No existence}
+When the data vector inhabits the null space we do not even have a least squares solution. 
+
+% SUBSECTION
+\subsection{Existence, no uniqueness}
+
+\input{\pathtables "tab eandu 02"}  %  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <
+
+
+\endinput  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

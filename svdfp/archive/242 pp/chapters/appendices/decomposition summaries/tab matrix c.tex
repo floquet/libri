@@ -1,0 +1,58 @@
+\clearpage
+\thispagestyle{empty}
+\begin{landscape}
+
+%%
+%\arrayrulecolor{blue}
+\begin{table}[htdp]
+\caption[Computational elements of the \asvd]{Computational elements of the \asvd. The steps numbered in black show a sequence to build a truncated SVD. The shaded numbers show the extra steps required to complete the \ns s and build a complete SVD}
+\begin{center}
+\begin{tabular}{ccccccc|cccc}
+%
+  $\A{}$   & $\xrightarrow[]{ \phantom{1} 1 \phantom{1} }$ 
+& $\wx{*}$ & $\xrightarrow[]{ \phantom{1} 2 \phantom{1} }$ 
+& $\sigma = \sqrt{ \lambda \paren{\wx{*}} } $ & $\xrightarrow[]{ \phantom{1} 3 \phantom{1} }$
+& $\ess{} = \eesd{}$ & ${\mg{\xrightarrow[]{ \phantom{1} 9 \phantom{1}}}}$ & $\sig{} = \sbb{}$ \\
+%
+&&&&&&&&&&  \\
+%
+&&&& {\scriptsize{4}}\ $\downarrow$ &&&&&& \\
+%
+&&&&&&&&&&  \\
+%
+&&&& $\wx{*}\, \bvk = \sigma_{k} \bvk$ & $\xrightarrow[]{ \phantom{1} 5 \phantom{1} }$ 
+& $\bvr{} = \mat{ccc}{ \bvo & \dots & \bvrho } $
+& ${\mg{\xrightarrow[]{ \phantom{1} 10 \phantom{1}}}}$ & $\V{} = \vcols$ \\
+%
+&&&&&&&&&&  \\
+%
+&&&& {\scriptsize{6}}\ $\downarrow$ &&&&&& \\
+%
+&&&&&&&&&&  \\
+%
+&&&& $\buk = \sigma_{k}^{-1}\A{}\, \bvk$ & $\xrightarrow[]{ \phantom{1} 7 \phantom{1} }$ 
+& $\bur{} = \mat{ccc}{ \buo & \dots & \burho } $ 
+& ${\mg{\xrightarrow[]{ \phantom{1} 11 \phantom{1}}}}$ & $\U{} = \ucols$ \\
+%
+&&&&&&&&&&  \\
+%
+&&&&&& {\small{8}}\ $\downarrow$ &&  ${\mg{\small{12}}\ \downarrow}$ \\
+%
+&&&&&&&&&&  \\
+%
+&&&&&& $\aetsvd{*}$ 
+&& $\aesvd{*}$ \\[20pt]
+%
+&&&&&& {\small{TSVD}}
+&& {\small{SVD}} \\
+%
+\end{tabular}
+\end{center}
+\label{tab:computational elements}
+\end{table}
+%\arrayrulecolor{black}
+
+\end{landscape}
+
+
+\endinput

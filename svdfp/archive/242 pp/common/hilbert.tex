@@ -1,0 +1,22 @@
+% Hilbert matrices
+\newcommand{ \hilberttwo }[0]   { \mat{cc}{ 1&\half\\\half&\recip{3}} }
+
+\newcommand{ \hilbertthree }[0] { \mat{ccc}
+{ 
+1         & \half     & \recip{3} \\ 
+\half     & \recip{3} & \recip{4} \\ 
+\recip{3} & \recip{4} & \recip{5} 
+}}
+
+\newcommand{ \numa }[0] { \sqrt{ \half + \recip{\sqrt{13}} } }
+\newcommand{ \numb }[0] { \sqrt{ \half - \recip{\sqrt{13}} } }
+
+\newcommand{ \hilberttwoU }[0] {
+\mat{rr}{ {\bl{ \numa }} & {\bl{ -\numb }} \\ {\bl{ \numb }} & {\bl{ \numa }} } }
+
+\newcommand{ \hilberttwoVT }[0] {
+\mat{rr}{ {\bl{ \numa }} & {\bl{ \numb }} \\ {\bl{ -\numb }} & {\bl{ \numa }} } }
+
+\newcommand{ \hilberttwoS }[0] {
+\recip{6}
+\mat{rr}{ 4 + \sqrt{13} & 0 \\ 0 & 4 - \sqrt{13} } }
